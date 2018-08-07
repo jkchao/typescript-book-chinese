@@ -1,0 +1,32 @@
+{
+  "name": "typescript-book-chinese",
+  "version": "1.0.0",
+  "description": "typescript-book-chinese",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "sh build/deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkchao/typescript-book-chinese.git"
+  },
+  "keywords": [
+    "typescript",
+    "vue"
+  ],
+  "author": "jkchao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkchao/typescript-book-chinese/issues"
+  },
+  "homepage": "https://github.com/jkchao/typescript-book-chinese#readme",
+  "devDependencies": {
+    "vuepress": "^0.13.1"
+  }
+}
