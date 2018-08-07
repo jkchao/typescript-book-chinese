@@ -17,11 +17,11 @@ TypeScript 发展至今，已经成为大型项目的标配，其特有的静态
 
 ## 翻译内容
 
-TypeScript Deep Dive 书中包含一部分 JavaScript Future 的内容，在这里，我们并不打算翻译它们，如果你有兴趣，可以查看原书中 [JavaScript Future](https://basarat.gitbooks.io/typescript/content/docs/future-javascript.html) 有关章节。
+TypeScript Deep Dive 书中包含一部分 JavaScript Future 的内容，在这里，我们并不打算翻译它们，如果你有兴趣，可以查看原书中 [JavaScript Future](https://basarat.gitbooks.io/typescript/content/docs/future-javascript.html) 有关章节。
 
-计划翻译章节已在 todo 文件夹下，如有需要，后续会继续补充。
+计划翻译章节已在 todo 文件夹下，如有需要，后续会继续补充。
 
-此外，在 为了更直观的表达，部分内容将采用意译，而非直译。
+此外，在 为了更直观的表达，部分内容将采用意译，而非直译。
 
 ## 最后
 
