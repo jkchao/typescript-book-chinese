@@ -9,7 +9,7 @@
 
 TypeScript 发展至今，已经成为大型项目的标配，其特有的静态类型检查，能让我们尽早检查出程序错误，在一定程度上，它有利于项目的重构；同时，配合编辑器给予的代码提示，它能帮助我们提升编码效率。
 
-[TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 是一本很好的开源书，从基础到深入，很全面的阐述了 TypeScript 的各种魔法，不管你是新手，还是老鸟，它都将适应你。
+[TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 是一本很好的开源书，从基础到深入，很全面的阐述了 TypeScript 的各种魔法，不管你是新手，还是老鸟，它都将适应你。
 
 社区好像已经存在翻译版，不过都已经腰折了。
 
