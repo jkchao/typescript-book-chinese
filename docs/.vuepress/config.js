@@ -3,6 +3,9 @@ module.exports = {
   title: '深入理解 TypeScript',
   description: 'TypeScript Deep Dive 中文版',
   ga: 'UA-106861408-1',
+  head: [
+    ['link', { rel: 'icon', href: '/logo.png' } ]
+  ],
   themeConfig: {
     repo: 'jkchao/typescript-book-chinese',
     docsDir: 'docs',
