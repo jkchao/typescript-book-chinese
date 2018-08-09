@@ -12,6 +12,8 @@ module.exports = {
     editLinks: true,
     editLinkText: '错误更改',
     activeHeaderLinks: false,
+    sidebarDepth: 2,
+    lastUpdated: '最近更新时间',
     nav: [
       { text: 'blog', link: 'https://jkchao.cn' }
     ],
