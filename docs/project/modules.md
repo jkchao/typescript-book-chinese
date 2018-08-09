@@ -185,7 +185,7 @@ import someLocalNameForThisFile from './foo'
 它们的主要区别来自于系统如何解析模块。
 
 :::tip
-我将会使用一个概念性术语，并在提到查找模式后解释它
+我将会使用一个概念性术语，`place` -- 将在提及查找模式后解释它。
 :::
 
 #### 相对模块路径
@@ -213,4 +213,16 @@ import someLocalNameForThisFile from './foo'
   - `../../node_modules/something/foo`
   - 直到系统的根目录
 
-### 
+### 什么是 `place`
+
+当我提及被检查的 `place` 时，我想表达的是在这个 `place`，TypeScript 将会检查以下内容（例如一个 `foo` 的位置）：
+
+- 如果这个 `place` 表示一个文件，如：`foo.ts`，祝贺！
+- 否则，如果这个 `place` 是一个文件夹，并且存在一个文件 `foo/index.ts`，祝贺！
+- 否则，如果这个 `place` 是一个文件夹，并且存在一个 `foo/package.json` 文件，在该文件中指定 `types` 的文件存在，那么就欢呼！
+- 否则，如果这个 `place` 是一个文件夹，并且存在一个 `package.json` 文件，在该文件中指定 `main` 的文件存在，那么就欢呼！
+
+我实际上是指 `.ts .d.ts` 或者 `.js`
+
+就是这样，现在你已经是一个模块查找专家（这并不是一个小小的成功）。
+
