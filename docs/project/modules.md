@@ -41,9 +41,9 @@ var bar = foo // allow
 
 从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称之为模块。
 
-## 外部模块
+## 文件模块详情
 
-外部模块拥有强大的能力和可用性。在这里，我们来讨论它的能力以及它的一些用法。
+文件模块拥有强大的能力和可用性。在这里，我们来讨论它的能力以及它的一些用法。
 
 ### 澄清：commonjs, amd, es modules, others
 
@@ -150,9 +150,9 @@ export { someVar as aDifferentName } from './foo'
 正如你即将所要学到的，我并不喜欢用默认导出，虽然这里存在默认导出的语法：
 
 - 使用 `export default`
-  - 在一个变量之前（不需要使用 `let/const/var`）
-  - 在一个函数之前
-  - 在一个类之前
+  - 在一个变量之前（不需要使用 `let/const/var`）；
+  - 在一个函数之前；
+  - 在一个类之前。
 
 ```typescript
 // some var
@@ -174,7 +174,7 @@ import someLocalNameForThisFile from './foo'
 ### 模块路径
 
 :::tip
-我将假定使用 `moduleResolution: node` 选项。这个选项应该在你 TypeScript 配置文件里。如果你使用了 `module: commonjs` 选项， `moduleResolution: node` 将会默认开启
+我将假定使用 `moduleResolution: node` 选项。这个选项应该在你 TypeScript 配置文件里。如果你使用了 `module: commonjs` 选项， `moduleResolution: node` 将会默认开启。
 :::
 
 这里存在两种不同截然不同的模块，它们是由导入语句中的不同的路径写法所引起的（例如：`import foo from 'THIS IS THE PATH SECTION'`）。
@@ -217,12 +217,166 @@ import someLocalNameForThisFile from './foo'
 
 当我提及被检查的 `place` 时，我想表达的是在这个 `place`，TypeScript 将会检查以下内容（例如一个 `foo` 的位置）：
 
-- 如果这个 `place` 表示一个文件，如：`foo.ts`，祝贺！
-- 否则，如果这个 `place` 是一个文件夹，并且存在一个文件 `foo/index.ts`，祝贺！
+- 如果这个 `place` 表示一个文件，如：`foo.ts`，欢呼！
+- 否则，如果这个 `place` 是一个文件夹，并且存在一个文件 `foo/index.ts`，欢呼！
 - 否则，如果这个 `place` 是一个文件夹，并且存在一个 `foo/package.json` 文件，在该文件中指定 `types` 的文件存在，那么就欢呼！
 - 否则，如果这个 `place` 是一个文件夹，并且存在一个 `package.json` 文件，在该文件中指定 `main` 的文件存在，那么就欢呼！
 
-我实际上是指 `.ts .d.ts` 或者 `.js`
+从文件类型上来说，我实际上是指 `.ts`， `.d.ts` 或者 `.js`
 
 就是这样，现在你已经是一个模块查找专家（这并不是一个小小的成功）。
+
+### 重写类型的动态查找
+
+在你的项目里，你可以通过 `declare module 'somePath'` 来声明一个全局模块，然后它可以解决模块路径的问题：
+
+```typescript
+// globals.d.ts
+declare module 'foo' {
+  // some varuable declarations
+  export var bar: number
+}
+```
+
+然后：
+
+```typescript
+// anyOtherTsFileInYourProject.ts
+import * as foo from 'foo'
+// TypeScript 将假设（在没有做其他查找的情况下）
+// foo 是 { bar: number }
+```
+
+### `import/require` 仅仅是导入类型
+
+以下导入语法：
+
+```typescript
+import foo = require('foo')
+```
+
+它实际上只做了两件事：
+
+- 导入 foo 模块的所有类型信息；
+- 确定 foo 模块运行时的依赖关系。
+
+你可以选择仅加载类型信息，而没有运行时的依赖关系。在继续之前，你可能需要重新阅读本书的 [声明空间部分](./declarationspaces.md) 部分。
+
+如果你没有把导入的名字当做变量声明空间来用，在编译成 JavaScript 时，导入的模块将会被完全移除。这有一些最好的例子，当你了解了它们之后，我们将会给出一些使用例子。
+
+#### 例子 1
+
+```typescript
+import foo = require('foo')
+```
+
+将会编译成 JavaScript：
+
+```javascript
+
+```
+
+这是正确的，一个没有被使用的空文件。
+
+#### 例子 2
+
+```typescript
+import foo = require('foo')
+var bar: foo
+```
+
+将会被编译成：
+
+```javascript
+var bar;
+```
+
+这是因为 foo （或者其他任何属性如：`foo.bas`）没有被当做一个变量使用。
+
+#### 例子 3
+
+```typescript
+import foo = require('foo')
+var bar = foo
+```
+
+将会被编译成（假设是 commonjs）：
+
+```javascript
+var foo = require('foo')
+var bar = foo
+```
+
+这是因为 `foo` 被当做变量使用了。
+
+#### 使用例子：懒加载
+
+类型推断需要提前完成，这意味着，如果你想在 `bar` 文件里，使用从其他文件 `foo` 导出的类型，你将不得不这么做：
+
+```typescript
+import foo = require('foo')
+var bar: foo.SomeType
+```
+
+然而，在某些情景下，你只想在需要时加载模块 `foo`，此时你需要仅在类型注释中使用导入的模块名称，而**不**是在变量中使用。在编译成 JavaScript 式，这些将会被移除。接着，你可以手动导入你需要的模块。
+
+做为一个例子，考虑以下基于 `commonjs` 的代码，我们仅在一个函数内导入 `foo` 模块：
+
+```typescript
+import foo = require('foo')
+
+export function loadFoo () {
+  // 这是懒加载 foo，原始的加载仅仅用来做类型注释
+  var _foo: typeof foo = require('foo')
+  // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
+}
+```
+
+一个同样简单的 `amd` 模块（使用 requirejs）：
+
+```typescript
+import foo = require('foo')
+
+export function loadFoo () {
+  // 这是懒加载 foo，原始的加载仅仅用来做类型注释
+  require(['foo'], (_foo: typeof foo) => {
+    // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
+  })
+}
+
+```
+
+这些通常在以下情景使用：
+
+- 在 web app 里， 当你在特定路由上加载 JavaScript 时；
+- 在 node 应用里，当你只想加载特定模块，用来加快启动速度时。
+
+#### 使用例子：打破循环依赖
+
+类似于懒加载的使用用例，某些模块加载器（commonjs/node 和 amd/requirejs）不能很好的处理循环依赖。在这种情况下，一方面我们使用延迟加载代码，并在另一方面预先加载模块时很有用的。
+
+#### 使用例子：确保导入
+
+有时候你加载一个文件，是想引入附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)），然而，如果你仅仅是做 `import/require` （导入）需要转换的 JavaScript 代码，这些 JavaScript 代码，并没有与你的模块或者模块加载器（如：webpack）有任何依赖，经过 TypeScript 编译后，这些将会被完全忽视。在这种情况下，你可以使用一个 `ensureImport` 变凉，来确保编译的 JavaScript 依赖与模块。如：
+
+```typescript
+import foo = require('./foo')
+import bar = require('./bar')
+import bas = require('./bas')
+
+const ensureImport: any = foo || bar || bas
+```
+
+## globals.d.ts
+
+在上文中，当我们讨论文件模块时，比较了全局变量与文件模块，并且我们推荐使用基于文件的模块，而不是选择污染全局命名空间。
+
+然而，如果你的团队里有 TypeScript 初学者，你可以提供它们一个 `globals.d.ts` 文件，用来将一些接口或者类型放入全局命名空间里，这些定义的接口和类型能在你的所有 TypeScript 代码里使用。
+
+:::tip
+对于任何需要编译成 JavaScript 代码，我们强烈建议你放入文件模块里。
+:::
+
+- `globals.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要。
+- 当你从 `TS` 迁移到 `JS` 时，定义 `declare module "some-library-you-dont-care-to-get-defs-for"` 能让你快速开始。
 

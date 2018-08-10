@@ -1,15 +1,15 @@
 
-## TypeScript Deep Dive 中文版
+# TypeScript Deep Dive 中文版
 
 此项目是 [TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
 
-## 为什么会决定翻译它
+## Why
 
 ![](http://ovshyp9zv.bkt.clouddn.com/typescript-downloads.jpeg)
 
 > 数据来源：https://npm-stat.com/charts.html?package=typescript&from=2016-01-01&to=2018-07-31
 
-正如你所看到的，TypeScript 发展至今，已经成为大型项目的标配，其提供的静态类型系统，能让我们尽早检查出程序错误；它提供了最新和不断发展的 JavScript 特性，甚至包括那些处于提案中的，它们最终会被编译成简介的 ECMAScript3 (或最新版本)的 JavaScript 版本；同时，配合编辑器给予的代码提示，它有助于我们编码效率的提升，在一定程度上，它有利于项目的重构。
+正如你所见，TypeScript 发展至今，已经成为大型项目的标配，其提供的静态类型系统，有利于我们尽早检查出程序错误；它提供了最新和不断发展的 JavScript 特性，能让我们的代码更加健壮；同时，配合编辑器给予的代码提示，它有助于我们编码效率的提升，在一定程度上，它有利于项目的重构。
 
 [TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 是一本很好的开源书，从基础到深入，很全面的阐述了 TypeScript 的各种魔法，不管你是新手，还是老鸟，它都将适应你。此外，它不同于 TypeScript 官方给出的文档（当然 TypeScript 给出的文档是很好的），在此书中，你将能深入了解 TypeScript，同时它也给出了更实用的示例。
 
@@ -30,7 +30,7 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 的内容，在这�
 - 项目
   - [x] 编译内容
   - [x] 声明空间
-  - [ ] 模块
+  - [x] 模块
   - [ ] 命名空间
   - [ ] 动态导入
 - 类型系统
