@@ -39,6 +39,12 @@ module.exports = {
       {
         title: 'TypeScript 类型系统',
         collapsable: false,
+        children: [
+          '/typings/overview',
+          '/typings/migrating',
+          '/typings/@types',
+          '/typings/ambient',
+        ]
       },
       {
         title: 'TypeScript 错误',
