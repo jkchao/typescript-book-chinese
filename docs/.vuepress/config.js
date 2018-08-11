@@ -42,7 +42,7 @@ module.exports = {
         children: [
           '/typings/overview',
           '/typings/migrating',
-          '/typings/@types',
+          '/typings/types',
           '/typings/ambient',
         ]
       },
