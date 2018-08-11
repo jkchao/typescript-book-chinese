@@ -1,6 +1,6 @@
 # 命名空间
 
-在 JavaScript 使用命名空间时， 这有一个普遍方便的语法：
+在 JavaScript 使用命名空间时， 这有一个常用方便的语法：
 
 ```javascript
 (function (something) {
@@ -10,7 +10,7 @@
 })(something || (something = {}))
 ```
 
-基础的 `something || (something = {})` 允许匿名函数 `function (something) {}` 添加属性到已经存在的对象上（这个 `something` 部分），或者会创建一个新对象，然后添加属性至新对象上（这个 `(something = {})` 部分），这意味着你可以拥有由某些边界拆成的不同的块：
+基础的 `something || (something = {})` 允许匿名函数 `function (something) {}` 添加属性到已经存在的对象上（`something` 部分），或者会创建一个新对象，然后添加属性至新对象上（`(something = {})` 部分），这意味着你可以拥有由某些边界拆成的不同的块：
 
 ```javascript
 (function (something) {
@@ -30,7 +30,7 @@ console.log(something) // { foo: 123 }
 console.log(something) // { foo: 123, bar: 456 }
 ```
 
-这用来确保创建的变量不会泄漏至全局变量中，这在 JavaScript 中很常见。当使用基于文件模块时，你无须担心这点。但是此种方式，仍然适用于合理的函数逻辑分组中。因此 TypeScript 提供了 `namespace` 关键字用来描述这种分组，如下所示：
+在确保创建的变量不会泄漏至全局变量中时，这在 JavaScript 中很常见。当使用基于文件模块时，你无须担心这点，但是此种方式，仍然适用于合理的函数逻辑分组中。因此 TypeScript 提供了 `namespace` 关键字用来描述这种分组，如下所示：
 
 ```typescript
 namespace Utility {
@@ -55,6 +55,6 @@ Utility.error('maybe')
 })(Utility || Utility = {})
 ```
 
-有一点值得注意的是，命名空间是支持嵌套的。因此，你可以做一些类似与在命名空间 `Utility.Messaging` 可以在 `Utility` 下嵌套一个命名空间 `Messaging` 的事情。
+有一点值得注意的是，命名空间是支持嵌套的。因此，你可以做一些类似于在 `Utility` 命名空间下嵌套一个命名空间 `Messaging` 的事情。
 
 对大多数项目来说，我们推荐使用一个使用 `namespace` 的外部的模块，用来快速的演示和移植旧的 JavaScript 代码。
