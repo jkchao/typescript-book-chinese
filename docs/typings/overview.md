@@ -73,7 +73,7 @@ interface Name {
   second: string
 }
 
-const name: Name
+let name: Name
 name = {
   first: 'John',
   second: 'Doe'
@@ -89,14 +89,14 @@ name = {      // Errpr: 'Second is the wrong type'
 }
 ```
 
-在这里，我们把注释：`first: string` + `second: string` 合并到了一个新的注释里 `Name`，这样能对每个成员进行强制的类型检查。接口在 TypeScript 拥有强大的力量。在稍后，我们将会用整个章节来阐述如何更好的使用它。
+在这里，我们把注释：`first: string` + `second: string` 合并到了一个新的注释里 `Name`，这样能对每个成员进行强制的类型检查。接口在 TypeScript 拥有强大的力量，在稍后，我们将会用整个章节来阐述如何更好的使用它。
 
 ## 内联类型注释
 
 与创建一个接口不同，你可以使用内联注释语法注释任何内容：`:{ /*Structure*/ }`。下面例子使用了内联类型注释：
 
 ```typescript
-const name: {
+let name: {
   first: string,
   second: string
 }
@@ -166,7 +166,7 @@ function log (message: string): void {
 
 ## 范型
 
-在计算机科学中，许多算法和数据结构并不会依赖于对象的实际类型。然而，你仍然会想在每个变量里强制提供约束。一个简单的例子，一个函数接受一个列表，返回这个列表的反向排序，这里的约束是指传入至函数的参数与函数的返回值。
+在计算机科学中，许多算法和数据结构并不会依赖于对象的实际类型。然而，你仍然会想在每个变量里强制提供约束。例如：在一个函数中，它接受一个列表，并且返回这个列表的反向排序，这里的约束是指传入至函数的参数与函数的返回值：
 
 ```typescript
 function reverse<T>(items: T[]): T[] {

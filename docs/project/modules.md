@@ -2,13 +2,13 @@
 
 ## 全局模块
 
-默认情况下，当你开始在一个新的 TypeScript 写下代码时，它处于全局命名空间中。考虑在 `foo.ts` 里的以下代码：
+默认情况下，当你开始在一个新的 TypeScript 写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
 
 ```typescript
 var foo = 123
 ```
 
-如果你现在在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会将会允许你使用变量 `foo`，就好像它在全局可用一样：
+如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会将会允许你使用变量 `foo`，就好像它在全局可用一样：
 
 ```typescript
 var bar = foo // allowed
@@ -18,7 +18,7 @@ var bar = foo // allowed
 
 ## 文件模块
 
-它也被称之为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前的 `foo.ts` 改成如下方式（注意 `export` 用法）：
+它也被称之为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```typescript
 export var foo = 123
@@ -37,7 +37,7 @@ import { foo } from './foo'
 var bar = foo // allow
 ```
 
-在 `bar.ts` 文件里使用 `import`，不但允许你从其他文件导入内容，而且它将此文件 `bar.ts` 标记为一个模块，因此 `bar.ts` 中的声明也不会污染全局命名空间。
+在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入内容，而且它将此文件 `bar.ts` 标记为一个模块，因此 `bar.ts` 中的定义的声明也不会污染全局命名空间。
 
 从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称之为模块。
 
@@ -49,7 +49,7 @@ var bar = foo // allow
 
 首先，我们需要澄清这些模块系统的不一致性。我将会提供给你我当前的建议，以及消除一些顾虑。
 
-你可以根据不同的 `module` 选项来把 TypeScript 编译成不同的 JavaScript 模块类型，这有一些你可以忽略的（我并没有兴趣来解释一些过时的技术）：
+你可以根据不同的 `module` 选项来把 TypeScript 编译成不同的 JavaScript 模块类型，这有一些你可以忽略的：
 
 - AMD: 不要使用它，它仅能在浏览器工作；
 - SystemJS：这是一个好的实验，已经被 ES 模块替代。
@@ -57,7 +57,7 @@ var bar = foo // allow
 
 使用 `module: commonjs` 选项来替代这些模式，这会是一个好的注意。
 
-怎么书写 TypeScript 模块，也是一件让人困惑的事。再一次，在今天我们应该这么做：
+怎么书写 TypeScript 模块，这也是一件让人困惑的事。再一次，在今天我们应该这么做：
 
 - `import foo = require('foo')` 例如： `import/require` 使用 ES 模块语法。
 
