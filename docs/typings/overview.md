@@ -7,11 +7,11 @@
 - TypeScript 类型系统设计是可选的，因此，你的 JavaScript 即是 TypeScript;
 - TypeScript 不会阻止 JavaScript 的运行，即是存在类型错误，这能让你的 JavaScript 逐步迁移至 TypeScript。
 
-现在让我们开始 TypeScript 类型系统的语法，在这一部分，你将能立即给你的代码加上类型注释，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
+现在让我们开始 TypeScript 类型系统的语法，在这一章节中，你将能给你的代码加上类型注释，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
 
 ## 基本注释
 
-如前文所提到的，类型使用 `:TypeAnnotation` 的语法。在类型声明空间可使用的，都能被类型注释使用。
+如前文所提到的，类型使用 `:TypeAnnotation` 的语法。类型声明空间中可用的任何内容都可以用作类型注释。
 
 在下面这个例子中，使用了变量、函数参数以及函数返回值的类型注释：
 
@@ -24,7 +24,7 @@ function identity (num: number): number {
 
 ## 原始类型
 
-JavaScript 原始类型也同样适应于 TypeScript 的类型系统，这意味着：`string`、`number`、`boolean` 可以用如下例子表明：
+JavaScript 原始类型也同样适应于 TypeScript 的类型系统，这意味着：`string`、`number`、`boolean` 也可以被用作类型注释：
 
 ```typescript
 let num: number
@@ -45,7 +45,7 @@ bool = 'false' // Error
 
 ## 数组
 
-TypeScript 为数组提供了专用的类型语法，能让你注释和记录你的代码变的容易。这个类型语法使用后缀 `[]`， 然后你可以补充任何有效的类型注释（如：`:boolean[]`）。它能让你安全的执行任何有关数组的操作，而且它也能防止一些类似与分配错误类型给成员的错误。如下所示：
+TypeScript 为数组提供了专用的类型语法，当你注释代码时，会变的容易。这个类型语法使用后缀 `[]`， 然后你可以根据需要补充任何有效的类型注释（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于分配错误类型给成员的错误。如下所示：
 
 ```typescript
 const boolArray: boolean[]
@@ -64,7 +64,7 @@ boolArray = [true, 'false'] // Error
 
 ## 接口
 
-接口是 TypeScript 的一个核心知识，它合并了众多类型声明至一个类型声明里，考虑如下例子：
+接口是 TypeScript 的一个核心知识，它合并众多类型声明至一个类型声明里：
 
 ```typescript
 
@@ -89,11 +89,11 @@ name = {      // Errpr: 'Second is the wrong type'
 }
 ```
 
-在这里，我们把注释：`first: string` + `second: string` 合并到了一个新的注释里 `Name`，这样能对每个成员进行强制的类型检查。接口在 TypeScript 拥有强大的力量，在稍后，我们将会用整个章节来阐述如何更好的使用它。
+在这里，我们把类型注释：`first: string` + `second: string` 合并到了一个新的类型注释里 `Name`，这样能对每个成员进行强制的类型检查。接口在 TypeScript 拥有强大的力量，在稍后，我们将会用整个章节来阐述如何更好的使用它。
 
 ## 内联类型注释
 
-与创建一个接口不同，你可以使用内联注释语法注释任何内容：`:{ /*Structure*/ }`。下面例子使用了内联类型注释：
+与创建一个接口不同，你可以使用内联注释语法注释任何内容：`:{ /*Structure*/ }`：
 
 ```typescript
 let name: {
@@ -120,7 +120,7 @@ name = {      // Errpr: 'Second is the wrong type'
 
 ## 特殊类型
 
-除了被提到的一些原始类型，在 TypeScript 中，还存在一些特殊的类型，它们是 `any`、 `null`、 `undefined` 以及 `void`
+除了被提到的一些原始类型，在 TypeScript 中，还存在一些特殊的类型，它们是 `any`、 `null`、 `undefined` 以及 `void`。
 
 ### any
 
