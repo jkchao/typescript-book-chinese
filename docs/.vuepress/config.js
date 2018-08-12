@@ -10,10 +10,10 @@ module.exports = {
     repo: 'jkchao/typescript-book-chinese',
     docsDir: 'docs',
     editLinks: true,
-    editLinkText: '错误更改',
+    editLinkText: '编辑此页',
     activeHeaderLinks: false,
     sidebarDepth: 2,
-    lastUpdated: '最近更新时间',
+    lastUpdated: '上次更新',
     nav: [
       { text: 'blog', link: 'https://jkchao.cn' }
     ],
