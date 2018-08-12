@@ -4,7 +4,12 @@ module.exports = {
   description: 'TypeScript Deep Dive 中文版',
   ga: 'UA-106861408-1',
   head: [
-    ['link', { rel: 'icon', href: '/logo.png' } ]
+    ['link', { rel: 'icon', href: `/logo.png` }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
   ],
   themeConfig: {
     repo: 'jkchao/typescript-book-chinese',
@@ -44,6 +49,7 @@ module.exports = {
           '/typings/migrating',
           '/typings/types',
           '/typings/ambient',
+          '/typings/callable',
         ]
       },
       {
