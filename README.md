@@ -35,9 +35,9 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
   - [x] 动态导入
 - 类型系统
   - [x] 概览
-  - [ ] 从 JavaScript 迁移
-  - [ ] @types
-  - [ ] 环境声明
+  - [x] 从 JavaScript 迁移
+  - [x] @types
+  - [x] 环境声明
   - [ ] 接口
   - [ ] 枚举
   - [ ] lib.d.ts
