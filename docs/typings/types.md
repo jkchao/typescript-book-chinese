@@ -1,1 +1,44 @@
 # @types
+
+毫无疑问，[DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 是 TypeScript 最大的优势之一，社区已经记录了顶级的 90% 的 JavaSCript 库。
+
+这意味着，你可以非常高效的使用这些库，而无需在单独的窗口打开文档，以确保输入的正确性。
+
+## 使用 `@types`
+
+你可以通过 `npm` 来安装使用 `@types`，如例子所示，你可以为 `jquery` 添加声明文件：
+
+```javascript
+npm install @types/jquery --save-dev
+```
+
+`@types` 支持全局和模块类型定义。
+
+### 全局 `@types`
+
+默认情况下，TypeScript 会自动包含支持全局使用的任何定义。例如，对于 jquery，你应该能够在项目中开始全局使用 `$`。
+
+### 模块 `@types`
+
+安装完之后，不需要特别的配置，你就可以像使用模块一样使用它：
+
+```typescript
+import * as from 'jquery'
+```
+
+## 控制全局
+
+可以看出，对于某些团队而言，拥有允许全局泄漏的定义可能是一个问题。因此，你可以通过配置 `tsconfig.json` 的 `compilerOptions.types` 选项，来显示引入有意义的类型：
+
+```typescript
+{
+  "compilerOptions": {
+    "types" : [
+      "jquery"
+    ]
+  }
+}
+
+```
+
+如上例所示，通过配置 `compilerOptions.types: [ "jquery" ]` 后，只允许使用 `jquery` 的 `@types` 包，即使这个人安装了另一个声明文件，比如 `npm install @types/node`，它的全局变量（例如 `process`）也不会泄漏到你的代码中，直到你将它们添加到tsconfig.json类型选项。
