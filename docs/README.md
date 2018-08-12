@@ -5,9 +5,9 @@
 
 ## Why
 
-![](http://ovshyp9zv.bkt.clouddn.com/typescript-downloads.jpeg)
+![downloads](http://ovshyp9zv.bkt.clouddn.com/typescript-downloads.jpeg)
 
-> 数据来源：https://npm-stat.com/charts.html?package=typescript&from=2016-01-01&to=2018-07-31
+> 数据来源：[npm 包下载量](https://npm-stat.com/charts.html?package=typescript&from=2016-01-01&to=2018-07-31)
 
 正如你所见，TypeScript 发展至今，已经成为大型项目的标配，其提供的静态类型系统，有利于我们尽早检查出程序错误；同时，它提供的最新和不断发展的 JavScript 特性，能让我们的代码更加健壮；此外，配合编辑器给予的代码提示，它有助于我们编码效率的提升，在一定程度上，它有利于项目的重构。
 
