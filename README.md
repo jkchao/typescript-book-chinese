@@ -23,7 +23,9 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
 
 计划翻译章节已在 todo 文件夹下，如有需要，后续会继续补充。
 
-此外，为了更直观的表达，部分内容将采用意译，而非直译。
+由于 TypeScript 更新频繁，在此书中，我也将加入一些原书中并没有涉及到的知识点，希望和大家相互学习，一起进步。
+
+此外，在不违背原作者本意前提下，为了更直观的表达，部分内容将采用意译，而非直译。
 
 ### todo
 
@@ -63,6 +65,8 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
 
 ## 最后
 
-当然，翻译可能有很多不准确的地方，欢迎 PR。
+如果你和我一样对 TypeScript 一见钟情，可以订阅（star）本项目，及时收到有关于此项目的更新。
 
-若有帮助，希望 star。
+如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流。
+
+如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有用的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls)。
