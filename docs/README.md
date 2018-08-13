@@ -33,5 +33,5 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
 
 如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流。
 
-如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有用的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls)。
+如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有意思的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls)。
 
