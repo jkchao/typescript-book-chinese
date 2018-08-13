@@ -50,6 +50,7 @@ module.exports = {
           '/typings/types',
           '/typings/ambient',
           '/typings/callable',
+          '/typings/type-assertion',
         ]
       },
       {
