@@ -6,7 +6,7 @@
 
 环境声明允许你安全的使用现有的 JavaScript 流行库，并且能让你的 JavaScript、CoffeeScript 或者其他需要编译成 JavaScript 的语言逐步迁移至 TypeScript。
 
-学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注释的比较好的实践，这也是为什么我们会在这么早就提出它。
+学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注释的比较好的实践，这也是为什么我们会在这么早就提出它的原因。
 
 ## 声明文件
 
@@ -30,7 +30,7 @@ foo = 123 // allow
 ::: tip
 
 - 环境声明就好像你与编译器之间的一个约定，如果这些没有在编译时存在，但是你却使用了他们，则事情将会在没有警告的情况下中断。
-- 环境声明就好像是一个文档。如果源文件更新了，你应该同步更进。所以，当你使用源文件在运行时的新行为时，如果没有人更新环境声明，编译器将会将会报错。
+- 环境声明就好像是一个文档。如果源文件更新了，你应该同步更进。所以，当你使用源文件在运行时的新行为时，如果没有人更新环境声明，编译器将会报错。
 
 :::
 
@@ -46,7 +46,7 @@ declare let process: any
 你并不需要为 `process` 做这些，因为这已经存在于社区维护的 [`node.d.ts`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/index.d.ts)
 :::
 
-这允许你使用 `process`，能成功通过 TypeScript 的编译：
+这允许你使用 `process`，并能成功通过 TypeScript 的编译：
 
 ```typescript
 process.exit()
@@ -62,7 +62,7 @@ interface Process {
 declare let process: Process
 ```
 
-这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些的修改。例如：考虑到以下情况，我们添加一个 `exitWithLogging` 函数至 `process`：
+因为这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些的修改。例如：考虑到以下情况，我们添加一个 `exitWithLogging` 函数至 `process`：
 
 ```typescript
 interface Process {

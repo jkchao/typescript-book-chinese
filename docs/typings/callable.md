@@ -18,7 +18,7 @@ const bar = foo() // bar 被推断为一个字符串。
 
 ## 一个实际的例子
 
-当然，像这样一个可被调用的类型注释，也可以根据实际任何参数、可选参数以及 rest 参数，这有一个稍微复杂的例子：
+当然，像这样一个可被调用的类型注释，你也可以根据实际来传递任何参数、可选参数以及 rest 参数，这有一个稍微复杂的例子：
 
 ```typescript
 interface Complex {
@@ -52,7 +52,7 @@ const str = overloaded('') // str 被推断为 'string'
 const num = overloaded(123) // num 被推断为 'number'
 ```
 
-当然，就好像主体里面的任何接口，你也可以为变凉使用一个可被调用的接口来做为类型注释：
+当然，就好像主体里面的任何接口，你也可以为变量使用一个可被调用的接口来做为类型注释：
 
 ```typescript
 const overloaded: {
