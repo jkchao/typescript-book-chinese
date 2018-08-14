@@ -4,7 +4,7 @@ TypeScript 类型系统热衷于使用函数，毕竟它们是可组合系统的
 
 ## 参数注释
 
-当然，你可以注释函数参数，就像你可以注释其他变量一样:
+你可以注释函数参数，就像你可以注释其他变量一样:
 
 ```ts
 // variable annotation
@@ -14,7 +14,7 @@ let sampleVariable: { bar: number }
 function foo (sampleParameter: { bar: number }) { }
 ```
 
-这里我使用了内联类型注释。当然你可以使用接口等。
+这里我使用了内联类型注释，除此之外，你还可以使用接口等。
 
 ### 返回类型注释
 
@@ -31,21 +31,21 @@ function foo (sample: Foo): Foo {
 }
 ```
 
-当然我在这里使用了一个 `interface`，但你可以自由地使用其他注释，例如内联注释。
+我在这里使用了一个 `interface`，但你可以自由地使用其他注释，例如内联注释。
 
-通常，你不*需要*注释函数的返回类型，因为它通常可以由编译器推断。
+通常，你不*需要*注释函数的返回类型，因为它可以由编译器推断。
 
 ```ts
 interface Foo {
   foo: string
 }
 
-function foo(sample: Foo) {
+function foo (sample: Foo) {
   return sample // inferred return type 'Foo'
 }
 ```
 
-但是，添加这些注释以帮助解决错误通常是一个好主意，例如：
+但是，添加这些注释以帮助解决错误提示通常是一个好主意，例如：
 
 ```ts
 function foo () {
@@ -55,7 +55,7 @@ function foo () {
 sendAsJSON(foo())
 ```
 
-如果你不打算从函数返回任何内容，则可以将其标注为：`void` 。你通常可以删除：`void` 并将其留给推理引擎推导。
+如果你不打算从函数返回任何内容，则可以将其标注为：`void` 。你通常可以删除：`void` 并将其留给 TypeScript 推导。
 
 ### 可选参数
 
@@ -70,7 +70,7 @@ foo(123)
 foo(123, 'hello')
 ```
 
-或者，你甚至可以提供一个默认值（在参数声明后使用 `= someValue` ），如果调用者没有提供该参数，则为注入的默认值：
+或者，当调用者没有提供该参数时，你可以提供一个默认值（在参数声明后使用 `= someValue` ）：
 
 ```ts
 function foo(bar: number, bas: string = 'hello') {
@@ -83,7 +83,7 @@ foo(123, 'world')  // 123, world
 
 ### 重载
 
-TypeScript 允许你声明函数重载。这对于文档+类型安全目的很有用。请思考以下代码：
+TypeScript 允许你声明函数重载。这对于文档+类型安全来说很有用。请思考以下代码：
 
 ```ts
 function padding(a: number, b?: number, c?: number, d?: any) {
@@ -102,7 +102,7 @@ function padding(a: number, b?: number, c?: number, d?: any) {
 }
 ```
 
-如果仔细查看代码，就会发现 a，b，c，d 的值会根据传入的参数数量而变化。此函数也只需要1个，2个或4个参数。可以使用函数重载来*强制*和*记录*这些约束。你只需多次声明函数头。最后一个函数头是在函数体内实际处于活动状态但不可用于外部。
+如果仔细查看代码，就会发现 a，b，c，d 的值会根据传入的参数数量而变化。此函数也只需要 1 个，2 个或 4 个参数。可以使用函数重载来*强制*和*记录*这些约束。你只需多次声明函数头。最后一个函数头是在函数体内实际处于活动状态但不可用于外部。
 
 如下所示:
 
