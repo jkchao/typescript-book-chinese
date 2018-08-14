@@ -51,6 +51,7 @@ module.exports = {
           '/typings/ambient',
           '/typings/callable',
           '/typings/type-assertion',
+          '/typings/freshness',
         ]
       },
       {
