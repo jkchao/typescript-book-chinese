@@ -52,10 +52,10 @@ const str = overloaded('') // str 被推断为 'string'
 const num = overloaded(123) // num 被推断为 'number'
 ```
 
-当然，就好像主体里面的任何接口，你也可以为变量使用一个可被调用的接口来做为类型注释：
+这也可以用于内联注释中：
 
 ```typescript
-const overloaded: {
+let overloaded: {
   (foo: string): string,
   (foo: number): number
 }
@@ -74,9 +74,9 @@ const simple: (foo: number) => string
 它仅仅只能做为简单的箭头函数：你无法使用重载，如果你想用函数重载，你必须使用完整的 `{ (someArgs): someReturn }` 的语法
 :::
 
-## 可被实例化
+## 可实例化
 
-可被实例化仅仅是可被调用的一种特殊情况，它使用 `new` 做为前缀。它意味着你需用使用 `new` 关键字去调用它：
+可实例化仅仅是可调用的一种特殊情况，它使用 `new` 做为前缀。它意味着你需用使用 `new` 关键字去调用它：
 
 ```typescript
 interface CallMeWithNewToGetString {

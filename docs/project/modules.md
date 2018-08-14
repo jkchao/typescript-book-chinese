@@ -18,7 +18,7 @@ const bar = foo // allowed
 
 ## 文件模块
 
-它也被称之为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
+它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```typescript
 export const foo = 123
@@ -39,7 +39,7 @@ const bar = foo // allow
 
 在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入内容，而且它将此文件 `bar.ts` 标记为一个模块，因此 `bar.ts` 中的定义的声明也不会污染全局命名空间。
 
-从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称之为模块。
+从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称为模块。
 
 ## 文件模块详情
 
