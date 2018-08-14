@@ -49,6 +49,8 @@ module.exports = {
           '/typings/migrating',
           '/typings/types',
           '/typings/ambient',
+          '/typings/interface',
+          '/typings/functions',
           '/typings/callable',
           '/typings/type-assertion',
           '/typings/freshness',
