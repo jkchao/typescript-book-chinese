@@ -5,7 +5,7 @@
 
 ## 函数
 
-TypeScript类型系统对函数非常满意，毕竟它们是可组合系统的核心构建块。
+TypeScript 类型系统热衷于使用函数，毕竟它们是可组合系统的核心构建块。
 
 ### 参数注释
 
@@ -23,16 +23,16 @@ function foo(sampleParameter: { bar: number }) { }
 
 ### 返回类型注释
 
-你可以在函数参数列表之后使用与变量相同的样式来注释返回类型，例如下面的例子`：Foo`：
+你可以在函数参数列表之后使用与变量相同的样式来注释返回类型，例如下面的例子 `：Foo`：
 
 ```ts
 interface Foo {
-    foo: string;
+  foo: string;
 }
 
 // Return type annotated as `: Foo`
 function foo(sample: Foo): Foo {
-    return sample;
+  return sample;
 }
 ```
 
@@ -42,11 +42,11 @@ function foo(sample: Foo): Foo {
 
 ```ts
 interface Foo {
-    foo: string;
+  foo: string;
 }
 
 function foo(sample: Foo) {
-    return sample; // inferred return type 'Foo'
+  return sample; // inferred return type 'Foo'
 }
 ```
 
@@ -54,7 +54,7 @@ function foo(sample: Foo) {
 
 ```ts
 function foo() {
-    return { fou: 'John Doe' }; // You might not find this misspelling of `foo` till it's too late
+  return { fou: 'John Doe' }; // You might not find this misspelling of `foo` till it's too late
 }
 
 sendAsJSON(foo());
@@ -79,7 +79,7 @@ foo(123, 'hello');
 
 ```ts
 function foo(bar: number, bas: string = 'hello') {
-    console.log(bar, bas);
+  console.log(bar, bas);
 }
 
 foo(123);           // 123, hello
@@ -88,27 +88,26 @@ foo(123, 'world');  // 123, world
 
 ### 重载
 
-TypeScript允许你声明函数重载。这对于文档+类型安全目的很有用。请思考以下代码：
+TypeScript 允许你声明函数重载。这对于文档+类型安全目的很有用。请思考以下代码：
 
 ```ts
 function padding(a: number, b?: number, c?: number, d?: any) {
-    if (b === undefined && c === undefined && d === undefined) {
-        b = c = d = a;
-    }
-    else if (c === undefined && d === undefined) {
-        c = a;
-        d = b;
-    }
-    return {
-        top: a,
-        right: b,
-        bottom: c,
-        left: d
-    };
+  if (b === undefined && c === undefined && d === undefined) {
+    b = c = d = a;
+  } else if (c === undefined && d === undefined) {
+    c = a;
+    d = b;
+  }
+  return {
+    top: a,
+    right: b,
+    bottom: c,
+    left: d
+  };
 }
 ```
 
-如果仔细查看代码，就会发现a，b，c，d的值会根据传入的参数数量而变化。此函数也只需要1个，2个或4个参数。可以使用函数重载来*强制*和*记录*这些约束。你只需多次声明函数头。最后一个函数头是在函数体内实际处于活动状态但不可用于外部。
+如果仔细查看代码，就会发现 a，b，c，d 的值会根据传入的参数数量而变化。此函数也只需要1个，2个或4个参数。可以使用函数重载来*强制*和*记录*这些约束。你只需多次声明函数头。最后一个函数头是在函数体内实际处于活动状态但不可用于外部。
 
 如下所示:
 
@@ -119,19 +118,18 @@ function padding(topAndBottom: number, leftAndRight: number);
 function padding(top: number, right: number, bottom: number, left: number);
 // Actual implementation that is a true representation of all the cases the function body needs to handle
 function padding(a: number, b?: number, c?: number, d?: number) {
-    if (b === undefined && c === undefined && d === undefined) {
-        b = c = d = a;
-    }
-    else if (c === undefined && d === undefined) {
-        c = a;
-        d = b;
-    }
-    return {
-        top: a,
-        right: b,
-        bottom: c,
-        left: d
-    };
+  if (b === undefined && c === undefined && d === undefined) {
+    b = c = d = a;
+  } else if (c === undefined && d === undefined) {
+    c = a;
+    d = b;
+  }
+  return {
+    top: a,
+    right: b,
+    bottom: c,
+    left: d
+  };
 }
 ```
 
@@ -147,4 +145,4 @@ padding(1,1,1); // Error: Not a part of the available overloads
 
 当然，最终声明（从函数内部看到的真正声明）与所有重载兼容是很重要的。这是因为这是函数体需要考虑的函数调用的真实性质。
 
->TypeScript中的函数重载没有任何运行时开销。它只允许你记录希望调用函数的方式，并且编译器会检查其余代码。
+>TypeScript 中的函数重载没有任何运行时开销。它只允许你记录希望调用函数的方式，并且编译器会检查其余代码。
