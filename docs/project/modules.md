@@ -5,41 +5,41 @@
 默认情况下，当你开始在一个新的 TypeScript 写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
 
 ```typescript
-var foo = 123
+const foo = 123
 ```
 
 如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会将会允许你使用变量 `foo`，就好像它在全局可用一样：
 
 ```typescript
-var bar = foo // allowed
+const bar = foo // allowed
 ```
 
 毋庸置疑，使用全局变量空间是危险的，因为它会与文件内的代码命名冲突。我们推荐使用下文中将要提到的文件模块。
 
 ## 文件模块
 
-它也被称之为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
+它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```typescript
-export var foo = 123
+export const foo = 123
 ```
 
 在全局命名空间里，我们不再有 `foo`，这可以通过创建一个新文件 `bar.ts` 来证明：
 
 ```typescript
-var bar = foo // ERROR: "cannot find name 'foo'"
+const bar = foo // ERROR: "cannot find name 'foo'"
 ```
 
 如果你想在 `bar.ts` 里使用来自 `foo.ts` 的内容，你必须显式导入它，更新 `bar.ts` 如下所示：
 
 ```typescript
 import { foo } from './foo'
-var bar = foo // allow
+const bar = foo // allow
 ```
 
 在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入内容，而且它将此文件 `bar.ts` 标记为一个模块，因此 `bar.ts` 中的定义的声明也不会污染全局命名空间。
 
-从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称之为模块。
+从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称为模块。
 
 ## 文件模块详情
 
@@ -73,7 +73,7 @@ var bar = foo // allow
 
 ```typescript
 // foo.ts
-export let someVar = 123
+export const someVar = 123
 export type someType = {
   foo: string
 }
@@ -83,7 +83,7 @@ export type someType = {
 
 ```typescript
 // foo.ts
-let someVar = 123
+const someVar = 123
 type someType = {
   type: string
 }
@@ -95,7 +95,7 @@ export { someVar, someType }
 
 ```typescript
 // foo.ts
-let someVar = 123
+const someVar = 123
 export { someVar as aDifferentName }
 ```
 
@@ -288,7 +288,7 @@ var bar: foo
 将会被编译成：
 
 ```javascript
-var bar;
+let bar;
 ```
 
 这是因为 foo （或者其他任何属性如：`foo.bas`）没有被当做一个变量使用。
@@ -297,14 +297,14 @@ var bar;
 
 ```typescript
 import foo = require('foo')
-var bar = foo
+const bar = foo
 ```
 
 将会被编译成（假设是 commonjs）：
 
 ```javascript
-var foo = require('foo')
-var bar = foo
+const foo = require('foo')
+const bar = foo
 ```
 
 这是因为 `foo` 被当做变量使用了。
@@ -315,7 +315,7 @@ var bar = foo
 
 ```typescript
 import foo = require('foo')
-var bar: foo.SomeType
+let bar: foo.SomeType
 ```
 
 然而，在某些情景下，你只想在需要时加载模块 `foo`，此时你需要仅在类型注释中使用导入的模块名称，而**不**是在变量中使用。在编译成 JavaScript 式，这些将会被移除。接着，你可以手动导入你需要的模块。
@@ -327,7 +327,7 @@ import foo = require('foo')
 
 export function loadFoo () {
   // 这是懒加载 foo，原始的加载仅仅用来做类型注释
-  var _foo: typeof foo = require('foo')
+  const _foo: typeof foo = require('foo')
   // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
 }
 ```
