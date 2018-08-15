@@ -6,7 +6,7 @@
 
 类型声明空间包含用来当做类型注释的内容，例如以下的一些类型声明：
 
-```typescript
+```ts
 class Foo {}
 interface Bar {}
 type Bas = {}
@@ -14,7 +14,7 @@ type Bas = {}
 
 这意味着，你能将 `Foo`, `Bar`, `Bas` 做为类型注释使用，例如：
 
-```typescript
+```ts
 const foo: Foo
 const bar: Bar
 const bas: Bas
@@ -22,7 +22,7 @@ const bas: Bas
 
 注意，尽管你定义了 `interface Bar`，你并不能够将它做为一个变量使用，因为它没有在变量声明空间起作用，如下所示：
 
-```typescript
+```ts
 interface Bar {}
 const bar = Bar  // Error: "cannot find name 'Bar'"
 ```
@@ -33,7 +33,7 @@ const bar = Bar  // Error: "cannot find name 'Bar'"
 
 变量声明空间包含可用作变量的内容，我们可以注意到，让 `Class Foo` 提供了一个类型 `Foo` 到类型声明空间。猜猜发生了什么，它同样提供了一个变量 `Foo` 到变量声明空间，如下所示：
 
-```typescript
+```ts
 class Foo {}
 const someVar = Foo
 const someOtherVar = 123
@@ -47,7 +47,7 @@ const someOtherVar = 123
 
 与此相似，一些像你用 `var` 声明的变量，也仅能在变量声明空间使用，不能用作类型注释。
 
-```javascript
+```js
 const foo = 123
 const var: foo // ERROR: "cannot find name 'foo'"
 ```

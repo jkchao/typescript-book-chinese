@@ -12,7 +12,7 @@ webpack 实现代码分割的方式有两种：使用 `import()` （首选，ECM
 
 在下面的代码，我希望懒加载 `moment` 库，但是我也对代码分割感兴趣，这意味 `moment` 会被分割到一个单独的 JavaScript 文件，当它被使用时，会被异步加载。
 
-```typescript
+```ts
 import(/* webpackChunkName: "momentjs" */ 'moment')
   .then((moment) => {
     // 懒加载的模块拥有所有的类型，并且能够按期工作
@@ -28,7 +28,7 @@ import(/* webpackChunkName: "momentjs" */ 'moment')
 
 这是 `tsconfig.json` 的配置文件：
 
-```javascript
+```js
 {
   "compilerOptions": {
     "target": "es5",

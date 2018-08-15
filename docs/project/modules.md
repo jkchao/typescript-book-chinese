@@ -4,13 +4,13 @@
 
 默认情况下，当你开始在一个新的 TypeScript 写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
 
-```typescript
+```ts
 const foo = 123
 ```
 
 如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会将会允许你使用变量 `foo`，就好像它在全局可用一样：
 
-```typescript
+```ts
 const bar = foo // allowed
 ```
 
@@ -20,19 +20,19 @@ const bar = foo // allowed
 
 它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
-```typescript
+```ts
 export const foo = 123
 ```
 
 在全局命名空间里，我们不再有 `foo`，这可以通过创建一个新文件 `bar.ts` 来证明：
 
-```typescript
+```ts
 const bar = foo // ERROR: "cannot find name 'foo'"
 ```
 
 如果你想在 `bar.ts` 里使用来自 `foo.ts` 的内容，你必须显式导入它，更新 `bar.ts` 如下所示：
 
-```typescript
+```ts
 import { foo } from './foo'
 const bar = foo // allow
 ```
@@ -71,7 +71,7 @@ const bar = foo // allow
 
 - 使用 `export` 关键字导出一个变量（或者类型）：
 
-```typescript
+```ts
 // foo.ts
 export const someVar = 123
 export type someType = {
@@ -81,7 +81,7 @@ export type someType = {
 
 - `export` 的写法除了上面这样，还有另外一种：
 
-```typescript
+```ts
 // foo.ts
 const someVar = 123
 type someType = {
@@ -93,7 +93,7 @@ export { someVar, someType }
 
 - 你也可以重命名变量导出：
 
-```typescript
+```ts
 // foo.ts
 const someVar = 123
 export { someVar as aDifferentName }
@@ -101,21 +101,21 @@ export { someVar as aDifferentName }
 
 - 使用 `import` 关键字导入一个变量或者事一个类型：
 
-```typescript
+```ts
 // bar.ts
 import { someVar, someType } from './foo'
 ```
 
 - 重命名导入变量或者类型：
 
-```typescript
+```ts
 // bar.ts
 import { someVar as aDifferentName } from './foo'
 ```
 
 - 除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面：
 
-```typescript
+```ts
 // bar.ts
 import * as foo from './foo'
 // 你可以使用 `foo.someVar` 和 `foo.someType` 以及其他任何从 `foo` 导出的变量或者类型
@@ -123,25 +123,25 @@ import * as foo from './foo'
 
 - 仅导入模块：
 
-```typescript
+```ts
 import 'core-js' // 一个普通的 polyfill 库
 ```
 
 - 从其他模块导入后整体导出：
 
-```typescript
+```ts
 export * from './foo'
 ```
 
 - 从其他模块导入后，部分导出：
 
-```typescript
+```ts
 export { someVar } from './foo'
 ```
 
 - 通过重命名，部分导出从另一个模块导入的项目：
 
-```typescript
+```ts
 export { someVar as aDifferentName } from './foo'
 ```
 
@@ -154,7 +154,7 @@ export { someVar as aDifferentName } from './foo'
   - 在一个函数之前；
   - 在一个类之前。
 
-```typescript
+```ts
 // some var
 export default someVar = 123
 
@@ -167,7 +167,7 @@ export default class someClass {}
 
 - 导入使用 `import someName from 'someModule'` 语法（你可以根据需要为导入命名）：
 
-```typescript
+```ts
 import someLocalNameForThisFile from './foo'
 ```
 
@@ -230,7 +230,7 @@ import someLocalNameForThisFile from './foo'
 
 在你的项目里，你可以通过 `declare module 'somePath'` 来声明一个全局模块，然后它可以解决模块路径的问题：
 
-```typescript
+```ts
 // globals.d.ts
 declare module 'foo' {
   // some varuable declarations
@@ -240,7 +240,7 @@ declare module 'foo' {
 
 然后：
 
-```typescript
+```ts
 // anyOtherTsFileInYourProject.ts
 import * as foo from 'foo'
 // TypeScript 将假设（在没有做其他查找的情况下）
@@ -251,7 +251,7 @@ import * as foo from 'foo'
 
 以下导入语法：
 
-```typescript
+```ts
 import foo = require('foo')
 ```
 
@@ -266,13 +266,13 @@ import foo = require('foo')
 
 #### 例子 1
 
-```typescript
+```ts
 import foo = require('foo')
 ```
 
 将会编译成 JavaScript：
 
-```javascript
+```js
 
 ```
 
@@ -280,14 +280,14 @@ import foo = require('foo')
 
 #### 例子 2
 
-```typescript
+```ts
 import foo = require('foo')
 var bar: foo
 ```
 
 将会被编译成：
 
-```javascript
+```js
 let bar;
 ```
 
@@ -295,14 +295,14 @@ let bar;
 
 #### 例子 3
 
-```typescript
+```ts
 import foo = require('foo')
 const bar = foo
 ```
 
 将会被编译成（假设是 commonjs）：
 
-```javascript
+```js
 const foo = require('foo')
 const bar = foo
 ```
@@ -313,7 +313,7 @@ const bar = foo
 
 类型推断需要提前完成，这意味着，如果你想在 `bar` 文件里，使用从其他文件 `foo` 导出的类型，你将不得不这么做：
 
-```typescript
+```ts
 import foo = require('foo')
 let bar: foo.SomeType
 ```
@@ -322,7 +322,7 @@ let bar: foo.SomeType
 
 做为一个例子，考虑以下基于 `commonjs` 的代码，我们仅在一个函数内导入 `foo` 模块：
 
-```typescript
+```ts
 import foo = require('foo')
 
 export function loadFoo () {
@@ -334,7 +334,7 @@ export function loadFoo () {
 
 一个同样简单的 `amd` 模块（使用 requirejs）：
 
-```typescript
+```ts
 import foo = require('foo')
 
 export function loadFoo () {
@@ -359,7 +359,7 @@ export function loadFoo () {
 
 有时候你加载一个文件，是想引入附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)），然而，如果你仅仅是做 `import/require` （导入）需要转换的 JavaScript 代码，这些 JavaScript 代码，并没有与你的模块或者模块加载器（如：webpack）有任何依赖，经过 TypeScript 编译后，这些将会被完全忽视。在这种情况下，你可以使用一个 `ensureImport` 变凉，来确保编译的 JavaScript 依赖与模块。如：
 
-```typescript
+```ts
 import foo = require('./foo')
 import bar = require('./bar')
 import bas = require('./bas')

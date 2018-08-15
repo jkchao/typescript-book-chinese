@@ -15,7 +15,7 @@
 
 在下面这个例子中，使用了变量、函数参数以及函数返回值的类型注释：
 
-```typescript
+```ts
 const num: number = 123
 function identity (num: number): number {
   return num;
@@ -26,7 +26,7 @@ function identity (num: number): number {
 
 JavaScript 原始类型也同样适应于 TypeScript 的类型系统，这意味着：`string`、`number`、`boolean` 也可以被用作类型注释：
 
-```typescript
+```ts
 let num: number
 let str: string
 let bool: boolean
@@ -47,7 +47,7 @@ bool = 'false' // Error
 
 TypeScript 为数组提供了专用的类型语法，当你注释代码时，会变的容易。这个类型语法使用后缀 `[]`， 然后你可以根据需要补充任何有效的类型注释（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于分配错误类型给成员的错误。如下所示：
 
-```typescript
+```ts
 const boolArray: boolean[]
 
 boolArray = [true, false]
@@ -66,7 +66,7 @@ boolArray = [true, 'false'] // Error
 
 接口是 TypeScript 的一个核心知识，它合并众多类型声明至一个类型声明里：
 
-```typescript
+```ts
 
 interface Name {
   first: string,
@@ -95,7 +95,7 @@ name = {      // Errpr: 'Second is the wrong type'
 
 与创建一个接口不同，你可以使用内联注释语法注释任何内容：`:{ /*Structure*/ }`：
 
-```typescript
+```ts
 let name: {
   first: string,
   second: string
@@ -126,7 +126,7 @@ name = {      // Errpr: 'Second is the wrong type'
 
 `any` 类型在 TypeScript 类型系统中占有特殊的地位。它提供给你一个类型系统的 「后门」,TypeScript 将会把类型检查关闭。在类型系统里 `any` 能够兼容所有的类型（包括它自己）。这意味着，所有类型都能被分配给它，它也能被分配给其他任何类型。以下有一个证明例子：
 
-```typescript
+```ts
 let power: any
 
 // 赋值任意类型
@@ -145,7 +145,7 @@ num = power
 
 在类型系统中，null 和 undefined 能被有效的，如 `any` 类型一样。这些类型，能被分配给任意类型，如下例子所示：
 
-```typescript
+```ts
 let num: numer
 let str: string
 
@@ -158,7 +158,7 @@ str = undefined
 
 使用 `:void` 来表示一个函数没有一个返回值
 
-```typescript
+```ts
 function log (message: string): void {
   console.log(message)
 }
@@ -168,7 +168,7 @@ function log (message: string): void {
 
 在计算机科学中，许多算法和数据结构并不会依赖于对象的实际类型。然而，你仍然会想在每个变量里强制提供约束。例如：在一个函数中，它接受一个列表，并且返回这个列表的反向排序，这里的约束是指传入至函数的参数与函数的返回值：
 
-```typescript
+```ts
 function reverse<T>(items: T[]): T[] {
   const toreturn = []
   for (let i = items.length - 1; i >= 0; i --) {
@@ -192,7 +192,7 @@ reversed = [1, 2]      // ok
 
 在上个例子中，函数 `reverse` 接受一个类型为 `T`（注意在 `reverse<T>` 中的类型参数） 的数组（`items: T[]`），返回值为类型 T 的一个数组（注意：T[]），函数 `reverse` 的返回值类型与它接受的参数的类型一样。当你传入 `var sample = [1, 2, 3]` 时，TypeScript 能推断出 `reverse` 为 `number[]` 类型，从而能给你类型安全。于此相似，当你传入一个类型为 `string[]` 类型的数组时，TypeScrip 能推断 `reverse` 为 `string`[] 类型，如下例子所示：
 
-```typescript
+```ts
 const strArr = ['1', '2']
 let reversedStrs = reverse(strArr)
 
@@ -201,7 +201,7 @@ reversedStrs = [1, 2] // Error
 
 事实上，JavaScript 数组已经拥有了 `reverse` 的方法，TypeScript 也确实使用了范型来定义其结构：
 
-```typescript
+```ts
 interface Array<T> {
   reverse(): T[]
 }
@@ -209,7 +209,7 @@ interface Array<T> {
 
 这意味着，当你在数组上调用 `.reverse` 方法时，得会获得类型安全：
 
-```typescript
+```ts
 let numArr = [1, 2]
 let reversedNums = numArr.reverse()
 
@@ -222,7 +222,7 @@ reversedNums = ['1', '2'] // Error
 
 在 JavaScript 中，你希望属性为多种类型之一，如字符串或者数组。这就是联合类型所能派上用场的地方（它使用 `|` 作为标记，如 `string | number`）。在函数参数里。一个常见的用例是一个可以接受单个对象或对象数组的函数：
 
-```typescript
+```ts
 function formatCommandline (command: string[] | string) {
     let line = ''
     if (typeof command === 'string') {
@@ -239,7 +239,7 @@ function formatCommandline (command: string[] | string) {
 
 在 JavaScript 中， `extend` 是一种非常常见的模式，在这种模式中，你可以从两个对象中创建一个新对象，新对象会拥有着两个对象所有的功能。交叉类型可以让你安全的使用此种模式：
 
-```typescript
+```ts
 function extend<T, U>(first: T, second: U): T & U {
   const result = <T & U> {}
   for (let id in first) {
@@ -265,7 +265,7 @@ const b = x.b
 
 JavaScript 并没有支持类似于元组的支持。人们通常只能使用数组来表示元组，但是 TypeScript 类型系统支持它。使用 `:[typeofmember1, typeofmember2]` 能够为元祖添加类型注释，元祖可以包含任意数量的成员，以下例子演示了元组：
 
-```typescript
+```ts
 let nameNumber: [string, number]
 
 // Ok
@@ -277,7 +277,7 @@ nameNumber = ['Jenny', '221345']
 
 将其与 TypeScript 中的解构一起使用：
 
-```typescript
+```ts
 let nameNumber: [string, number]
 nameNumber = ['Jenny', 322134]
 
@@ -288,7 +288,7 @@ const [ name, num ] = nameNumber
 
 TypeScript 提供使用类型注释的便捷语法，你可以使用 `type SomeName = someValidTypeAnnotation` 的语法来创建别名：
 
-```typescript
+```ts
 type StrOrNum = string | number
 
 // 使用
@@ -302,7 +302,7 @@ sample = true // Error
 
 不同于 `interface` 你可以提供一个类型别名至任意的类型注释上（在联合类型和交叉类型中比较有用），这有一些能让你熟悉语法的实例：
 
-```typescript
+```ts
 type Text = string | { text: string }
 type Coordinates = [number, number]
 type Callback = (data: string) => void

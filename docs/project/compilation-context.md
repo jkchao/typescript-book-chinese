@@ -18,7 +18,7 @@
 
 你可以通过 `complierOptions` 来定制你的编译选项：
 
-```javascript
+```js
 {
   "compilerOptions": {
 
@@ -89,7 +89,7 @@
 
 你也可以显示指定需要编译的文件：
 
-```javascript
+```js
 {
   "files": [
     "./some/file.ts"
@@ -99,7 +99,7 @@
 
 或者，你可以使用 `include` 和 `exclude` 选项来指定需要包含的文件，和排除的文件：
 
-```javascript
+```js
 {
   "include": [
     "./folder"

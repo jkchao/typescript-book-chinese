@@ -8,7 +8,7 @@
 
 你可以通过 `npm` 来安装使用 `@types`，如例子所示，你可以为 `jquery` 添加声明文件：
 
-```javascript
+```js
 npm install @types/jquery --save-dev
 ```
 
@@ -22,7 +22,7 @@ npm install @types/jquery --save-dev
 
 安装完之后，不需要特别的配置，你就可以像使用模块一样使用它：
 
-```typescript
+```ts
 import * as from 'jquery'
 ```
 
@@ -30,7 +30,7 @@ import * as from 'jquery'
 
 可以看出，对于某些团队而言，拥有允许全局泄漏的定义可能是一个问题。因此，你可以通过配置 `tsconfig.json` 的 `compilerOptions.types` 选项，来显示引入有意义的类型：
 
-```typescript
+```ts
 {
   "compilerOptions": {
     "types" : [

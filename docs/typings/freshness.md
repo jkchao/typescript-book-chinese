@@ -4,7 +4,7 @@
 
 结构类型非常方便。考虑如下例子代码，它可以让你非常便利的从 JavaScript 迁移至 TypeScript，并且会提供类型安全：
 
-```javascript
+```js
 function logName (something: { name: string }) {
   console.log(something.name)
 }
@@ -20,7 +20,7 @@ logName(randow) // Error: 没有 `name` 属性
 
 然而，结构类型有一个缺点，它能误导你认为某些东西接收的数据比它实际的多。如下例，TypeScript 发出错误警告：
 
-```typescript
+```ts
 function logName (some: { name: string }) {
   console.log(something.name)
 }
@@ -37,7 +37,7 @@ logName({ name: 'matt', job: 'being awesome' }) // Error: 对象字面量只能�
 
 另外一个使用比较多的场景是与具有可选成员的接口一起使用，如果没有这样的对象字面量检查，当你输入错误单词的时候，并不会发出错误警告：
 
-```typescript
+```ts
 function logIfHasName (something: { name?: string }) {
   if (something.name) {
     console.log(something.name)
@@ -59,7 +59,7 @@ logIfHasName({ neme: 'I just misspelled name to neme' }) // Error: 对象字面�
 
 一个类型能够包含索引签名，以明确表明可以使用额外的属性：
 
-```typescript
+```ts
 let x: { foo: number, [x: string]: any }
 
 x = { foo: 1, baz: 2 } // ok, 'baz' 属性匹配于索引签名
@@ -67,3 +67,37 @@ x = { foo: 1, baz: 2 } // ok, 'baz' 属性匹配于索引签名
 
 ## 用例：React State
 
+Facebook ReactJS 为对象的 Freshness 提供了一个很好的用例，通常在组件中，你只使用少量属性，而不是传入所有，来调用 `setState`：
+
+```ts
+// 假设
+interface State {
+  foo: string,
+  bar: string
+}
+
+// 你可能想做：
+this.setState({ foo: 'Hello' })  // Error: 没有属性 'bar'
+
+// 因为 state 包含 'foo' 与 'bar'，TypeScript 会强制你这么做：
+this.setState({ foo: 'Hello', bar: this.state.bar })
+```
+
+如果你想使用 Freshness，你可能需要将所有成员标记为可选，这仍然会捕捉到拼写错误：
+
+```ts
+// 假设
+interface State {
+  foo?: string,
+  bar?: string
+}
+
+// 你可能想做
+this.setState({ foo: 'Hello' }) // Yay works fine!
+
+// 由于 Freshness，你也可以防止错别字
+this.setState({ foos: 'Hello' }} // Error: 对象只能指定已知属性
+
+// 仍然会有类型检查
+this.setState({ foo: 123 }} // Error: 无法将 number 类型分配给 string 类型
+```
