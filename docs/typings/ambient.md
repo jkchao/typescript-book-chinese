@@ -6,7 +6,7 @@
 
 环境声明允许你安全的使用现有的 JavaScript 流行库，并且能让你的 JavaScript、CoffeeScript 或者其他需要编译成 JavaScript 的语言逐步迁移至 TypeScript。
 
-学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注释的比较好的实践，这也是为什么我们会在这么早就提出它的原因。
+学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注释的比较好的实践，这也是我们会在这么早就提出它的原因。
 
 ## 声明文件
 
