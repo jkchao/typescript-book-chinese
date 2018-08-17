@@ -15,9 +15,9 @@ type Bas = {}
 这意味着，你能将 `Foo`, `Bar`, `Bas` 做为类型注释使用，例如：
 
 ```ts
-const foo: Foo
-const bar: Bar
-const bas: Bas
+let foo: Foo
+let bar: Bar
+let bas: Bas
 ```
 
 注意，尽管你定义了 `interface Bar`，你并不能够将它做为一个变量使用，因为它没有在变量声明空间起作用，如下所示：
@@ -49,7 +49,7 @@ const someOtherVar = 123
 
 ```js
 const foo = 123
-const var: foo // ERROR: "cannot find name 'foo'"
+let var: foo // ERROR: "cannot find name 'foo'"
 ```
 
 提示 `cannot find name` 的原因是，名称 `foo` 没有定义在类型声明空间里。

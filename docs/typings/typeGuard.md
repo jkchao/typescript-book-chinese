@@ -7,7 +7,7 @@
 TypeScript 了解到 JavaScript 中 `instanceof` 和 `typeof` 运算符的用法。如果你在一个条件块中使用这些，TypeScript 将会理解在条件块中的的变量类型。如下例所示，TypeScript 将会辨别 `string` 上是否存在特定的函数，以及是否发生了拼写错误：
 
 ```ts
-function doSome(x: number | string) {
+function doSome (x: number | string) {
   if (typeof x === 'string') {  // 在这个块中，TypeScript 知道 `x` 的类型必须是 `string`
     console.log(x.subtr(1))     // Error: 'subtr' 方法并没有存在于 `string` 上
     console.log(x.substr(1))    // ok
