@@ -56,6 +56,8 @@ module.exports = {
           '/typings/freshness',
           '/typings/typeGuard',
           '/typings/literals',
+          '/typings/readonly',
+          '/typings/generices',
         ]
       },
       {
