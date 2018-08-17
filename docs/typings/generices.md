@@ -162,7 +162,7 @@ const getJSON = <T>(config: {
 }
 ```
 
-请注意，你仍然需要明显的注释任何你需要的类型，但是 `getJSON<T` 的签名 `config => Promise<T>` 能够减少你一些关键的步骤（你不需要注释 `loadUsers` 的返回类型，因为它能够被推出来）：
+请注意，你仍然需要明显的注释任何你需要的类型，但是 `getJSON<T>` 的签名 `config => Promise<T>` 能够减少你一些关键的步骤（你不需要注释 `loadUsers` 的返回类型，因为它能够被推出来）：
 
 ```ts
 type LoadUserResponse = {
@@ -177,5 +177,4 @@ function loaderUser () {
 }
 ```
 
-同样的，使用 `Promise<T>` 做为一个函数的返回值比一些如：`Promise<any>` 的备选方案要好很多。
-
+与此类似：使用 `Promise<T>` 做为一个函数的返回值比一些如：`Promise<any>` 的备选方案要好很多。
