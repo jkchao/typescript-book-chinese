@@ -34,11 +34,11 @@ module.exports = {
         title: 'TypeScript 项目',
         collapsable: false,
         children: [
-          '/project/compilation-context',
+          '/project/compilationContext',
           '/project/declarationspaces',
           '/project/modules',
           '/project/namespaces',
-          '/project/dynamic-import-expressions'
+          '/project/dynamicImportExpressions'
         ]
       },
       {
@@ -52,8 +52,10 @@ module.exports = {
           '/typings/interfaces',
           '/typings/functions',
           '/typings/callable',
-          '/typings/type-assertion',
+          '/typings/typeAssertion',
           '/typings/freshness',
+          '/typings/typeGuard',
+          '/typings/literals',
         ]
       },
       {
