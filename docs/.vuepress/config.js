@@ -58,6 +58,7 @@ module.exports = {
           '/typings/literals',
           '/typings/readonly',
           '/typings/generices',
+          '/typings/typeInference'
         ]
       },
       {
