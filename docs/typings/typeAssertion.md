@@ -105,7 +105,7 @@ function handler (event: Event) {
 
 ```ts
 function handler (event: Event) {
-  const element = event as HTMLElement // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能分配给另外一个
+  const element = event as HTMLElement // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
 }
 ```
 

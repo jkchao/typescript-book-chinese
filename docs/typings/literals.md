@@ -14,7 +14,7 @@ let foo: 'Hello'
 
 ```ts
 let foo: 'Hello'
-foo = 'Bar' // Error: 'bar' 不能分配给类型 'Hello'
+foo = 'Bar' // Error: 'bar' 不能赋值给类型 'Hello'
 ```
 
 它们本身并不是很有用，但是可以在一个联合类型中组合创建一个强大的（有用的）抽象：

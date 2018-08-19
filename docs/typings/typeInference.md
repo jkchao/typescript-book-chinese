@@ -14,7 +14,7 @@ TypeScript 能根据一些简单的规则推断（检查）变量的类型，因
 let foo = 123     // foo 是 'number'
 let bar = 'hello' // bar 是 'string'
 
-foo = bar         // Error: 不能将 'string' 分配给 `number`
+foo = bar         // Error: 不能将 'string' 赋值给 `number`
 ```
 
 这是一个从右向左流动类型的示例。
@@ -45,7 +45,7 @@ let foo: Adder = (a, b) => a + b
 ```ts
 type Adder = (a: number, b: number) => number
 let foo: Adder = (a, b) => {
-  a = 'hello' // Error：不能把 'string' 类型分配给 'number' 类型
+  a = 'hello' // Error：不能把 'string' 类型赋值给 'number' 类型
   return a + b
 }
 ```
@@ -61,7 +61,7 @@ function iTakeAnAdder(adder: Adder) {
 }
 
 iTakeAnAdder((a, b) => {
-  a = 'hello'   // Error: 不能把 'string' 类型分配给 'number' 类型
+  a = 'hello'   // Error: 不能把 'string' 类型赋值给 'number' 类型
   return a + b
 })
 ```
@@ -76,14 +76,14 @@ const foo = {
   b: 456
 }
 
-foo.a = 'hello'  // Error：不能把 'string' 类型分配给 'number' 类型
+foo.a = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 数组也一样：
 
 ```ts
 const bar= [1, 2, 3]
-bar[0] = 'hello'  // Error：不能把 'string' 类型分配给 'number' 类型
+bar[0] = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 ## 解构
@@ -97,7 +97,7 @@ const foo = {
 }
 let { a } = foo
 
-a = 'hello'  // Error：不能把 'string' 类型分配给 'number' 类型
+a = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 数组中：
@@ -106,7 +106,7 @@ a = 'hello'  // Error：不能把 'string' 类型分配给 'number' 类型
 const bar = [1, 2]
 let [a, b] = bar
 
-a = 'hello'  // Error：不能把 'string' 类型分配给 'number' 类型
+a = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 如果函数参数能够被推断出来，那么解构亦是如此。在如下例子中，函数参数能够被解构为 `a/b` 成员：
@@ -118,7 +118,7 @@ function iTakeAnAdder (adder: Adder) {
 }
 
 iTakeAnAdder(({ a, b }) => {  // a, b 的类型能被推断出来
-  a = 'hello'                 // Error：不能把 'string' 类型分配给 'number' 类型
+  a = 'hello'                 // Error：不能把 'string' 类型赋值给 'number' 类型
   return a + b
 })
 ```

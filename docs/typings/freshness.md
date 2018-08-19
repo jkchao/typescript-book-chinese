@@ -99,5 +99,5 @@ this.setState({ foo: 'Hello' }) // Yay works fine!
 this.setState({ foos: 'Hello' }} // Error: 对象只能指定已知属性
 
 // 仍然会有类型检查
-this.setState({ foo: 123 }} // Error: 无法将 number 类型分配给 string 类型
+this.setState({ foo: 123 }} // Error: 无法将 number 类型赋值给 string 类型
 ```

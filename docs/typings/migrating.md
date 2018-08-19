@@ -25,7 +25,7 @@ TypeScript 将会立即对你的代码进行类型检查，你的 JavaScript 代
 let foo = 123
 let bar = 'hey'
 
-bar = foo // Error: 不能把 number 类型分配给 string 类型
+bar = foo // Error: 不能把 number 类型赋值给 string 类型
 ```
 
 虽然这些错误是有效的（并且在大多数情景下，推断信息的错误提示将比代码库的不同部分的原始作者想象的更好），但是你的重点可能是逐步迁移至 TypeScript，在这里，你可以使用类型断言来减少此错误：
@@ -45,7 +45,7 @@ function foo () {
 }
 
 let bar = 'hey'
-bar = foo () // Error: 不能把一个 number 类型分配给 string 类型
+bar = foo () // Error: 不能把一个 number 类型赋值给 string 类型
 ```
 
 抑制这种错误：
