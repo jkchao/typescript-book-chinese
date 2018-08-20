@@ -124,6 +124,6 @@ sample = 'North'         // Okay
 sample = 'AnythingElse'  // ERROR!
 ```
 
-## 受歧视的联合类型
+## 辨析联合类型
 
 我们将会在此书的稍后章节讲解它。
