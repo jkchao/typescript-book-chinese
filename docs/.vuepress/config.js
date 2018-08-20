@@ -20,7 +20,7 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: '上次更新',
     algolia: {
-      apiKey: '96ef85d8c9d352bf6d7058c9bc2122a0',
+      apiKey: 'e6fdd1c70e7f6f76c5d5e18256f64d7d',
       indexName: 'typescript-book'
     },
     nav: [
