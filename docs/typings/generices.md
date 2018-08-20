@@ -173,7 +173,7 @@ type LoadUserResponse = {
 }
 
 function loaderUser () {
-  return getJSON<loadUserResponse>({ url: 'https://example.com/users' })
+  return getJSON<LoadUserResponse>({ url: 'https://example.com/users' })
 }
 ```
 

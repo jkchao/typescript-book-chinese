@@ -63,7 +63,8 @@ module.exports = {
           '/typings/readonly',
           '/typings/generices',
           '/typings/typeInference',
-          '/typings/typeCompatibility'
+          '/typings/typeCompatibility',
+          '/typings/neverType'
         ]
       },
       {
