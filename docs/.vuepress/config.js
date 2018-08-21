@@ -65,7 +65,8 @@ module.exports = {
           '/typings/typeInference',
           '/typings/typeCompatibility',
           '/typings/neverType',
-          '/typings/discrominatedUnion'
+          '/typings/discrominatedUnion',
+          '/typings/indexSignatures'
         ]
       },
       {
