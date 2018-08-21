@@ -64,7 +64,8 @@ module.exports = {
           '/typings/generices',
           '/typings/typeInference',
           '/typings/typeCompatibility',
-          '/typings/neverType'
+          '/typings/neverType',
+          '/typings/discrominatedUnion'
         ]
       },
       {
