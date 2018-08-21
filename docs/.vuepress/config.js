@@ -20,8 +20,8 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: '上次更新',
     algolia: {
-      apiKey: '7e196caf6316fa50520d5e0967c0b7cb',
-      indexName: 'typescript-book'
+      apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
+      indexName: 'jkchao_typescript'
     },
     nav: [
       { text: 'blog', link: 'https://jkchao.cn' }
