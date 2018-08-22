@@ -73,7 +73,7 @@ foo(123, 'hello')
 或者，当调用者没有提供该参数时，你可以提供一个默认值（在参数声明后使用 `= someValue` ）：
 
 ```ts
-function foo(bar: number, bas: string = 'hello') {
+function foo (bar: number, bas: string = 'hello') {
   console.log(bar, bas)
 }
 
@@ -83,7 +83,7 @@ foo(123, 'world')  // 123, world
 
 ### 重载
 
-TypeScript 允许你声明函数重载。这对于文档+类型安全来说很有用。请思考以下代码：
+TypeScript 允许你声明函数重载。这对于文档 + 类型安全来说很有用。请思考以下代码：
 
 ```ts
 function padding(a: number, b?: number, c?: number, d?: any) {

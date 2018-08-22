@@ -8,7 +8,7 @@ interface ReutrnString {
 }
 ```
 
-这种接口的例子是表示一个返回值为 `string` 的函数：
+它可以表示一个返回值为 `string` 的函数：
 
 ```ts
 declare const foo: ReutrnString
@@ -26,7 +26,7 @@ interface Complex {
 }
 ```
 
-一个接口可提供多种调用签名，用以特殊的函数重载，例如：
+一个接口可提供多种调用签名，用以特殊的函数重载：
 
 ```ts
 interface Overloaded {
