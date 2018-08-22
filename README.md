@@ -30,7 +30,7 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
 ### todo
 
 - 项目
-  - [x] 编译内容
+  - [x] 编译上下文
   - [x] 声明空间
   - [x] 模块
   - [x] 命名空间
@@ -52,10 +52,10 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
   - [x] readonly
   - [x] 泛型
   - [x] 类型推断
-  - [ ] 类型兼容性
-  - [ ] Never 类型
-  - [ ] 辨析联合类型
-  - [ ] 索引签名
+  - [x]] 类型兼容性
+  - [x] Never 类型
+  - [x] 辨析联合类型
+  - [x] 索引签名
   - [ ] Moving Types
   - [ ] 异常处理
   - [ ] 混合
