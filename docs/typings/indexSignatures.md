@@ -180,8 +180,26 @@ foo[x]        // number
 
 ## 使用一组有限的字符串字面量
 
-一个索引签名可以通过映射类型来使索引字符串为联合类型中的一员：
+一个索引签名可以通过映射类型来使索引字符串为联合类型中的一员，如下所示：
 
 ```ts
 type Index = 'a' | 'b' | 'c'
+type FromIndex = {
+  [k in Index]?: number
+}
+
+const good: FromIndex = { b: 1, c: 2 }
+
+// Error:
+// `{ b: 1, c: 2, d: 3 }` 不能分配给 'FromIndex'
+// 对象字面量只能指定已知类型，'d' 不存在 'FromIndex' 类型上
+const bad: FromIndex = { b: 1, c: 2, d: 3 }
+```
+
+这通常与 `keyof/typeof` 一起使用，来获取变量的类型，如下一章节所示。
+
+变量的规则一般可以被延迟推导：
+
+```ts
+type FromSomeIndex<K extends string> = { [key in K]: number }
 ```
