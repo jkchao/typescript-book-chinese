@@ -210,4 +210,4 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
-与 TypeScript 一起使用可以有效的防止拼写错误，并且能提高重构和文档化代码的能力。
+与 TypeScript 一起使用可以有效的防止拼写错误，并且能提高重构和书写文档化代码的能力。

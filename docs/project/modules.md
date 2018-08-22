@@ -357,7 +357,7 @@ export function loadFoo () {
 
 #### 使用例子：确保导入
 
-有时候你加载一个文件，是想引入附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)），然而，如果你仅仅是做 `import/require` （导入）需要转换的 JavaScript 代码，这些 JavaScript 代码，并没有与你的模块或者模块加载器（如：webpack）有任何依赖，经过 TypeScript 编译后，这些将会被完全忽视。在这种情况下，你可以使用一个 `ensureImport` 变凉，来确保编译的 JavaScript 依赖与模块。如：
+当你加载一个模块，只是想引入其附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)）时，然而，如果你仅仅是 `import/require` （导入）一些并没有与你的模块或者模块加载器有任何依赖的 JavaScript 代码，（如：webpack），经过 TypeScript 编译后，这些将会被完全忽视。在这种情况下，你可以使用一个 `ensureImport` 变量，来确保编译的 JavaScript 依赖与模块。如：
 
 ```ts
 import foo = require('./foo')
