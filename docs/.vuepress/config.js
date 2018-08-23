@@ -66,7 +66,9 @@ module.exports = {
           '/typings/typeCompatibility',
           '/typings/neverType',
           '/typings/discrominatedUnion',
-          '/typings/indexSignatures'
+          '/typings/indexSignatures',
+          '/typings/movingTypes',
+          '/typings/exceptionsHanding'
         ]
       },
       {
