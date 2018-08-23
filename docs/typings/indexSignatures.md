@@ -198,8 +198,131 @@ const bad: FromIndex = { b: 1, c: 2, d: 3 }
 
 这通常与 `keyof/typeof` 一起使用，来获取变量的类型，如下一章节所示。
 
-变量的规则一般可以被延迟推导：
+变量的规则一般可以延迟被推断：
 
 ```ts
 type FromSomeIndex<K extends string> = { [key in K]: number }
+```
+
+## 同时拥有 `string` 和 `number` 类型的索引签名
+
+这并不是一个常见的用例，但是 TypeScript 支持它。
+
+然后，`string` 类型的索引签名比 `number` 类型的索引签名更严格。这是故意设计如此，它允许你有如下类型：
+
+```ts
+interface ArrStr {
+  [key: string]: string | number, // 必须包括所用成员类型
+  [index: number]: string,        // 字符串索引类型的子级
+
+  // example
+  length: number
+}
+```
+
+## 设计模式：索引签名的嵌套
+
+::: tip
+添加索引签名时，需要考虑的 API。
+:::
+
+在 JavaScript 社区你将会见到很多滥用索引签名的 API。如 JavaScript 库中使用 CSS 的常见模式：
+
+```ts
+interface NestedCSS {
+  color?: string,
+  [selector: string]: string | NestedCSS
+}
+
+const example: NestedCSS = {
+  color: 'red',
+  '.subclass': {
+    color: 'blue'
+  }
+}
+
+```
+
+尽量不要使用这种把字符串索引签名与有效变量混合使用。如果属性名称中有拼写错误，这个错误不会被捕获到：
+
+```ts
+const failsSilently: NestedCSS = {
+  colour: 'red' // 'colour' 不会被捕捉到错误
+}
+```
+
+取而代之，我们把索引签名分离到自己的属性里，如命名为 `next`（或者 `children`、`subnodes` 等）：
+
+```ts
+interface NestedCSS {
+  color?: string,
+  nest?: {
+    [selector: string]: NestedCSS
+  }
+}
+
+const example: NestedCSS = {
+  color: 'red',
+  nest: {
+    '.subclass': {
+      color: 'blue'
+    }
+  }
+}
+
+const failsSliently: NestedCSS {
+  colour: 'red'  // TS Error: 未知属性 'colour'
+}
+```
+
+## 索引签名中排出某些属性
+
+有些时候，你需要把属性合并至索引签名里。我们并不建议这么做，你应该使用上文中提到的嵌套索引签名的形式。
+
+然而，如果你想在现有的 TypeScript 上使用索引签名，你可以使用交集类型来解决一些问题。在以下代码中，如果不使用交叉类型，你将会收到一个报错提示：
+
+```ts
+type FieldState = {
+  value: string
+}
+
+type FromState = {
+  isValid: boolean,   // Error: 不符合索引签名
+  [filedName: string]: FieldState
+}
+```
+
+使用交叉类型可以解决上述问题：
+
+```ts
+type FieldState = {
+  value: string
+}
+
+type FormState =
+  { isValid: boolean }
+  & { [fieldName: string]: FieldState }
+```
+
+请注意尽管你可以声明它至一个已存在的 TypeScript 模型上，你也不可以通过 TypeScript 创建如下的对象：
+
+```ts
+type FieldState = {
+  value: string
+}
+
+type FormState =
+  { isValid: boolean }
+  & { [fieldName: string]: FieldState }
+
+// 将它用于从某些地方获取的 JavaScript 对象
+declare const foo: FormState
+
+const isValidBool = foo.isValid
+const somethingFieldState = foo['something']
+
+// 使用它来创建一个对象时，将不会工作
+const bar: FormState = {  // 'isValid' 不能赋值给 'FieldState'
+  isValid: false
+}
 ```
