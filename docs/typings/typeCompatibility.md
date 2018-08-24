@@ -23,7 +23,7 @@ foo.toPrecision(3)
 
 ## 结构化
 
-TypeScript 对象是一种结构类型，这意味着只要结构匹配，名字也就无关紧要了：
+TypeScript 对象是一种结构类型，这意味着只要结构匹配，名称也就无关紧要了：
 
 ```ts
 interface Point {

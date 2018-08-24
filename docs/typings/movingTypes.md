@@ -15,7 +15,7 @@ class Foo {}
 
 const Bar = Foo
 
-let bar: Bar // Error: 不能找到名字 'Bar'
+let bar: Bar // Error: 不能找到名称 'Bar'
 ```
 
 这会得到一个错误，因为 `const` 仅仅是复制了 `Foo` 到一个变量声明空间，因此你无法把 `Bar` 当作一个类型声明使用。正确的方式是使用 `import` 关键字，请注意，如果你在使用 `namespace` 或者 `modules`，使用 `import` 是你唯一能用的方式：
@@ -76,9 +76,9 @@ bar = 'anything else'   // Error
 
 在这个例子里，`bar` 有字面量类型 `Hello World`，我们在[字面量类型](./literals.md)章节已经深入讨论。
 
-## 捕获键的名字
+## 捕获键的名称
 
-`keyof` 操作符能让你捕获一个类型的键。例如，你可以使用它来捕获变量的键名称，通过使用 `typeof` 来获取类型之后：
+`keyof` 操作符能让你捕获一个类型的键。例如，你可以使用它来捕获变量的键名称，在通过使用 `typeof` 来获取类型之后：
 
 ```ts
 const colors = {

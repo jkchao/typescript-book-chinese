@@ -132,7 +132,7 @@ foo['a'].messages
 ```
 
 ::: tip
-索引签名的名字（如：`{ [index: string]: { message: string } }` 里的 `index` ）除了可读性外，并没有任何意义。例如：如果有一个用户名，你可以使用 `{ username: string}: { message: string }` 来帮助下一位使用此代码的开发人员（这可能会是你）。
+索引签名的名称（如：`{ [index: string]: { message: string } }` 里的 `index` ）除了可读性外，并没有任何意义。例如：如果有一个用户名，你可以使用 `{ username: string}: { message: string }` 来帮助下一位使用此代码的开发人员（这可能会是你）。
 :::
 
 `number` 类型的索引也支持：`{ [count: number]: 'SomeOtherTypeYouWantToStoreEgRebate' }`。
