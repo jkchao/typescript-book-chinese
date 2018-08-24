@@ -11,7 +11,7 @@
 
 正如你所见，TypeScript 发展至今，已经成为大型项目的标配，其提供的静态类型系统，有利于我们尽早检查出程序错误；同时，它提供的最新和不断发展的 JavScript 特性，能让我们的代码更加健壮；此外，配合编辑器给予的代码提示，它有助于我们编码效率的提升，在一定程度上，它有利于项目的重构。
 
-[TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 是一本很好的开源书，从基础到深入，很全面的阐述了 TypeScript 的各种魔法，不管你是新手，还是老鸟，它都将适应你。此外，它不同于 TypeScript 官方给出的文档（当然 TypeScript 给出的文档是很好的），在此书中，你将能更深入的了解 TypeScript，同时它也给出了更实用的示例。
+[TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 是一本很好的开源书，从基础到深入，很全面的阐述了 TypeScript 的各种魔法，不管你是新手，还是老鸟，它都将适应你。此外，它不同于 TypeScript 官方给出的文档（当然 TypeScript 给出的文档是很好的），在此书中，结合实际应用下的场景（React、Vue 等），你将能更深入的理解 TypeScript。
 
 如今社区已经存在部分翻译，但都似乎已经停止更新。
 
