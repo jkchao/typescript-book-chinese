@@ -178,3 +178,65 @@ function loaderUser () {
 ```
 
 与此类似：使用 `Promise<T>` 做为一个函数的返回值比一些如：`Promise<any>` 的备选方案要好很多。
+
+### 配合 axios 使用
+
+通常情况下，我们会把后端返回数据格式放入 `typings` 里：
+
+```ts{4,15}
+// ajax.d.ts
+declare namespace Ajax {
+  // 请求接口数据
+  interface Response<T = any> {
+    /**
+     * 状态码
+     * @type { number }
+     */
+    code: number,
+
+    /**
+     * 数据
+     * @type { T }
+     */
+    result: T,
+
+    /**
+     * 消息
+     * @type { string }
+     */
+    message: string
+  }
+}
+```
+
+当我们把 API 单独抽离成单个模块时：
+
+```ts{9}
+ // 我们在 axios.ts 文件中对 axios 进行了处理，例如添加通用配置、拦截器等
+import Ax from './axios'
+
+interface User {
+  name: string,
+  age: number
+}
+
+export function getUser (): Promise<Ajax.Response<User>> {
+  return Ax.get('/somepath')
+            .then(res => res.data)
+            .catch(err => console.error(err))
+}
+```
+
+请注意我们在代码中注入了 `User`，这可以让 TypeScript 顺利推断出我们想要的类型：
+
+```ts
+async function test () {
+  // user 被推断出为
+  // {
+  //  code: number,
+  //  result: { name: string, age: number },
+  //  message: number
+  // }
+  const user = await getUser()
+}
+```
