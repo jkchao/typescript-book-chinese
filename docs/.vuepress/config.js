@@ -68,15 +68,16 @@ module.exports = {
           '/typings/discrominatedUnion',
           '/typings/indexSignatures',
           '/typings/movingTypes',
-          '/typings/exceptionsHanding'
+          '/typings/exceptionsHanding',
+          '/typings/mixins'
         ]
       },
       {
-        title: 'TypeScript 错误',
+        title: 'TypeScript 错误提示',
         collapsable: false
       },
       {
-        title: '一些提示',
+        title: 'TIPs',
         collapsable: false
       },
       {
