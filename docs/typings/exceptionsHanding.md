@@ -57,3 +57,121 @@ decodeURI('%')    // URIError: URL 异常
 ```
 
 ## 使用 `Error`
+
+JavaScript 初学者可能有时候仅仅是抛出一个原始字符串：
+
+```ts
+try {
+  throw 'Something bad happened'
+} catch (e) {
+  console.log(e)
+}
+```
+
+**不要这么做**，使用 `Error` 对象的基本好处是，它能自动的跟踪堆栈的属性构建以及生成位置。
+
+原始字符串会导致极差的调试体验，并且在分析日志时，将会变得错综复杂。
+
+## 你并不需要 `throw` 抛出一个错误
+
+传递一个 `Error` 对象是没问题的，这种在 `Node.js` 回调函数中非常常见，它用第一个参数作为错误对象进行回调。
+
+```ts
+function myFunction (callback: (e: Error)) {
+  doSomethingAsync(function () {
+    if (somethingWrong) {
+      callback(new Error('This is my error'))
+    } else {
+      callback()
+    }
+  })
+}
+```
+
+## 优秀的用例
+
+「Exceptions should be exceptional」是计算机科学中常用用语。这里有一些原因说明在 JavaScript(TypeScript) 中也是如此。
+
+### 不清楚从哪里抛出错误
+
+考虑如下代码块：
+
+```ts
+try {
+  const foo = runTask1()
+  const bar = runTask2()
+}
+catch (e) {
+  console.log('Error:', e)
+}
+```
+
+下一个开发者可能并不清楚哪个函数可能会抛出错误。在没有阅读 `task1/task2` 代码以及他们可能会调用的函数时，对代码 `review` 的人员可能也不会知道错误会从哪里抛出。
+
+### 优雅的捕获错误
+
+你可以通过为每个可能抛出错误的代码显示捕获，来使其优雅：
+
+```ts
+try {
+  const foo = runTask1()
+} catch (e) {
+  console.log('Error:', e)
+}
+
+try {
+  const bar = run Task2()
+} catch (e) {
+  console.log('Error:', e)
+}
+```
+
+但是现在，如果你想从第一个任务中传递变量到第二个任务中，代码会变的混乱（注意：foo 变量需要用 let 显示注释它，因为它不能从 `runTask1` 中返回出来）：
+
+```ts
+let foo: number   // Notice 使用 let 并且显示注名类型注释
+
+try {
+  foo = runTask1()
+} catch (e) {
+  console.log('Error:', e)
+}
+
+try {
+  const bar = run Task2()
+} catch (e) {
+  console.log('Error:', e)
+}
+```
+
+### 没有在类型系统中很好的表示
+
+考虑如下函数：
+
+```ts
+function validate (value: number) {
+  if (value < 0 || value > 100) {
+    throw new Error('Invalid value')
+  }
+}
+```
+
+在这种情境下使用 `Error` 是一个不好的注意。因为没有用来验证函数的类型定义（如：`(value: number) => void`），取而代之一个更好的方式是创建一个验证方法：
+
+```ts
+function validate (
+  value: number
+): {
+  error?: string
+} {
+  if (value < 0 || value > 100) {
+    return { error:'Invalid value' }
+  }
+}
+```
+
+现在它具有类型定义了。
+
+::: tip
+除非你想用以非常通用（try/catch）的方式处理错误，否则不要抛出错误。
+:::
