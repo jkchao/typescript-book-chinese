@@ -56,9 +56,9 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
   - [x] Never 类型
   - [x] 辨析联合类型
   - [x] 索引签名
-  - [ ] Moving Types
-  - [ ] 异常处理
-  - [ ] 混合
+  - [x] Moving Types
+  - [x] 异常处理
+  - [x] 混合
 - 错误
 - 一些提示
 - 编译原理
