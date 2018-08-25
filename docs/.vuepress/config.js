@@ -17,14 +17,14 @@ module.exports = {
     editLinks: true,
     editLinkText: '编辑此页',
     activeHeaderLinks: false,
-    sidebarDepth: 2,
+    sidebarDepth: 3,
     lastUpdated: '上次更新',
     algolia: {
       apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
       indexName: 'jkchao_typescript'
     },
     nav: [
-      { text: 'blog', link: 'https://jkchao.cn' }
+      { text: 'Blog', link: 'https://jkchao.cn' }
     ],
     sidebar: [
       {
@@ -54,6 +54,7 @@ module.exports = {
           '/typings/types',
           '/typings/ambient',
           '/typings/interfaces',
+          '/typings/enums',
           '/typings/functions',
           '/typings/callable',
           '/typings/typeAssertion',
