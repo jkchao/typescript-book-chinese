@@ -55,6 +55,7 @@ module.exports = {
           '/typings/ambient',
           '/typings/interfaces',
           '/typings/enums',
+          '/typings/lib',
           '/typings/functions',
           '/typings/callable',
           '/typings/typeAssertion',
