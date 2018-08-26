@@ -76,11 +76,17 @@ module.exports = {
       },
       {
         title: 'TypeScript 错误提示',
-        collapsable: false
+        collapsable: false,
+        children: [
+          '/error/interpreting'
+        ]
       },
       {
         title: 'TIPs',
-        collapsable: false
+        collapsable: false,
+        children: [
+          '/tips/stringBasedEmuns'
+        ]
       },
       {
         title: 'TypeScript 编译原理',
