@@ -75,9 +75,15 @@ module.exports = {
         ]
       },
       {
+        title: 'JSX',
+        collapsable: false,
+        children: []
+      },
+      {
         title: 'TypeScript 错误提示',
         collapsable: false,
         children: [
+          '/error/common',
           '/error/interpreting'
         ]
       },
