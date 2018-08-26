@@ -1,7 +1,7 @@
 
 # 深入理解 TypeScript
 
-此项目是 [TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
+此书是 [TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
 
 ## Why
 
@@ -29,8 +29,8 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
 
 ## 最后
 
-如果你和我一样对 TypeScript 一见钟情，可以[订阅（star）](https://github.com/jkchao/typescript-book-chinese/stargazers)本项目，及时收到有关于此项目的更新。
+如果你和我一样对 TypeScript 一见钟情，可以[订阅（star）](https://github.com/jkchao/typescript-book-chinese/stargazers)本项目，及时收到有关于此项目的更新 :tada: 。
 
-如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流。
+如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流 :tada: 。
 
-如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有意思的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls)。
+如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有意思的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls) :tada: 。
