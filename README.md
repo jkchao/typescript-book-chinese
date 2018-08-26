@@ -1,5 +1,5 @@
 
-# TypeScript Deep Dive 中文版
+# 深入理解 TypeScript
 
 此项目是 [TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
 
