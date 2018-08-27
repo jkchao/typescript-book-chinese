@@ -126,10 +126,10 @@ try {
 }
 ```
 
-但是现在，如果你想从第一个任务中传递变量到第二个任务中，代码会变的混乱（注意：foo 变量需要用 let 显示注释它，因为它不能从 `runTask1` 中返回出来）：
+但是现在，如果你想从第一个任务中传递变量到第二个任务中，代码会变的混乱（注意：foo 变量需要用 let 显示注解它，因为它不能从 `runTask1` 中返回出来）：
 
 ```ts
-let foo: number   // Notice 使用 let 并且显示注名类型注释
+let foo: number   // Notice 使用 let 并且显示注名类型注解
 
 try {
   foo = runTask1()

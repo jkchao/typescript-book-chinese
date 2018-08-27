@@ -11,7 +11,7 @@
 - 一个从来不会有返回值的函数（如：如果函数内含有 `while(true) {}`）；
 - 一个总是会抛出错误的函数（如：`function foo() { throw new Error('Not Implemented') }`，`foo` 的返回类型是 `never`）；
 
-你也可以将它用做类型注释：
+你也可以将它用做类型注解：
 
 ```ts
 let foo: never // ok

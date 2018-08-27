@@ -40,7 +40,7 @@ const bar = foo.toString()    // Error: 属性 toString 不存在类型 number �
 declare var window: Window
 ```
 
-这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注释的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，如下是 `Window` 接口的一小部分：
+这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注解的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，如下是 `Window` 接口的一小部分：
 
 ```ts
 interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {

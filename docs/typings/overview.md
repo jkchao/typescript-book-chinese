@@ -7,13 +7,13 @@
 - TypeScript 类型系统设计是可选的，因此，你的 JavaScript 即是 TypeScript;
 - TypeScript 不会阻止 JavaScript 的运行，即是存在类型错误，这能让你的 JavaScript 逐步迁移至 TypeScript。
 
-现在让我们开始 TypeScript 类型系统的语法，在这一章节中，你将能给你的代码加上类型注释，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
+现在让我们开始 TypeScript 类型系统的语法，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
 
-## 基本注释
+## 基本注解
 
-如前文所提到的，类型注释使用 `:TypeAnnotation` 的语法。类型声明空间中可用的任何内容都可以用作类型注释。
+如前文所提到的，类型注解使用 `:TypeAnnotation` 的语法。类型声明空间中可用的任何内容都可以用作类型注解。
 
-在下面这个例子中，使用了变量、函数参数以及函数返回值的类型注释：
+在下面这个例子中，使用了变量、函数参数以及函数返回值的类型注解：
 
 ```ts
 const num: number = 123
@@ -24,7 +24,7 @@ function identity (num: number): number {
 
 ## 原始类型
 
-JavaScript 原始类型也同样适应于 TypeScript 的类型系统，这意味着：`string`、`number`、`boolean` 也可以被用作类型注释：
+JavaScript 原始类型也同样适应于 TypeScript 的类型系统，这意味着：`string`、`number`、`boolean` 也可以被用作类型注解：
 
 ```ts
 let num: number
@@ -45,7 +45,7 @@ bool = 'false' // Error
 
 ## 数组
 
-TypeScript 为数组提供了专用的类型语法，当你注释代码时，会变的容易。这个类型语法使用后缀 `[]`， 然后你可以根据需要补充任何有效的类型注释（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于赋值错误类型给成员的错误。如下所示：
+TypeScript 为数组提供了专用的类型语法，当你注解代码时，会变的容易。这个类型语法使用后缀 `[]`， 然后你可以根据需要补充任何有效的类型注解（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于赋值错误类型给成员的错误。如下所示：
 
 ```ts
 const boolArray: boolean[]
@@ -89,11 +89,11 @@ name = {      // Errpr: 'Second is the wrong type'
 }
 ```
 
-在这里，我们把类型注释：`first: string` + `second: string` 合并到了一个新的类型注释里 `Name`，这样能对每个成员进行强制的类型检查。接口在 TypeScript 拥有强大的力量，在稍后，我们将会用整个章节来阐述如何更好的使用它。
+在这里，我们把类型注解：`first: string` + `second: string` 合并到了一个新的类型注解里 `Name`，这样能对每个成员进行强制的类型检查。接口在 TypeScript 拥有强大的力量，在稍后，我们将会用整个章节来阐述如何更好的使用它。
 
-## 内联类型注释
+## 内联类型注解
 
-与创建一个接口不同，你可以使用内联注释语法注释任何内容：`:{ /*Structure*/ }`：
+与创建一个接口不同，你可以使用内联注解语法注解任何内容：`:{ /*Structure*/ }`：
 
 ```ts
 let name: {
@@ -116,7 +116,7 @@ name = {      // Errpr: 'Second is the wrong type'
 }
 ```
 
-内联类型能为你快速的提供一个类型注释。它可以帮助你省去为类型起名的麻烦（你可能会使用一个很糟糕的名称）。然而，如果你发现需要多次使用相同的内联注释时，考虑把它重构为一个接口（或者是 `type alias`，它会在接下来的部分提到）是一个不错的注意。
+内联类型能为你快速的提供一个类型注解。它可以帮助你省去为类型起名的麻烦（你可能会使用一个很糟糕的名称）。然而，如果你发现需要多次使用相同的内联注解时，考虑把它重构为一个接口（或者是 `type alias`，它会在接下来的部分提到）是一个不错的注意。
 
 ## 特殊类型
 
@@ -263,7 +263,7 @@ const b = x.b
 
 ## 元组类型
 
-JavaScript 并没有支持类似于元组的支持。人们通常只能使用数组来表示元组，但是 TypeScript 类型系统支持它。使用 `:[typeofmember1, typeofmember2]` 能够为元祖添加类型注释，元祖可以包含任意数量的成员，以下例子演示了元组：
+JavaScript 并没有支持类似于元组的支持。人们通常只能使用数组来表示元组，但是 TypeScript 类型系统支持它。使用 `:[typeofmember1, typeofmember2]` 能够为元祖添加类型注解，元祖可以包含任意数量的成员，以下例子演示了元组：
 
 ```ts
 let nameNumber: [string, number]
@@ -286,7 +286,7 @@ const [ name, num ] = nameNumber
 
 ## 类型别名
 
-TypeScript 提供使用类型注释的便捷语法，你可以使用 `type SomeName = someValidTypeAnnotation` 的语法来创建别名：
+TypeScript 提供使用类型注解的便捷语法，你可以使用 `type SomeName = someValidTypeAnnotation` 的语法来创建别名：
 
 ```ts
 type StrOrNum = string | number
@@ -300,7 +300,7 @@ sample = '123'
 sample = true // Error
 ```
 
-不同于 `interface` 你可以提供一个类型别名至任意的类型注释上（在联合类型和交叉类型中比较有用），这有一些能让你熟悉语法的实例：
+不同于 `interface` 你可以提供一个类型别名至任意的类型注解上（在联合类型和交叉类型中比较有用），这有一些能让你熟悉语法的实例：
 
 ```ts
 type Text = string | { text: string }
@@ -310,11 +310,11 @@ type Callback = (data: string) => void
 
 :::tip
 
-- 如果你需要使用类型注释的层次结构，请使用接口。它能使用 `implements` 和 `extends`
+- 如果你需要使用类型注解的层次结构，请使用接口。它能使用 `implements` 和 `extends`
 - 为一个简单的对象类型（像例子中的 `Coordinates`）使用类型别名，仅仅有一个语义化的作用。与此相似，当你想给一个联合类型和交叉类型使用一个语意化的名称时，一个类型别名将会是一个好的选择。
 
 :::
 
 ## 最后
 
-现在你已经能够为你的大部分 JavaScript 代码添加类型注释，接着，让我们深入了解 TypeScript 的类型系统把。
+现在你已经能够为你的大部分 JavaScript 代码添加类型注解，接着，让我们深入了解 TypeScript 的类型系统把。
