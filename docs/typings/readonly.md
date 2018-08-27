@@ -45,7 +45,7 @@ class Foo {
 
 ## Readonly
 
-这有一个 `Readonly` 的映射类型，它接收一个范型 `T`，用来把它的所有属性标记为只读类型：
+这有一个 `Readonly` 的映射类型，它接收一个泛型 `T`，用来把它的所有属性标记为只读类型：
 
 ```ts
 type Foo = {
@@ -86,7 +86,7 @@ export class Something extends React.Component<Props, State> {
 }
 ```
 
-然而，你并没有必要这么做，`React` 的声明文件已经标记这些为 `readonly`（通过传入范型参数至一个内部包装，来把没个属性标记为 `readonly`，如上例子所示），
+然而，你并没有必要这么做，`React` 的声明文件已经标记这些为 `readonly`（通过传入泛型参数至一个内部包装，来把没个属性标记为 `readonly`，如上例子所示），
 
 ```ts
 export class Something extends React.Component<{ foo: number }, { baz: number }> {

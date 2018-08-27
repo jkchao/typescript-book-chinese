@@ -256,7 +256,7 @@ animal = size // ERROR
 size = animal // ERROR
 ```
 
-## 范型
+## 泛型
 
 自从 TypeScript 有了一个结构化的类型系统，类型参数仅仅在被一个成员使用时，才会影响兼容性。如下例子中，`T` 对兼容性没有影响：
 
@@ -296,7 +296,7 @@ let reverse = function<U>(y: U): U {
 identity = reverse;  // ok, 因为 `(x: any) => any` 匹配 `(y: any) => any`
 ```
 
-类中的范型兼容性与前文所提到的一致：
+类中的泛型兼容性与前文所提到的一致：
 
 ```ts
 class List<T> {
