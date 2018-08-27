@@ -36,14 +36,14 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
         <a href="https://github.com/jkchao">
           <img width="150" height="150" src="https://github.com/jkchao.png?v=3&s=150">
           </br>
-          jkchao
+          jkchao
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/itxuye">
           <img width="150" height="150" src="https://github.com/itxuye.png?v=3&s=150">
           </br>
-          itxuye
+          itxuye
         </a>
       </td>
       <td align="center">
