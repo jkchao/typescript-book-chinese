@@ -1,6 +1,6 @@
 # @types
 
-毫无疑问，[DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 是 TypeScript 最大的优势之一，社区已经记录了顶级的 90% 的 JavaSCript 库。
+毫无疑问，[DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 是 TypeScript 最大的优势之一，社区已经记录了顶级的 90% 的 JavaScript 库。
 
 这意味着，你可以非常高效的使用这些库，而无需在单独的窗口打开文档，以确保输入的正确性。
 
