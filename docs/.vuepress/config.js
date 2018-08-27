@@ -83,8 +83,8 @@ module.exports = {
         title: 'TypeScript 错误提示',
         collapsable: false,
         children: [
-          '/error/common',
-          '/error/interpreting'
+          '/error/interpreting',
+          '/error/common'
         ]
       },
       {
