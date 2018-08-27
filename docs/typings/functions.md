@@ -83,7 +83,7 @@ foo(123, 'world')  // 123, world
 
 ### 重载
 
-TypeScript 允许你声明函数重载。这对于文档 + 类型安全来说很有用。请思考以下代码：
+TypeScript 允许你声明函数重载。这对于文档 + 类型安全来说很实用。请思考以下代码：
 
 ```ts
 function padding(a: number, b?: number, c?: number, d?: any) {
