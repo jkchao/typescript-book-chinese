@@ -34,7 +34,7 @@
     "outFile": "./",                       // 将输出文件合并为一个文件
     "outDir": "./",                        // 指定输出目录
     "rootDir": "./",                       // 用来控制输出目录结构 --outDir.
-    "removeComments": true,                // 删除编译后的所以注释
+    "removeComments": true,                // 删除编译后的所有的注释
     "noEmit": true,                        // 不生成输出文件
     "importHelpers": true,                 // 从 tslib 导入辅助工具函数
     "isolatedModules": true,               // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.

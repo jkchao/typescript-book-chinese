@@ -64,7 +64,7 @@ const test = {
 iTakeFoo(test.someProp) // ok
 ```
 
-或者使用类型注释的方式，来帮助 TypeScript 推断正确的类型：
+或者使用类型注解的方式，来帮助 TypeScript 推断正确的类型：
 
 ```ts
 function iTakeFoo(foo: 'foo') {}

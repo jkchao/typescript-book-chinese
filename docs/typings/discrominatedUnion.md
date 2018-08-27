@@ -151,7 +151,7 @@ function area (s: Shape) {
 
 Redux 库正是使用的上述例子。
 
-以下是添加了 TypeScript 类型注释的[redux 要点](https://github.com/reduxjs/redux#the-gist)。
+以下是添加了 TypeScript 类型注解的[redux 要点](https://github.com/reduxjs/redux#the-gist)。
 
 ```ts
 

@@ -1,6 +1,6 @@
 # 可调用的
 
-你可以使用类型别名或者接口来表示一个可被调用的类型注释：
+你可以使用类型别名或者接口来表示一个可被调用的类型注解：
 
 ```ts
 interface ReutrnString {
@@ -18,7 +18,7 @@ const bar = foo() // bar 被推断为一个字符串。
 
 ## 一个实际的例子
 
-当然，像这样一个可被调用的类型注释，你也可以根据实际来传递任何参数、可选参数以及 rest 参数，这有一个稍微复杂的例子：
+当然，像这样一个可被调用的类型注解，你也可以根据实际来传递任何参数、可选参数以及 rest 参数，这有一个稍微复杂的例子：
 
 ```ts
 interface Complex {
@@ -52,7 +52,7 @@ const str = overloaded('') // str 被推断为 'string'
 const num = overloaded(123) // num 被推断为 'number'
 ```
 
-这也可以用于内联注释中：
+这也可以用于内联注解中：
 
 ```ts
 let overloaded: {
@@ -63,7 +63,7 @@ let overloaded: {
 
 ## 箭头函数
 
-为了使指定可调用的类型签名更容易，TypeScript 也允许你使用简单的箭头函数类型注释。例如，一个以 number 类型做为参数，以 string 类型做为返回值的函数可以这么写：
+为了使指定可调用的类型签名更容易，TypeScript 也允许你使用简单的箭头函数类型注解。例如，一个以 number 类型做为参数，以 string 类型做为返回值的函数可以这么写：
 
 ```ts
 const simple: (foo: number) => string
