@@ -164,7 +164,7 @@ function log (message: string): void {
 }
 ```
 
-## 范型
+## 泛型
 
 在计算机科学中，许多算法和数据结构并不会依赖于对象的实际类型。然而，你仍然会想在每个变量里强制提供约束。例如：在一个函数中，它接受一个列表，并且返回这个列表的反向排序，这里的约束是指传入至函数的参数与函数的返回值：
 
@@ -199,7 +199,7 @@ let reversedStrs = reverse(strArr)
 reversedStrs = [1, 2] // Error
 ```
 
-事实上，JavaScript 数组已经拥有了 `reverse` 的方法，TypeScript 也确实使用了范型来定义其结构：
+事实上，JavaScript 数组已经拥有了 `reverse` 的方法，TypeScript 也确实使用了泛型来定义其结构：
 
 ```ts
 interface Array<T> {
