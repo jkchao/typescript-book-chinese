@@ -77,7 +77,9 @@ module.exports = {
       {
         title: 'JSX',
         collapsable: false,
-        children: []
+        children: [
+          '/jsx/support'
+        ]
       },
       {
         title: 'TypeScript 错误提示',
