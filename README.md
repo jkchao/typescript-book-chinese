@@ -27,6 +27,39 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
 
 此外，在不违背原作者本意前提下，为了更直观的表达，部分内容将采用意译，而非直译。
 
+## Contributor
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/jkchao">
+          <img width="150" height="150" src="https://github.com/jkchao.png?v=3&s=150">
+          </br>
+          jkchao
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/itxuye">
+          <img width="150" height="150" src="https://github.com/itxuye.png?v=3&s=150">
+          </br>
+          itxuye
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/hufan-akari">
+          <img width="150" height="150" src="https://github.com/hufan-akari.png?v=3&s=150">
+          </br>
+          hufan-akari
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
 ## 最后
 
 如果你和我一样对 TypeScript 一见钟情，可以订阅（star）本项目，及时收到有关于此项目的更新。
