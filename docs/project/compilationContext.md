@@ -64,7 +64,7 @@
     /* Source Map Options */
     "sourceRoot": "./",                    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
     "mapRoot": "./",                       // 指定调试器应该找到映射文件而不是生成文件的位置
-    "inlineSourceMap": true,               // 生成耽搁 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    "inlineSourceMap": true,               // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
     "inlineSources": true,                 // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
 
     /* 其他选项 */
