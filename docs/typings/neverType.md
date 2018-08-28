@@ -46,7 +46,7 @@ function foo (x: string | number): boolean {
   return fail('Unexhaustive')
 }
 
-function fil(message: string): never {
+function fail(message: string): never {
   throw new Error(message)
 }
 ```
