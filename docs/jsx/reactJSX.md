@@ -1,0 +1,224 @@
+# React JSX
+
+> [在 React 中使用 TypeScript 的教学视频](https://egghead.io/courses/use-typescript-to-develop-react-applications)
+
+## 建立
+
+在 [TypeScript in the browser](https://basarat.gitbooks.io/typescript/content/docs/quick/browser.html) 章节中，我们已经学会开始开发 React 的应用了，以下是一些重点：
+
+- 使用文件后缀 `.tsx`（替代 `.ts`）；
+- 在你的 `tsconfig.json` 配置文件的 `compilerOptions` 里设置选项 `"jsx": "react"`；
+- 在你的项目里为 `JSX` 和 `React` 安装声明文件：`npm i -D @types/react @types/react-dom`；
+- 导入 `react` 到你的 `.tsx` 文件（`import * as React from 'react'`）。
+
+## HTML 标签 vs 组件
+
+React 不但能渲染 HTML 标签（strings）也能渲染 React 组件（classes）。JavaScript 触发这些的原理是不同的（`React.createElement('div')` vs `React.createElement(MyComponent)`），确定使用哪一种方式取决于首字母的大小写，`foo` 被认为是 HTML 标签，`Foo` 被认为是一个组件。
+
+## 类型检查
+
+### HTML 标签
+
+一个 HTML 标签 `foo` 被标记为 `JSX.IntrinsicElements.foo` 类型。在我们已经安装的文件 `react-jsx.d.ts` 中定义了所有主要标签的类型，如下是一部分示例：
+
+```ts
+declare module JSX {
+  interface IntrinsicElements {
+    a: React.HTMLAttributes;
+    abbr: React.HTMLAttributes;
+    div: React.HTMLAttributes;
+    span: React.HTMLAttributes;
+
+    // 其他
+  }
+}
+```
+
+### 无状态的函数式组件
+
+你可以使用 `React.SFC` 接口定义无状态：
+
+```tsx
+type Props = {
+  foo: string
+}
+
+const myComponent: React.SFC<Props> = props => {
+  return <span>{props.foo}</span>
+}
+
+<MyComponent foo='bar' />
+```
+
+### 有状态组件
+
+根据组件的 `props` 属性对组件进行类型检查。这是以 JSX 如何转换为蓝本的，例如：属性成为 `props` 的组成部分。
+
+为了创建 React 有状态的组件，你需要使用 ES6 的类，`react.d.ts` 文件定义了 `React.Component<Props, State>` 类，你应该使用你自己的 `Props` 和 `State` 接口来扩展它，如下所示：
+
+```tsx
+type Props = {
+  foo: string
+}
+
+class MyComponent extends React.Component<Props, {}> {
+  render () {
+    return <span>{this.props.foo}</span>
+  }
+}
+
+<MyComponent foo='bar' />
+```
+
+### React JSX Tip: 可渲染的接口
+
+React 可以渲染一些像 `JSX` 或者是 `string` 的内容，这些被合并到类型 `React.ReactNode` 中，因此，当你接收可渲染的内容时，你可以使用它：
+
+```tsx
+type Props = {
+  header: React.ReactNode,
+  body: React.ReactNode
+}
+
+class MyComonent extends React.Component<Props, {}> {
+  render () {
+    return <div>
+              {this.props.header}
+              {this.props.body}
+            </div>;
+  }
+}
+
+<MyComponent foo='bar' />
+```
+
+### React JSX tip: 接收组件的接口
+
+React 声明文件提供 `React.ReactElement<T>` 的接口，可以让你注解一个类组件实例化的返回值`<T/>`，如：
+
+```tsx
+class MyAwesomeComponent extends React.Component {
+  render () {
+    return <div>Hello</div>;
+  }
+}
+
+const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent /> // Okay
+const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent /> // Error!
+```
+
+::: tip
+你也可以将其用做函数参数注解，或者是 React 组件的 prop 成员。
+:::
+
+### React JSX tip: 接收可以做为 props 的组件，并且使用 JSX 渲染它
+
+类型 `React.Component<Props>` 合并了 `React.ComponentClass<P>` 和 `React.StatelessComponent<P>`，因此，你可以接收一些使用 `Prop` 类型的内容，并使用 JSX 渲染它：
+
+```tsx
+const X: React.Component<Props> = foo // 来自其他地方
+
+// 渲染 X
+<X {...props} />
+```
+
+### React JSX tip: 泛型组件
+
+它完全能按我们预期工作，如：
+
+```tsx
+// 一个泛型组件
+type SelectProps<T> = { item: T[] }
+class Select<T> extends React.Component<SelectProps<T>, any> {}
+
+// 使用
+const Form = () => <Select<string> items = {['a', 'b']} />
+```
+
+### 泛型函数
+
+一些像下面这样的正常工作：
+
+```ts
+function foo<T>(x: T): T {
+  return x
+}
+```
+
+然而不能使用箭头泛型函数：
+
+```ts
+const foo = <T>(x: T) => T  // Error: T 标签没有关闭
+```
+
+**解决办法**：在泛型参数里使用 `extends` 来提示编译器，这是个泛型：
+
+```ts
+const foo = <T extneds {}>(x: T) => x
+```
+
+### 类型断言
+
+正如我们之前[提到](./typings/typeAssertion.md#as-foo-与-foo)的，使用 `as Foo` 语法来进行类型断言。
+
+## 默认 Props
+
+- 在有状态组件中使用默认的 Props：你可以通过 `null` 操作符（这不是一个理想的方式，但是这是我能想到的最简单的最小代码解决方案）告诉 TypeScript 一个属性将会被外部提供（React）。
+
+```tsx
+class Hello extends React.Component<{
+  /**
+   * @default 'TypeScript'
+   */
+  compiler?: string,
+  framework: string
+}> {
+  static defaultProps = {
+    compiler: 'TypeScript'
+  }
+  render () {
+    const compiler = this.props.compiler!;
+    return (
+      <div>
+        <div>{compiler}</div>
+        <div>{this.props.framework}</div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Hello framework="React" />, // TypeScript React
+  document.getElementById("root")
+);
+
+```
+
+- 在 SFC 中使用默认的 Props：推荐使用简单的 JavaScript 参数，因为同样适用于 TypeScript 类型系统：
+
+```tsx
+const Hello: React.SFC<{
+  /**
+   * @default 'TypeScript'
+   */
+  compiler?: string,
+  framework: string
+}> = ({
+  compiler = 'TypeScript', // Default prop
+  framework
+}) => {
+    return (
+      <div>
+        <div>{compiler}</div>
+        <div>{framework}</div>
+      </div>
+    );
+  };
+
+
+ReactDOM.render(
+  <Hello framework='React' />, // TypeScript React
+  document.getElementById('root')
+);
+
+```

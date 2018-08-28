@@ -78,7 +78,8 @@ module.exports = {
         title: 'JSX',
         collapsable: false,
         children: [
-          '/jsx/support'
+          '/jsx/support',
+          '/jsx/reactJSX'
         ]
       },
       {
