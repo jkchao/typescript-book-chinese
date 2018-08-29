@@ -1,0 +1,113 @@
+# 形式上的类型
+
+TypeScript 的类型系统是结构化的，[这里](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html)有个主要的原因。然而，在实际项目中可能是你想区分两个类型不同的变量，尽管它们具有相同的结构。一个非常常见的实际用例是身份的验证（它们可能只是在 C# 或者Java 中表示一个它们语义化名字的字符串）。
+
+这有一些社区推荐的方式，我按照个人爱好降序排列：
+
+## 使用字面量类型
+
+这种模式使用泛型和字面量类型：
+
+```ts
+// 泛型 Id 类型
+type Id<T extends string> = {
+  type: T,
+  value: string
+}
+
+// 特殊的 Id 类型
+type FooId = Id<'foo'>
+type BarId = Id<'bar'>
+
+// 可选：构造函数
+const createFoo = (value: stirng): FooId => ({ type: 'foo', value })
+const createBar = (value: string): BarId => ({ type: 'bar', value })
+
+let foo = createFoo('sample')
+let bar = createBar('sample')
+
+foo = bar // Error
+foo = foo // Okey
+```
+
+## 使用枚举
+
+TypeScript 中[元组](../typings/enums.md) 提供一定级别的名义上类型，如果两个元组的名字不相同，则它们类型不相等。我们可以利用这个事实来为结构兼容的类型，提供形式上的类型。
+
+解决办法说涉及到的方面：
+
+- 创建一个只有名字的元组；
+- 使用这个元组类型与其他类型创建一个交叉类型（`&`），做为实际的结构体。
+
+在下面例子中，创建的实际结构体仅仅是一个字符串：
+
+```ts
+// FOO
+enum FooIdBrand {}
+type FooId = FooIdBrand & string
+
+// BAR
+enum BarIdBrand {}
+type BarId = BarIdBrand & string
+
+// user
+
+let fooId: FooId
+let barId: BarId
+
+// 类型安全
+fooId = barId // error
+barId = fooId // error
+
+// 创建一个新的
+fooId ＝ 'foo' as FooId
+barId = 'bar' as BarId
+
+// 两种类型都与基础兼容
+let str: string
+str = fooId
+str = barId
+```
+
+## 使用接口
+
+因为 `number` 类型与 `enum` 类型在类型上是兼容的，因此我们不能使用上述提到的方法来处理它们。取而代之，我们可以使用接口打破这种类型的兼容性。TypeScript 编译团队仍然在书用这种方法，因此它值得一提。使用 `_` 前缀和 `Brand` 后缀是一种我强烈推荐的惯例方法（[TypeScript 也这么推荐](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698)）。
+
+解决办法说涉及到的方面：
+
+- 在类型上添加一个没有被使用过的属性，用来打破类型兼容性；
+- 在需要的时候使用类型断言。
+
+如下所示：
+
+```ts
+// FOO
+interface FooId extends String {
+  _fooIdBrand: string // 防止类型错误
+}
+
+// BAR
+interface BarId extends String {
+  _barIdBrand: string // 防止类型错误
+}
+
+
+// 使用
+let fooId: FooId
+let barId: BarId
+
+// 类型安全
+fooId = barId  // error
+barId = fooId  // error
+fooId = <FooId>barId   // error
+barId = <BarId>fooId   // error
+
+// 创建新的
+fooId = 'foo' as any
+barId = 'bar' as any
+
+// 如果你需要以字符串作为基础
+var str: string
+str = fooId as any
+str = barId as any
+```

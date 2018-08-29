@@ -95,7 +95,8 @@ module.exports = {
         title: 'TIPs',
         collapsable: false,
         children: [
-          '/tips/stringBasedEmuns'
+          '/tips/stringBasedEmuns',
+          '/tips/nominalTyping'
         ]
       },
       {
