@@ -79,7 +79,8 @@ module.exports = {
         collapsable: false,
         children: [
           '/jsx/support',
-          '/jsx/reactJSX'
+          '/jsx/reactJSX',
+          '/jsx/nonReactJSX'
         ]
       },
       {
