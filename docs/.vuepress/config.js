@@ -96,7 +96,10 @@ module.exports = {
         collapsable: false,
         children: [
           '/tips/stringBasedEmuns',
-          '/tips/nominalTyping'
+          '/tips/nominalTyping',
+          '/tips/statefulFunctions',
+          '/tips/bind',
+          '/tips/curry'
         ]
       },
       {
