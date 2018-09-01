@@ -99,7 +99,8 @@ module.exports = {
           '/tips/nominalTyping',
           '/tips/statefulFunctions',
           '/tips/bind',
-          '/tips/curry'
+          '/tips/curry',
+          '/tips/typeInstantiation'
         ]
       },
       {
