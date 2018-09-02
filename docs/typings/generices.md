@@ -13,9 +13,9 @@
 
 ```ts
 class Queue {
-  private data = []
-  push = item => this.data.push(item)
-  pop = () => this.data.shift
+  private data = [];
+  push = item => this.data.push(item);
+  pop = () => this.data.shift;
 }
 ```
 
@@ -23,36 +23,34 @@ class Queue {
 
 ```ts
 class Queue {
-  private data = []
-  push = item => this.data.push(item)
-  pop = () => this.data.shift
+  private data = [];
+  push = item => this.data.push(item);
+  pop = () => this.data.shift;
 }
 
+const queue = new Queue();
 
-const queue = new Queue()
-
-queue.push(0)
-queue.push('1') // Oops，一个错误
+queue.push(0);
+queue.push('1'); // Oops，一个错误
 
 // 一个使用者，走入了误区
-console.log(queue.pop().toPrecision(1))
-console.log(queue.pop().toPrecision(1))  // RUNTIME ERROR
+console.log(queue.pop().toPrecision(1));
+console.log(queue.pop().toPrecision(1)); // RUNTIME ERROR
 ```
 
 一个解决的办法（事实上，这也是不支持泛型类型的唯一解决办法）是为这些约束创建特殊类，如快速创建数字类型的队列：
 
 ```ts
 class QueueNumber {
-  private data = []
-  push = (item: number) => this.data.push(item)
-  pop = (): number => this.data.shift
+  private data = [];
+  push = (item: number) => this.data.push(item);
+  pop = (): number => this.data.shift;
 }
 
+const queue = new QueueNumber();
 
-const queue = new QueueNumber()
-
-queue.push(0)
-queue.push('1') // Error: 不能推入一个 `string` 类型，只能是 `number` 类型
+queue.push(0);
+queue.push('1'); // Error: 不能推入一个 `string` 类型，只能是 `number` 类型
 
 // 如果该错误得到修复，其他将不会出现问题
 ```
@@ -62,36 +60,36 @@ queue.push('1') // Error: 不能推入一个 `string` 类型，只能是 `number
 ```ts
 // 创建一个泛型类
 class Queue<T> {
-  private data = []
-  push = (item: T) => this.data.push(item)
-  pop = (): T => this.data.shift()
+  private data = [];
+  push = (item: T) => this.data.push(item);
+  pop = (): T => this.data.shift();
 }
 
 // 简单的使用
-const queue = new Queue<number>()
-queue.push(0)
-queue.push('1') // Error：不能推入一个 `string`，只有 number 类型被允许
+const queue = new Queue<number>();
+queue.push(0);
+queue.push('1'); // Error：不能推入一个 `string`，只有 number 类型被允许
 ```
 
 另外一个我们见过的例子：一个 `reverse` 函数，现在在这个函数里提供了函数参数与函数返回值的约束：
 
 ```ts
-function reverse<T> (items: T[]): T[] {
-  const toreturn = []
+function reverse<T>(items: T[]): T[] {
+  const toreturn = [];
   for (let i = items.length - 1; i >= 0; i--) {
-    toreturn.push(items[i])
+    toreturn.push(items[i]);
   }
-  return toreturn
+  return toreturn;
 }
 
-const sample = [1, 2, 3]
-const reversed = reverse(sample)
+const sample = [1, 2, 3];
+const reversed = reverse(sample);
 
-reversed[0] = '1'         // Error
-reversed = ['1', '2']     // Error
+reversed[0] = '1'; // Error
+reversed = ['1', '2']; // Error
 
-reversed[0] = 1           // ok
-reversed = [1, 2]          // ok
+reversed[0] = 1; // ok
+reversed = [1, 2]; // ok
 ```
 
 在此章节中，你已经了解在*类*和*函数*上使用泛型的例子。一个值得补充一点的是，你可以为创建的成员函数添加泛型：
@@ -99,11 +97,11 @@ reversed = [1, 2]          // ok
 ```ts
 class Utility {
   reverse<T>(items: T[]): T[] {
-    const toreturn = []
+    const toreturn = [];
     for (let i = items.length; i >= 0; i--) {
-      toreturn.push(items[i])
+      toreturn.push(items[i]);
     }
-    return toreturn
+    return toreturn;
   }
 }
 ```
@@ -117,13 +115,13 @@ class Utility {
 我见过人们使用泛型仅仅是为了它的 hack。我想问的问题是，你想用它来提供什么样的约束。如果你不能很好的回答它，你可能会误用泛型，如：
 
 ```ts
-declare function foo<T>(arg: T): void
+declare function foo<T>(arg: T): void;
 ```
 
 在这里，泛型完全没有必要使用，因为它仅用于当个参数的位置，使用如下方式可能更好：
 
 ```ts
-declare function foo (arg: any): void
+declare function foo(arg: any): void;
 ```
 
 ## 设计模式：方便通用
@@ -131,15 +129,15 @@ declare function foo (arg: any): void
 考虑如下函数：
 
 ```ts
-declare function parse<T>(name: string): T
+declare function parse<T>(name: string): T;
 ```
 
 在这种情况下，泛型 `T` 只在一个地方被使用了，它并没有在成员之间提供约束 `T`。这相当于一个如下的类型断言：
 
 ```ts
-declare function parse(name: string): any
+declare function parse(name: string): any;
 
-const something = parse('something') as TypeOfSomething
+const something = parse('something') as TypeOfSomething;
 ```
 
 仅使用一次的泛型并不比一个类型断言来的安全。它们都给你使用 API 提供了便利。
@@ -147,19 +145,15 @@ const something = parse('something') as TypeOfSomething
 另一个明显的例子是，一个用于加载 json 返回值函数，它返回你任何传入类型的 `Promise`：
 
 ```ts
-const getJSON = <T>(config: {
-  url: string,
-  headers?: { [key: string]: string },
-}): Promise<T> => {
-  const fetchConfig = ({
+const getJSON = <T>(config: { url: string; headers?: { [key: string]: string } }): Promise<T> => {
+  const fetchConfig = {
     method: 'GET',
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
     ...(config.headers || {})
-  })
-  return fetch(config.url, fetchConfig)
-    .then<T>(response => response.json())
-}
+  };
+  return fetch(config.url, fetchConfig).then<T>(response => response.json());
+};
 ```
 
 请注意，你仍然需要明显的注解任何你需要的类型，但是 `getJSON<T>` 的签名 `config => Promise<T>` 能够减少你一些关键的步骤（你不需要注解 `loadUsers` 的返回类型，因为它能够被推出来）：
@@ -167,13 +161,13 @@ const getJSON = <T>(config: {
 ```ts
 type LoadUserResponse = {
   user: {
-    name: string,
-    email: string
-  }[]
-}
+    name: string;
+    email: string;
+  }[];
+};
 
-function loaderUser () {
-  return getJSON<LoadUserResponse>({ url: 'https://example.com/users' })
+function loaderUser() {
+  return getJSON<LoadUserResponse>({ url: 'https://example.com/users' });
 }
 ```
 
@@ -192,19 +186,19 @@ declare namespace Ajax {
      * 状态码
      * @type { number }
      */
-    code: number,
+    code: number;
 
     /**
      * 数据
      * @type { T }
      */
-    result: T,
+    result: T;
 
     /**
      * 消息
      * @type { string }
      */
-    message: string
+    message: string;
   }
 }
 ```
@@ -212,31 +206,31 @@ declare namespace Ajax {
 当我们把 API 单独抽离成单个模块时：
 
 ```ts{9}
- // 我们在 axios.ts 文件中对 axios 进行了处理，例如添加通用配置、拦截器等
-import Ax from './axios'
+// 我们在 axios.ts 文件中对 axios 进行了处理，例如添加通用配置、拦截器等
+import Ax from './axios';
 
 interface User {
-  name: string,
-  age: number
+  name: string;
+  age: number;
 }
 
-export function getUser (): Promise<Ajax.Response<User>> {
+export function getUser(): Promise<Ajax.Response<User>> {
   return Ax.get('/somepath')
-            .then(res => res.data)
-            .catch(err => console.error(err))
+    .then(res => res.data)
+    .catch(err => console.error(err));
 }
 ```
 
 请注意我们在代码中注入了 `User`，这可以让 TypeScript 顺利推断出我们想要的类型：
 
 ```ts
-async function test () {
+async function test() {
   // user 被推断出为
   // {
   //  code: number,
   //  result: { name: string, age: number },
   //  message: number
   // }
-  const user = await getUser()
+  const user = await getUser();
 }
 ```

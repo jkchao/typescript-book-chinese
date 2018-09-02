@@ -18,9 +18,9 @@ TypeScript 使你能够以类型安全的方式使用在 React 中使用 JSX 之
 ### 例子
 
 ```jsx
-import { jsxFactory } from 'jsxFactory'
+import { jsxFactory } from 'jsxFactory';
 
-const div = <div>Hello JSX!</div>
+const div = <div>Hello JSX!</div>;
 ```
 
 使用编译：
@@ -32,9 +32,9 @@ tsc --jsx react --reactNamespace jsxFactory --m commonJS
 编译结果：
 
 ```js
-"use strict";
-var jsxFactory_1 = require("jsxFactory");
-var div = jsxFactory_1.jsxFactory.createElement("div", null, "Hello JSX!");
+'use strict';
+var jsxFactory_1 = require('jsxFactory');
+var div = jsxFactory_1.jsxFactory.createElement('div', null, 'Hello JSX!');
 ```
 
 ### jsx 编译提示
@@ -43,15 +43,15 @@ var div = jsxFactory_1.jsxFactory.createElement("div", null, "Hello JSX!");
 
 ```tsx
 /** @jsx jsxFactory */
-import { jsxFactory } from "jsxFactory"
+import { jsxFactory } from 'jsxFactory';
 
-var div = <div>Hello JSX!</div>
+var div = <div>Hello JSX!</div>;
 ```
 
 在 jsx 编译提示中，配合 `--jsx react` 命令，这个文件将会被触发使用工厂函数：
 
 ```js
-"use strict";
-var jsxFactory_1 = require("jsxFactory");
-var div = jsxFactory_1.jsxFactory.createElement("div", null, "Hello JSX!");
+'use strict';
+var jsxFactory_1 = require('jsxFactory');
+var div = jsxFactory_1.jsxFactory.createElement('div', null, 'Hello JSX!');
 ```

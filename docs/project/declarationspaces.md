@@ -9,21 +9,21 @@
 ```ts
 class Foo {}
 interface Bar {}
-type Bas = {}
+type Bas = {};
 ```
 
 这意味着，你能将 `Foo`, `Bar`, `Bas` 做为类型注解使用，例如：
 
 ```ts
-let foo: Foo
-let bar: Bar
-let bas: Bas
+let foo: Foo;
+let bar: Bar;
+let bas: Bas;
 ```
 
 注意，尽管你定义了 `interface Bar`，你并不能够将它做为一个变量使用，因为它没有在变量声明空间起作用，如下所示：
 
 ```ts
-interface Bar {}
+interface Bar {};
 const bar = Bar  // Error: "cannot find name 'Bar'"
 ```
 
@@ -35,8 +35,8 @@ const bar = Bar  // Error: "cannot find name 'Bar'"
 
 ```ts
 class Foo {}
-const someVar = Foo
-const someOtherVar = 123
+const someVar = Foo;
+const someOtherVar = 123;
 ```
 
 这很棒，尤其是当你想把一个类来当做变量传递时。

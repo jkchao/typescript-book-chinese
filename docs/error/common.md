@@ -32,8 +32,9 @@
 
 ```ts
 try {
-  something ()
-} catch (e: Error) {  // 捕获不能有类型注解的简短变量
+  something();
+} catch (e) {
+  // 捕获不能有类型注解的简短变量
   // ...
 }
 ```
@@ -42,8 +43,9 @@ TypeScript 正在保护你免受 JavaScript 代码的侵害，取而代之，使
 
 ```ts
 try {
-  something ()
-} catch (e) {  // 捕获不能有类型注解的简短变量
+  something();
+} catch (e) {
+  // 捕获不能有类型注解的简短变量
   if (e instanceof Error) {
     // do...
   }

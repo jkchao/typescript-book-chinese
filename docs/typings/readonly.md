@@ -3,15 +3,12 @@
 TypeScript 类型系统允许你在一个接口里使用 `readonly` 来标记属性。它能允许你以一种更实用的方式工作（不可预期的改变是很糟糕的）：
 
 ```ts
-function foo (config: {
-  readonly bar: number,
-  readonly bas: number
-}) {
+function foo(config: { readonly bar: number; readonly bas: number }) {
   // ..
 }
 
-const config = { bar: 123, bas: 123 }
-foo(config)
+const config = { bar: 123, bas: 123 };
+foo(config);
 
 // 现在你能够确保 'config' 不能够被改变了
 ```
@@ -20,25 +17,25 @@ foo(config)
 
 ```ts
 type Foo = {
-  readonly bar: number,
-  readonly bas: number
-}
+  readonly bar: number;
+  readonly bas: number;
+};
 
 // 初始化
-const foo: Foo = { bar: 123, bas: 456 }
+const foo: Foo = { bar: 123, bas: 456 };
 
 // 不能被改变
-foo.bar = 456 // Error: foo.bar 为仅读属性
+foo.bar = 456; // Error: foo.bar 为仅读属性
 ```
 
 你甚至能指定一个类的属性为只读，你可以在声明时或者构造函数中初始化它们，如下所示：
 
 ```ts
 class Foo {
-  readonly bar = 1 // OK
-  readonly baz: string
-  constructor () {
-    this.baz = 'hello' // OK
+  readonly bar = 1; // OK
+  readonly baz: string;
+  constructor() {
+    this.baz = 'hello'; // OK
   }
 }
 ```
@@ -49,17 +46,17 @@ class Foo {
 
 ```ts
 type Foo = {
-  bar: number,
-  bas: number
-}
+  bar: number;
+  bas: number;
+};
 
-type FooReadonly = Readonly<Foo>
+type FooReadonly = Readonly<Foo>;
 
-const foo: Foo = { bar: 123, bas: 456 }
-const fooReadonly: FooReadonly = { bar: 123, bas: 456 }
+const foo: Foo = { bar: 123, bas: 456 };
+const fooReadonly: FooReadonly = { bar: 123, bas: 456 };
 
-foo.bar = 456 // ok
-fooReadonly.bar = 456 // Error: bar 属性只读
+foo.bar = 456; // ok
+fooReadonly.bar = 456; // Error: bar 属性只读
 ```
 
 ## 其他的使用用例
@@ -70,18 +67,18 @@ fooReadonly.bar = 456 // Error: bar 属性只读
 
 ```ts
 interface Props {
-  readonly foo: number
+  readonly foo: number;
 }
 
 interface State {
-  readonly bar: number
+  readonly bar: number;
 }
 
 export class Something extends React.Component<Props, State> {
-  someMethod () {
+  someMethod() {
     // 你可以放心，没有人会像下面这么做
-    this.props.foo = 123 // Error: props 是不可变的
-    this.state.baz = 456 // Error: 你应该使用 this.setState()
+    this.props.foo = 123; // Error: props 是不可变的
+    this.state.baz = 456; // Error: 你应该使用 this.setState()
   }
 }
 ```
@@ -90,9 +87,9 @@ export class Something extends React.Component<Props, State> {
 
 ```ts
 export class Something extends React.Component<{ foo: number }, { baz: number }> {
-  someMethod () {
-    this.props.foo = 123 // Error: props 是不可变的
-    this.state.baz = 456 // Error: 你应该使用 this.setState()
+  someMethod() {
+    this.props.foo = 123; // Error: props 是不可变的
+    this.state.baz = 456; // Error: 你应该使用 this.setState()
   }
 }
 ```
@@ -103,25 +100,25 @@ export class Something extends React.Component<{ foo: number }, { baz: number }>
 
 ```ts
 interface Foo {
-  readonly[x: number]: number
+  readonly [x: number]: number;
 }
 
 // 使用
 
-const foo: Foo = { 0: 123, 2: 345 }
-console.log(foo[0]) // ok（读取）
-foo[0] = 456        // Error: 属性只读
+const foo: Foo = { 0: 123, 2: 345 };
+console.log(foo[0]); // ok（读取）
+foo[0] = 456; // Error: 属性只读
 ```
 
 如果你想以不变的方式使用原生的 JavaScript 数组，这是非常棒的。事实上，TypeScript 提供了 `ReadonlyArray<T>` 的接口，能让你非常简单的实现：
 
 ```ts
-const foo: ReadonlyArray<number> = [1, 2, 3]
-console.log(foo[0])   // ok
+const foo: ReadonlyArray<number> = [1, 2, 3];
+console.log(foo[0]); // ok
 
-foo.push(4)           // Error: ReadonlyArray 上不存在 `push`，因为他会改变数组
+foo.push(4); // Error: ReadonlyArray 上不存在 `push`，因为他会改变数组
 
-foo = foo.concat(4)   // ok, 创建了一个复制
+foo = foo.concat(4); // ok, 创建了一个复制
 ```
 
 ### 自动推断
@@ -130,18 +127,18 @@ foo = foo.concat(4)   // ok, 创建了一个复制
 
 ```ts
 class Person {
-  firstName: string = 'John'
-  lastName: string = 'Doe'
+  firstName: string = 'John';
+  lastName: string = 'Doe';
 
   get fullName() {
-    return this.firstName + this.lastName
+    return this.firstName + this.lastName;
   }
 }
 
-const person = new Person()
+const person = new Person();
 
-console.log(person.fullName)    // John Doe
-person.fullName = 'Dear Reader' // Error, fullName 只读
+console.log(person.fullName); // John Doe
+person.fullName = 'Dear Reader'; // Error, fullName 只读
 ```
 
 ## 与 `const` 的不同
@@ -159,44 +156,43 @@ person.fullName = 'Dear Reader' // Error, fullName 只读
 简单的例子 1：
 
 ```ts
-const foo = 123       // 变量
+const foo = 123; // 变量
 let bar: {
-  readonly bar: number // 属性
-}
+  readonly bar: number; // 属性
+};
 ```
 
 简单的例子 2：
 
 ```ts
 const foo: {
-  readonly bar: number
+  readonly bar: number;
 } = {
   bar: 123
+};
+
+function iMutateFoo(foo: { bar: number }) {
+  foo.bar = 456;
 }
 
-function iMutateFoo (foo: { bar: number }) {
-  foo.bar = 456
-}
-
-iMutateFoo(foo)
-console.log(foo.bar)  // 456
+iMutateFoo(foo);
+console.log(foo.bar); // 456
 ```
 
 基本的 `readonly` 能确保“我”不能修改属性，但是当你把这个属性交给其他并没有这种保证的使用者（允许出于类型兼容性的原因），他们能改变它。当然，如果 `iMutateFoo` 明确的表示，他们的参数不可修改，那么编译器会发出错误警告：
 
 ```ts
 interface Foo {
-  readonly bar: number
+  readonly bar: number;
 }
 
 let foo: Foo = {
   bar: 123
+};
+
+function iTakeFoo(foo: Foo) {
+  foo.bar = 456; // Error: bar 属性只读
 }
 
-function iTakeFoo (foo: Foo) {
-  foo.bar = 456 // Error: bar 属性只读
-}
-
-iTakeFoo(foo)
+iTakeFoo(foo);
 ```
-

@@ -3,11 +3,11 @@
 类型兼容性（正如我们所要讨论到的）用于确定一个类型是否能赋值给其他类型，如 `string` 类型与 `number` 类型不兼容：
 
 ```ts
-let str: string = 'Hello'
-let num: number = 123
+let str: string = 'Hello';
+let num: number = 123;
 
-str = num   // Error: 'number' 不能赋值给 'string'
-num = str   // Error: 'string' 不能赋值给 'number' 
+str = num; // Error: 'number' 不能赋值给 'string'
+num = str; // Error: 'string' 不能赋值给 'number'
 ```
 
 ## 安全性
@@ -15,10 +15,10 @@ num = str   // Error: 'string' 不能赋值给 'number'
 TypeScript 类型系统设计比较方便，它允许你有一些不正确的行为。例如：任何类型都能被赋值给 `any`，这意味着告诉编辑器你可以做任何你想做的事情：
 
 ```ts
-const foo: any = 123
-foo = 'hello'
+const foo: any = 123;
+foo = 'hello';
 
-foo.toPrecision(3)
+foo.toPrecision(3);
 ```
 
 ## 结构化
@@ -27,46 +27,48 @@ TypeScript 对象是一种结构类型，这意味着只要结构匹配，名称
 
 ```ts
 interface Point {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 
 class Point2D {
-  constructor (public x: number, public y: number) {}
+  constructor(public x: number, public y: number) {}
 }
 
-let p: Point
+let p: Point;
 
 // ok, 因为是结构化的类型
-p = new Point(1, 2)
+p = new Point(1, 2);
 ```
 
 这允许你动态创建对象（就好像你在 `vanilla JS` 中使用一样），并且它如果能被推断，该对象仍然具有安全性。
 
 ```ts
 interface Point2D {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 
 interface Point3D {
-  x: number,
-  y: number,
-  z: number
+  x: number;
+  y: number;
+  z: number;
 }
 
 const point2D: Point2D = {
   x: 0,
   y: 0
+};
+
+const point2D: Point2D = { x: 0, y: 10 };
+const point3D: Point3D = { x: 0, y: 10, z: 20 };
+function iTakePoint2D(point: Point2D) {
+  /* do something */
 }
 
-const point2D: Point2D = { x: 0, y: 10 }
-const point3D: Point3D = { x: 0, y: 10, z: 20 }
-function iTakePoint2D (point: Point2D) { /* do something */ }
-
-iTakePoint2D(point2D)  // ok, 完全匹配
-iTakePoint2D(point3D)  // 额外的信息，没关系
-iTakePoint2D({ x: 0 }) // Error: 没有 'y'
+iTakePoint2D(point2D); // ok, 完全匹配
+iTakePoint2D(point3D); // 额外的信息，没关系
+iTakePoint2D({ x: 0 }); // Error: 没有 'y'
 ```
 
 ## 变体
@@ -101,14 +103,21 @@ iTakePoint2D({ x: 0 }) // Error: 没有 'y'
 协变（Covariant）：返回类型必须包含足够的数据。
 
 ```ts
-interface Point2D { x: number, y: number }
-interface Point3D { x: number, y: number, z: number }
+interface Point2D {
+  x: number;
+  y: number;
+}
+interface Point3D {
+  x: number;
+  y: number;
+  z: number;
+}
 
-let iMakePoint2D = (): Point2D => ({ x: 0, y: 0 })
-let iMakePoint3D = (): Point3D => ({ x: 0, y: 0, z: 0 })
+let iMakePoint2D = (): Point2D => ({ x: 0, y: 0 });
+let iMakePoint3D = (): Point3D => ({ x: 0, y: 0, z: 0 });
 
-iMakePoint2D = iMakePoint3D
-iMakePoint3D = iMakePoint2D // ERROR: Point2D 不能赋值给 Point3D
+iMakePoint2D = iMakePoint3D;
+iMakePoint3D = iMakePoint2D; // ERROR: Point2D 不能赋值给 Point3D
 ```
 
 ### 参数数量
@@ -116,15 +125,16 @@ iMakePoint3D = iMakePoint2D // ERROR: Point2D 不能赋值给 Point3D
 更少的参数数量是好的（如：函数能够选择性的忽略一些多余的参数），但是你得保证有足够的参数被使用了：
 
 ```ts
-const iTakeSomethingAndPassItAnErr
-      = (x: (err: Error, data: any) => void) => { /* 做一些其他的 */ }
+const iTakeSomethingAndPassItAnErr = (x: (err: Error, data: any) => void) => {
+  /* 做一些其他的 */
+};
 
-iTakeSomethingAndPassItAnErr(() => null) // ok
-iTakeSomethingAndPassItAnErr((err) => null) // ok
-iTakeSomethingAndPassItAnErr((err, data) => null) // ok
+iTakeSomethingAndPassItAnErr(() => null); // ok
+iTakeSomethingAndPassItAnErr(err => null); // ok
+iTakeSomethingAndPassItAnErr((err, data) => null); // ok
 
 // Error: 参数类型 `(err: any, data: any, more: any) => null` 不能赋值给参数类型 `(err: Error, data: any) => void`
-iTakeSomethingAndPassItAnErr((err, data, more) => null)
+iTakeSomethingAndPassItAnErr((err, data, more) => null);
 ```
 
 ### 可选的和 rest 参数
@@ -132,12 +142,12 @@ iTakeSomethingAndPassItAnErr((err, data, more) => null)
 可选的（预先确定的）和 Rest 参数（任何数量的参数）都是兼容的：
 
 ```ts
-let foo = (x: number, y: number) => {}
-let bar = (x?: number, y?: number) => {}
-let bas = (...args: number[]) => {}
+let foo = (x: number, y: number) => {};
+let bar = (x?: number, y?: number) => {};
+let bas = (...args: number[]) => {};
 
-foo = bar = bas
-bas = bar = foo
+foo = bar = bas;
+bas = bar = foo;
 ```
 
 ::: tip Note
@@ -150,25 +160,35 @@ bas = bar = foo
 
 ```ts
 // 事件等级
-interface Event { timestamp: number }
-interface MouseEvent extends Event { x: number, y: number }
-interface KeyEvent extends Event { keyCode: number }
+interface Event {
+  timestamp: number;
+}
+interface MouseEvent extends Event {
+  x: number;
+  y: number;
+}
+interface KeyEvent extends Event {
+  keyCode: number;
+}
 
 // 简单的事件监听
-enum EventType { Mouse, Keyboard }
+enum EventType {
+  Mouse,
+  Keyboard
+}
 function addEventListener(eventType: EventType, handler: (n: Event) => void) {
   // ...
 }
 
 // 不安全，但是有用，常见。函数参数的比较是双向协变。
-addEventListener(EventType.Mouse, (e: MouseEvent) => console.log(e.x + ',' + e.y))
+addEventListener(EventType.Mouse, (e: MouseEvent) => console.log(e.x + ',' + e.y));
 
 // 在安全情景下的一种不好方案
-addEventListener(EventType.Mouse, (e: Event) => console.log((<MouseEvent>e).x + ',' + (<MouseEvent>e).y))
-addEventListener(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => console.log(e.x + ',' + e.y)))
+addEventListener(EventType.Mouse, (e: Event) => console.log((<MouseEvent>e).x + ',' + (<MouseEvent>e).y));
+addEventListener(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => console.log(e.x + ',' + e.y)));
 
 // 仍然不允许明确的错误，对完全不兼容的类型会强制检查
-addEventListener(EventType.Mouse, (e: number) => console.log(e))
+addEventListener(EventType.Mouse, (e: number) => console.log(e));
 ```
 
 同样的，你也可以把 `Array<Child>` 赋值给 `Array<Base>` （协变），因为函数是兼容的。数组的斜变需要所有的函数 `Array<Child>` 都能赋值给 `Array<Base>`，例如 `push(t: Child)` 能被赋值给 `push(t: Base)`，这能可以通过函数参数双向协变实现。
@@ -177,12 +197,12 @@ addEventListener(EventType.Mouse, (e: number) => console.log(e))
 
 ```ts
 interface Poin2D {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 
-let iTakePoint2D = (point: Point2D) => {}
-let iTakePoint3D = (point: Point3D) => {}
+let iTakePoint2D = (point: Point2D) => {};
+let iTakePoint3D = (point: Point3D) => {};
 
 iTakePoint3D = iTakePoint2D; // ok, 这是合理的
 iTakePoint2D = iTakePoint3D; // ok，为什么？
@@ -193,25 +213,35 @@ iTakePoint2D = iTakePoint3D; // ok，为什么？
 - 枚举与数字类型相互兼容
 
 ```ts
-enum Status { Ready, Waiting }
+enum Status {
+  Ready,
+  Waiting
+}
 
-let status = Status.Ready
-let num = 0
+let status = Status.Ready;
+let num = 0;
 
-status = num
-num = status
+status = num;
+num = status;
 ```
 
 - 来自与不同枚举的枚举变量，被认为是不兼容的。这使得枚举名词可用，而不是结构上：
 
 ```ts
-enum Status { Ready, Waiting }
-enum Color { Red, Blue, Green }
+enum Status {
+  Ready,
+  Waiting
+}
+enum Color {
+  Red,
+  Blue,
+  Green
+}
 
-let status = Status.Ready
-let color = Color.Red
+let status = Status.Ready;
+let color = Color.Red;
 
-status = color
+status = color;
 ```
 
 ## 类
@@ -220,40 +250,44 @@ status = color
 
 ```ts
 class Animal {
-  feet: number
-  constructor (name: string, numFeet: number) {}
+  feet: number;
+  constructor(name: string, numFeet: number) {}
 }
 
 class Size {
-  feet: number
-  constructor (meters: number) {}
+  feet: number;
+  constructor(meters: number) {}
 }
 
-let a: Animal
-let s: Size
+let a: Animal;
+let s: Size;
 
-a = s  // OK
-s = a  // OK
+a = s; // OK
+s = a; // OK
 ```
 
 - 私有的和受保护的成员必须来自于相同的类。
 
 ```ts
-class Animal { protected feet: number; }
-class Cat extends Animal { }
+class Animal {
+  protected feet: number;
+}
+class Cat extends Animal {}
 
-let animal: Animal
-let cat: Cat
+let animal: Animal;
+let cat: Cat;
 
-animal = cat // ok
-cat = animal // ok
+animal = cat; // ok
+cat = animal; // ok
 
-class Size { protected feet: number }
+class Size {
+  protected feet: number;
+}
 
-let size: Size
+let size: Size;
 
-animal = size // ERROR
-size = animal // ERROR
+animal = size; // ERROR
+size = animal; // ERROR
 ```
 
 ## 泛型
@@ -263,62 +297,62 @@ size = animal // ERROR
 ```ts
 interface Empty<T> {}
 
-let x: Empty<number>
-let y: Empty<string>
+let x: Empty<number>;
+let y: Empty<string>;
 
-x = y // ok
+x = y; // ok
 ```
 
 然而，当 `T` 被使用，它将在基于他的实例化在兼容性中发挥中用：
 
 ```ts
 interface Empty<T> {
-  data: T
+  data: T;
 }
 
-let x: Empty<number>
-let y: Empty<string>
+let x: Empty<number>;
+let y: Empty<string>;
 
-x = y // Error
+x = y; // Error
 ```
 
 如果尚未实例化泛型参数，则在检查兼容性之前将其替换为 `any`：
 
 ```ts
 let identity = function<T>(x: T): T {
-    // ...
-}
+  // ...
+};
 
 let reverse = function<U>(y: U): U {
-    // ...
-}
+  // ...
+};
 
-identity = reverse;  // ok, 因为 `(x: any) => any` 匹配 `(y: any) => any`
+identity = reverse; // ok, 因为 `(x: any) => any` 匹配 `(y: any) => any`
 ```
 
 类中的泛型兼容性与前文所提到的一致：
 
 ```ts
 class List<T> {
-  add (val: T) { }
+  add(val: T) {}
 }
 
 class Animal {
-  name: string
+  name: string;
 }
 class Cat extends Animal {
-  meow () {
+  meow() {
     // ..
   }
 }
 
-const animals = new List<Animal>()
-animals.add(new Animal())         // ok
-animals.add(new Cat())            // ok
+const animals = new List<Animal>();
+animals.add(new Animal()); // ok
+animals.add(new Cat()); // ok
 
-const cats = new List<Cat>()
-cats.add(new Animal())            // Error
-cats.add(new Cat())               // ok
+const cats = new List<Cat>();
+cats.add(new Animal()); // Error
+cats.add(new Cat()); // ok
 ```
 
 ## 脚注：不变性（Invariance）
@@ -326,41 +360,39 @@ cats.add(new Cat())               // ok
 我们说过，不变性可能是唯一一个听起来合理的选项，这里有一个关于 `contra` 和 `co` 的变体，被认为对数组是不安全的。
 
 ```ts
-
-
 class Animal {
-  constructor (public name: string) {}
+  constructor(public name: string) {}
 }
 class Cat extends Animal {
-  meow () {
-    console.log('cat')
+  meow() {
+    console.log('cat');
   }
 }
 
-let animal = new Animal('animal')
-let cat = new Cat('cat')
+let animal = new Animal('animal');
+let cat = new Cat('cat');
 
 // 多态
 // Animal <= Cat
 
-animal = cat         // ok
-cat = animal         // ERROR: cat 继承于 animal
+animal = cat; // ok
+cat = animal; // ERROR: cat 继承于 animal
 
 // 演示每个数组形式
-let animalArr: Animal[] = [animal]
-let catArr: Cat[] = [cat]
+let animalArr: Animal[] = [animal];
+let catArr: Cat[] = [cat];
 
 // 明显的坏处，逆变
 // Animal <= Cat
 // Animal[] >= Cat[]
-catArr = animalArr                            // ok, 如有有逆变
-catArr[0].meow()                              // 允许，但是会在运行时报错
+catArr = animalArr; // ok, 如有有逆变
+catArr[0].meow(); // 允许，但是会在运行时报错
 
 // 另外一个坏处，协变
 // Animal <= Cat
 // Animal[] <= Cat[]
-animalArr = catArr                            // ok，协变
+animalArr = catArr; // ok，协变
 
-animalArr.push(new Animal('another animal'))  // 仅仅是 push 一个 animal 至 carArr 里
-catArr.forEach(c => c.meow())                 // 允许，但是会在运行时报错。
+animalArr.push(new Animal('another animal')); // 仅仅是 push 一个 animal 至 carArr 里
+catArr.forEach(c => c.meow()); // 允许，但是会在运行时报错。
 ```

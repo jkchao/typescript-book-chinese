@@ -13,14 +13,14 @@
 你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 的其他运行环境），如下一个例子：
 
 ```ts
-foo = 123 // Error: 'foo' is not defined
+foo = 123; // Error: 'foo' is not defined
 ```
 
 和：
 
 ```ts
-declare var foo: any
-foo = 123 // allow
+declare var foo: any;
+foo = 123; // allow
 ```
 
 你可以选择把这些声明放入 `.ts` 或者 `.d.ts` 里，我们强烈的建议你，在你实际的项目里，你应该把声明放入 `.d.ts` 里（可以从一个命名为 `globals.d.ts` 或者 `vendor.d.ts` 文件开始）。
@@ -39,7 +39,7 @@ foo = 123 // allow
 举个例子，当你想告诉 TypeScript 编辑器关于 `process` 变量时，你可以这么做：
 
 ```ts
-declare let process: any
+declare let process: any;
 ```
 
 ::: tip
@@ -49,30 +49,30 @@ declare let process: any
 这允许你使用 `process`，并能成功通过 TypeScript 的编译：
 
 ```ts
-process.exit()
+process.exit();
 ```
 
 我们推荐尽可能的使用接口，例如：
 
 ```ts
 interface Process {
-  exit(code?: number): void
+  exit(code?: number): void;
 }
 
-declare let process: Process
+declare let process: Process;
 ```
 
 因为这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些的修改。例如：考虑到以下情况，我们添加一个 `exitWithLogging` 函数至 `process`：
 
 ```ts
 interface Process {
-  exitWithLogging(code?: number): void
+  exitWithLogging(code?: number): void;
 }
 
-process.exitWithLogging = function () {
-  console.log('exiting')
-  process.exit.apply(process, arguments)
-}
+process.exitWithLogging = function() {
+  console.log('exiting');
+  process.exit.apply(process, arguments);
+};
 ```
 
 接下来，让我们更详细的了解接口。

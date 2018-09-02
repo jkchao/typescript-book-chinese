@@ -14,16 +14,18 @@
 你也可以将它用做类型注解：
 
 ```ts
-let foo: never // ok
+let foo: never; // ok
 ```
 
 然而，`never` 类型仅能被赋值给另外一个 `never`：
 
 ```ts
-let foo: never = 123 // Error: number 类型不能赋值给 never 类型
+let foo: never = 123; // Error: number 类型不能赋值给 never 类型
 
 // ok, 做为函数返回类型的 never
-let bar: never =(() => { throw new Error('Throw my hands in the air like I just dont care') })()
+let bar: never = (() => {
+  throw new Error('Throw my hands in the air like I just dont care');
+})();
 ```
 
 很棒，现在让我们看看它的关键用例。
@@ -31,11 +33,11 @@ let bar: never =(() => { throw new Error('Throw my hands in the air like I just 
 ## 用例：详细的检查
 
 ```ts
-function foo (x: string | number): boolean {
+function foo(x: string | number): boolean {
   if (typeof x === 'string') {
-    return true
+    return true;
   } else if (typeof x === 'number') {
-    return false
+    return false;
   }
 
   // 如果不是一个 never 类型，这会报错：
@@ -43,11 +45,11 @@ function foo (x: string | number): boolean {
   // - 或者检查到无法访问的代码
   // 但是由于 TypeScript 理解 `fail` 函数返回为 `never` 类型
   // 它可以让你调用它，因为你可能会在运行时用它来做安全或者详细的检查。
-  return fail('Unexhaustive')
+  return fail('Unexhaustive');
 }
 
 function fail(message: string): never {
-  throw new Error(message)
+  throw new Error(message);
 }
 ```
 

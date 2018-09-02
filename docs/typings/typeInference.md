@@ -11,10 +11,10 @@ TypeScript 能根据一些简单的规则推断（检查）变量的类型，因
 变量的类型，由定义推断：
 
 ```ts
-let foo = 123     // foo 是 'number'
-let bar = 'hello' // bar 是 'string'
+let foo = 123; // foo 是 'number'
+let bar = 'hello'; // bar 是 'string'
 
-foo = bar         // Error: 不能将 'string' 赋值给 `number`
+foo = bar; // Error: 不能将 'string' 赋值给 `number`
 ```
 
 这是一个从右向左流动类型的示例。
@@ -24,8 +24,8 @@ foo = bar         // Error: 不能将 'string' 赋值给 `number`
 返回类型能被 `return` 语句推断，如下所示，推断函数返回为一个数字：
 
 ```ts
-function add (a: number, b: number) {
-  return a + b
+function add(a: number, b: number) {
+  return a + b;
 }
 ```
 
@@ -36,18 +36,18 @@ function add (a: number, b: number) {
 函数参数类型/返回值也能通过赋值来推断。如下所示，`foo` 的类型是 `Adder`，他能让 `foo` 的参数 `a`、`b` 是 `number` 类型。
 
 ```ts
-type Adder = (a: number, b: number) => number
-let foo: Adder = (a, b) => a + b
+type Adder = (a: number, b: number) => number;
+let foo: Adder = (a, b) => a + b;
 ```
 
 这个事实可以用下面的代码来正面，TypeScript 会发出正如你期望发出的错误警告：
 
 ```ts
-type Adder = (a: number, b: number) => number
+type Adder = (a: number, b: number) => number;
 let foo: Adder = (a, b) => {
-  a = 'hello' // Error：不能把 'string' 类型赋值给 'number' 类型
-  return a + b
-}
+  a = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
+  return a + b;
+};
 ```
 
 这是一个从左向右流动类型的示例。
@@ -55,15 +55,15 @@ let foo: Adder = (a, b) => {
 如果你创建一个函数，并且函数参数为一个回掉函数，相同的赋值规则也适用于它。毕竟从 `argument` 至 `parameter` 只是变量赋值的另一种形式。
 
 ```ts
-type Adder = (a: number, b: number) => number
+type Adder = (a: number, b: number) => number;
 function iTakeAnAdder(adder: Adder) {
-  return adder(1, 2)
+  return adder(1, 2);
 }
 
 iTakeAnAdder((a, b) => {
-  a = 'hello'   // Error: 不能把 'string' 类型赋值给 'number' 类型
-  return a + b
-})
+  a = 'hello'; // Error: 不能把 'string' 类型赋值给 'number' 类型
+  return a + b;
+});
 ```
 
 ## 结构化
@@ -74,16 +74,16 @@ iTakeAnAdder((a, b) => {
 const foo = {
   a: 123,
   b: 456
-}
+};
 
-foo.a = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
+foo.a = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 数组也一样：
 
 ```ts
-const bar= [1, 2, 3]
-bar[0] = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
+const bar = [1, 2, 3];
+bar[0] = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 ## 解构
@@ -94,33 +94,34 @@ bar[0] = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
 const foo = {
   a: 123,
   b: 456
-}
-let { a } = foo
+};
+let { a } = foo;
 
-a = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
+a = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 数组中：
 
 ```ts
-const bar = [1, 2]
-let [a, b] = bar
+const bar = [1, 2];
+let [a, b] = bar;
 
-a = 'hello'  // Error：不能把 'string' 类型赋值给 'number' 类型
+a = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
 ```
 
 如果函数参数能够被推断出来，那么解构亦是如此。在如下例子中，函数参数能够被解构为 `a/b` 成员：
 
 ```ts
-type Adder = (number: { a: number, b: number }) => number
-function iTakeAnAdder (adder: Adder) {
-  return adder({ a: 1, b: 2 })
+type Adder = (number: { a: number; b: number }) => number;
+function iTakeAnAdder(adder: Adder) {
+  return adder({ a: 1, b: 2 });
 }
 
-iTakeAnAdder(({ a, b }) => {  // a, b 的类型能被推断出来
-  a = 'hello'                 // Error：不能把 'string' 类型赋值给 'number' 类型
-  return a + b
-})
+iTakeAnAdder(({ a, b }) => {
+  // a, b 的类型能被推断出来
+  a = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
+  return a + b;
+});
 ```
 
 ## 类型保护
@@ -134,14 +135,18 @@ iTakeAnAdder(({ a, b }) => {  // a, b 的类型能被推断出来
 如果类型不能被赋值推断出来，类型也将不会流入函数参数中。例如如下的一个例子，编译器并不知道 `foo` 的类型，所它也就不能推断出 `a` 或者 `b` 的类型。
 
 ```ts
-const foo = (a, b) => { /* do something */ }
+const foo = (a, b) => {
+  /* do something */
+};
 ```
 
 然而，如果 `foo` 添加了类型注解，函数参数也就能被推断（`a`，`b` 都能被推断为 `number` 类型）：
 
 ```ts
-type TwoNumberFunction = (a: number, b: number) => void
-const foo: TwoNumberFunction = (a, b) => { /* do something */ }
+type TwoNumberFunction = (a: number, b: number) => void;
+const foo: TwoNumberFunction = (a, b) => {
+  /* do something */
+};
 ```
 
 ### 小心使用返回值
@@ -149,13 +154,13 @@ const foo: TwoNumberFunction = (a, b) => { /* do something */ }
 尽管 TypeScript 一般情况下能推断函数的返回值，它可能并不是你想要的。例如如下的 `foo` 函数，它的返回值为 `any`：
 
 ```ts
-function foo (a: number, b: number) {
-  return a + addOne(b)
+function foo(a: number, b: number) {
+  return a + addOne(b);
 }
 
 // 一些使用 JavaScript 库的特殊函数
-function addOne (a) {
-  return a + 1
+function addOne(a) {
+  return a + 1;
 }
 ```
 

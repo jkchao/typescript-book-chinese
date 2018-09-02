@@ -20,14 +20,13 @@ int main () {
 
 ```ts
 const { called } = new class {
-  count = 0
+  count = 0;
   called = () => {
-    this.count++
-    console.log(`Called : ${this.count}`)
-  }
-};
+    this.count++;
+    console.log(`Called : ${this.count}`);
+  };
+}();
 
-called() // Called : 1
-called() // Called : 2
+called(); // Called : 1
+called(); // Called : 2
 ```
-

@@ -22,41 +22,42 @@
 TypeScript 将会立即对你的代码进行类型检查，你的 JavaScript 代码可能并不像你想象中那样整齐了，因此你会收到一些报错信息。你可以使用 `any` 类型来解决它们中的大部分报错：
 
 ```typescript
-let foo = 123
-let bar = 'hey'
+let foo = 123;
+let bar = 'hey';
 
-bar = foo // Error: 不能把 number 类型赋值给 string 类型
+bar = foo; // Error: 不能把 number 类型赋值给 string 类型
 ```
 
 虽然这些错误是有效的（并且在大多数情景下，推断信息的错误提示将比代码库的不同部分的原始作者想象的更好），但是你的重点可能是逐步迁移至 TypeScript，在这里，你可以使用类型断言来减少此错误：
 
 ```typescript
-let foo = 123
-let bar = 'hey'
+let foo = 123;
+let bar = 'hey';
 
-bar = foo as any // ok
+bar = foo as any; // ok
 ```
 
 在另一方面来说，你可能想用 `any` 用作类型注解：
 
 ```typescript
-function foo () {
-  return 1
+function foo() {
+  return 1;
 }
 
-let bar = 'hey'
-bar = foo () // Error: 不能把一个 number 类型赋值给 string 类型
+let bar = 'hey';
+bar = foo(); // Error: 不能把一个 number 类型赋值给 string 类型
 ```
 
 抑制这种错误：
 
 ```typescript
-function foo (): any {  // 添加 'any'
-  return 1
+function foo(): any {
+  // 添加 'any'
+  return 1;
 }
 
-let bar = 'hey'
-bar = foo ()
+let bar = 'hey';
+bar = foo();
 ```
 
 ::: warning NOTICE
@@ -74,14 +75,14 @@ bar = foo ()
 考虑使用 `jquery` 的用例，你可以非常简单快速的为它创建一个定义：
 
 ```typescript
-declare var $: any
+declare var $: any;
 ```
 
 有时候，你可能想给某些变量一些明确的定义（如： jquery），并且你会在类型声明空间中使用它。你可以通过 `type` 关键字快速的实现它：
 
 ```typescript
-declare type JQuery = any
-declare var $: JQuery
+declare type JQuery = any;
+declare var $: JQuery;
 ```
 
 这提供给你一个更清晰的使用模式。
@@ -93,13 +94,13 @@ declare var $: JQuery
 与全局变量声明相似，你可以快速的定义一个全局模块，如：对于 `jquery`，如果你想把它作为一个模块来使用（[NPM](https://www.npmjs.com/package/jquery)），你可以自己通过以下方式实现：
 
 ```typescript
-declare module 'jquery'
+declare module 'jquery';
 ```
 
 然后你就可以在必要时导入它：
 
 ```typescript
-import * as $ from 'jquery'
+import * as $ from 'jquery';
 ```
 
 ::: tip
@@ -111,7 +112,7 @@ import * as $ from 'jquery'
 在 TypeScript 中，甚至可以允许你导入任何文件，例如 `.css` 文件（如果你使用的是 webpack 样式加载器或 css 模块），你只要添加如下代码（放在 `globals.d.ts`）：
 
 ```typescript
-declare module '*.css'
+declare module '*.css';
 ```
 
 现在你可以使用 `import * as foo from './some/file.css'`。
@@ -119,6 +120,5 @@ declare module '*.css'
 与此相似，如果你想使用 html 模版（例如：angular），你可以：
 
 ```typescript
-declare module '*.html'
+declare module '*.html';
 ```
-

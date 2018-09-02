@@ -4,9 +4,9 @@ JavaScript 有一个 `Error` 类，用于处理异常。你可以通过 `throw` 
 
 ```ts
 try {
-  throw new Error('Something bad happened')
+  throw new Error('Something bad happened');
 } catch (e) {
-  console.log(e)
+  console.log(e);
 }
 ```
 
@@ -20,7 +20,7 @@ try {
 
 ```ts
 // 使用过多参数调用 console
-console.log.apply(console, new Array(1000000000))   // RangeError: 数组长度无效
+console.log.apply(console, new Array(1000000000)); // RangeError: 数组长度无效
 ```
 
 ### ReferenceError
@@ -28,8 +28,8 @@ console.log.apply(console, new Array(1000000000))   // RangeError: 数组长度�
 当引用无效时，会出现 `ReferenceError` 的错误提示：
 
 ```ts
-'use strict'
-console.log(notValidVar)    // ReferenceError: notValidVar 未定义
+'use strict';
+console.log(notValidVar); // ReferenceError: notValidVar 未定义
 ```
 
 ### SyntaxError
@@ -45,7 +45,7 @@ console.log(notValidVar)    // ReferenceError: notValidVar 未定义
 变量或者参数不是有效类型时，会出现 `TypeError` 的错误提示：
 
 ```ts
-('1.2').toPrecision(1)    // TypeError: '1.2'.toPrecision 不是函数。
+'1.2'.toPrecision(1); // TypeError: '1.2'.toPrecision 不是函数。
 ```
 
 ### URIError
@@ -53,7 +53,7 @@ console.log(notValidVar)    // ReferenceError: notValidVar 未定义
 当传入无效参数至 `encodeURI()` 和 `decodeURI()` 时，会出现 `URIError` 的错误提示：
 
 ```ts
-decodeURI('%')    // URIError: URL 异常
+decodeURI('%'); // URIError: URL 异常
 ```
 
 ## 使用 `Error`
@@ -62,9 +62,9 @@ JavaScript 初学者可能有时候仅仅是抛出一个原始字符串：
 
 ```ts
 try {
-  throw 'Something bad happened'
+  throw 'Something bad happened';
 } catch (e) {
-  console.log(e)
+  console.log(e);
 }
 ```
 
@@ -98,11 +98,10 @@ function myFunction (callback: (e: Error)) {
 
 ```ts
 try {
-  const foo = runTask1()
-  const bar = runTask2()
-}
-catch (e) {
-  console.log('Error:', e)
+  const foo = runTask1();
+  const bar = runTask2();
+} catch (e) {
+  console.log('Error:', e);
 }
 ```
 
@@ -149,9 +148,9 @@ try {
 考虑如下函数：
 
 ```ts
-function validate (value: number) {
+function validate(value: number) {
   if (value < 0 || value > 100) {
-    throw new Error('Invalid value')
+    throw new Error('Invalid value');
   }
 }
 ```
@@ -159,13 +158,13 @@ function validate (value: number) {
 在这种情境下使用 `Error` 是一个不好的注意。因为没有用来验证函数的类型定义（如：`(value: number) => void`），取而代之一个更好的方式是创建一个验证方法：
 
 ```ts
-function validate (
+function validate(
   value: number
 ): {
-  error?: string
+  error?: string;
 } {
   if (value < 0 || value > 100) {
-    return { error:'Invalid value' }
+    return { error: 'Invalid value' };
   }
 }
 ```

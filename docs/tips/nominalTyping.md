@@ -1,6 +1,6 @@
 # 形式上的类型
 
-TypeScript 的类型系统是结构化的，[这里](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html)有个主要的原因。然而，在实际项目中可能是你想区分两个类型不同的变量，尽管它们具有相同的结构。一个非常常见的实际用例是身份的验证（它们可能只是在 C# 或者Java 中表示一个它们语义化名字的字符串）。
+TypeScript 的类型系统是结构化的，[这里](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html)有个主要的原因。然而，在实际项目中可能是你想区分两个类型不同的变量，尽管它们具有相同的结构。一个非常常见的实际用例是身份的验证（它们可能只是在 C# 或者 Java 中表示一个它们语义化名字的字符串）。
 
 这有一些社区推荐的方式，我按照个人爱好降序排列：
 
@@ -11,23 +11,23 @@ TypeScript 的类型系统是结构化的，[这里](https://basarat.gitbooks.io
 ```ts
 // 泛型 Id 类型
 type Id<T extends string> = {
-  type: T,
-  value: string
-}
+  type: T;
+  value: string;
+};
 
 // 特殊的 Id 类型
-type FooId = Id<'foo'>
-type BarId = Id<'bar'>
+type FooId = Id<'foo'>;
+type BarId = Id<'bar'>;
 
 // 可选：构造函数
-const createFoo = (value: stirng): FooId => ({ type: 'foo', value })
-const createBar = (value: string): BarId => ({ type: 'bar', value })
+const createFoo = (value: stirng): FooId => ({ type: 'foo', value });
+const createBar = (value: string): BarId => ({ type: 'bar', value });
 
-let foo = createFoo('sample')
-let bar = createBar('sample')
+let foo = createFoo('sample');
+let bar = createBar('sample');
 
-foo = bar // Error
-foo = foo // Okey
+foo = bar; // Error
+foo = foo; // Okey
 ```
 
 ## 使用枚举
@@ -43,30 +43,30 @@ TypeScript 中[枚举](../typings/enums.md) 提供一定级别的名义上类型
 
 ```ts
 // FOO
-enum FooIdBrand {}
-type FooId = FooIdBrand & string
+enum FooIdBrand {};
+type FooId = FooIdBrand & string;
 
 // BAR
-enum BarIdBrand {}
-type BarId = BarIdBrand & string
+enum BarIdBrand {};
+type BarId = BarIdBrand & string;
 
 // user
 
-let fooId: FooId
-let barId: BarId
+let fooId: FooId;
+let barId: BarId;
 
 // 类型安全
-fooId = barId // error
-barId = fooId // error
+fooId = barId; // error
+barId = fooId; // error
 
 // 创建一个新的
-fooId ＝ 'foo' as FooId
-barId = 'bar' as BarId
+fooId ＝ 'foo' as FooId;
+barId = 'bar' as BarId;
 
 // 两种类型都与基础兼容
-let str: string
-str = fooId
-str = barId
+let str: string;
+str = fooId;
+str = barId;
 ```
 
 ## 使用接口
@@ -83,31 +83,30 @@ str = barId
 ```ts
 // FOO
 interface FooId extends String {
-  _fooIdBrand: string // 防止类型错误
+  _fooIdBrand: string; // 防止类型错误
 }
 
 // BAR
 interface BarId extends String {
-  _barIdBrand: string // 防止类型错误
+  _barIdBrand: string; // 防止类型错误
 }
 
-
 // 使用
-let fooId: FooId
-let barId: BarId
+let fooId: FooId;
+let barId: BarId;
 
 // 类型安全
-fooId = barId  // error
-barId = fooId  // error
-fooId = <FooId>barId   // error
-barId = <BarId>fooId   // error
+fooId = barId; // error
+barId = fooId; // error
+fooId = <FooId>barId; // error
+barId = <BarId>fooId; // error
 
 // 创建新的
-fooId = 'foo' as any
-barId = 'bar' as any
+fooId = 'foo' as any;
+barId = 'bar' as any;
 
 // 如果你需要以字符串作为基础
-var str: string
-str = fooId as any
-str = barId as any
+var str: string;
+str = fooId as any;
+str = barId as any;
 ```

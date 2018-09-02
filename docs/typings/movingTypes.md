@@ -13,9 +13,9 @@ TypeScript 类型系统非常强大，它支持其他任何单一语言无法实
 ```ts
 class Foo {}
 
-const Bar = Foo
+const Bar = Foo;
 
-let bar: Bar // Error: 不能找到名称 'Bar'
+let bar: Bar; // Error: 不能找到名称 'Bar'
 ```
 
 这会得到一个错误，因为 `const` 仅仅是复制了 `Foo` 到一个变量声明空间，因此你无法把 `Bar` 当作一个类型声明使用。正确的方式是使用 `import` 关键字，请注意，如果你在使用 `namespace` 或者 `modules`，使用 `import` 是你唯一能用的方式：
@@ -25,8 +25,8 @@ namespace importing {
   export class Foo {}
 }
 
-import Bar = importing.Foo
-let bar: Bar  // ok
+import Bar = importing.Foo;
+let bar: Bar; // ok
 ```
 
 这个 `import` 技巧，仅适合于类型和变量。
@@ -36,11 +36,11 @@ let bar: Bar  // ok
 你可以通过 `typeof` 操作符在类型注解中使用变量。这允许你告诉编译器，一个变量的类型与其他类型相同，如下所示：
 
 ```ts
-const foo = 123
-let bar: typeof foo // 'bar' 类型与 'foo' 类型相同（在这里是： 'number'）
+const foo = 123;
+let bar: typeof foo; // 'bar' 类型与 'foo' 类型相同（在这里是： 'number'）
 
-bar = 456           // ok
-bar = '789'         // Error: 'string' 不能分配给 'number' 类型
+bar = 456; // ok
+bar = '789'; // Error: 'string' 不能分配给 'number' 类型
 ```
 
 ## 捕获类成员的类型
@@ -49,13 +49,13 @@ bar = '789'         // Error: 'string' 不能分配给 'number' 类型
 
 ```ts
 class Foo {
-  foo: number        // 我们想要捕获的类型
+  foo: number; // 我们想要捕获的类型
 }
 
-declare let _foo: Foo
+declare let _foo: Foo;
 
 // 与之前做法相同
-let bar: typeof _foo.foo
+let bar: typeof _foo.foo;
 ```
 
 ## 捕获字符串类型
@@ -64,14 +64,14 @@ let bar: typeof _foo.foo
 
 ```ts
 // 捕获字符串的类型与值
-const foo = 'Hello World'
+const foo = 'Hello World';
 
 // 使用一个捕获的类型
-let bar: typeof foo
+let bar: typeof foo;
 
 // bar 仅能被赋值 'Hello World'
-bar = 'Hello World'     // ok
-bar = 'anything else'   // Error
+bar = 'Hello World'; // ok
+bar = 'anything else'; // Error
 ```
 
 在这个例子里，`bar` 有字面量类型 `Hello World`，我们在[字面量类型](./literals.md)章节已经深入讨论。
@@ -84,14 +84,14 @@ bar = 'anything else'   // Error
 const colors = {
   red: 'red',
   blue: 'blue'
-}
+};
 
-type Colors = keyof typeof colors
+type Colors = keyof typeof colors;
 
-let color: Colors           // color 的类型是 'red' | 'blue'
-color = 'red'               // ok
-color = 'blue'              // ok
-color = 'anythingElse'      // Error
+let color: Colors; // color 的类型是 'red' | 'blue'
+color = 'red'; // ok
+color = 'blue'; // ok
+color = 'anythingElse'; // Error
 ```
 
 这允许你很容易地拥有像字符串枚举+常量这样的类型，正如上例所示。

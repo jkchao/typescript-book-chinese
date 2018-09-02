@@ -6,23 +6,23 @@ TypeScript 是一种专注于帮助开发人员的编程语言，当错误出现
 
 ```ts
 type SomethingComplex = {
-  foo: number,
-  bar: string
-}
+  foo: number;
+  bar: string;
+};
 
-function takeSomethingComplex (arg: SomethingComplex) {}
+function takeSomethingComplex(arg: SomethingComplex) {}
 
-function getBar (): string {
-  return 'some bar'
+function getBar(): string {
+  return 'some bar';
 }
 
 // 一个可能会出现的错误使用
 const fail = {
   foo: 123,
   bar: getBar
-}
+};
 
-takeSomethingComplex(fail)  // 在这里 TypeScript 会报错
+takeSomethingComplex(fail); // 在这里 TypeScript 会报错
 ```
 
 这个简单的例子，演示了一个常见的程序设计错误，它调用函数失败（`bar: getBar` 应该是 `bar: getBar()`）。幸运的是，一旦不符合类型要求，TypeScript 将会捕捉到这个错误。
@@ -57,10 +57,10 @@ Argument of type '{ foo: number; bar: () => string; }' is not assignable to para
 ```ts
 ERROR: Argument of type '{ foo: number; bar: () => string; }' is not assignable to parameter of type 'SomethingComplex'.
 
-WHY? 
+WHY?
 CAUSE ERROR: Types of property 'bar' are incompatible.
 
-WHY? 
+WHY?
 CAUSE ERROR: Type '() => string' is not assignable to type 'string'.
 ```
 
@@ -79,4 +79,3 @@ IDE 通常会在详细的错误提示之后显示简洁版本，如下所示：
 
 - 你通常可能只会阅读「为什么」的详细信息；
 - 当你想寻找相同的错误时（使用 `TSXXX` 错误编号，或者部分错误信息），使用简洁的版本。
-

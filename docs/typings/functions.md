@@ -8,10 +8,10 @@
 
 ```ts
 // variable annotation
-let sampleVariable: { bar: number }
+let sampleVariable: { bar: number };
 
 // function parameter annotation
-function foo (sampleParameter: { bar: number }) { }
+function foo(sampleParameter: { bar: number }) {}
 ```
 
 这里我使用了内联类型注解，除此之外，你还可以使用接口等。
@@ -22,12 +22,12 @@ function foo (sampleParameter: { bar: number }) { }
 
 ```ts
 interface Foo {
-  foo: string
+  foo: string;
 }
 
 // Return type annotated as `: Foo`
-function foo (sample: Foo): Foo {
-  return sample
+function foo(sample: Foo): Foo {
+  return sample;
 }
 ```
 
@@ -37,22 +37,22 @@ function foo (sample: Foo): Foo {
 
 ```ts
 interface Foo {
-  foo: string
+  foo: string;
 }
 
-function foo (sample: Foo) {
-  return sample // inferred return type 'Foo'
+function foo(sample: Foo) {
+  return sample; // inferred return type 'Foo'
 }
 ```
 
 但是，添加这些注解以帮助解决错误提示通常是一个好主意，例如：
 
 ```ts
-function foo () {
-  return { fou: 'John Doe' } // You might not find this misspelling of `foo` till it's too late
+function foo() {
+  return { fou: 'John Doe' }; // You might not find this misspelling of `foo` till it's too late
 }
 
-sendAsJSON(foo())
+sendAsJSON(foo());
 ```
 
 如果你不打算从函数返回任何内容，则可以将其标注为：`void` 。你通常可以删除：`void`， TypeScript 能推导出来：
@@ -63,22 +63,22 @@ sendAsJSON(foo())
 
 ```ts
 function foo(bar: number, bas?: string): void {
-    // ..
+  // ..
 }
 
-foo(123)
-foo(123, 'hello')
+foo(123);
+foo(123, 'hello');
 ```
 
 或者，当调用者没有提供该参数时，你可以提供一个默认值（在参数声明后使用 `= someValue` ）：
 
 ```ts
-function foo (bar: number, bas: string = 'hello') {
-  console.log(bar, bas)
+function foo(bar: number, bas: string = 'hello') {
+  console.log(bar, bas);
 }
 
-foo(123)           // 123, hello
-foo(123, 'world')  // 123, world
+foo(123); // 123, hello
+foo(123, 'world'); // 123, world
 ```
 
 ### 重载
@@ -88,17 +88,17 @@ TypeScript 允许你声明函数重载。这对于文档 + 类型安全来说很
 ```ts
 function padding(a: number, b?: number, c?: number, d?: any) {
   if (b === undefined && c === undefined && d === undefined) {
-    b = c = d = a
+    b = c = d = a;
   } else if (c === undefined && d === undefined) {
-    c = a
-    d = b
+    c = a;
+    d = b;
   }
   return {
     top: a,
     right: b,
     bottom: c,
     left: d
-  }
+  };
 }
 ```
 
@@ -108,34 +108,34 @@ function padding(a: number, b?: number, c?: number, d?: any) {
 
 ```ts
 // 重载
-function padding(all: number)
-function padding(topAndBottom: number, leftAndRight: number)
-function padding(top: number, right: number, bottom: number, left: number)
+function padding(all: number);
+function padding(topAndBottom: number, leftAndRight: number);
+function padding(top: number, right: number, bottom: number, left: number);
 // Actual implementation that is a true representation of all the cases the function body needs to handle
 function padding(a: number, b?: number, c?: number, d?: number) {
   if (b === undefined && c === undefined && d === undefined) {
-    b = c = d = a
+    b = c = d = a;
   } else if (c === undefined && d === undefined) {
-    c = a
-    d = b
+    c = a;
+    d = b;
   }
   return {
     top: a,
     right: b,
     bottom: c,
     left: d
-  }
+  };
 }
 ```
 
 这里前三个函数头可有效调用 `padding`:
 
 ```ts
-padding(1) // Okay: all
-padding(1, 1) // Okay: topAndBottom, leftAndRight
-padding(1, 1, 1, 1) // Okay: top, right, bottom, left
+padding(1); // Okay: all
+padding(1, 1); // Okay: topAndBottom, leftAndRight
+padding(1, 1, 1, 1); // Okay: top, right, bottom, left
 
-padding(1, 1, 1) // Error: Not a part of the available overloads
+padding(1, 1, 1); // Error: Not a part of the available overloads
 ```
 
 当然，最终声明（从函数内部看到的真正声明）与所有重载兼容是很重要的。这是因为这是函数体需要考虑的函数调用的真实性质。

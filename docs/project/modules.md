@@ -5,13 +5,13 @@
 默认情况下，当你开始在一个新的 TypeScript 写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
 
 ```ts
-const foo = 123
+const foo = 123;
 ```
 
 如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会将会允许你使用变量 `foo`，就好像它在全局可用一样：
 
 ```ts
-const bar = foo // allowed
+const bar = foo; // allowed
 ```
 
 毋庸置疑，使用全局变量空间是危险的，因为它会与文件内的代码命名冲突。我们推荐使用下文中将要提到的文件模块。
@@ -21,20 +21,20 @@ const bar = foo // allowed
 它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```ts
-export const foo = 123
+export const foo = 123;
 ```
 
 在全局命名空间里，我们不再有 `foo`，这可以通过创建一个新文件 `bar.ts` 来证明：
 
 ```ts
-const bar = foo // ERROR: "cannot find name 'foo'"
+const bar = foo; // ERROR: "cannot find name 'foo'"
 ```
 
 如果你想在 `bar.ts` 里使用来自 `foo.ts` 的内容，你必须显式导入它，更新 `bar.ts` 如下所示：
 
 ```ts
-import { foo } from './foo'
-const bar = foo // allow
+import { foo } from './foo';
+const bar = foo; // allow
 ```
 
 在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入内容，而且它将此文件 `bar.ts` 标记为一个模块，因此 `bar.ts` 中的定义的声明也不会污染全局命名空间。
@@ -73,76 +73,76 @@ const bar = foo // allow
 
 ```ts
 // foo.ts
-export const someVar = 123
+export const someVar = 123;
 export type someType = {
-  foo: string
-}
+  foo: string;
+};
 ```
 
 - `export` 的写法除了上面这样，还有另外一种：
 
 ```ts
 // foo.ts
-const someVar = 123
+const someVar = 123;
 type someType = {
-  type: string
-}
+  type: string;
+};
 
-export { someVar, someType }
+export { someVar, someType };
 ```
 
 - 你也可以重命名变量导出：
 
 ```ts
 // foo.ts
-const someVar = 123
-export { someVar as aDifferentName }
+const someVar = 123;
+export { someVar as aDifferentName };
 ```
 
 - 使用 `import` 关键字导入一个变量或者事一个类型：
 
 ```ts
 // bar.ts
-import { someVar, someType } from './foo'
+import { someVar, someType } from './foo';
 ```
 
 - 重命名导入变量或者类型：
 
 ```ts
 // bar.ts
-import { someVar as aDifferentName } from './foo'
+import { someVar as aDifferentName } from './foo';
 ```
 
-- 除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面：
+- 除了指定加载某个输出值，还可以使用整体加载，即用星号（\*）指定一个对象，所有输出值都加载在这个对象上面：
 
 ```ts
 // bar.ts
-import * as foo from './foo'
+import * as foo from './foo';
 // 你可以使用 `foo.someVar` 和 `foo.someType` 以及其他任何从 `foo` 导出的变量或者类型
 ```
 
 - 仅导入模块：
 
 ```ts
-import 'core-js' // 一个普通的 polyfill 库
+import 'core-js'; // 一个普通的 polyfill 库
 ```
 
 - 从其他模块导入后整体导出：
 
 ```ts
-export * from './foo'
+export * from './foo';
 ```
 
 - 从其他模块导入后，部分导出：
 
 ```ts
-export { someVar } from './foo'
+export { someVar } from './foo';
 ```
 
 - 通过重命名，部分导出从另一个模块导入的项目：
 
 ```ts
-export { someVar as aDifferentName } from './foo'
+export { someVar as aDifferentName } from './foo';
 ```
 
 #### 默认导入／导出
@@ -156,10 +156,10 @@ export { someVar as aDifferentName } from './foo'
 
 ```ts
 // some var
-export default someVar = 123
+export default (someVar = 123);
 
 // some function
-export default function someFunction () {}
+export default function someFunction() {}
 
 // some class
 export default class someClass {}
@@ -168,7 +168,7 @@ export default class someClass {}
 - 导入使用 `import someName from 'someModule'` 语法（你可以根据需要为导入命名）：
 
 ```ts
-import someLocalNameForThisFile from './foo'
+import someLocalNameForThisFile from './foo';
 ```
 
 ### 模块路径
@@ -234,7 +234,7 @@ import someLocalNameForThisFile from './foo'
 // globals.d.ts
 declare module 'foo' {
   // some varuable declarations
-  export var bar: number
+  export var bar: number;
 }
 ```
 
@@ -242,7 +242,7 @@ declare module 'foo' {
 
 ```ts
 // anyOtherTsFileInYourProject.ts
-import * as foo from 'foo'
+import * as foo from 'foo';
 // TypeScript 将假设（在没有做其他查找的情况下）
 // foo 是 { bar: number }
 ```
@@ -252,7 +252,7 @@ import * as foo from 'foo'
 以下导入语法：
 
 ```ts
-import foo = require('foo')
+import foo = require('foo');
 ```
 
 它实际上只做了两件事：
@@ -267,13 +267,12 @@ import foo = require('foo')
 #### 例子 1
 
 ```ts
-import foo = require('foo')
+import foo = require('foo');
 ```
 
 将会编译成 JavaScript：
 
 ```js
-
 ```
 
 这是正确的，一个没有被使用的空文件。
@@ -281,8 +280,8 @@ import foo = require('foo')
 #### 例子 2
 
 ```ts
-import foo = require('foo')
-var bar: foo
+import foo = require('foo');
+var bar: foo;
 ```
 
 将会被编译成：
@@ -296,15 +295,15 @@ let bar;
 #### 例子 3
 
 ```ts
-import foo = require('foo')
-const bar = foo
+import foo = require('foo');
+const bar = foo;
 ```
 
 将会被编译成（假设是 commonjs）：
 
 ```js
-const foo = require('foo')
-const bar = foo
+const foo = require('foo');
+const bar = foo;
 ```
 
 这是因为 `foo` 被当做变量使用了。
@@ -314,8 +313,8 @@ const bar = foo
 类型推断需要提前完成，这意味着，如果你想在 `bar` 文件里，使用从其他文件 `foo` 导出的类型，你将不得不这么做：
 
 ```ts
-import foo = require('foo')
-let bar: foo.SomeType
+import foo = require('foo');
+let bar: foo.SomeType;
 ```
 
 然而，在某些情景下，你只想在需要时加载模块 `foo`，此时你需要仅在类型注解中使用导入的模块名称，而**不**是在变量中使用。在编译成 JavaScript 式，这些将会被移除。接着，你可以手动导入你需要的模块。
@@ -323,11 +322,11 @@ let bar: foo.SomeType
 做为一个例子，考虑以下基于 `commonjs` 的代码，我们仅在一个函数内导入 `foo` 模块：
 
 ```ts
-import foo = require('foo')
+import foo = require('foo');
 
-export function loadFoo () {
+export function loadFoo() {
   // 这是懒加载 foo，原始的加载仅仅用来做类型注解
-  const _foo: typeof foo = require('foo')
+  const _foo: typeof foo = require('foo');
   // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
 }
 ```
@@ -335,15 +334,14 @@ export function loadFoo () {
 一个同样简单的 `amd` 模块（使用 requirejs）：
 
 ```ts
-import foo = require('foo')
+import foo = require('foo');
 
-export function loadFoo () {
+export function loadFoo() {
   // 这是懒加载 foo，原始的加载仅仅用来做类型注解
   require(['foo'], (_foo: typeof foo) => {
     // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
-  })
+  });
 }
-
 ```
 
 这些通常在以下情景使用：
@@ -360,11 +358,11 @@ export function loadFoo () {
 当你加载一个模块，只是想引入其附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)）时，然而，如果你仅仅是 `import/require` （导入）一些并没有与你的模块或者模块加载器有任何依赖的 JavaScript 代码，（如：webpack），经过 TypeScript 编译后，这些将会被完全忽视。在这种情况下，你可以使用一个 `ensureImport` 变量，来确保编译的 JavaScript 依赖与模块。如：
 
 ```ts
-import foo = require('./foo')
-import bar = require('./bar')
-import bas = require('./bas')
+import foo = require('./foo');
+import bar = require('./bar');
+import bas = require('./bas');
 
-const ensureImport: any = foo || bar || bas
+const ensureImport: any = foo || bar || bas;
 ```
 
 ## globals.d.ts
@@ -379,4 +377,3 @@ const ensureImport: any = foo || bar || bas
 
 - `globals.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要。
 - 当你从 `TS` 迁移到 `JS` 时，定义 `declare module "some-library-you-dont-care-to-get-defs-for"` 能让你快速开始。
-

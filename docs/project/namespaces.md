@@ -3,48 +3,44 @@
 在 JavaScript 使用命名空间时， 这有一个常用方便的语法：
 
 ```js
-(function (something) {
-
-  something.foo = 123
-
-})(something || (something = {}))
+(function(something) {
+  something.foo = 123;
+})(something || (something = {}));
 ```
 
 基础的 `something || (something = {})` 允许匿名函数 `function (something) {}` 添加属性到已经存在的对象上（`something` 部分），或者会创建一个新对象，然后添加属性至新对象上（`(something = {})` 部分），这意味着你可以拥有由某些边界拆成的不同的块：
 
 ```js
-(function (something) {
+(function(something) {
+  something.foo = 123;
+})(something || (something = {}));
 
-  something.foo = 123
+console.log(something)(
+  // { foo: 123 }
 
-})(something || (something = {}))
+  function(something) {
+    something.bar = 456;
+  }
+)(something || (something = {}));
 
-console.log(something) // { foo: 123 }
-
-(function (something) {
-
-  something.bar = 456
-
-})(something || (something = {}))
-
-console.log(something) // { foo: 123, bar: 456 }
+console.log(something); // { foo: 123, bar: 456 }
 ```
 
 在确保创建的变量不会泄漏至全局变量中时，这在 JavaScript 中很常见。当使用基于文件模块时，你无须担心这点，但是此种方式，仍然适用于合理的函数逻辑分组中。因此 TypeScript 提供了 `namespace` 关键字用来描述这种分组，如下所示：
 
 ```ts
 namespace Utility {
-  export function log (msg) {
-    console.log(msg)
+  export function log(msg) {
+    console.log(msg);
   }
-  export function error (msg) {
-    console.log(msg)
+  export function error(msg) {
+    console.log(msg);
   }
 }
 
 // useage
-Utility.log('Call me')
-Utility.error('maybe')
+Utility.log('Call me');
+Utility.error('maybe');
 ```
 
 `namespace` 关键字通过 TypeScript 编译后，与我们看到的 JavaScript 代码一样：

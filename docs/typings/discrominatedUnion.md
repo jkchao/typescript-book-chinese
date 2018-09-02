@@ -6,30 +6,30 @@
 
 ```ts
 interface Square {
-  kind: 'square',
-  size: number
+  kind: 'square';
+  size: number;
 }
 
 interface Rectangle {
-  kind: 'rectangle',
-  width: number,
-  height: number
+  kind: 'rectangle';
+  width: number;
+  height: number;
 }
 
-type Shape = Square | Rectangle
+type Shape = Square | Rectangle;
 ```
 
 如果你使用类型保护风格的检查（`==`、`===`、`!=`、`!==`）或者使用具有判断性的属性（在这里是 `kind`），TypeScript 将会意识到你将会使用的对象类型一定是拥有特殊字面量的，并且它会为你自动把类型范围变小：
 
 ```ts
-function area (s: Shape) {
+function area(s: Shape) {
   if (s.kind === 'square') {
     // 现在 TypeScript 知道 s 的类型是 Square
     // 所以你现在能安全使用它
-    return s.size * s.size
+    return s.size * s.size;
   } else {
     // 没有 'square' 属性？因此 TypeScript 将会指出 s 是 Rectangle
-    return s.width * s.height
+    return s.width * s.height;
   }
 }
 ```
@@ -40,34 +40,34 @@ function area (s: Shape) {
 
 ```ts
 interface Square {
-  kind: 'square',
-  size: number
+  kind: 'square';
+  size: number;
 }
 
 interface Rectangle {
-  kind: 'rectangle',
-  width: number,
-  height: number
+  kind: 'rectangle';
+  width: number;
+  height: number;
 }
 
 // 有人仅仅是添加了 `Circle` 类型
 // 我们可能希望 TypeScript 能在任何被需要的地方抛出错误
 interface Circle {
-  kind: 'circle',
-  radius: number
+  kind: 'circle';
+  radius: number;
 }
 
-type Shape = Square | Rectangle | Circle
+type Shape = Square | Rectangle | Circle;
 ```
 
 一个可能会让你的代码变差的例子：
 
 ```ts
-function area (s: Shape) {
+function area(s: Shape) {
   if (s.kind === 'square') {
-    return s.size * s.size
+    return s.size * s.size;
   } else if (s.kind === 'rectangle') {
-    return s.width * s.height
+    return s.width * s.height;
   }
 
   // 如果你能让 TypeScript 给你一个错误，这是不是很棒？
@@ -77,14 +77,14 @@ function area (s: Shape) {
 你可以通过一个简单的向下思想，来确保块中的类型被推断为与 `never` 类型兼容的类型。例如，你可以添加一个更详细的检查来捕获一个好的错误：
 
 ```ts
-function area (s: Shape) {
+function area(s: Shape) {
   if (s.kind === 'square') {
-    return s.size * s.size
+    return s.size * s.size;
   } else if (s.kind === 'rectangle') {
-    return s.width * s.height
+    return s.width * s.height;
   } else {
     // Error: 'Circle' 不能被赋值给 'never'
-    const _exhaustiveCheck: never = s
+    const _exhaustiveCheck: never = s;
   }
 }
 ```
@@ -92,16 +92,16 @@ function area (s: Shape) {
 它将强制你添加一种新的情景：
 
 ```ts
-function area (s: Shape) {
+function area(s: Shape) {
   if (s.kind === 'square') {
-    return s.size * s.size
+    return s.size * s.size;
   } else if (s.kind === 'rectangle') {
-    return s.width * s.height
+    return s.width * s.height;
   } else if (s.kind === 'circle') {
-    return Math.PI * (s.radius ** 2)
+    return Math.PI * s.radius ** 2;
   } else {
     // ok
-    const _exhaustiveCheck: never = s
+    const _exhaustiveCheck: never = s;
   }
 }
 ```
@@ -113,16 +113,16 @@ function area (s: Shape) {
 :::
 
 ```ts
-function area (s: Shape) {
+function area(s: Shape) {
   switch (s.kind) {
     case 'square':
-      return s.size * s.size
+      return s.size * s.size;
     case 'rectangle':
-      return s.width * s.height
+      return s.width * s.height;
     case 'circle':
-      return Math.PI * (s.radius ** 2)
+      return Math.PI * s.radius ** 2;
     default:
-      const _exhaustiveCheck: never = s
+      const _exhaustiveCheck: never = s;
   }
 }
 ```
@@ -132,17 +132,17 @@ function area (s: Shape) {
 如果你使用 `strictNullChecks`，并且用它来做详细的检查，你应该返回这个 `_exhaustiveCheck` 变量（类型是 `type`），否则 TypeScript 可能会推断返回值为 `undefined`：
 
 ```ts
-function area (s: Shape) {
+function area(s: Shape) {
   switch (s.kind) {
     case 'square':
-      return s.size * s.size
+      return s.size * s.size;
     case 'rectangle':
-      return s.width * s.height
+      return s.width * s.height;
     case 'circle':
-      return Math.PI * (s.radius ** 2)
+      return Math.PI * s.radius ** 2;
     default:
-      const _exhaustiveCheck: never = s
-      return _exhaustiveCheck
+      const _exhaustiveCheck: never = s;
+      return _exhaustiveCheck;
   }
 }
 ```
@@ -154,16 +154,15 @@ Redux 库正是使用的上述例子。
 以下是添加了 TypeScript 类型注解的[redux 要点](https://github.com/reduxjs/redux#the-gist)。
 
 ```ts
+import { createStore } from 'redux';
 
-import { createStore } from 'redux'
-
-type Action
-  = {
-    type: 'INCREMENT'
-  }
+type Action =
   | {
-    type: 'DECREMENT'
-  }
+      type: 'INCREMENT';
+    }
+  | {
+      type: 'DECREMENT';
+    };
 
 /**
  * This is a reducer, a pure function with (state, action) => state signature.
@@ -179,34 +178,32 @@ type Action
  */
 function counter(state = 0, action: Action) {
   switch (action.type) {
-  case 'INCREMENT':
-    return state + 1
-  case 'DECREMENT':
-    return state - 1
-  default:
-    return state
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
   }
 }
 
 // Create a Redux store holding the state of your app.
 // Its API is { subscribe, dispatch, getState }.
-let store = createStore(counter)
+let store = createStore(counter);
 
 // You can use subscribe() to update the UI in response to state changes.
 // Normally you'd use a view binding library (e.g. React Redux) rather than subscribe() directly.
 // However it can also be handy to persist the current state in the localStorage.
 
-store.subscribe(() =>
-  console.log(store.getState())
-)
+store.subscribe(() => console.log(store.getState()));
 
 // The only way to mutate the internal state is to dispatch an action.
 // The actions can be serialized, logged or stored and later replayed.
-store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'INCREMENT' });
 // 1
-store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'INCREMENT' });
 // 2
-store.dispatch({ type: 'DECREMENT' })
+store.dispatch({ type: 'DECREMENT' });
 // 1
 ```
 

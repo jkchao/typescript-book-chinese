@@ -11,10 +11,10 @@ enum CardSuit {
 }
 
 // 简单的使用枚举类型
-let Card = CardSuit.Clubs
+let Card = CardSuit.Clubs;
 
 // 类型安全
-card = 'not a member of card suit'  // Error: string 不能赋值给 `CardSuit` 类型
+card = 'not a member of card suit'; // Error: string 不能赋值给 `CardSuit` 类型
 ```
 
 这些枚举类型的值都是数字的，因此我称它们为数字类型枚举。
@@ -30,8 +30,8 @@ enum Color {
   Blue
 }
 
-let col = Color.Red
-col = 0             // 有效的，这也是 Color.Red
+let col = Color.Red;
+col = 0; // 有效的，这也是 Color.Red
 ```
 
 ## 数字类型枚举与字符串类型
@@ -50,10 +50,10 @@ enum Tristate {
 
 ```ts{3}
 var Tristate;
-(function (Tristate) {
-    Tristate[Tristate["False"] = 0] = "False";
-    Tristate[Tristate["True"] = 1] = "True";
-    Tristate[Tristate["Unknown"] = 2] = "Unknown";
+(function(Tristate) {
+  Tristate[(Tristate['False'] = 0)] = 'False';
+  Tristate[(Tristate['True'] = 1)] = 'True';
+  Tristate[(Tristate['Unknown'] = 2)] = 'Unknown';
 })(Tristate || (Tristate = {}));
 ```
 
@@ -66,9 +66,9 @@ enum Tristate {
   Unkown
 }
 
-console.log(Tristate[0])                 // "False"
-console.log(Tristate["False"])           // 0
-console.log(Tristate[Tristate.False])    // "False" because `Tristate.False == 0`
+console.log(Tristate[0]); // "False"
+console.log(Tristate['False']); // 0
+console.log(Tristate[Tristate.False]); // "False" because `Tristate.False == 0`
 ```
 
 ## 改变与数字枚举关联的数字
@@ -77,9 +77,9 @@ console.log(Tristate[Tristate.False])    // "False" because `Tristate.False == 0
 
 ```ts
 enum Color {
-  Red,        // 0
-  Green,      // 1
-  Blue        // 2
+  Red, // 0
+  Green, // 1
+  Blue // 2
 }
 ```
 
@@ -87,9 +87,9 @@ enum Color {
 
 ```ts
 enum Color {
-  DarkRed = 3,      // 3
-  DarkGreen,        // 4
-  DarkBlue          // 5
+  DarkRed = 3, // 3
+  DarkGreen, // 4
+  DarkBlue // 5
 }
 ```
 
@@ -103,11 +103,11 @@ enum Color {
 
 ```ts
 enum AnimalFlags {
-  None           = 0,
-  HasClaws       = 1 << 0,
-  CanFly         = 1 << 1,
-  EatsFish       = 1 << 2,
-  Endangered     = 1 << 3
+  None = 0,
+  HasClaws = 1 << 0,
+  CanFly = 1 << 1,
+  EatsFish = 1 << 2,
+  Endangered = 1 << 3
 }
 ```
 
@@ -115,33 +115,32 @@ enum AnimalFlags {
 
 ```ts
 enum AnimalFlags {
-  None           = 0,
-  HasClaws       = 1 << 0,
-  CanFly         = 1 << 1,
+  None = 0,
+  HasClaws = 1 << 0,
+  CanFly = 1 << 1
 }
 
-function printAnimalAbilities (animal) {
-  var animalFlags = animal.flags
+function printAnimalAbilities(animal) {
+  var animalFlags = animal.flags;
   if (animalFlags & AnimalFlags.HasClaws) {
-    console.log('animal has claws')
+    console.log('animal has claws');
   }
   if (animalFlags & AnimalFlags.CanFly) {
-    console.log('animal can fly')
+    console.log('animal can fly');
   }
   if (animalFlags == AnimalFlags.None) {
-    console.log('nothing')
+    console.log('nothing');
   }
 }
 
-var animal = { flags: AnimalFlags.None }
-printAnimalAbilities(animal)          // nothing
-animal.flags |= AnimalFlags.HasClaws
-printAnimalAbilities(animal)          // animal has claws
-animal.flags &= ~AnimalFlags.HasClaws
-printAnimalAbilities(animal)          // nothing
-animal.flags |= AnimalFlags.HasClaws | AnimalFlags.CanFly
-printAnimalAbilities(animal)          // animal has claws, animal can fly
-
+var animal = { flags: AnimalFlags.None };
+printAnimalAbilities(animal); // nothing
+animal.flags |= AnimalFlags.HasClaws;
+printAnimalAbilities(animal); // animal has claws
+animal.flags &= ~AnimalFlags.HasClaws;
+printAnimalAbilities(animal); // nothing
+animal.flags |= AnimalFlags.HasClaws | AnimalFlags.CanFly;
+printAnimalAbilities(animal); // animal has claws, animal can fly
 ```
 
 在这里：
@@ -156,13 +155,12 @@ printAnimalAbilities(animal)          // animal has claws, animal can fly
 
 ```ts
 enum AnimalFlags {
-  None         = 0,
-  HasClaws     = 1 << 0,
-  CanFly       = 1 << 1,
+  None = 0,
+  HasClaws = 1 << 0,
+  CanFly = 1 << 1,
 
   EndangeredFlyingClawedFishEating = HasClaws | CanFly | EatsFish | Endangered
 }
-
 ```
 
 ## 字符串枚举
@@ -186,12 +184,12 @@ export enum EvidenceTypeEnum {
 
 ```ts
 // Where `someStringFromBackend` will be '' | 'passport_visa' | 'passport' ... etc.
-const value = someStringFromBackend as EvidenceTypeEnum
+const value = someStringFromBackend as EvidenceTypeEnum;
 
 // Sample use in code
 if (value === EvidenceTypeEnum.PASSPORT) {
-    console.log('You provided a passport')
-    console.log(value); // `passport`
+  console.log('You provided a passport');
+  console.log(value); // `passport`
 }
 ```
 
@@ -204,25 +202,25 @@ enum Tristate {
   Unknown
 }
 
-const lie = Tristate.False
+const lie = Tristate.False;
 ```
 
 `const lie = Tristate.False` 编译成 JavaScript `let lie = Tristate.False` (是的，编译后与编译前，几乎相同)。这意味着在运行执行时，它将会查找变量 `Tristate` 和 `Tristate.False`。在此处或得性能提升的一个小技巧是使用常量枚举：
 
 ```ts
 const enum Tristate {
-    False,
-    True,
-    Unknown
+  False,
+  True,
+  Unknown
 }
 
-const lie = Tristate.False
+const lie = Tristate.False;
 ```
 
 将会被编译成：
 
 ```js
-let lie = 0
+let lie = 0;
 ```
 
 编译器将会：
@@ -279,10 +277,10 @@ console.log(Weekday.isBusinessDay(sun))
 
 ```ts
 var Tristate;
-(function (Tristate) {
-    Tristate[Tristate["False"] = 0] = "False";
-    Tristate[Tristate["True"] = 1] = "True";
-    Tristate[Tristate["Unknown"] = 2] = "Unknown";
+(function(Tristate) {
+  Tristate[(Tristate['False'] = 0)] = 'False';
+  Tristate[(Tristate['True'] = 1)] = 'True';
+  Tristate[(Tristate['Unknown'] = 2)] = 'Unknown';
 })(Tristate || (Tristate = {}));
 ```
 
@@ -307,4 +305,3 @@ enum Color {
 ::: tip
 你应该在枚举的延续块中，初始化第一个成员，以便生成的代码不是先前定义的枚举类型值。TypeScript 将会发出警告，如果你定义初始值（错误信息是：`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`）。
 :::
-

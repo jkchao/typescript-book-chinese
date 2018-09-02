@@ -4,7 +4,7 @@
 
 ```ts
 class Foo<T> {
-  foo: T
+  foo: T;
 }
 ```
 
@@ -12,10 +12,10 @@ class Foo<T> {
 
 ```ts
 class Foo<T> {
-  foo: T
+  foo: T;
 }
 
-const FooNumber = Foo as { new (): Foo<number>}   // ref 1
+const FooNumber = Foo as { new (): Foo<number> }; // ref 1
 ```
 
 在 `ref 1` 中，你说 `FooNumber` 与 `Foo` 相同，但是，只是将其看作使用 `new` 运算符调用时的一个 `Foo<Number>` 实例。
@@ -36,10 +36,10 @@ class FooNumber extends Foo<number> {}
 
 ```ts
 function id<T>(x: T) {
-  return x
+  return x;
 }
 
-const idNum = id as {( x: number): number}
+const idNum = id as { (x: number): number };
 ```
 
 > 灵感来源于：[stackoverflow question](https://stackoverflow.com/questions/34859911/instantiated-polymorphic-function-as-argument-in-typescript/34864705#34864705)

@@ -13,7 +13,7 @@
 
 ## HTML 标签 vs 组件
 
-React 不但能渲染 HTML 标签（strings）也能渲染 React 组件（classes）。JavaScript 触发这些的原理是不同的（`React.createElement('div')` vs `React.createElement(MyComponent)`），确定使用哪一种方式取决于首字母的大小写，`foo` 被认为是 HTML 标签，`Foo` 被认为是一个组件。
+React 不但能渲染 HTML 标签（strings）也能渲染 React 组件（classes）。JavaScript 触发这些的原理是不同的（`React.createElement('div')` vs `React.createElement(MyComponent)`）， 确定使用哪一种方式取决于首字母的大小写，`foo` 被认为是 HTML 标签，`Foo` 被认为是一个组件。
 
 ## 类型检查
 
@@ -22,7 +22,7 @@ React 不但能渲染 HTML 标签（strings）也能渲染 React 组件（classe
 一个 HTML 标签 `foo` 被标记为 `JSX.IntrinsicElements.foo` 类型。在我们已经安装的文件 `react-jsx.d.ts` 中定义了所有主要标签的类型，如下是一部分示例：
 
 ```ts
-declare module JSX {
+declare namespace JSX {
   interface IntrinsicElements {
     a: React.HTMLAttributes;
     abbr: React.HTMLAttributes;
@@ -40,14 +40,14 @@ declare module JSX {
 
 ```tsx
 type Props = {
-  foo: string
-}
+  foo: string;
+};
 
 const myComponent: React.SFC<Props> = props => {
-  return <span>{props.foo}</span>
-}
+  return <span>{props.foo}</span>;
+};
 
-<MyComponent foo='bar' />
+<MyComponent foo="bar" />;
 ```
 
 ### 有状态组件
@@ -58,16 +58,16 @@ const myComponent: React.SFC<Props> = props => {
 
 ```tsx
 type Props = {
-  foo: string
-}
+  foo: string;
+};
 
 class MyComponent extends React.Component<Props, {}> {
-  render () {
-    return <span>{this.props.foo}</span>
+  render() {
+    return <span>{this.props.foo}</span>;
   }
 }
 
-<MyComponent foo='bar' />
+<MyComponent foo="bar" />;
 ```
 
 ### React JSX Tip: 可渲染的接口
@@ -76,20 +76,22 @@ React 可以渲染一些像 `JSX` 或者是 `string` 的内容，这些被合并
 
 ```tsx
 type Props = {
-  header: React.ReactNode,
-  body: React.ReactNode
-}
+  header: React.ReactNode;
+  body: React.ReactNode;
+};
 
 class MyComonent extends React.Component<Props, {}> {
-  render () {
-    return <div>
-              {this.props.header}
-              {this.props.body}
-            </div>;
+  render() {
+    return (
+      <div>
+        {this.props.header}
+        {this.props.body}
+      </div>
+    );
   }
 }
 
-<MyComponent foo='bar' />
+<MyComponent foo="bar" />;
 ```
 
 ### React JSX tip: 接收组件的接口
@@ -98,13 +100,13 @@ React 声明文件提供 `React.ReactElement<T>` 的接口，可以让你注解�
 
 ```tsx
 class MyAwesomeComponent extends React.Component {
-  render () {
+  render() {
     return <div>Hello</div>;
   }
 }
 
-const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent /> // Okay
-const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent /> // Error!
+const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent />; // Okay
+const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; // Error!
 ```
 
 ::: tip
@@ -128,11 +130,11 @@ const X: React.Component<Props> = foo // 来自其他地方
 
 ```tsx
 // 一个泛型组件
-type SelectProps<T> = { item: T[] }
+type SelectProps<T> = { item: T[] };
 class Select<T> extends React.Component<SelectProps<T>, any> {}
 
 // 使用
-const Form = () => <Select<string> items = {['a', 'b']} />
+const Form = () => <Select<string> items={['a', 'b']} />;
 ```
 
 ### 泛型函数
@@ -141,14 +143,14 @@ const Form = () => <Select<string> items = {['a', 'b']} />
 
 ```ts
 function foo<T>(x: T): T {
-  return x
+  return x;
 }
 ```
 
 然而不能使用箭头泛型函数：
 
 ```ts
-const foo = <T>(x: T) => T  // Error: T 标签没有关闭
+const foo = <T>(x: T) => T; // Error: T 标签没有关闭
 ```
 
 **解决办法**：在泛型参数里使用 `extends` 来提示编译器，这是个泛型：
@@ -170,13 +172,13 @@ class Hello extends React.Component<{
   /**
    * @default 'TypeScript'
    */
-  compiler?: string,
-  framework: string
+  compiler?: string;
+  framework: string;
 }> {
   static defaultProps = {
     compiler: 'TypeScript'
-  }
-  render () {
+  };
+  render() {
     const compiler = this.props.compiler!;
     return (
       <div>
@@ -189,9 +191,8 @@ class Hello extends React.Component<{
 
 ReactDOM.render(
   <Hello framework="React" />, // TypeScript React
-  document.getElementById("root")
+  document.getElementById('root')
 );
-
 ```
 
 - 在 SFC 中使用默认的 Props：推荐使用简单的 JavaScript 参数，因为同样适用于 TypeScript 类型系统：
@@ -201,24 +202,22 @@ const Hello: React.SFC<{
   /**
    * @default 'TypeScript'
    */
-  compiler?: string,
-  framework: string
+  compiler?: string;
+  framework: string;
 }> = ({
   compiler = 'TypeScript', // Default prop
   framework
 }) => {
-    return (
-      <div>
-        <div>{compiler}</div>
-        <div>{framework}</div>
-      </div>
-    );
-  };
-
+  return (
+    <div>
+      <div>{compiler}</div>
+      <div>{framework}</div>
+    </div>
+  );
+};
 
 ReactDOM.render(
-  <Hello framework='React' />, // TypeScript React
+  <Hello framework="React" />, // TypeScript React
   document.getElementById('root')
 );
-
 ```

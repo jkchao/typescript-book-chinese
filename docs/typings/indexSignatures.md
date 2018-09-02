@@ -1,44 +1,44 @@
 # 索引签名
 
-可以用字符串来访问 JavaScript 中的对象（TypeScript中也一样），以此来保存来自其他任何对象的引用。
+可以用字符串来访问 JavaScript 中的对象（TypeScript 中也一样），以此来保存来自其他任何对象的引用。
 
 这有一个快速开始的例子：
 
 ```ts
-let foo: any = {}
-foo['Hello'] = 'World'
-console.log(foo['Hello']) // World
+let foo: any = {};
+foo['Hello'] = 'World';
+console.log(foo['Hello']); // World
 ```
 
 我们在键 `Hello` 下保存了一个字符串 `World`，记住我们提到过它可以保存任意的 JavaScript 对象，理所当然，它也能保存一个类的实例。
 
 ```ts
 class Foo {
-  constructor (public message: string) {}
-  log () {
-    console.log(this.message)
+  constructor(public message: string) {}
+  log() {
+    console.log(this.message);
   }
 }
 
-let foo: any = {}
-foo['Hello'] = new Foo('World')
-foo['Hello'].log() // World
+let foo: any = {};
+foo['Hello'] = new Foo('World');
+foo['Hello'].log(); // World
 ```
 
 同样的，我们说过它能被一个字符串反问。当你传进一个其他对象至索引签名，JavaScript 在运行时得到结果之前会先调用 `.toString`：
 
 ```ts
 let obj = {
-  toString () {
-    console.log('toString called')
-    return 'Hello'
+  toString() {
+    console.log('toString called');
+    return 'Hello';
   }
-}
+};
 
-let foo: any = {}
-foo[obj] = 'World'            // toString called
-console.log(foo[obj])         // toString called, World
-console.log(foo['Hello'])     // World
+let foo: any = {};
+foo[obj] = 'World'; // toString called
+console.log(foo[obj]); // toString called, World
+console.log(foo['Hello']); // World
 ```
 
 ::: tip
@@ -48,8 +48,8 @@ console.log(foo['Hello'])     // World
 数组有点稍微不同，对于一个 `number` 类型的索引签名，JavaScript 引擎将会尝试去优化（这取决于它是否是一个真的数组、存储的项目结构是否匹配等）。因此，`number` 应该被考虑作为一个有效的对象访问器（这与 `string` 不同），如下例子：
 
 ```ts
-let foo = ['World']
-console.log(foo[0]) // World
+let foo = ['World'];
+console.log(foo[0]); // World
 ```
 
 因此，这就是 JavaScript。现在让我们看看 JavaScript 对这些概念更优雅的处理。
@@ -60,31 +60,31 @@ console.log(foo[0]) // World
 
 ```ts
 const obj = {
-  toString () {
-    return 'Hello'
+  toString() {
+    return 'Hello';
   }
-}
+};
 
-const foo: any = {}
+const foo: any = {};
 
 // ERROR: 索引签名必须为 string, number....
-foo[obj] = 'World'
+foo[obj] = 'World';
 
 // FIX: TypeScript 强制你必须明确这么做：
-foo[obj.toString()] = 'World'
+foo[obj.toString()] = 'World';
 ```
 
 强制用户必须明确的写出的原因是：在对象上默认执行的 `toString` 方法是非常有害的。例如 v8 引擎上总是会返回 `[object Object]`
 
 ```ts
-const obj = { message: 'Hello' }
-let foo: any = {}
+const obj = { message: 'Hello' };
+let foo: any = {};
 
 // ERROR: 索引签名必须为 string, number....
-foo[obj] = 'World'
+foo[obj] = 'World';
 
 // 这里实际上就是你存储的地方
-console.log(foo['[object Object]'])  // World
+console.log(foo['[object Object]']); // World
 ```
 
 当然，数字类型是被允许的，因为
@@ -95,8 +95,8 @@ console.log(foo['[object Object]'])  // World
 如下所示：
 
 ```ts
-console.log((1).toString()) // 1
-console.log((2).toString()) // 2
+console.log((1).toString()); // 1
+console.log((2).toString()); // 2
 ```
 
 因此，我们有以下结论：
@@ -113,22 +113,22 @@ TypeScript 的索引签名必须是 `string` 或者 `number`。
 
 ```ts
 const foo: {
-  [index: string]: { message: string }
-} = {}
+  [index: string]: { message: string };
+} = {};
 
 // 储存的东西必须符合结构
 // ok
-foo['a'] = { message: 'some message' }
+foo['a'] = { message: 'some message' };
 
 // Error, 必须包含 `message`
-foo['a'] = { messages: 'some message' }
+foo['a'] = { messages: 'some message' };
 
 // 读取时，也会有类型检查
 // ok
-foo['a'].message
+foo['a'].message;
 
 // Error: messages 不存在
-foo['a'].messages
+foo['a'].messages;
 ```
 
 ::: tip
@@ -144,16 +144,16 @@ foo['a'].messages
 ```ts
 // ok
 interface Foo {
-  [key: string]: number,
-  x: number,
-  y: number
+  [key: string]: number;
+  x: number;
+  y: number;
 }
 
 // Error
 interface Bar {
-  [key: string]: number,
-  x: number,
-  y: string      // Error: y 属性必须为 number 类型
+  [key: string]: number;
+  x: number;
+  y: string; // Error: y 属性必须为 number 类型
 }
 ```
 
@@ -161,21 +161,21 @@ interface Bar {
 
 ```ts
 interface Foo {
-  [key: string]: number,
-  x: number
+  [key: string]: number;
+  x: number;
 }
 
 let foo: Foo = {
   x: 1,
   y: 2
-}
+};
 
 // 直接
-foo['x']      // number
+foo['x']; // number
 
 // 间接
-const x = 'x'
-foo[x]        // number
+const x = 'x';
+foo[x]; // number
 ```
 
 ## 使用一组有限的字符串字面量
@@ -183,17 +183,15 @@ foo[x]        // number
 一个索引签名可以通过映射类型来使索引字符串为联合类型中的一员，如下所示：
 
 ```ts
-type Index = 'a' | 'b' | 'c'
-type FromIndex = {
-  [k in Index]?: number
-}
+type Index = 'a' | 'b' | 'c';
+type FromIndex = { [k in Index]?: number };
 
-const good: FromIndex = { b: 1, c: 2 }
+const good: FromIndex = { b: 1, c: 2 };
 
 // Error:
 // `{ b: 1, c: 2, d: 3 }` 不能分配给 'FromIndex'
 // 对象字面量只能指定已知类型，'d' 不存在 'FromIndex' 类型上
-const bad: FromIndex = { b: 1, c: 2, d: 3 }
+const bad: FromIndex = { b: 1, c: 2, d: 3 };
 ```
 
 这通常与 `keyof/typeof` 一起使用，来获取变量的类型，如下一章节所示。
@@ -201,7 +199,7 @@ const bad: FromIndex = { b: 1, c: 2, d: 3 }
 变量的规则一般可以延迟被推断：
 
 ```ts
-type FromSomeIndex<K extends string> = { [key in K]: number }
+type FromSomeIndex<K extends string> = { [key in K]: number };
 ```
 
 ## 同时拥有 `string` 和 `number` 类型的索引签名
@@ -212,11 +210,11 @@ type FromSomeIndex<K extends string> = { [key in K]: number }
 
 ```ts
 interface ArrStr {
-  [key: string]: string | number, // 必须包括所用成员类型
-  [index: number]: string,        // 字符串索引类型的子级
+  [key: string]: string | number; // 必须包括所用成员类型
+  [index: number]: string; // 字符串索引类型的子级
 
   // example
-  length: number
+  length: number;
 }
 ```
 
@@ -230,8 +228,8 @@ interface ArrStr {
 
 ```ts
 interface NestedCSS {
-  color?: string,
-  [selector: string]: string | NestedCSS
+  color?: string;
+  [selector: string]: string | NestedCSS;
 }
 
 const example: NestedCSS = {
@@ -239,8 +237,7 @@ const example: NestedCSS = {
   '.subclass': {
     color: 'blue'
   }
-}
-
+};
 ```
 
 尽量不要使用这种把字符串索引签名与有效变量混合使用。如果属性名称中有拼写错误，这个错误不会被捕获到：
@@ -248,17 +245,17 @@ const example: NestedCSS = {
 ```ts
 const failsSilently: NestedCSS = {
   colour: 'red' // 'colour' 不会被捕捉到错误
-}
+};
 ```
 
 取而代之，我们把索引签名分离到自己的属性里，如命名为 `next`（或者 `children`、`subnodes` 等）：
 
 ```ts
 interface NestedCSS {
-  color?: string,
+  color?: string;
   nest?: {
-    [selector: string]: NestedCSS
-  }
+    [selector: string]: NestedCSS;
+  };
 }
 
 const example: NestedCSS = {
@@ -283,46 +280,43 @@ const failsSliently: NestedCSS {
 
 ```ts
 type FieldState = {
-  value: string
-}
+  value: string;
+};
 
 type FromState = {
-  isValid: boolean,   // Error: 不符合索引签名
-  [filedName: string]: FieldState
-}
+  isValid: boolean; // Error: 不符合索引签名
+  [filedName: string]: FieldState;
+};
 ```
 
 使用交叉类型可以解决上述问题：
 
 ```ts
 type FieldState = {
-  value: string
-}
+  value: string;
+};
 
-type FormState =
-  { isValid: boolean }
-  & { [fieldName: string]: FieldState }
+type FormState = { isValid: boolean } & { [fieldName: string]: FieldState };
 ```
 
 请注意尽管你可以声明它至一个已存在的 TypeScript 模型上，你也不可以通过 TypeScript 创建如下的对象：
 
 ```ts
 type FieldState = {
-  value: string
-}
+  value: string;
+};
 
-type FormState =
-  { isValid: boolean }
-  & { [fieldName: string]: FieldState }
+type FormState = { isValid: boolean } & { [fieldName: string]: FieldState };
 
 // 将它用于从某些地方获取的 JavaScript 对象
-declare const foo: FormState
+declare const foo: FormState;
 
-const isValidBool = foo.isValid
-const somethingFieldState = foo['something']
+const isValidBool = foo.isValid;
+const somethingFieldState = foo['something'];
 
 // 使用它来创建一个对象时，将不会工作
-const bar: FormState = {  // 'isValid' 不能赋值给 'FieldState'
+const bar: FormState = {
+  // 'isValid' 不能赋值给 'FieldState'
   isValid: false
-}
+};
 ```

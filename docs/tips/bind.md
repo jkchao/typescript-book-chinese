@@ -11,25 +11,25 @@ bind(thisArg: any, ...argArray: any[]): any
 如下所示：
 
 ```ts
-function twoParams (a: number, b: number) {
-  return a + b
+function twoParams(a: number, b: number) {
+  return a + b;
 }
 
-let curryOne = twoParams.bind(null, 123)
-curryOne(456) // ok
-curryOne('456') // ok
+let curryOne = twoParams.bind(null, 123);
+curryOne(456); // ok
+curryOne('456'); // ok
 ```
 
 一个更好的方式的是使用显示类型注解的箭头函数：
 
 ```ts
 function twoParams(a: number, b: number) {
-  return a + b
+  return a + b;
 }
 
-let curryOne = (x: number) => twoParams(123, x)
-curryOne(456)   // ok
-curryOne('456') // Error
+let curryOne = (x: number) => twoParams(123, x);
+curryOne(456); // ok
+curryOne('456'); // Error
 ```
 
 如果你想用一个柯里化的函数，你可以看看此章节：
@@ -42,37 +42,37 @@ curryOne('456') // Error
 
 ```ts
 class Adder {
-  constructor (public a: string) {}
+  constructor(public a: string) {}
 
-  add (b: string): string {
-    return this.a + b
+  add(b: string): string {
+    return this.a + b;
   }
 }
 
-function useAdd (add: (x: number) => number) {
-  return add(456)
+function useAdd(add: (x: number) => number) {
+  return add(456);
 }
 
-let adder = new Adder('mary had a little 🐑')
-useAdd(adder.add.bind(adder))   // 没有编译的错误
-useAdd(x => adder.add(x))       // Error: number 不能分配给 string
+let adder = new Adder('mary had a little 🐑');
+useAdd(adder.add.bind(adder)); // 没有编译的错误
+useAdd(x => adder.add(x)); // Error: number 不能分配给 string
 ```
 
 如果你想传递一个类成员的函数，使用箭头函数。例如：
 
 ```ts
 class Adder {
-  constructor (public a: string) {}
+  constructor(public a: string) {}
 
   // 此时，这个函数可以安全传递
   add = (b: string): string => {
-    return this.a + b
-  }
+    return this.a + b;
+  };
 }
 ```
 
 另一种方法是手动指定要绑定的变量的类型：
 
 ```ts
-const add: typeof adder.add = adder.add.bind(adder)
+const add: typeof adder.add = adder.add.bind(adder);
 ```

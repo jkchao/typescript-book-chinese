@@ -12,9 +12,8 @@
 看如下例子：
 
 ```ts
-
-const foo = 123
-const bar = foo.toString()
+const foo = 123;
+const bar = foo.toString();
 ```
 
 这段代码的类型检查正常，因为 `lib.d.ts` 为所有 JavaScript 对象定义了 `toString` 方法。
@@ -22,8 +21,8 @@ const bar = foo.toString()
 如果你在 `noLib` 选项时，使用相同的代码，这将会出现类型检查错误：
 
 ```ts
-const foo = 123
-const bar = foo.toString()    // Error: 属性 toString 不存在类型 number 上
+const foo = 123;
+const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 ```
 
 因此，现在你已经理解了 `lib.d.ts` 的重要性，它的内容是怎么样的，我们接下来解释。
@@ -37,19 +36,27 @@ const bar = foo.toString()    // Error: 属性 toString 不存在类型 number �
 让我们来看一个示例变量的声明，如 `window` 被定义为：
 
 ```ts
-declare var window: Window
+declare var window: Window;
 ```
 
 这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注解的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，如下是 `Window` 接口的一小部分：
 
 ```ts
-interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
-    animationStartTime: number;
-    applicationCache: ApplicationCache;
-    clientInformation: Navigator;
-    closed: boolean;
-    crypto: Crypto;
-    // so on and so forth...
+interface Window
+  extends EventTarget,
+    WindowTimers,
+    WindowSessionStorage,
+    WindowLocalStorage,
+    WindowConsole,
+    GlobalEventHandlers,
+    IDBEnvironment,
+    WindowBase64 {
+  animationStartTime: number;
+  applicationCache: ApplicationCache;
+  clientInformation: Navigator;
+  closed: boolean;
+  crypto: Crypto;
+  // so on and so forth...
 }
 ```
 
@@ -69,7 +76,7 @@ interface Window extends EventTarget, WindowTimers, WindowSessionStorage, Window
 
 ```ts
 interface Window {
-  helloWorld(): void
+  helloWorld(): void;
 }
 ```
 
@@ -77,13 +84,13 @@ interface Window {
 
 ```ts
 // Add it at runtime
-window.helloWorld = () => console.log('hello world')
+window.helloWorld = () => console.log('hello world');
 
 // Call it
-window.helloWorld()
+window.helloWorld();
 
 // 滥用会导致错误
-window.helloWorld('gracius') // Error: 提供的参数与目标不匹配
+window.helloWorld('gracius'); // Error: 提供的参数与目标不匹配
 ```
 
 ### Math
@@ -99,8 +106,8 @@ declare var Math: Math;
 
 ```ts
 interface Math {
-  E: number,
-  LN10: number,
+  E: number;
+  LN10: number;
   // others ...
 }
 ```
@@ -109,16 +116,16 @@ interface Math {
 
 ```ts
 interface Math {
-  seedrandom(seed?: string)
+  seedrandom(seed?: string);
 }
 ```
 
 你可以像下面一样使用它：
 
 ```ts
-Math.seedrandom()
+Math.seedrandom();
 
-Math.seedrandom('Any string you want')
+Math.seedrandom('Any string you want');
 ```
 
 ### Date
@@ -126,17 +133,17 @@ Math.seedrandom('Any string you want')
 如果你在 `lib.d.ts` 中寻找 `Date` 定义的声明，你将会找到：
 
 ```ts
-declare var Date: DateConstructor
+declare var Date: DateConstructor;
 ```
 
 接口 `DateConstructor` 与你在上文中看到的 `Math` 和 `Window` 接口一样，因为它涵盖了可以使用的 `Date` 全局变量的成员（如：`Date.now()`）。除此之外，它还包含了可以让你创建 `Date` 实例的构造函数签名（如：`new Date()`）。`DateConstructor` 接口的一部分代码如下所示：
 
 ```ts
 interface DateConstructor {
-  new (): Date,
+  new (): Date;
   // 一些其他的构造函数签名
 
-  now (): number
+  now(): number;
 
   // 其他成员函数
 }
@@ -147,24 +154,24 @@ interface DateConstructor {
 ```ts
 // DateJS 公开的静态方法
 interface DateConstructor {
-    /** Gets a date that is set to the current date. The time is set to the start of the day (00:00 or 12:00 AM) */
-    today (): Date
-    // ... so on and so forth
+  /** Gets a date that is set to the current date. The time is set to the start of the day (00:00 or 12:00 AM) */
+  today(): Date;
+  // ... so on and so forth
 }
 
 // DateJS 公开的实例方法
 interface Date {
-    /** Adds the specified number of milliseconds to this instance. */
-    addMilliseconds (milliseconds: number): Date;
-    // ... so on and so forth
+  /** Adds the specified number of milliseconds to this instance. */
+  addMilliseconds(milliseconds: number): Date;
+  // ... so on and so forth
 }
 ```
 
 这允许你在类型安全的情况下做：
 
 ```ts
-const today = Date.today()
-const todayAfter1second = today.addMilliseconds(1000)
+const today = Date.today();
+const todayAfter1second = today.addMilliseconds(1000);
 ```
 
 ### string
@@ -173,16 +180,16 @@ const todayAfter1second = today.addMilliseconds(1000)
 
 ```ts
 interface String {
-  endsWith (suffix: string): boolean
+  endsWith(suffix: string): boolean;
 }
 
-String.prototype.endsWith = function (suffix: string): boolean {
-  const str: string = this
-  return str && str.indexOf(suffix, str.length - suffix.length) !== -1
-}
+String.prototype.endsWith = function(suffix: string): boolean {
+  const str: string = this;
+  return str && str.indexOf(suffix, str.length - suffix.length) !== -1;
+};
 
-console.log('foo bar'.endsWith('bas'))  // false
-console.log('foo bas'.endsWith('bas'))   // true
+console.log('foo bar'.endsWith('bas')); // false
+console.log('foo bas'.endsWith('bas')); // true
 ```
 
 ### 终极 string
@@ -191,22 +198,21 @@ console.log('foo bas'.endsWith('bas'))   // true
 
 ```ts
 // 确保是模块
-export {}
+export {};
 
 declare global {
   interface String {
-    endsWith (suffix: string): boolean
+    endsWith(suffix: string): boolean;
   }
 }
 
-String.prototype.endsWith = function (suffix: string): boolean {
-  const str: string = this
-  return str && str.indexOf(suffix, str.length - suffix.length) !== -1
-}
+String.prototype.endsWith = function(suffix: string): boolean {
+  const str: string = this;
+  return str && str.indexOf(suffix, str.length - suffix.length) !== -1;
+};
 
-console.log('foo bar'.endsWith('bas'))  // false
-console.log('foo bas'.endsWith('bas'))   // true
-
+console.log('foo bar'.endsWith('bas')); // false
+console.log('foo bas'.endsWith('bas')); // true
 ```
 
 ## 使用你自己定义的 `lib.d.ts`
@@ -247,11 +253,9 @@ tsc --target es5 --lib dom,es6
 ### config.json
 
 ```json
-
 "compilerOptions": {
     "lib": ["dom", "es6"]
 }
-
 ```
 
 `lib` 分类如下：
@@ -324,5 +328,5 @@ npm install core-js --save-dev
 在你的项目里导入它：
 
 ```ts
-import 'core-js'
+import 'core-js';
 ```
