@@ -4,7 +4,8 @@ TypeScript (和 JavaScript) 类只能严格的单继承，因此你不能做：
 
 ```ts
 class User extends Tagged, Timestamped { // ERROR : 不能多重继承
-};
+  // ..
+}
 ```
 
 从可重用组件构建类的另一种方式是通过基类来构建它们，这种方式称为混合。

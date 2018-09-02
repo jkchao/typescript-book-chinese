@@ -15,13 +15,12 @@
   something.foo = 123;
 })(something || (something = {}));
 
-console.log(something)(
-  // { foo: 123 }
+console.log(something);
+// { foo: 123 }
 
-  function(something) {
-    something.bar = 456;
-  }
-)(something || (something = {}));
+(function(something) {
+  something.bar = 456;
+})(something || (something = {}));
 
 console.log(something); // { foo: 123, bar: 456 }
 ```
@@ -48,7 +47,7 @@ Utility.error('maybe');
 ```js
 (function (Utility) {
   // 添加属性至 Utility
-})(Utility || Utility = {})
+})(Utility || Utility = {});
 ```
 
 有一点值得注意的是，命名空间是支持嵌套的。因此，你可以做一些类似于在 `Utility` 命名空间下嵌套一个命名空间 `Messaging` 的事情。

@@ -24,28 +24,28 @@ function doSome(x: number | string) {
 
 ```ts
 class Foo {
-  foo = 123
-  common = '123'
+  foo = 123;
+  common = '123';
 }
 
-class Bar = {
-  bar = 123
-  common = '123'
+class Bar {
+  bar = 123;
+  common = '123';
 }
 
-function doStuff (arg: Foo | Bar) {
+function doStuff(arg: Foo | Bar) {
   if (arg instanceof Foo) {
-    console.log(arg.foo) // ok
-    console.log(arg.bar) // Error
+    console.log(arg.foo); // ok
+    console.log(arg.bar); // Error
   }
   if (arg instanceof Bar) {
-    console.log(arg.foo) // Error
-    console.log(arg.bar) // ok
+    console.log(arg.foo); // Error
+    console.log(arg.bar); // ok
   }
 }
 
-doStuff(new Foo())
-doStuff(new Bar())
+doStuff(new Foo());
+doStuff(new Bar());
 ```
 
 TypeScript 甚至能够理解 `else`。当你使用 `if` 来缩小类型时，TypeScript 知道在其他块中并不是 `if` 中的类型：

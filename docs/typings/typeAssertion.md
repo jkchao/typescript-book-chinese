@@ -5,22 +5,22 @@ TypeScript 允许你覆盖它的推断，并且能以你任何你想要的方式
 类型断言的一个常见用例是当你从 JavaScript 迁移到 TypeScript 时：
 
 ```ts
-const foo = {}
-foo.bar = 123         // Error: 'bar' 属性不存在于 ‘{}’
-foo.bas = 'hello'     // Error: 'bas' 属性不存在于 '{}'
+const foo = {};
+foo.bar = 123; // Error: 'bar' 属性不存在于 ‘{}’
+foo.bas = 'hello'; // Error: 'bas' 属性不存在于 '{}'
 ```
 
 这里的代码发出了错误警告，因为 `foo` 的类型推断为 `{}`，即是具有零属性的对象。因此，你不能在它的属性上添加 `bar` 或 `bas`，你可以通过类型断言来避免此问题：
 
 ```ts
 interface Foo {
-  bar: number,
-  bas: string
+  bar: number;
+  bas: string;
 }
 
-const foo = {} as Foo
-foo.bar = 123
-foo.bas = 'hello'
+const foo = {} as Foo;
+foo.bar = 123;
+foo.bas = 'hello';
 ```
 
 ## `as foo` 与 `<foo>`
@@ -28,15 +28,14 @@ foo.bas = 'hello'
 最初的断言语法如下所示：
 
 ```ts
-let foo: any
-let bar = <string>foo  // 现在 bar 的类型是 'string'
+let foo: any;
+let bar = <string>foo; // 现在 bar 的类型是 'string'
 ```
 
 然而，当你在 JSX 中使用 `<foo>` 的断言语法时，这会与 JSX 的语法存在歧义：
 
 ```ts
-let foo = <string>bar;
-</string>
+let foo = <string>bar;</string>;
 ```
 
 因此，为了一致性，我们建议你使用 `as foo` 的语法来为类型断言。
@@ -51,11 +50,11 @@ let foo = <string>bar;
 
 ```ts
 interface Foo {
-  bar: number,
-  bas: string
+  bar: number;
+  bas: string;
 }
 
-const foo = {} as Foo
+const foo = {} as Foo;
 
 // ahhh, 忘记了什么？
 ```
@@ -64,29 +63,28 @@ const foo = {} as Foo
 
 ```ts
 interface Foo {
-  bar: number,
-  bas: string
+  bar: number;
+  bas: string;
 }
 
 const foo = <Foo>{
   // 编译器将会提供关于 Foo 属性的代码提示
   // 但是开发人员也很容易忘记添加所有的属性
   // 同样，如果 Foo 被重构，这段代码也可能被破坏（例如，一个新的属性被添加）。
-}
-
+};
 ```
 
 这也会存在一个同样的问题，如果你忘记了某个属性，编译器同样也不会发出错误警告。使用一种更好的方式：
 
 ```ts
 interface Foo {
-  bar: number,
-  bas: string
+  bar: number;
+  bas: string;
 }
 
 const foo: Foo = {
   // 编译器将会提供 Foo 属性的代码提示
-}
+};
 ```
 
 在某些情景下，你可能需要创建一个临时的变量，但至少，你将不会使用一个承若（可能是假的），而是依靠类型推断来检查你的代码。
@@ -96,24 +94,24 @@ const foo: Foo = {
 类型断言，尽管我们已经证明了它并不是那么安全，但是它也不是完全不安全的。如下一个非常实用的例子所示，当使用者了解传入参数更具体的类型时，类型断言能按预期工作：
 
 ```ts
-function handler (event: Event) {
-  const mouseEvent = event as MouseEvent
+function handler(event: Event) {
+  const mouseEvent = event as MouseEvent;
 }
 ```
 
 然而，如下例子中的代码将会报错，尽管使用者已经使用了类型断言：
 
 ```ts
-function handler (event: Event) {
-  const element = event as HTMLElement // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
+function handler(event: Event) {
+  const element = event as HTMLElement; // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
 }
 ```
 
 如果你仍然想使用那个类型，你可以使用双重断言。首先断言成兼容所有类型的 `any`，编译器将不会报错：
 
 ```ts
-function handler (event: Event) {
-  const element = event as any as HTMLElement // ok
+function handler(event: Event) {
+  const element = (event as any) as HTMLElement; // ok
 }
 ```
 

@@ -245,26 +245,26 @@ enum Weekday {
   Friday,
   Saturday,
   Sunday
-}
+};
 
 namespace Weekday {
   export function isBusinessDay (day: Weekday) {
     switch (day) {
       case Weekday.Saturday:
       case Weekday.Sunday
-        return false
+        return false;
       default:
-        return true
+        return true;
     }
   }
 }
 
 
-const mon = Weekday.Monday
-const sun = Weekday.Sunday
+const mon = Weekday.Monday;
+const sun = Weekday.Sunday;
 
-console.log(Weekday.isBusinessDay(mon))   // true
-console.log(Weekday.isBusinessDay(sun))
+console.log(Weekday.isBusinessDay(mon));   // true
+console.log(Weekday.isBusinessDay(sun));
 ```
 
 ## 开放式枚举
