@@ -146,7 +146,7 @@ person.fullName = 'Dear Reader'; // Error, fullName 只读
 `const`
 
 - 用于变量；
-- 变量不能重新赋值给其他任何食物。
+- 变量不能重新赋值给其他任何事物。
 
 `readonly`
 
