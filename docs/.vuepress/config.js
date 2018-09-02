@@ -23,16 +23,12 @@ module.exports = {
       apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
       indexName: 'jkchao_typescript'
     },
-    nav: [
-      { text: 'Blog', link: 'https://jkchao.cn' }
-    ],
+    nav: [{ text: 'Blog', link: 'https://jkchao.cn' }],
     sidebar: [
       {
         title: '写在前面',
         collapsable: false,
-        children: [
-          '/'
-        ]
+        children: ['/']
       },
       {
         title: 'TypeScript 项目',
@@ -77,19 +73,12 @@ module.exports = {
       {
         title: 'JSX',
         collapsable: false,
-        children: [
-          '/jsx/support',
-          '/jsx/reactJSX',
-          '/jsx/nonReactJSX'
-        ]
+        children: ['/jsx/support', '/jsx/reactJSX', '/jsx/nonReactJSX']
       },
       {
         title: 'TypeScript 错误提示',
         collapsable: false,
-        children: [
-          '/error/interpreting',
-          '/error/common'
-        ]
+        children: ['/error/interpreting', '/error/common']
       },
       {
         title: 'TIPs',
@@ -100,7 +89,8 @@ module.exports = {
           '/tips/statefulFunctions',
           '/tips/bind',
           '/tips/curry',
-          '/tips/typeInstantiation'
+          '/tips/typeInstantiation',
+          '/tips/classAreUseful'
         ]
       },
       {
@@ -109,4 +99,4 @@ module.exports = {
       }
     ]
   }
-}
+};
