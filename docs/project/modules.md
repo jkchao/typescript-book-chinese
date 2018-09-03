@@ -8,7 +8,7 @@
 const foo = 123;
 ```
 
-如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会将会允许你使用变量 `foo`，就好像它在全局可用一样：
+如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会允许你使用变量 `foo`，就好像它在全局可用一样：
 
 ```ts
 const bar = foo; // allowed
