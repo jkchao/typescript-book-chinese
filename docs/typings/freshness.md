@@ -50,7 +50,7 @@ const animal = { name: 'cow', diet: 'vegan, but has milk of own species' };
 logIfHasName(person); // okay
 logIfHasName(animal); // okay
 
-logIfHasName({ neme: 'I just misspelled name to neme' }); // Error: 对象字面量职能指定已知属性，`neme` 属性不存在。
+logIfHasName({ neme: 'I just misspelled name to neme' }); // Error: 对象字面量只能指定已知属性，`neme` 属性不存在。
 ```
 
 之所以只对对象字面量进行类型检查的原因是，在这种情况下，那些实际上并没有被使用到的属性有可能会拼写错误或者会被误用。[相关 PR](https://github.com/Microsoft/TypeScript/pull/3823)
