@@ -1,4 +1,3 @@
-
 # 深入理解 TypeScript
 
 此书是 [TypeScript Deep Dive](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
@@ -53,12 +52,16 @@ TypeScript Deep Dive 书中包含一部分 JavaScript Future 和一些其他的�
           hufan-akari
         </a>
       </td>
+      <td align="center">
+        <a href="https://github.com/S1ngS1ng">
+          <img width="150" height="150" src="https://github.com/S1ngS1ng.png?v=3&s=150">
+          </br>
+          S1ngS1ng
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
-
-
-
 
 ## 最后
 
