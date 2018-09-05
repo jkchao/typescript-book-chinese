@@ -35,11 +35,31 @@ import { Foo } from './Foo';
 
 ## 可发现性差
 
+默认导出的可发现性非常差，你不能智能的辨别一个模块它是否有默认导出。
+
+在使用默认导出时，你什么也没有得到（可能它有默认导出，可能它没有）。
+
+```ts
+import /* here */ from 'something';
+```
+
+没有默认导出，你可以用以下方式获取智能提示：
+
+```ts
+import /* here */ 'something';
+```
+
 ## 自动完成
+
+不管你是否了解导出，你都可以在 `import { /* here */ } from './foo'` 的 `here` 位置，来了解导出模块的信息。
 
 ## CommonJS 互用
 
+对于必须使用 `const { default } = require('module/foo')` 而不是 `const { Foo } = require('module/foo')` 的 CommonJS 的用户来说，这会是一个糟糕的体验。当你导入一个模块时，你很可能想重命名 `default` 作为导入的名字。
+
 ## 防止拼写错误
+
+当你在开发时使用 `import Foo from './foo'` 时，并不会得到有关于拼写的任何错误，其他人可能会这么写 `import foo from './foo'`；
 
 ## 再次导出
 

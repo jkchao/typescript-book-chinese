@@ -90,7 +90,8 @@ module.exports = {
           '/tips/bind',
           '/tips/curry',
           '/tips/typeInstantiation',
-          '/tips/classAreUseful'
+          '/tips/classAreUseful',
+          '/tips/avoidExportDefault'
         ]
       },
       {
