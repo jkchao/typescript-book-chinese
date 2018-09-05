@@ -91,7 +91,8 @@ module.exports = {
           '/tips/curry',
           '/tips/typeInstantiation',
           '/tips/classAreUseful',
-          '/tips/avoidExportDefault'
+          '/tips/avoidExportDefault',
+          '/tips/createArrays'
         ]
       },
       {
