@@ -21,7 +21,7 @@ logName(randow); // Error: 没有 `name` 属性
 然而，结构类型有一个缺点，它能误导你认为某些东西接收的数据比它实际的多。如下例，TypeScript 发出错误警告：
 
 ```ts
-function logName(some: { name: string }) {
+function logName(something: { name: string }) {
   console.log(something.name);
 }
 
