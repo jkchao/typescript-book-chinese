@@ -93,7 +93,8 @@ module.exports = {
           '/tips/classAreUseful',
           '/tips/avoidExportDefault',
           '/tips/limitPropertySetters',
-          '/tips/createArrays'
+          '/tips/createArrays',
+          '/tips/outFileCaution'
         ]
       },
       {
