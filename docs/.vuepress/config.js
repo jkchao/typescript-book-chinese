@@ -95,12 +95,10 @@ module.exports = {
           '/tips/limitPropertySetters',
           '/tips/createArrays',
           '/tips/outFileCaution',
-<<<<<<< HEAD
-          '/tips/functionParameters'
-=======
           '/tips/staticConstructors',
-          '/tips/singletonPatern'
->>>>>>> 15becaf57d7d3db8cad242a60cfe831963337d8e
+          '/tips/singletonPatern',
+          '/tips/functionParameters'
+
         ]
       },
       {
