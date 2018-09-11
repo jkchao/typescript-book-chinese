@@ -103,11 +103,11 @@ enum Color {
 
 ```ts
 enum AnimalFlags {
-  None = 0,
-  HasClaws = 1 << 0,
-  CanFly = 1 << 1,
-  EatsFish = 1 << 2,
-  Endangered = 1 << 3
+  None        = 0,
+  HasClaws    = 1 << 0,
+  CanFly      = 1 << 1,
+  EatsFish    = 1 << 2,
+  Endangered  = 1 << 3
 }
 ```
 
@@ -115,9 +115,9 @@ enum AnimalFlags {
 
 ```ts
 enum AnimalFlags {
-  None = 0,
-  HasClaws = 1 << 0,
-  CanFly = 1 << 1
+  None        = 0,
+  HasClaws    = 1 << 0,
+  CanFly      = 1 << 1
 }
 
 function printAnimalAbilities(animal) {
@@ -155,9 +155,9 @@ printAnimalAbilities(animal); // animal has claws, animal can fly
 
 ```ts
 enum AnimalFlags {
-  None = 0,
-  HasClaws = 1 << 0,
-  CanFly = 1 << 1,
+  None        = 0,
+  HasClaws    = 1 << 0,
+  CanFly      = 1 << 1,
 
   EndangeredFlyingClawedFishEating = HasClaws | CanFly | EatsFish | Endangered
 }
