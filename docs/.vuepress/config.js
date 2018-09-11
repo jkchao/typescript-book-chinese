@@ -94,7 +94,8 @@ module.exports = {
           '/tips/avoidExportDefault',
           '/tips/limitPropertySetters',
           '/tips/createArrays',
-          '/tips/outFileCaution'
+          '/tips/outFileCaution',
+          '/tips/functionParameters'
         ]
       },
       {
