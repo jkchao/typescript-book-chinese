@@ -246,11 +246,11 @@ function formatCommandline(command: string[] | string) {
 function extend<T, U>(first: T, second: U): T & U {
   const result = <T & U>{};
   for (let id in first) {
-    (<any>result)[id] = (<any>first)[id];
+    (<T>result)[id] = first[id];
   }
   for (let id in second) {
     if (!result.hasOwnProperty(id)) {
-      (<any>result)[id] = (<any>second)[id];
+      (<U>result)[id] = second[id];
     }
   }
 
