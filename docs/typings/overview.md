@@ -180,7 +180,7 @@ function reverse<T>(items: T[]): T[] {
   return toreturn;
 }
 
-const simple = [1, 2, 3];
+const sample = [1, 2, 3];
 const reversed = reverse(sample);
 
 console.log(reversed); // 3, 2, 1
