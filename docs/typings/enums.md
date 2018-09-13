@@ -14,7 +14,7 @@ enum CardSuit {
 let Card = CardSuit.Clubs;
 
 // 类型安全
-card = 'not a member of card suit'; // Error: string 不能赋值给 `CardSuit` 类型
+Card = 'not a member of card suit'; // Error: string 不能赋值给 `CardSuit` 类型
 ```
 
 这些枚举类型的值都是数字的，因此我称它们为数字类型枚举。
@@ -120,7 +120,7 @@ enum AnimalFlags {
   CanFly      = 1 << 1
 }
 
-function printAnimalAbilities(animal) {
+function printAnimalAbilities(animal: any) {
   var animalFlags = animal.flags;
   if (animalFlags & AnimalFlags.HasClaws) {
     console.log('animal has claws');
