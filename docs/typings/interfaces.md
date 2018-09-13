@@ -48,8 +48,8 @@ interface Point {
 }
 
 class MyPoint implements Point {
-  x: number，
-  y: number // Same as Point
+  x: number;
+  y: number; // Same as Point
 }
 ```
 
@@ -63,8 +63,8 @@ interface Point {
 }
 
 class MyPoint implements Point { // ERROR : missing member `z`
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 ```
 
