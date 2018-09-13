@@ -180,7 +180,7 @@ function reverse<T>(items: T[]): T[] {
   return toreturn;
 }
 
-const simple = [1, 2, 3];
+const sample = [1, 2, 3];
 const reversed = reverse(sample);
 
 console.log(reversed); // 3, 2, 1
@@ -246,11 +246,11 @@ function formatCommandline(command: string[] | string) {
 function extend<T, U>(first: T, second: U): T & U {
   const result = <T & U>{};
   for (let id in first) {
-    result[id] = first[id];
+    (<T>result)[id] = first[id];
   }
   for (let id in second) {
     if (!result.hasOwnProperty(id)) {
-      result[id] = second[id];
+      (<U>result)[id] = second[id];
     }
   }
 
