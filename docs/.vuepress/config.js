@@ -97,8 +97,8 @@ module.exports = {
           '/tips/outFileCaution',
           '/tips/staticConstructors',
           '/tips/singletonPatern',
-          '/tips/functionParameters'
-
+          '/tips/functionParameters',
+          '/tips/truthy'
         ]
       },
       {
