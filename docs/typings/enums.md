@@ -120,7 +120,12 @@ enum AnimalFlags {
   CanFly      = 1 << 1
 }
 
-function printAnimalAbilities(animal: any) {
+interface Animal {
+  flags: number;
+  [key: string]: any;
+}
+
+function printAnimalAbilities(animal: Animal) {
   var animalFlags = animal.flags;
   if (animalFlags & AnimalFlags.HasClaws) {
     console.log('animal has claws');
