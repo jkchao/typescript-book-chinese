@@ -13,7 +13,6 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-*.lock
 
 # Others
 .history
