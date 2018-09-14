@@ -40,7 +40,7 @@ function stringOrNumber (foo: string): string;
 function stringOrNumber (foo: any): any {
   if (typeof foo === 'number') {
     return foo * foo;
-  } else if (typeof === 'string') {
+  } else if (typeof foo === 'string') {
     return `hello ${foo}`;
   };
 };
