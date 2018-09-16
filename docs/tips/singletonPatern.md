@@ -29,7 +29,7 @@ let instacne = Singleton.getInstance(); // do some width the instance
 
 ```ts
 namespace Singleton {
-  // .. 其他初始化的东西
+  // .. 其他初始化的代码
 
   export function someMethod() {}
 }
