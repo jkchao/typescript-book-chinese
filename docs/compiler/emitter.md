@@ -1,42 +1,40 @@
----
-sidebarDepth: 1
----
-
 # 发射器
 
-TypeScript 编译器提供了两个发射器:
+## 发射器
 
-- `emitter.ts`: 可能是你最感兴趣的发射器，它是 TS -> JavaScript 的发射器
-- `declarationEmitter.ts`: 这个发射器用于为 _TypeScript 源文件(`.ts`)_ 创建*声明文件(`.d.ts`)*
+TypeScript 编译器提供了两个发射器：
+
+- `emitter.ts`：可能是你最感兴趣的发射器，它是 TS -> JavaScript 的发射器
+- `declarationEmitter.ts`：这个发射器用于为 _TypeScript 源文件（`.ts`）_ 创建*声明文件（`.d.ts`）*
 
 本节我们介绍 `emitter.ts`
 
 ### Promgram  对发射器的使用
 
-Program 提供了一个 `emit` 函数. 该函数主要将功能委托给 `emitter.ts`中的 `emitFiles` 函数。下面是调用栈:
+Program 提供了一个 `emit` 函数。该函数主要将功能委托给 `emitter.ts`中的 `emitFiles` 函数。下面是调用栈：
 
 ```
 Program.emit ->
-    `emitWorker` (在 program.ts 中的 createProgram) ->
-        `emitFiles` (emitter.ts 中的函数)
+    `emitWorker` （在 program.ts 中的 createProgram） ->
+        `emitFiles` （emitter.ts 中的函数）
 ```
 
-`emitWorker` (通过 `emitFiles` 参数)给发射器提供一个 `EmitResolver`。 `EmitResolver` 由程序的 TypeChecker 提供，基本上它是一个来自 `createChecker` 的本地函数的子集。
+`emitWorker`（通过 `emitFiles` 参数）给发射器提供一个 `EmitResolver`。 `EmitResolver` 由程序的 TypeChecker 提供，基本上它是一个来自 `createChecker` 的本地函数的子集。
 
 ## 发射器函数
 
 ### `emitFiles`
 
-定义在 `emitter.ts` 中，下面是该函数的签名:
+定义在 `emitter.ts` 中，下面是该函数的签名：
 
 ```ts
-// targetSourceFile 当用户想发射项目中的某个文件时指定，保存时编译(compileOnSave)功能使用此参数
+// targetSourceFile 当用户想发射项目中的某个文件时指定，保存时编译（compileOnSave）功能使用此参数
 export function emitFiles(resolver: EmitResolver, host: EmitHost, targetSourceFile?: SourceFile): EmitResult {
 ```
 
-`EmitHost` 是 `CompilerHost` 的简化版(运行时, 很多用例实际上都是 `CompilerHost`)
+`EmitHost` 是 `CompilerHost` 的简化版（运行时，很多用例实际上都是 `CompilerHost`）
 
-`emitFiles` 中的最有趣的调用栈如下所示:
+`emitFiles` 中的最有趣的调用栈如下所示：
 
 ```
 emitFiles ->
@@ -46,7 +44,7 @@ emitFiles ->
 
 ### `emitJavaScript`
 
-该函数有良好的注释，我们下面给出它:
+该函数有良好的注释，我们下面给出它：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -60,7 +58,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
   let currentSourceFile: SourceFile;
   // 导出器函数的名称，如果文件是个系统外部模块的话
   // System.register([...], function (<exporter>) {...})
-  // System 模块中的导出像这样:
+  // System 模块中的导出像这样：
   // export var x; ... x = 1
   // =>
   // var x;... exporter("x", x = 1)
@@ -123,7 +121,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
   }
 
   if (root) {
-    // 不要直接调用 emit, 那样不会设置 currentSourceFile
+    // 不要直接调用 emit，那样不会设置 currentSourceFile
     emitSourceFile(root);
   } else {
     forEach(host.getSourceFiles(), sourceFile => {
@@ -141,7 +139,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 }
 ```
 
-它主要设置了一批本地变量和函数(这些函数构成 `emitter.ts` 的*大部分*内容)，接着交给本地函数 `emitSourceFile` 发射文本。`emitSourceFile` 函数设置 `currentSourceFile` 然后交给本地函数 `emit` 去处理。
+它主要设置了一批本地变量和函数（这些函数构成 `emitter.ts` 的*大部分*内容），接着交给本地函数 `emitSourceFile` 发射文本。`emitSourceFile` 函数设置 `currentSourceFile` 然后交给本地函数 `emit` 去处理。
 
 ```ts
 function emitSourceFile(sourceFile: SourceFile): void {
@@ -155,7 +153,7 @@ function emitSourceFile(sourceFile: SourceFile): void {
 
 ### `emitJavaScriptWorker`
 
-完整的函数:
+完整的函数：
 
 ```ts
 function emitJavaScriptWorker(node: Node) {
@@ -343,8 +341,8 @@ function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
     emitLeadingComments(node);
   }
 
-  // 目标为 es6 之前时, 使用 function 关键字来发射类函数(functions-like)声明，包括箭头函数
-  // 目标为 es6 时, 可以发射原生的 ES6 箭头函数，并使用宽箭头代替 function 关键字.
+  // 目标为 es6 之前时，使用 function 关键字来发射类函数（functions-like）声明，包括箭头函数
+  // 目标为 es6 时，可以发射原生的 ES6 箭头函数，并使用宽箭头代替 function 关键字.
   if (!shouldEmitAsArrowFunction(node)) {
     if (isES6ExportedDeclaration(node)) {
       write('export ');
@@ -379,10 +377,10 @@ function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
 }
 ```
 
-## 发射器源映射 (SourceMaps)
+## 发射器源映射（SourceMaps）
 
-如前所述 `emitter.ts` 的大部分是本地函数 `emitJavaScript` (我们之前展示过该函数的初始化例程)。
-它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面我们再看一遍这个函数，这次我们重点关注 `SourceMap` 的部分:
+如前所述 `emitter.ts` 的大部分是本地函数 `emitJavaScript`（我们之前展示过该函数的初始化例程）。
+它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面我们再看一遍这个函数，这次我们重点关注 `SourceMap` 的部分：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -426,7 +424,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     }
 
     if (root) {
-        // 不要直接调用 emit, 那样不会设置 currentSourceFile
+        // 不要直接调用 emit，那样不会设置 currentSourceFile
         emitSourceFile(root);
     }
     else {
@@ -442,8 +440,8 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     return;
 ```
 
- 重要的函数调用是 `initializeEmitterWithSourceMaps`, 该函数是 `emitJavaScript` 的本地函数，它覆盖了部分已定义的  本地函数。
-覆盖的函数可以在 `initalizeEmitterWithSourceMap` 的底部找到:
+ 重要的函数调用是 `initializeEmitterWithSourceMaps`，该函数是 `emitJavaScript` 的本地函数，它覆盖了部分已定义的  本地函数。
+覆盖的函数可以在 `initalizeEmitterWithSourceMap` 的底部找到：
 
 ```ts
 // `initializeEmitterWithSourceMaps` 函数的最后部分
@@ -458,4 +456,4 @@ scopeEmitEnd = recordScopeNameEnd;
 writeComment = writeCommentRangeWithMap;
 ```
 
-就是说大部分的发射器代码不关心 `SourceMap`, 它们以相同的方式使用这些(带或不带 SourceMap 的)本地函数 。
+就是说大部分的发射器代码不关心 `SourceMap`，它们以相同的方式使用这些（带或不带 SourceMap 的）本地函数 。
