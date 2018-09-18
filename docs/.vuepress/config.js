@@ -103,7 +103,17 @@ module.exports = {
       },
       {
         title: 'TypeScript 编译原理',
-        collapsable: false
+        collapsable: false,
+        children: [
+          '/compiler/overview',
+          '/compiler/program',
+          '/compiler/ast',
+          '/compiler/scanner',
+          '/compiler/parser',
+          '/compiler/binder',
+          '/compiler/checker',
+          '/compiler/emitter'
+        ]
       }
     ]
   }
