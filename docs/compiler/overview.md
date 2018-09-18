@@ -16,7 +16,6 @@ TypeScript 编译器源文件位于 [`src/compiler`](https://github.com/Microsof
 
 ### BYOTS
 
-~
 我们有个名为 [Bring Your Own TypeScript (BYOTS)](https://github.com/basarat/byots) 的项目，通过暴露内部接口让编译器 API 使用起来更简单。你可以在全局范围上暴露你 TypeScript 应用的本地变量。
 
 ### 语法和语义
