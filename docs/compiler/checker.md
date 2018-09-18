@@ -42,7 +42,7 @@ program.emit ->
 `initializeTypeChecker` 中存在以下代码：
 
 ```ts
-// 初始化全局符号表（SymbolTable)。
+// 初始化全局符号表（SymbolTable）。
 forEach(host.getSourceFiles(), file => {
   if (!isExternalModule(file)) {
     mergeSymbolTable(globals, file.locals);

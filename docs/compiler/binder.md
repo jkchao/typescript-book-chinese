@@ -232,7 +232,7 @@ function bindChildren(node: Node) {
 
 ## 绑定器符号表
 
-符号表（SymbolTable）实现为一个简单的 HashMap，下面是其接口（`types.ts`)：
+符号表（SymbolTable）实现为一个简单的 HashMap，下面是其接口（`types.ts`）：
 
 ```ts
 interface SymbolTable {
