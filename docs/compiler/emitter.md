@@ -1,7 +1,5 @@
 # 发射器
 
-## 发射器
-
 TypeScript 编译器提供了两个发射器：
 
 - `emitter.ts`：可能是你最感兴趣的发射器，它是 TS -> JavaScript 的发射器

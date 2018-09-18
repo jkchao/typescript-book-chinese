@@ -1,7 +1,5 @@
 # 绑定器
 
-## 绑定器
-
 大多数的 JavaScript 转译器（transpiler）都比 TypeScript 简单，因为它们几乎没提供代码分析的方法。典型的 JavaScript 转换器只有以下流程：
 
 ```

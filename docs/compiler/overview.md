@@ -1,7 +1,5 @@
 # 概览
 
-## 概览
-
 TypeScript 编译器源文件位于 [`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler) 目录下
 
 它分为以下几个关键部分：

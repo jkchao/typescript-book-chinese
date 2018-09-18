@@ -1,7 +1,5 @@
 # 抽象语法树
 
-## 抽象语法树
-
 ### Node 节点
 
 节点是抽象语法树（AST） 的基本构造块。语法上，通常 `Node` 表示非末端（non-terminals）节点。但是，有些末端节点，如：标识符和文字也会保留在树中。
@@ -13,14 +11,14 @@ AST 节点文档由两个关键部分构成。一是节点的 `SyntaxKind` 枚�
 - `TextRange` 标识该节点在源文件中的起止位置。
 - `parent?: Node` 当前节点（在 AST 中）的父节点
 
-`Node`还有一些其他的成员，标志（flags）和修饰符（modifiers）等。你可以在源码中搜索 `interface Node`来查看，而上面提到对节点的遍历是非常重要的。
+`Node` 还有一些其他的成员，标志（flags）和修饰符（modifiers）等。你可以在源码中搜索 `interface Node` 来查看，而上面提到对节点的遍历是非常重要的。
 
 ### SourceFile
 
 - `SyntaxKind.SourceFile`
 - `interface SourceFile`.
 
-每个 `SourceFile` 都是一棵 AST 的顶级节点，它们包含在 `Program`中。
+每个 `SourceFile` 都是一棵 AST 的顶级节点，它们包含在 `Program` 中。
 
 ## AST 技巧：访问子节点
 
@@ -46,7 +44,7 @@ export function forEachChild<T>(node: Node, cbNode: (node: Node) => T, cbNodeArr
         // .... 更多
 ```
 
-该函数主要检查 `node.kind` 并据此判断 node 的接口，然后在其子节点上调用 `cbNode`。但是，要注意该函数不会为*所有*子节点调用`visitNode`（例如：SyntaxKind.SemicolonToken）。想获得某 AST 节点的*所有*子节点，只要调用该节点的成员函数 `.getChildren`。
+该函数主要检查 `node.kind` 并据此判断 node 的接口，然后在其子节点上调用 `cbNode`。但是，要注意该函数不会为*所有*子节点调用 `visitNode`（例如：SyntaxKind.SemicolonToken）。想获得某 AST 节点的*所有*子节点，只要调用该节点的成员函数 `.getChildren`。
 
 如下函数会打印 AST 节点详细信息：
 

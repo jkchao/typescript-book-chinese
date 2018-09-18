@@ -58,6 +58,45 @@
         </a>
       </td>
     </tr>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/KnorienChang">
+          <img width="150" height="150" src="https://github.com/KnorienChang.png?v=3&s=150">
+          </br>
+          KnorienChang
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/hopalay">
+          <img width="150" height="150" src="https://github.com/hopalay.png?v=3&s=150">
+          </br>
+          hopalay
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/getdaydream">
+          <img width="150" height="150" src="https://github.com/getdaydream.png?v=3&s=150">
+          </br>
+          getdaydream
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/Yiiu">
+          <img width="150" height="150" src="https://github.com/Yiiu.png?v=3&s=150">
+          </br>
+          Yiiu
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/galenjiang">
+          <img width="150" height="150" src="https://github.com/galenjiang.png?v=3&s=150">
+          </br>
+          galenjiang
+        </a>
+      </td>
+    </tr>
   </tbody>
 </table>
 
