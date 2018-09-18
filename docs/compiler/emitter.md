@@ -9,7 +9,7 @@ TypeScript 编译器提供了两个发射器：
 
 本节我们介绍 `emitter.ts`
 
-### Promgram  对发射器的使用
+### Promgram 对发射器的使用
 
 Program 提供了一个 `emit` 函数。该函数主要将功能委托给 `emitter.ts`中的 `emitFiles` 函数。下面是调用栈：
 
@@ -28,11 +28,11 @@ Program.emit ->
 定义在 `emitter.ts` 中，下面是该函数的签名：
 
 ```ts
-// targetSourceFile 当用户想发射项目中的某个文件时指定，保存时编译（compileOnSave）功能使用此参数
+// targetSourceFile 当用户想发射项目中的某个文件时指定，保存时编译（compileOnSave）功能使用此参数
 export function emitFiles(resolver: EmitResolver, host: EmitHost, targetSourceFile?: SourceFile): EmitResult {
 ```
 
-`EmitHost` 是 `CompilerHost` 的简化版（运行时，很多用例实际上都是 `CompilerHost`）
+`EmitHost` 是 `CompilerHost` 的简化版（运行时，很多用例实际上都是 `CompilerHost`）
 
 `emitFiles` 中的最有趣的调用栈如下所示：
 
@@ -44,7 +44,7 @@ emitFiles ->
 
 ### `emitJavaScript`
 
-该函数有良好的注释，我们下面给出它：
+该函数有良好的注释，我们下面给出它：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -58,7 +58,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
   let currentSourceFile: SourceFile;
   // 导出器函数的名称，如果文件是个系统外部模块的话
   // System.register([...], function (<exporter>) {...})
-  // System 模块中的导出像这样：
+  // System 模块中的导出像这样：
   // export var x; ... x = 1
   // =>
   // var x;... exporter("x", x = 1)
@@ -96,11 +96,11 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
   /** 发射结点完成后调用 */
   let emitEnd = function(node: Node) {};
 
-  /** 从 startPos 位置开始，为指定的 token 发射文本。默认写入的文本由 tokenKind 提供，
+  /** 从 startPos 位置开始，为指定的 token 发射文本。默认写入的文本由 tokenKind 提供，
    * 但是如果提供了可选的 emitFn 回调，将使用该回调来代替默认方式发射文本。
    * @param tokenKind 要搜索并发射的 token 的类别
    * @param startPos 源码中搜索 token 的起始位置
-   * @param emitFn 如果给出，会被调用来进行文本的发射。
+   * @param emitFn 如果给出，会被调用来进行文本的发射。
    */
   let emitToken = emitTokenText;
 
@@ -121,7 +121,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
   }
 
   if (root) {
-    // 不要直接调用 emit，那样不会设置 currentSourceFile
+    // 不要直接调用 emit，那样不会设置 currentSourceFile
     emitSourceFile(root);
   } else {
     forEach(host.getSourceFiles(), sourceFile => {
@@ -139,7 +139,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 }
 ```
 
-它主要设置了一批本地变量和函数（这些函数构成 `emitter.ts` 的*大部分*内容），接着交给本地函数 `emitSourceFile` 发射文本。`emitSourceFile` 函数设置 `currentSourceFile` 然后交给本地函数 `emit` 去处理。
+它主要设置了一批本地变量和函数（这些函数构成 `emitter.ts` 的*大部分*内容），接着交给本地函数 `emitSourceFile` 发射文本。`emitSourceFile` 函数设置 `currentSourceFile` 然后交给本地函数 `emit` 去处理。
 
 ```ts
 function emitSourceFile(sourceFile: SourceFile): void {
@@ -149,7 +149,7 @@ function emitSourceFile(sourceFile: SourceFile): void {
 }
 ```
 
-`emit` 函数处理 _注释_ 和 _实际 JavaScript_ 的发射。_实际 JavaScript_  的发射是 emitJavaScriptWorker 函数的工作。
+`emit` 函数处理 _注释_ 和 _实际 JavaScript_ 的发射。_实际 JavaScript_ 的发射是 emitJavaScriptWorker 函数的工作。
 
 ### `emitJavaScriptWorker`
 
@@ -328,7 +328,7 @@ function emitJavaScriptWorker(node: Node) {
 }
 ```
 
-通过简单地调用相应的 `emitXXX` 函数来完成  递归，例如 `emitFunctionDeclaration`
+通过简单地调用相应的 `emitXXX` 函数来完成递归，例如 `emitFunctionDeclaration`
 
 ```ts
 function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
@@ -337,7 +337,7 @@ function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
   }
 
   if (node.kind !== SyntaxKind.MethodDeclaration && node.kind !== SyntaxKind.MethodSignature) {
-    // 会把注释当做方法声明的一部分去发射。
+    // 会把注释当做方法声明的一部分去发射。
     emitLeadingComments(node);
   }
 
@@ -380,7 +380,7 @@ function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
 ## 发射器源映射（SourceMaps）
 
 如前所述 `emitter.ts` 的大部分是本地函数 `emitJavaScript`（我们之前展示过该函数的初始化例程）。
-它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面我们再看一遍这个函数，这次我们重点关注 `SourceMap` 的部分：
+它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面我们再看一遍这个函数，这次我们重点关注 `SourceMap` 的部分：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -388,7 +388,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     // 无关代码 ........... 已移除
     let writeComment = writeCommentRange;
 
-    /** 将发射的输出写到磁盘上 */
+    /** 将发射的输出写到磁盘上 */
     let writeEmittedFiles = writeJavaScriptFile;
 
     /** 发射一个节点 */
@@ -400,11 +400,11 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     /** 节点发射完成后调用 */
     let emitEnd = function (node: Node) { };
 
-    /** 从 startPos 位置开始，为指定的 token 发射文本。默认写入的文本由 tokenKind 提供，
+    /** 从 startPos 位置开始，为指定的 token 发射文本。默认写入的文本由 tokenKind 提供，
       * 但是如果提供了可选的 emitFn 回调，将使用该回调来代替默认方式发射文本。
       * @param tokenKind 要搜索并发射的 token 的类别
       * @param startPos 源码中搜索 token 的起始位置
-      * @param emitFn 如果给出，会被调用来进行文本的发射。*/
+      * @param emitFn 如果给出，会被调用来进行文本的发射。*/
     let emitToken = emitTokenText;
 
     /** 该函数因为节点，会在发射的代码中于函数或类中启用词法作用域前调用
@@ -424,7 +424,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     }
 
     if (root) {
-        // 不要直接调用 emit，那样不会设置 currentSourceFile
+        // 不要直接调用 emit，那样不会设置 currentSourceFile
         emitSourceFile(root);
     }
     else {
@@ -440,7 +440,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     return;
 ```
 
- 重要的函数调用是 `initializeEmitterWithSourceMaps`，该函数是 `emitJavaScript` 的本地函数，它覆盖了部分已定义的  本地函数。
+重要的函数调用是 `initializeEmitterWithSourceMaps`，该函数是 `emitJavaScript` 的本地函数，它覆盖了部分已定义的本地函数。
 覆盖的函数可以在 `initalizeEmitterWithSourceMap` 的底部找到：
 
 ```ts
@@ -456,4 +456,4 @@ scopeEmitEnd = recordScopeNameEnd;
 writeComment = writeCommentRangeWithMap;
 ```
 
-就是说大部分的发射器代码不关心 `SourceMap`，它们以相同的方式使用这些（带或不带 SourceMap 的）本地函数 。
+就是说大部分的发射器代码不关心 `SourceMap`，它们以相同的方式使用这些（带或不带 SourceMap 的）本地函数。

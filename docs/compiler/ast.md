@@ -4,14 +4,14 @@
 
 ### Node 节点
 
-节点是抽象语法树（AST） 的基本构造块。语法上，通常 `Node` 表示非末端（non-terminals）节点 。但是，有些末端节点，如：标识符和文字也会保留在树中。
+节点是抽象语法树（AST） 的基本构造块。语法上，通常 `Node` 表示非末端（non-terminals）节点。但是，有些末端节点，如：标识符和文字也会保留在树中。
 
 AST 节点文档由两个关键部分构成。一是节点的 `SyntaxKind` 枚举，用于标识 AST 中的类型。二是其接口，即实例化 AST 时节点提供的 API。
 
 这里是 `interface Node` 的一些关键成员：
 
 - `TextRange` 标识该节点在源文件中的起止位置。
-- `parent?: Node` 当前节点（在 AST 中 ）的父节点
+- `parent?: Node` 当前节点（在 AST 中）的父节点
 
 `Node`还有一些其他的成员，标志（flags）和修饰符（modifiers）等。你可以在源码中搜索 `interface Node`来查看，而上面提到对节点的遍历是非常重要的。
 
@@ -104,7 +104,7 @@ export function syntaxKindToName(kind: ts.SyntaxKind) {
 
 | 函数                          | 描述                                                                                                                    |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `ts.getLeadingCommentRanges`  | 给定源文本及其位置，返回给定位置后第一个换行符到 token 本身之间的注释范围（可能需要结合 `ts.Node.getFullStart` 使用）。 |
+| `ts.getLeadingCommentRanges`  | 给定源文本及其位置，返回给定位置后第一个换行符到 token 本身之间的注释范围（可能需要结合 `ts.Node.getFullStart` 使用）。 |
 | `ts.getTrailingCommentRanges` | 给定源文本及其位置，返回给定位置后第一个换行符之前的注释范围（可能需要结合 `ts.Node.getEnd` 使用）。                    |
 
 假设下面是某个源文件的一部分：
@@ -123,7 +123,7 @@ debugger;/*hello*/
 节点有所谓的 "token start" 和 "full start" 位置。
 
 - Token Start：比较自然的版本，即文件中一个 token 的文本开始的位置。
-- Full Start：是指扫描器从上一个重要 token 开始扫描的位置。
+- Full Start：是指扫描器从上一个重要 token 开始扫描的位置。
 
 AST 节点有 `getStart` 和 `getFullStart` API 用于获取以上两种位置，还是这个例子：
 

@@ -34,7 +34,7 @@ program.emit ->
 
             // 接着
             return resolver
-            // 通过对本地函数 createResolver() 的调用，resolver 已在 createTypeChecker 中初始化。
+            // 通过对本地函数 createResolver() 的调用，resolver 已在 createTypeChecker 中初始化。
 ```
 
 ## 全局命名空间合并

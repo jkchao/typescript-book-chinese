@@ -8,7 +8,7 @@
 源码 ~~扫描器~~> Tokens ~~解析器~~> AST ~~发射器~~> JavaScript
 ```
 
-上述架构确实对于简化 TypeScript 生成 JavaScript 的理解有帮助，但缺失了一个关键功能，即 TypeScript 的*语义*系统。为了协助（检查器执行）类型检查，绑定器将源码的各部分连接成一个相关的类型系统，供检查器使用。绑定器的主要职责是创建*符号*（Symbols）。
+上述架构确实对于简化 TypeScript 生成 JavaScript 的理解有帮助，但缺失了一个关键功能，即 TypeScript 的*语义*系统。为了协助（检查器执行）类型检查，绑定器将源码的各部分连接成一个相关的类型系统，供检查器使用。绑定器的主要职责是创建*符号*（Symbols）。
 
 ### 符号
 
@@ -49,11 +49,11 @@ SourceFile 是绑定器的工作单元，`binder.ts` 由 `checker.ts` 驱动。
 
 注意：`locals` 定义在节点上，其类型为 `SymbolTable`。`SourceFile` 也是一个节点（事实上是 AST 中的根节点）。
 
-提示：TypeScript 编译器大量使用本地函数。本地函数很可能使用来自父函数的变量（通过闭包捕获）。例如 `bind` 是 `bindSourceFile` 中的一个本地函数，它或它调用的函数会设置 `symbolCount` 和 `classifiableNames` 等状态，然后将其存在返回的 `SourceFile` 中
+提示：TypeScript 编译器大量使用本地函数。本地函数很可能使用来自父函数的变量（通过闭包捕获）。例如 `bind` 是 `bindSourceFile` 中的一个本地函数，它或它调用的函数会设置 `symbolCount` 和 `classifiableNames` 等状态，然后将其存在返回的 `SourceFile` 中
 
 ### `bind`
 
-bind 能处理任一节点（不只是 `SourceFile`），它做的第一件事是分配 `node.parent`（如果 `parent` 变量已设置，绑定器在 `bindChildren` 函数的处理中仍会再次设置）， 然后交给 `bindWorker` 做很多*重*活。最后调用 `bindChildren`（该函数简单地将绑定器的状态（如：`parent`）存入函数本地变量中，接着在每个子节点上调用 `bind`，然后再将状态转存回绑定器中）。现在我们看下 `bindWorker`，一个更有趣的函数。
+bind 能处理任一节点（不只是 `SourceFile`），它做的第一件事是分配 `node.parent`（如果 `parent` 变量已设置，绑定器在 `bindChildren` 函数的处理中仍会再次设置）， 然后交给 `bindWorker` 做很多*重*活。最后调用 `bindChildren`（该函数简单地将绑定器的状态（如：`parent`）存入函数本地变量中，接着在每个子节点上调用 `bind`，然后再将状态转存回绑定器中）。现在我们看下 `bindWorker`，一个更有趣的函数。
 
 ### `bindWorker`
 
@@ -164,7 +164,7 @@ function getContainerFlags(node: Node): ContainerFlags {
       return ContainerFlags.IsBlockScopedContainer;
 
     case SyntaxKind.Block:
-      // 不要将函数内部的块直接当做块作用域的容器。
+      // 不要将函数内部的块直接当做块作用域的容器。
       // 本块中的本地变量应当置于函数中，否则下例中的 'x' 不会重新声明为一个块作用域的本地变量：
       //
       //     function foo() {
@@ -193,18 +193,18 @@ function bindChildren(node: Node) {
   let saveContainer = container;
   let savedBlockScopeContainer = blockScopeContainer;
 
-  // 现在要将这个节点设为父节点，我们要递归它的子节点。
+  // 现在要将这个节点设为父节点，我们要递归它的子节点。
   parent = node;
 
   // 根据节点的类型，需要对当前容器或块容器进行调整。 如果当前节点是个容器，则自动将其视为当前的块容器。
-  // 由于我们知道容器可能包含本地变量，因此提前初始化 .locals 字段。
+  // 由于我们知道容器可能包含本地变量，因此提前初始化 .locals 字段。
   // 这样做是因为很可能需要将一些子（节点）置入 .locals 中（例如：函数参数或变量声明）。
   //
   // 但是，我们不会主动为块容器创建 .locals，因为通常块容器中不会有块作用域变量。
   // 我们不想为遇到的每个块都分配一个对象，大多数情况没有必要。
   //
-  // 最后，如果是个块容器，我们就清理该容器中可能存在的 .locals 对象。这种情况常在增量编译场景中发生。
-  // 由于我们可以重用上次编译的节点，而该节点可能已经创建了 locals 对象。
+  // 最后，如果是个块容器，我们就清理该容器中可能存在的 .locals 对象。这种情况常在增量编译场景中发生。
+  // 由于我们可以重用上次编译的节点，而该节点可能已经创建了 locals 对象。
   // 因此必须清理，以免意外地从上次的编译中移动了过时的数据。
   let containerFlags = getContainerFlags(node);
   if (containerFlags & ContainerFlags.IsContainer) {
@@ -263,10 +263,10 @@ exports?: SymbolTable;                  // 模块导出
 
 ```ts
 /**
- * 为指定的节点声明一个符号并加入 symbols。标识名冲突时报告错误。
- * @param symbolTable - 要将节点加入进的符号表
+ * 为指定的节点声明一个符号并加入 symbols。标识名冲突时报告错误。
+ * @param symbolTable - 要将节点加入进的符号表
  * @param parent - 指定节点的父节点的声明
- * @param node - 要添加到符号表的（节点）声明
+ * @param node - 要添加到符号表的（节点）声明
  * @param includes - SymbolFlags，指定节点额外的声明类型（例如：export, ambient 等）
  * @param excludes - 不能在符号表中声明的标志，用于报告禁止的声明
  */
@@ -279,7 +279,7 @@ function declareSymbol(
 ): Symbol {
   Debug.assert(!hasDynamicName(node));
 
-  // 默认导出的函数节点或类节点的符号总是"default"
+  // 默认导出的函数节点或类节点的符号总是"default"
   let name = node.flags & NodeFlags.Default && parent ? 'default' : getDeclarationName(node);
 
   let symbol: Symbol;
@@ -287,11 +287,11 @@ function declareSymbol(
     // 检查符号表中是否已有同名的符号。若没有，创建此名称的新符号并加入表中。
     // 注意，我们尚未给新符号指定任何标志。这可以确保不会和传入的 excludes 标志起冲突。
     //
-    // 如果已存在的一个符号，查看是否与要创建的新符号冲突。
-    // 例如：同一符号表中，'var' 符号和 'class' 符号会冲突。
-    // 如果有冲突，报告该问题给该符号的每个声明，然后为该声明创建一个新符号
+    // 如果已存在的一个符号，查看是否与要创建的新符号冲突。
+    // 例如：同一符号表中，'var' 符号和 'class' 符号会冲突。
+    // 如果有冲突，报告该问题给该符号的每个声明，然后为该声明创建一个新符号
     //
-    // 如果我们创建的新符号既没在符号表中重名也没和现有符号冲突，就将该节点添加为新符号的唯一声明。
+    // 如果我们创建的新符号既没在符号表中重名也没和现有符号冲突，就将该节点添加为新符号的唯一声明。
     //
     // 否则，就要（将新符号）合并进兼容的现有符号中（例如同一容器中有多个同名的 'var' 时）。这种情况下要把该节点添加到符号的声明列表中。
     symbol = hasProperty(symbolTable, name)

@@ -75,7 +75,7 @@ SourceFile 0 14
 
 ### `parseStatements`
 
-是最重要的 `parseXXX` 系函数之一（概念接下来介绍）。它根据扫描器返回的当前 token 来切换（调用相应的 `parseXXX` 函数）， 例如：如果当前 token 是一个 `SemicolonToken`（分号标记），就会调用 `paserEmptyStatement` 为空语句创建一个 AST 节点。
+是最重要的 `parseXXX` 系函数之一（概念接下来介绍）。它根据扫描器返回的当前 token 来切换（调用相应的 `parseXXX` 函数），例如：如果当前 token 是一个 `SemicolonToken`（分号标记），就会调用 `paserEmptyStatement` 为空语句创建一个 AST 节点。
 
 ### 节点创建
 
@@ -97,8 +97,8 @@ function parseEmptyStatement(): Statement {
 
 #### `parseExpected`
 
-解析器的 `parseExpected` 函数 `function parseExpected(kind: SyntaxKind, diagnosticMessage?: DiagnosticMessage): boolean` 会检查解析器状态中的当前 token 是否与指定的`SyntaxKind`匹配。如果不匹配，会报告传入的 `diagnosticMessage`（诊断消息），未传入则使用某种通用形式 `xxx expected` 进行报告。该函数内部用 `parseErrorAtPosition` 函数（使用扫描位置）提供良好的错误报告。
+解析器的 `parseExpected` 函数 `function parseExpected(kind: SyntaxKind, diagnosticMessage?: DiagnosticMessage): boolean` 会检查解析器状态中的当前 token 是否与指定的 `SyntaxKind` 匹配。如果不匹配，会报告传入的 `diagnosticMessage`（诊断消息），未传入则使用某种通用形式 `xxx expected` 进行报告。该函数内部用 `parseErrorAtPosition` 函数（使用扫描位置）提供良好的错误报告。
 
 #### `finishNode`
 
-解析器的 `finishNode` 函数 `function finishNode<T extends Node>(node: T, end?: number): T` 设置节点的 `end`位置，并添加一些有用的信息，例如上下文标志（`parserContextFlags`）以及解析该节点前出现的错误（有错的话，就不能在增量解析中重用此 AST 节点）。
+解析器的 `finishNode` 函数 `function finishNode<T extends Node>(node: T, end?: number): T` 设置节点的 `end` 位置，并添加一些有用的信息，例如上下文标志（`parserContextFlags`）以及解析该节点前出现的错误（有错的话，就不能在增量解析中重用此 AST 节点）。

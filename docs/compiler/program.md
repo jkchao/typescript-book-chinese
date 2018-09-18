@@ -8,7 +8,7 @@ CompilerHost 是与操作环境（OE, Operating Enviornment）进行交互的机
 
 `Program` _-使用->_ `CompilerHost` _-使用->_ `System`
 
-用 `CompilerHost` 作中间层的原因是可以让接口对 `Program` 的需求进行细粒度的调整，而无需考虑操作环境的需求。（例如：`Program` 无需关心 `System` 的 `fileExists` 函数）
+用 `CompilerHost` 作中间层的原因是可以让接口对 `Program` 的需求进行细粒度的调整，而无需考虑操作环境的需求。（例如：`Program` 无需关心 `System` 的 `fileExists` 函数）
 
 对`System`而言还有其他的使用者（比如测试）
 
