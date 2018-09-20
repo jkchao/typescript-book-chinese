@@ -23,7 +23,9 @@ npm install @types/jquery --save-dev
 安装完之后，不需要特别的配置，你就可以像使用模块一样使用它：
 
 ```ts
-import * as from 'jquery'
+import * as $ from 'jquery'
+
+// 现在你可以此模块中任意使用$了 :)
 ```
 
 ## 控制全局
