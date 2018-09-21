@@ -98,7 +98,8 @@ module.exports = {
           '/tips/staticConstructors',
           '/tips/singletonPatern',
           '/tips/functionParameters',
-          '/tips/truthy'
+          '/tips/truthy',
+          '/tips/buildToggles'
         ]
       },
       {
