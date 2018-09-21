@@ -99,7 +99,8 @@ module.exports = {
           '/tips/singletonPatern',
           '/tips/functionParameters',
           '/tips/truthy',
-          '/tips/buildToggles'
+          '/tips/buildToggles',
+          '/tips/typesafeEventEmitter'
         ]
       },
       {
