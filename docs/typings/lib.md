@@ -1,6 +1,6 @@
 # `lib.d.ts`
 
-当你安装 `TypeScript` 时，会装一个特殊的 `lib.d.ts` 生命文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见环境声明。
+当你安装 `TypeScript` 时，会顺带安装 `lib.d.ts` 声明文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见的环境声明。
 
 - 此文件自动包含在 TypeScript 项目的编译上下文中；
 - 此文件的目的是让你快速开始书写经过类型检查的 JavaScript 代码。
@@ -18,20 +18,20 @@ const bar = foo.toString();
 
 这段代码的类型检查正常，因为 `lib.d.ts` 为所有 JavaScript 对象定义了 `toString` 方法。
 
-如果你在 `noLib` 选项时，使用相同的代码，这将会出现类型检查错误：
+如果你在 `noLib` 选项下，使用相同的代码，这将会出现类型检查错误：
 
 ```ts
 const foo = 123;
 const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 ```
 
-因此，现在你已经理解了 `lib.d.ts` 的重要性，它的内容是怎么样的，我们接下来解释。
+因此，现在你已经理解了 `lib.d.ts` 的重要性，至于它的内容是怎么样的，我们接下来解释。
 
 ## 观察 `lib.d.ts` 的内部
 
 `lib.d.ts` 的内容主要是一些变量声明（如：`window`、`document`、`math`）和一些类似的接口声明（如：`Window`、`Document`、`Math`）。
 
-最简单的方式寻找你所知道代码的类型（如：`Math.floor`）是使用使用你的 IDE 的`F12`（转到定义）。
+最简单的方式寻找你所知道代码的类型（如：`Math.floor`）是使用使用你的 IDE 的`F12`（跳转到定义）。
 
 让我们来看一个示例变量的声明，如 `window` 被定义为：
 
@@ -39,7 +39,7 @@ const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 declare var window: Window;
 ```
 
-这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注解的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，如下是 `Window` 接口的一小部分：
+这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注解的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，以下是 `Window` 接口的一小部分：
 
 ```ts
 interface Window
@@ -60,9 +60,9 @@ interface Window
 }
 ```
 
-你可以在这些接口里看到大量的类型信息，当你不使用 TypeScript 时，你需要将它们保存在你的大脑里。现在你可以在编译器使用 `intellisense` 之类东西，从而可以对减少知识的记忆。
+你可以在这些接口里看到大量的类型信息，当你不使用 TypeScript 时，你需要将它们保存在你的大脑里。现在你可以在编译器里使用 `intellisense` 之类东西，从而可以减少对知识的记忆。
 
-使用这些全局变量是有充分理由的。在不更改 `lib.d.ts` 的情景下，它可以让你添加额外的属性。接下来，我们将介绍这些概念。
+使用这些全局变量是有利的。在不更改 `lib.d.ts` 的情景下，它可以让你添加额外的属性。接下来，我们将介绍这些概念。
 
 ## 修改原始类型
 

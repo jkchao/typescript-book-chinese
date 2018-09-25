@@ -6,11 +6,11 @@
 
 环境声明允许你安全的使用现有的 JavaScript 流行库，并且能让你的 JavaScript、CoffeeScript 或者其他需要编译成 JavaScript 的语言逐步迁移至 TypeScript。
 
-学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注解的比较好的实践，这也是我们会在这么早就提出它的原因。
+学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注解比较好的实践方式。
 
 ## 声明文件
 
-你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 的其他运行环境），如下一个例子：
+你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 的其他运行环境），如：
 
 ```ts
 foo = 123; // Error: 'foo' is not defined
@@ -23,7 +23,7 @@ declare var foo: any;
 foo = 123; // allow
 ```
 
-你可以选择把这些声明放入 `.ts` 或者 `.d.ts` 里，我们强烈的建议你，在你实际的项目里，你应该把声明放入 `.d.ts` 里（可以从一个命名为 `globals.d.ts` 或者 `vendor.d.ts` 文件开始）。
+你可以选择把这些声明放入 `.ts` 或者 `.d.ts` 里。在你实际的项目里，我们强烈建议你应该把声明放入 `.d.ts` 里（可以从一个命名为 `globals.d.ts` 或者 `vendor.d.ts` 文件开始）。
 
 如果一个文件有扩展名 `.d.ts`，这意味着每个顶级的声明都必须以 `declare` 关键字作为前缀。这有利于向作者说明，在这里 TypeScript 将不会把它编译成任何代码，同时他需要确保这些在编译时存在。
 
