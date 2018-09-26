@@ -29,6 +29,8 @@ declare const myPoint: Point
 // Lib b.d.ts
 interface Point {
   z: number
+
+
 }
 
 // Your code

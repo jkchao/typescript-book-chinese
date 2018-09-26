@@ -1,6 +1,6 @@
 # 索引签名
 
-可以用字符串来访问 JavaScript 中的对象（TypeScript 中也一样），以此来保存来自其他任何对象的引用。
+可以用字符串访问 JavaScript 中的对象（TypeScript 中也一样），用来保存对其他对象的引用。
 
 这有一个快速开始的例子：
 
@@ -25,7 +25,7 @@ foo['Hello'] = new Foo('World');
 foo['Hello'].log(); // World
 ```
 
-同样的，我们说过它能被一个字符串反问。当你传进一个其他对象至索引签名，JavaScript 在运行时得到结果之前会先调用 `.toString`：
+同样的，我们说过它能被一个字符串访问。当你传进一个其他对象至索引签名时，JavaScript 会在得到结果之前会先调用 `.toString`：
 
 ```ts
 let obj = {
@@ -42,7 +42,7 @@ console.log(foo['Hello']); // World
 ```
 
 ::: tip
-只要索引位置使用了 `obj`，`toString` 都将会被调用。
+只要索引位置使用了 `obj`，`toString` 方法都将会被调用。
 :::
 
 数组有点稍微不同，对于一个 `number` 类型的索引签名，JavaScript 引擎将会尝试去优化（这取决于它是否是一个真的数组、存储的项目结构是否匹配等）。因此，`number` 应该被考虑作为一个有效的对象访问器（这与 `string` 不同），如下例子：
@@ -52,11 +52,11 @@ let foo = ['World'];
 console.log(foo[0]); // World
 ```
 
-因此，这就是 JavaScript。现在让我们看看 JavaScript 对这些概念更优雅的处理。
+因此，这就是 JavaScript。现在让我们看看 TypeScript 对这些概念更优雅的处理。
 
 ## TypeScript 索引签名
 
-首先，由于 JavaScript 在一个对象类型的索引签名上会隐式的调用 `toString` 方法，TypeScript 将会抛出一个错误，防止初学者砸伤自己的脚（我总是看到 `stackoverflow` 上有很多 JavaScript 使用者都会这样。）
+首先，由于 JavaScript 在一个对象类型的索引签名上会隐式调用 `toString` 方法，在 TypeScript 中，为防止初学者砸伤自己的脚（我总是看到 `stackoverflow` 上有很多 JavaScript 使用者都会这样。），它将会抛出一个错误。
 
 ```ts
 const obj = {
@@ -74,7 +74,7 @@ foo[obj] = 'World';
 foo[obj.toString()] = 'World';
 ```
 
-强制用户必须明确的写出的原因是：在对象上默认执行的 `toString` 方法是非常有害的。例如 v8 引擎上总是会返回 `[object Object]`
+强制用户必须明确的写出 `toString()` 的原因是：在对象上默认执行的 `toString` 方法是有害的。例如 v8 引擎上总是会返回 `[object Object]`
 
 ```ts
 const obj = { message: 'Hello' };
@@ -87,9 +87,9 @@ foo[obj] = 'World';
 console.log(foo['[object Object]']); // World
 ```
 
-当然，数字类型是被允许的，因为
+当然，数字类型是被允许的，这是因为：
 
-- 这需要数组／元组的支持；
+- 需要数组／元组的支持；
 - 即使你在数组里使用一个 `obj`，这个默认被调用的 `toString` 方法，被实现的很好（不是 `[object Object]`）。
 
 如下所示：
