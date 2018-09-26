@@ -5,7 +5,7 @@
 ```ts
 let foo = {};
 foo.bar = 123;
-foo.bas = "Hello World";
+foo.bas = 'Hello World';
 ```
 
 但在 TypeScript 中，同样的写法就会报错：
@@ -13,7 +13,7 @@ foo.bas = "Hello World";
 ```ts
 let foo = {};
 foo.bar = 123; // Error: Property 'bar' does not exist on type '{}'
-foo.bas = "Hello World"; // Error: Property 'bas' does not exist on type '{}'
+foo.bas = 'Hello World'; // Error: Property 'bas' does not exist on type '{}'
 ```
 
 这是因为 TypeScript 在解析 `let foo = {}` 这段赋值语句时，会进行“类型推断”：它会认为等号左边 `foo` 的类型即为等号右边 `{}` 的类型。由于 `{}` 本没有任何属性，因此，像上面那样给 `foo` 添加属性时就会报错。
@@ -24,8 +24,8 @@ foo.bas = "Hello World"; // Error: Property 'bas' does not exist on type '{}'
 
 ```ts
 let foo = {
-    bar: 123,
-    bas: "Hello World",
+  bar: 123,
+  bas: 'Hello World'
 };
 ```
 
@@ -40,42 +40,41 @@ let foo = {
 ```ts
 let foo = {} as any;
 foo.bar = 123;
-foo.bas = "Hello World";
+foo.bas = 'Hello World';
 ```
 
 ## 折中的解决方案
 
 当然，总是用 `any` 肯定是不好的，因为这样做其实是在想办法绕开 TypeScript 的类型检查。那么，折中的方案就是创建 `interface`，这样的好处在于：
 
-* 方便撰写类型文档
-* TypeScript 会参与类型检查，确保类型安全
+- 方便撰写类型文档
+- TypeScript 会参与类型检查，确保类型安全
 
 请看以下的示例：
 
 ```ts
 interface Foo {
-    bar: number
-    bas: string
+  bar: number;
+  bas: string;
 }
 
 let foo = {} as Foo;
 foo.bar = 123;
-foo.bas = "Hello World";
+foo.bas = 'Hello World';
 ```
 
 使用 `interface` 可以确保类型安全，比如这种情况：
 
 ```ts
 interface Foo {
-    bar: number
-    bas: string
+  bar: number;
+  bas: string;
 }
 
 let foo = {} as Foo;
 foo.bar = 123;
-foo.bas = "Hello World";
+foo.bas = 'Hello World';
 
 // 然后我们尝试这样做：
 foo.bar = 'Hello Stranger'; // 错误：你可能把 `bas` 写成了 `bar`，不能为数字类型的属性赋值字符串
-}
 ```

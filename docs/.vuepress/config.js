@@ -90,6 +90,7 @@ module.exports = {
           '/tips/bind',
           '/tips/curry',
           '/tips/typeInstantiation',
+          '/tips/lazyObjectLiteralInitialization',
           '/tips/classAreUseful',
           '/tips/avoidExportDefault',
           '/tips/limitPropertySetters',
