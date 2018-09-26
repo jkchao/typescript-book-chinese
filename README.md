@@ -1,5 +1,8 @@
 # 深入理解 TypeScript
 
+[![Build Status](https://travis-ci.org/jkchao/typescript-book-chinese.svg?branch=master)](https://travis-ci.org/jkchao/typescript-book-chinese)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 此书是 [《TypeScript Deep Dive》](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
 
 ## Why
