@@ -16,7 +16,7 @@ interface Point {
 declare const myPoint: Point;
 ```
 
-然而，_示例 B_ 的美妙之处在于，如果有人创建了一个基于 `myPoint` 库构建的库来添加新成员, 他们可以轻松添加到 `myPoint` 的现有声明中:
+然而，_示例 B_ 的好处在于，如果有人创建了一个基于 `myPoint` 的库来添加新成员, 他们可以轻松将此成员添加到 `myPoint` 的现有声明中:
 
 ```ts
 // Lib a.d.ts
@@ -43,8 +43,8 @@ let myPoint.z // Allowed!
 
 ```ts
 interface Point {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 
 class MyPoint implements Point {
@@ -53,16 +53,17 @@ class MyPoint implements Point {
 }
 ```
 
-基本上在该 `implements(实现)` 的存在下，该外部 `Point` 接口的任何更改都将导致代码库中的编译错误，因此可以轻松地使其保持同步：
+基本上在 `implements（实现）` 的存在下，该外部 `Point` 接口的任何更改都将导致代码库中的编译错误，因此可以轻松地使其保持同步：
 
 ```ts
 interface Point {
-  x: number,
-  y: number,
-  z: number // New member
+  x: number;
+  y: number;
+  z: number; // New member
 }
 
-class MyPoint implements Point { // ERROR : missing member `z`
+class MyPoint implements Point {
+  // ERROR : missing member `z`
   x: number;
   y: number;
 }
