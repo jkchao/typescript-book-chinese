@@ -10,7 +10,7 @@
 
 ## 声明文件
 
-你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 的其他运行环境），如：
+你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 运行环境里的代码）：
 
 ```ts
 foo = 123; // Error: 'foo' is not defined
