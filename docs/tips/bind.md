@@ -20,7 +20,7 @@ curryOne(456); // ok
 curryOne('456'); // ok
 ```
 
-一个更好的方式的是使用显示类型注解的箭头函数：
+一个更好的方式的是使用类型注解的箭头函数：
 
 ```ts
 function twoParams(a: number, b: number) {

@@ -30,7 +30,7 @@ import * as $ from 'jquery';
 
 ## 控制全局
 
-可以看出，对于某些团队而言，拥有允许全局泄漏的定义可能是一个问题。因此，你可以通过配置 `tsconfig.json` 的 `compilerOptions.types` 选项，来显示引入有意义的类型：
+可以看出，对于某些团队而言，拥有允许全局泄漏的定义可能是一个问题。因此，你可以通过配置 `tsconfig.json` 的 `compilerOptions.types` 选项，引入有意义的类型：
 
 ```ts
 {
