@@ -112,13 +112,13 @@ class Utility {
 
 ## 误用的泛型
 
-我见过开发者使用泛型仅仅是为了它的 hack。我想问的问题是，你想用它来提供什么样的约束。如果你不能很好的回答它，你可能会误用泛型，如：
+我见过开发者使用泛型仅仅是为了它的 hack。当你使用它时，你应该问问自己：你想用它来提供什么样的约束。如果你不能很好的回答它，你可能会误用泛型，如：
 
 ```ts
 declare function foo<T>(arg: T): void;
 ```
 
-在这里，泛型完全没有必要使用，因为它仅用于当个参数的位置，使用如下方式可能更好：
+在这里，泛型完全没有必要使用，因为它仅用于单个参数的位置，使用如下方式可能更好：
 
 ```ts
 declare function foo(arg: any): void;
@@ -175,55 +175,54 @@ function loaderUser() {
 
 ### 配合 axios 使用
 
-通常情况下，我们会把后端返回数据格式放入 `typings` 里：
+通常情况下，我们会把后端返回数据格式单独放入一个 interface 里：
 
-```ts{4,15}
-// ajax.d.ts
-declare namespace Ajax {
-  // 请求接口数据
-  interface Response<T = any> {
-    /**
-     * 状态码
-     * @type { number }
-     */
-    code: number;
+```ts
+// 请求接口数据
+export interface ResponseData<T = any> {
+  /**
+   * 状态码
+   * @type { number }
+   */
+  code: number;
 
-    /**
-     * 数据
-     * @type { T }
-     */
-    result: T;
+  /**
+   * 数据
+   * @type { T }
+   */
+  result: T;
 
-    /**
-     * 消息
-     * @type { string }
-     */
-    message: string;
-  }
+  /**
+   * 消息
+   * @type { string }
+   */
+  message: string;
 }
 ```
 
 当我们把 API 单独抽离成单个模块时：
 
-```ts{9}
-// 我们在 axios.ts 文件中对 axios 进行了处理，例如添加通用配置、拦截器等
+```ts
+// 在 axios.ts 文件中对 axios 进行了处理，例如添加通用配置、拦截器等
 import Ax from './axios';
 
-interface User {
-  name: string;
-  age: number;
-}
+import { ResponseData } from './interface.ts';
 
-export function getUser(): Promise<Ajax.Response<User>> {
-  return Ax.get('/somepath')
+export function getUser<T>() {
+  return Ax.get<ResponseData<T>>('/somepath')
     .then(res => res.data)
     .catch(err => console.error(err));
 }
 ```
 
-请注意我们在代码中注入了 `User`，这可以让 TypeScript 顺利推断出我们想要的类型：
+接着我们写入返回的数据类型 `User`，这可以让 TypeScript 顺利推断出我们想要的类型：
 
 ```ts
+interface User {
+  name: string;
+  age: number;
+}
+
 async function test() {
   // user 被推断出为
   // {
@@ -231,6 +230,6 @@ async function test() {
   //  result: { name: string, age: number },
   //  message: number
   // }
-  const user = await getUser();
+  const user = await getUser<User>();
 }
 ```
