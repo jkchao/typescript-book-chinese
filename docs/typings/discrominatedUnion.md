@@ -1,6 +1,6 @@
 # 辨析联合类型
 
-如果你拥有一个[字面量成员](./literals.md)的类，那么你可以使用该属性来辨析联合成员类型。
+如果你拥有一个[字面量成员](./literals.md)的类，那么你可以使用该类的属性来辨析联合类型。
 
 做为一个例子，考虑 `Square` 和 `Rectangle` 的联合类型。在这里，我们有一个成员 `kind`，它存在于联合成员里，并且它是一个特殊的字面量类型。
 
@@ -19,7 +19,7 @@ interface Rectangle {
 type Shape = Square | Rectangle;
 ```
 
-如果你使用类型保护风格的检查（`==`、`===`、`!=`、`!==`）或者使用具有判断性的属性（在这里是 `kind`），TypeScript 将会意识到你将会使用的对象类型一定是拥有特殊字面量的，并且它会为你自动把类型范围变小：
+如果你使用类型保护风格的检查（`==`、`===`、`!=`、`!==`）或者使用具有判断性的属性（在这里是 `kind`），TypeScript 将会认为你会使用的对象类型一定是拥有特殊字面量的，并且它会为你自动把类型范围变小：
 
 ```ts
 function area(s: Shape) {
@@ -36,7 +36,7 @@ function area(s: Shape) {
 
 ## 详细的检查
 
-通常，你可能会想确认联合类型的所有成员会有一些针对它们自己的代码（行动）。
+通常，你可能会想确认联合类型的成员会有一些针对它们自己的代码（行动）。
 
 ```ts
 interface Square {
@@ -74,7 +74,7 @@ function area(s: Shape) {
 }
 ```
 
-你可以通过一个简单的向下思想，来确保块中的类型被推断为与 `never` 类型兼容的类型。例如，你可以添加一个更详细的检查来捕获一个好的错误：
+你可以通过一个简单的向下思想，来确保块中的类型被推断为与 `never` 类型兼容的类型。例如，你可以添加一个更详细的检查来捕获错误：
 
 ```ts
 function area(s: Shape) {
@@ -89,7 +89,7 @@ function area(s: Shape) {
 }
 ```
 
-它将强制你添加一种新的情景：
+它将强制你添加一种新的条件：
 
 ```ts
 function area(s: Shape) {
@@ -129,7 +129,7 @@ function area(s: Shape) {
 
 ## strictNullChecks
 
-如果你使用 `strictNullChecks`，并且用它来做详细的检查，你应该返回这个 `_exhaustiveCheck` 变量（类型是 `type`），否则 TypeScript 可能会推断返回值为 `undefined`：
+如果你使用 `strictNullChecks`，并且用它来做详细的检查，你应该返回这个 `_exhaustiveCheck` 变量（类型是 `never`），否则 TypeScript 可能会推断返回值为 `undefined`：
 
 ```ts
 function area(s: Shape) {
