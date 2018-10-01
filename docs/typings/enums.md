@@ -101,6 +101,7 @@ enum Color {
 
 枚举的一个很好的用途是使用枚举作为标志。标志允许你检查一组条件中的某个条件是否为真。考虑如下代码例子，我们有一组关于 animals 的属性：
 
+<!-- prettier-ignore -->
 ```ts
 enum AnimalFlags {
   None        = 0,
@@ -113,6 +114,7 @@ enum AnimalFlags {
 
 在这里，我们使用了左移的位运算符，将数字 `1` 的二进制向左移动位置得到数字 `0001`、`0010`、`0100` 和 `1000`（换成十进制结果是：1, 2, 4, 8）。当你在使用这边标记的时候，这些位运算符 `|` (或)、`&` （和）、`~` （非）将会是你最好的朋友：
 
+<!-- prettier-ignore -->
 ```ts
 enum AnimalFlags {
   None        = 0,
@@ -121,7 +123,7 @@ enum AnimalFlags {
 }
 
 interface Animal {
-  flags: number;
+  flags: AnimalFlags;
   [key: string]: any;
 }
 
@@ -158,6 +160,7 @@ printAnimalAbilities(animal); // animal has claws, animal can fly
 你可以组合标志，用来在枚举类型中定义方便快捷的方式，如下 `EndangeredFlyingClawedFishEating`：
 :::
 
+<!-- prettier-ignore -->
 ```ts
 enum AnimalFlags {
   None        = 0,
