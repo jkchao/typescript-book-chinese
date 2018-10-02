@@ -2,13 +2,13 @@
 
 毫无疑问，[DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 是 TypeScript 最大的优势之一，社区已经记录了 90% 的顶级 JavaScript 库。
 
-这意味着，你可以非常高效的使用这些库，而无需在单独的窗口打开响应文档（以确保输入的正确性）。
+这意味着，你可以非常高效的使用这些库，而无需在单独的窗口打开相应文档（以确保输入的正确性）。
 
 ## 使用 `@types`
 
 你可以通过 `npm` 来安装使用 `@types`，如下例所示，你可以为 `jquery` 添加声明文件：
 
-```js
+```shell
 npm install @types/jquery --save-dev
 ```
 
