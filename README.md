@@ -23,7 +23,7 @@
 
 《TypeScript Deep Dive》 书中包含一部分 JavaScript Future 和一些其他的内容，在这里，我们并不打算翻译它，如果你有兴趣，可以查看原书中 [JavaScript Future](https://basarat.gitbooks.io/typescript/content/docs/future-javascript.html) 的有关章节。
 
-由于 TypeScript 更新频繁，在此书中，我也将加入一些原书中并没有涉及到的知识点，希望和大家相互学习，一起进步。
+由于 TypeScript 更新频繁，除了上文中提到翻译部分，将会加入 TypeScript 的 Release，同时我也将总结出工作中一些有意思的点，希望和大家相互学习，一起进步。
 
 此外，在不违背原作者本意前提下，为了更直观的表达，部分内容将采用意译，而非直译。
 
@@ -140,9 +140,20 @@
   </tbody>
 </table>
 
+## How to contribute
+
+你可以：
+
+- 通过 PR 修改错别字，或者错误的格式；
+- 发 issue 讨论文章中出现的一些不合理地方；
+- 翻译 TODO 文件夹下的文章，并顺手 Email 我。
+
+希望你在翻译或者 PR 之前，阅读[中文文章排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines)。
+
+
 ## 最后
 
-如果你和我一样对 TypeScript 一见钟情，可以订阅（star）本项目，及时收到有关于此项目的更新。
+如果你和我一样对 TypeScript 充满兴趣，可以订阅（star）本项目，及时收到有关于此项目的更新。
 
 如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流。
 

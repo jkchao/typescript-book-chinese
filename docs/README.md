@@ -26,7 +26,7 @@
 
 ## 最后
 
-如果你和我一样对 TypeScript 一见钟情，可以[订阅（star）](https://github.com/jkchao/typescript-book-chinese/stargazers)本项目，及时收到有关于此项目的更新 :tada: 。
+如果你和我一样对 TypeScript 充满兴趣，可以[订阅（star）](https://github.com/jkchao/typescript-book-chinese/stargazers)本项目，及时收到有关于此项目的更新 :tada: 。
 
 如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流 :tada: 。
 
