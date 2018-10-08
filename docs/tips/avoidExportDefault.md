@@ -46,7 +46,7 @@ import /* here */ from 'something';
 没有默认导出，你可以用以下方式获取智能提示：
 
 ```ts
-import /* here */ 'something';
+import { /* here */ } from 'something';
 ```
 
 ## 自动完成
