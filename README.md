@@ -149,7 +149,6 @@
 - 翻译 TODO 文件夹下的文章，并顺手 Email 我。
 
 希望你在翻译或者 PR 之前，阅读[中文文章排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines)。
-
 
 ## 最后
 
