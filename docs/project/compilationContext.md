@@ -16,7 +16,7 @@
 
 ### 编译选项
 
-你可以通过 `complierOptions` 来定制你的编译选项：
+你可以通过 `compilerOptions` 来定制你的编译选项：
 
 ```js
 {
