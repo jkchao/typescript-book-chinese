@@ -1,6 +1,8 @@
 # 深入理解 TypeScript
 
-[![Build Status](https://travis-ci.org/jkchao/typescript-book-chinese.svg?branch=master)](https://travis-ci.org/jkchao/typescript-book-chinese)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors)
+[![GitHub forks](https://img.shields.io/github/forks/jkchao/typescript-book-chinese.svg?style=flat-square)](https://github.com/jkchao/typescript-book-chinese/network) [![GitHub stars](https://img.shields.io/github/stars/jkchao/typescript-book-chinese.svg?style=flat-square)](https://github.com/jkchao/typescript-book-chinese/stargazers) [![GitHub issues](https://img.shields.io/github/issues/jkchao/typescript-book-chinese.svg?style=flat-square)](https://github.com/jkchao/typescript-book-chinese/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/jkchao/typescript-book-chinese.svg?style=flat-square)](https://github.com/jkchao/typescript-book-chinese/commits/master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 此书是 [《TypeScript Deep Dive》](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
@@ -27,118 +29,19 @@
 
 此外，在不违背原作者本意前提下，为了更直观的表达，部分内容将采用意译，而非直译。
 
-## Contributor
+## Contributors
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/jkchao">
-          <img width="150" height="150" src="https://github.com/jkchao.png?v=3&s=150">
-          </br>
-          jkchao
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/itxuye">
-          <img width="150" height="150" src="https://github.com/itxuye.png?v=3&s=150">
-          </br>
-          itxuye
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/hufan-akari">
-          <img width="150" height="150" src="https://github.com/hufan-akari.png?v=3&s=150">
-          </br>
-          hufan-akari
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/S1ngS1ng">
-          <img width="150" height="150" src="https://github.com/S1ngS1ng.png?v=3&s=150">
-          </br>
-          S1ngS1ng
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/KnorienChang">
-          <img width="150" height="150" src="https://github.com/KnorienChang.png?v=3&s=150">
-          </br>
-          KnorienChang
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/hopalay">
-          <img width="150" height="150" src="https://github.com/hopalay.png?v=3&s=150">
-          </br>
-          hopalay
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/getdaydream">
-          <img width="150" height="150" src="https://github.com/getdaydream.png?v=3&s=150">
-          </br>
-          getdaydream
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/Yiiu">
-          <img width="150" height="150" src="https://github.com/Yiiu.png?v=3&s=150">
-          </br>
-          Yiiu
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/galenjiang">
-          <img width="150" height="150" src="https://github.com/galenjiang.png?v=3&s=150">
-          </br>
-          galenjiang
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/YogaLin">
-          <img width="150" height="150" src="https://github.com/YogaLin.png?v=3&s=150">
-          </br>
-          YogaLin
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/helloforrestworld">
-          <img width="150" height="150" src="https://github.com/helloforrestworld.png?v=3&s=150">
-          </br>
-          helloforrestworld
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/zongzi531">
-          <img width="150" height="150" src="https://github.com/zongzi531.png?v=3&s=150">
-          </br>
-          zongzi531
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/Undrum">
-          <img width="150" height="150" src="https://github.com/Undrum.png?v=3&s=150">
-          </br>
-          Undrum
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/jinrichardJIN">
-          <img width="150" height="150" src="https://github.com/jinrichardJIN.png?v=3&s=150">
-          </br>
-          jinrichardJIN
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+Thanks goes to these wonderful people
+([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/22933931?v=4" width="100px;"/><br /><sub><b>三毛</b></sub>](https://jkchao.cn)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=jkchao "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/22536347?v=4" width="100px;"/><br /><sub><b>KnorienChang</b></sub>](https://github.com/KnorienChang)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=KnorienChang "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/7829098?v=4" width="100px;"/><br /><sub><b>阿卡琳</b></sub>](https://github.com/magic-akari)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=magic-akari "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/2362335?v=4" width="100px;"/><br /><sub><b>hopalay</b></sub>](https://github.com/hopalay)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=hopalay "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/13592559?v=4" width="100px;"/><br /><sub><b>Xing Liu</b></sub>](http://singsing.io/blog)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=S1ngS1ng "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/23144765?v=4" width="100px;"/><br /><sub><b>chenwangji</b></sub>](https://github.com/chenwangji)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=chenwangji "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/28107509?v=4" width="100px;"/><br /><sub><b>老农爱盐碱地</b></sub>](https://github.com/helloforrestworld)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=helloforrestworld "Documentation") |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [<img src="https://avatars2.githubusercontent.com/u/9589686?v=4" width="100px;"/><br /><sub><b>Necros</b></sub>](http://www.itxuye.com)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=itxuye "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/8039013?v=4" width="100px;"/><br /><sub><b>Xu Jihan</b></sub>](https://xutoto.im)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=XuToTo "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/7876498?v=4" width="100px;"/><br /><sub><b>Yu</b></sub>](https://wanan.me/)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=Yiiu "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/11386122?v=4" width="100px;"/><br /><sub><b>Yoga Lin</b></sub>](https://github.com/YogaLin)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=YogaLin "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/12699258?v=4" width="100px;"/><br /><sub><b>G</b></sub>](http://galenjiang.github.io)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=galenjiang "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/37131109?v=4" width="100px;"/><br /><sub><b>Undrum</b></sub>](https://github.com/Undrum)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=Undrum "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/22429236?v=4" width="100px;"/><br /><sub><b>Zong</b></sub>](https://zongzi531.com)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=zongzi531 "Documentation") |
+| [<img src="https://avatars0.githubusercontent.com/u/12185175?v=4" width="100px;"/><br /><sub><b>LXVC</b></sub>](http://lxvc.github.io)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=LXVC "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/20592013?v=4" width="100px;"/><br /><sub><b>Whale</b></sub>](https://github.com/jinrichardJIN)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=jinrichardJIN "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/23274794?v=4" width="100px;"/><br /><sub><b>getdaydream</b></sub>](https://github.com/getdaydream)<br />[📖](https://github.com/jkchao/typescript-book/commits?author=getdaydream "Documentation") |
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## How to contribute
 
