@@ -233,7 +233,7 @@ import someLocalNameForThisFile from './foo';
 ```ts
 // globals.d.ts
 declare module 'foo' {
-  // some varuable declarations
+  // some variable declarations
   export var bar: number;
 }
 ```
