@@ -255,13 +255,13 @@ enum Weekday {
   Friday,
   Saturday,
   Sunday
-};
+}
 
 namespace Weekday {
-  export function isBusinessDay (day: Weekday) {
+  export function isBusinessDay(day: Weekday) {
     switch (day) {
       case Weekday.Saturday:
-      case Weekday.Sunday
+      case Weekday.Sunday:
         return false;
       default:
         return true;
@@ -269,11 +269,10 @@ namespace Weekday {
   }
 }
 
-
 const mon = Weekday.Monday;
 const sun = Weekday.Sunday;
 
-console.log(Weekday.isBusinessDay(mon));   // true
+console.log(Weekday.isBusinessDay(mon)); // true
 console.log(Weekday.isBusinessDay(sun));
 ```
 
