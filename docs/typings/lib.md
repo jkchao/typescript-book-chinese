@@ -42,7 +42,7 @@ declare var window: Window;
 这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注解的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，以下是 `Window` 接口的一小部分：
 
 ```ts
-interface Window
+interface Window {
   extends EventTarget,
     WindowTimers,
     WindowSessionStorage,
@@ -176,7 +176,7 @@ const todayAfter1second = today.addMilliseconds(1000);
 
 ### string
 
-如果你在 `lib.d.ts` 里寻找 `string`，你将会找到与 `Date` 想类似的内容（全局变量 `String`，`StringConstructor` 接口，`String` 接口）。但是值得注意的是，`String` 接口也会影响字符串字面亮，如下所示：
+如果你在 `lib.d.ts` 里寻找 `string`，你将会找到与 `Date` 想类似的内容（全局变量 `String`，`StringConstructor` 接口，`String` 接口）。但是值得注意的是，`String` 接口也会影响字符串字面量，如下所示：
 
 ```ts
 interface String {
@@ -228,7 +228,7 @@ console.log('foo bas'.endsWith('bas')); // true
 小心使用 `--noLib` 选项，一旦你使用使用了它，当你把你的项目分享给其他人时，它们也将被迫使用 `--noLib` 选项，更糟糕的是，如果将这些代码放入你的项目中，你可能需要将它放入你的基于 `lib` 代码中。
 :::
 
-## 编译目标对 `lib.d.ts` 的影响
+## 编译目标对 `lib.d.ts` 的影响
 
 设置编译目标为 `es6` 时，能导致 `lib.d.ts` 包含更多的像 Promise 的现代（es6）内容的环境声明。编译器目标的这种神奇作用，改变了代码的环境，这对某些人来说是理想的，但是这对另外一些人来说造成了困扰，因为它将编译出的代码与环境混为一谈。
 
