@@ -99,7 +99,7 @@ const someVar = 123;
 export { someVar as aDifferentName };
 ```
 
-- 使用 `import` 关键字导入一个变量或者事一个类型：
+- 使用 `import` 关键字导入一个变量或者是一个类型：
 
 ```ts
 // bar.ts
