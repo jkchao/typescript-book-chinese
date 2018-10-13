@@ -83,7 +83,7 @@ export class Something extends React.Component<Props, State> {
 }
 ```
 
-然而，你并没有必要这么做，`React` 的声明文件已经标记这些为 `readonly`（通过传入泛型参数至一个内部包装，来把没个属性标记为 `readonly`，如上例子所示），
+然而，你并没有必要这么做，`React` 的声明文件已经标记这些为 `readonly`（通过传入泛型参数至一个内部包装，来把每个属性标记为 `readonly`，如上例子所示），
 
 ```ts
 export class Something extends React.Component<{ foo: number }, { baz: number }> {
@@ -147,7 +147,6 @@ person.fullName = 'Dear Reader'; // Error, fullName 只读
 
 - 用于变量；
 - 变量不能重新赋值给其他任何事物。
-
 
 `readonly`
 
