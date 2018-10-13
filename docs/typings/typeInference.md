@@ -40,7 +40,7 @@ type Adder = (a: number, b: number) => number;
 let foo: Adder = (a, b) => a + b;
 ```
 
-这个事实可以用下面的代码来正面，TypeScript 会发出正如你期望发出的错误警告：
+这个事实可以用下面的代码来证明，TypeScript 会发出正如你期望发出的错误警告：
 
 ```ts
 type Adder = (a: number, b: number) => number;
