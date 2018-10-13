@@ -52,7 +52,7 @@ let foo: Adder = (a, b) => {
 
 这是一个从左向右流动类型的示例。
 
-如果你创建一个函数，并且函数参数为一个回掉函数，相同的赋值规则也适用于它。毕竟从 `argument` 至 `parameter` 只是变量赋值的另一种形式。
+如果你创建一个函数，并且函数参数为一个回调函数，相同的赋值规则也适用于它。毕竟从 `argument` 至 `parameter` 只是变量赋值的另一种形式。
 
 ```ts
 type Adder = (a: number, b: number) => number;
