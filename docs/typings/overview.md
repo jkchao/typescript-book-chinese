@@ -2,12 +2,12 @@
 
 ## TypeScript 类型系统
 
-当讨论 [为什么使用 TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 时，我们涵盖了主要的 TypeScript 类型系统的主要功能。以下是讨论的一些关键点，它并不需要过多解释：
+在讨论[为什么使用 TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 时，我们涵盖了 TypeScript 类型系统的主要功能。以下是讨论的一些关键点：
 
 - TypeScript 类型系统设计是可选的，因此，你的 JavaScript 即是 TypeScript;
-- TypeScript 不会阻止 JavaScript 的运行，即是存在类型错误，这能让你的 JavaScript 逐步迁移至 TypeScript。
+- TypeScript 不会阻止 JavaScript 的运行，即使存在类型错误也不例外，这能让你的 JavaScript 逐步迁移至 TypeScript。
 
-现在让我们开始 TypeScript 类型系统的语法，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
+现在让我们开始学习 TypeScript 类型系统的语法，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
 
 ## 基本注解
 
@@ -24,7 +24,7 @@ function identity(num: number): number {
 
 ## 原始类型
 
-JavaScript 原始类型也同样适应于 TypeScript 的类型系统，这意味着：`string`、`number`、`boolean` 也可以被用作类型注解：
+JavaScript 原始类型也同样适应于 TypeScript 的类型系统，因此 `string`、`number`、`boolean` 也可以被用作类型注解：
 
 ```ts
 let num: number;
@@ -45,7 +45,7 @@ bool = 'false'; // Error
 
 ## 数组
 
-TypeScript 为数组提供了专用的类型语法，当你注解代码时，会变的容易。这个类型语法使用后缀 `[]`， 然后你可以根据需要补充任何有效的类型注解（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于赋值错误类型给成员的错误。如下所示：
+TypeScript 为数组提供了专用的类型语法，当你注解数组时，会变的容易。这个类型语法使用后缀 `[]`， 然后你可以根据需要补充任何有效的类型注解（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于赋值错误类型给成员的行为。如下所示：
 
 ```ts
 const boolArray: boolean[];
@@ -64,7 +64,7 @@ boolArray = [true, 'false']; // Error
 
 ## 接口
 
-接口是 TypeScript 的一个核心知识，它合并众多类型声明至一个类型声明里：
+接口是 TypeScript 的一个核心知识，它合并众多类型声明至一个类型声明：
 
 ```ts
 interface Name {
@@ -127,7 +127,7 @@ name = {
 
 ### any
 
-`any` 类型在 TypeScript 类型系统中占有特殊的地位。它提供给你一个类型系统的 「后门」,TypeScript 将会把类型检查关闭。在类型系统里 `any` 能够兼容所有的类型（包括它自己）。这意味着，所有类型都能被赋值给它，它也能被赋值给其他任何类型。以下有一个证明例子：
+`any` 类型在 TypeScript 类型系统中占有特殊的地位。它提供给你一个类型系统的「后门」,TypeScript 将会把类型检查关闭。在类型系统里 `any` 能够兼容所有的类型（包括它自己）。因此，所有类型都能被赋值给它，它也能被赋值给其他任何类型。以下有一个证明例子：
 
 ```ts
 let power: any;
@@ -142,11 +142,11 @@ power = num;
 num = power;
 ```
 
-当你从 JavaScript 迁移至 TypeScript 时，你将会经常性使用 `any`。然而，你必须少依赖它，因为你需要确保类型安全。当使用 any 时，你基本上是在告诉 TypeScript 编辑器不要进行任何的类型检查。
+当你从 JavaScript 迁移至 TypeScript 时，你将会经常性使用 `any`。你必须减少对它的依赖，因为你需要确保类型安全。当使用 `any` 时，你基本上是在告诉 TypeScript 编辑器不要进行任何的类型检查。
 
 ### null 和 undefined
 
-在类型系统中，null 和 undefined 能被有效的，如 `any` 类型一样。这些类型，能被赋值给任意类型，如下例子所示：
+在类型系统中，JavaScript 中的 null 和 undefined 字面量和其他被标注了 `any` 类型的变量一样，都能被赋值给任意类型的变量，如下例子所示：
 
 ```ts
 let num: numer;

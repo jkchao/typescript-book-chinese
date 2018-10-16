@@ -1,6 +1,6 @@
 # 接口
 
-接口具有运行时的零影响。TypeScript 接口中有很多功能来声明变量的结构。
+接口具有运行时的零影响。TypeScript 接口中有很多方式来声明变量的结构。
 
 以下两个是等效声明, 第一个使用*内联注解*，第二个使用*接口*：
 
@@ -16,7 +16,7 @@ interface Point {
 declare const myPoint: Point;
 ```
 
-然而，_示例 B_ 的好处在于，如果有人创建了一个基于 `myPoint` 的库来添加新成员, 他们可以轻松将此成员添加到 `myPoint` 的现有声明中:
+_示例 B_ 的好处在于，如果有人创建了一个基于 `myPoint` 的库来添加新成员, 他们可以轻松将此成员添加到 `myPoint` 的现有声明中:
 
 ```ts
 // Lib a.d.ts
@@ -41,7 +41,7 @@ let myPoint.z // Allowed!
 
 ## 类可以实现接口
 
-如果你希望在接口中使用必须遵循的类和别人给你定义的对象结构，可以使用 `implements` 关键字来确保兼容性：
+如果你希望在类中使用必须遵循的接口（类）或是别人给你定义的对象结构，可以使用 `implements` 关键字来确保兼容性：
 
 ```ts
 interface Point {
@@ -95,7 +95,7 @@ interface Crazy {
 }
 ```
 
-你基本上会有这样的代码：
+你可能会有这样的代码：
 
 ```ts
 class CrazyClass implements Crazy {

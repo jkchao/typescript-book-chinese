@@ -2,7 +2,7 @@
 
 动态导入表达式是 ECMASript 的一个新功能，它允许你在你程序的任意地方异步加载一个模块，TC39 JavaScript 委员会有这样一个处于 stage 3 的一个提案，它被称为 [import() proposal for JavaScript](https://github.com/tc39/proposal-dynamic-import)。
 
-此外，**webpack** bunder 有一个被称为 [`Code Splitting`](https://webpack.js.org/guides/code-splitting/) 的功能，它能允许你将代码拆分为许多块，这些块在将来可被异步下载。这意味着，你可以在程序中首先提供一个最小的程序启动包，并在将来异步加载其他模块。
+此外，**webpack** bundler 有一个 [`Code Splitting`](https://webpack.js.org/guides/code-splitting/) 的功能，它能允许你将代码拆分为许多块，这些块在将来可被异步下载。这意味着，你可以在程序中首先提供一个最小的程序启动包，并在将来异步加载其他模块。
 
 这很自然的想到（如果我们工作在 dev 的工作流程）[TypeScript 2.4 dynamic import expressions](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic-import-expressions) 将会把你最终生成的 JS 代码自动分割成很多代码块。但是这似乎并不容易实现，因为它依赖于我们正在使用的 `tsconfig.json` 配置文件。
 

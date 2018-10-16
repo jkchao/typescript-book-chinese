@@ -1,6 +1,6 @@
 # 异常处理
 
-JavaScript 有一个 `Error` 类，用于处理异常。你可以通过 `throw` 关键字来抛出一个错误。然后你可以通过 `try/catch` 块来捕获到此错误：
+JavaScript 有一个 `Error` 类，用于处理异常。你可以通过 `throw` 关键字来抛出一个错误。然后通过 `try/catch` 块来捕获此错误：
 
 ```ts
 try {
@@ -16,7 +16,7 @@ try {
 
 ### RangeError
 
-但一个数字变量或者参数超出其有效范围时，此时会出现 `RangeError` 的错误提示：
+当数字类型变量或者参数超出其有效范围时，出现 `RangeError` 的错误提示：
 
 ```ts
 // 使用过多参数调用 console
@@ -68,21 +68,21 @@ try {
 }
 ```
 
-**不要这么做**，使用 `Error` 对象的基本好处是，它能自动的跟踪堆栈的属性构建以及生成位置。
+**不要这么做**，使用 `Error` 对象的基本好处是，它能自动跟踪堆栈的属性构建以及生成位置。
 
 原始字符串会导致极差的调试体验，并且在分析日志时，将会变得错综复杂。
 
 ## 你并不需要 `throw` 抛出一个错误
 
-传递一个 `Error` 对象是没问题的，这种在 `Node.js` 回调函数中非常常见，它用第一个参数作为错误对象进行回调。
+传递一个 `Error` 对象是没问题的，这种方式在 `Node.js` 回调函数中非常常见，它用第一个参数作为错误对象进行回调处理。
 
 ```ts
 function myFunction (callback: (e: Error)) {
   doSomethingAsync(function () {
     if (somethingWrong) {
-      callback(new Error('This is my error'))
+      callback(new Error('This is my error'));
     } else {
-      callback()
+      callback();
     }
   })
 }
@@ -109,37 +109,37 @@ try {
 
 ### 优雅的捕获错误
 
-你可以通过为每个可能抛出错误的代码显示捕获，来使其优雅：
+你可以通过为每个可能抛出错误的代码显式捕获，来使其优雅：
 
 ```ts
 try {
-  const foo = runTask1()
+  const foo = runTask1();
 } catch (e) {
-  console.log('Error:', e)
+  console.log('Error:', e);
 }
 
 try {
-  const bar = run Task2()
+  const bar = run Task2();
 } catch (e) {
-  console.log('Error:', e)
+  console.log('Error:', e);
 }
 ```
 
-但是现在，如果你想从第一个任务中传递变量到第二个任务中，代码会变的混乱（注意：foo 变量需要用 let 显示注解它，因为它不能从 `runTask1` 中返回出来）：
+但是现在，如果你想从第一个任务中传递变量到第二个任务中，代码会变的混乱（注意：foo 变量需要用 let 显式注解它，因为它不能从 `runTask1` 中返回出来）：
 
 ```ts
-let foo: number   // Notice 使用 let 并且显示注名类型注解
+let foo: number;   // Notice 使用 let 并且显式注名类型注解
 
 try {
-  foo = runTask1()
+  foo = runTask1();
 } catch (e) {
-  console.log('Error:', e)
+  console.log('Error:', e);
 }
 
 try {
-  const bar = run Task2()
+  const bar = run Task2();
 } catch (e) {
-  console.log('Error:', e)
+  console.log('Error:', e);
 }
 ```
 
@@ -159,7 +159,7 @@ function validate(value: number) {
 
 ```ts
 function validate(
-  value: number
+  value: number;
 ): {
   error?: string;
 } {

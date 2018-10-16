@@ -17,11 +17,13 @@ let Card = CardSuit.Clubs;
 Card = 'not a member of card suit'; // Error: string 不能赋值给 `CardSuit` 类型
 ```
 
-这些枚举类型的值都是数字的，因此我称它们为数字类型枚举。
+这些枚举类型的值都是数字类型，因此它们被称为数字类型枚举。
 
 ## 数字类型枚举与数字类型
 
-TypeScript 枚举类型是基于数字的，这意味着可以将数字类型赋值给枚举类型的实例，以及任何与数字类型兼容的其他任何类型：
+<!-- TypeScript 枚举类型是基于数字的，这意味着可以将数字类型赋值给枚举类型的实例，以及任何与数字类型兼容的其他任何类型： -->
+
+数字类型枚举，允许我们将数字类型或者其他任何与数字类型兼容的类型赋值给枚举类型的实例。
 
 ```ts
 enum Color {
@@ -36,7 +38,7 @@ col = 0; // 有效的，这也是 Color.Red
 
 ## 数字类型枚举与字符串类型
 
-在我们继续深入枚举类型之前，先让我们看看它编译的 JavaScript，一个简单的 TypeScript 枚举类型：
+在我们继续深入枚举类型之前，先让我们看看它编译的 JavaScript，以下是一个简单的 TypeScript 枚举类型：
 
 ```ts
 enum Tristate {
@@ -99,8 +101,9 @@ enum Color {
 
 ## 使用数字类型作为标志
 
-枚举的一个很好的用途是使用枚举作为标志。标志允许你检查一组条件中的某个条件是否为真。考虑如下代码例子，我们有一组关于 animals 的属性：
+枚举的一个很好用途是使用枚举作为标志。这些标志允许你检查一组条件中的某个条件是否为真。考虑如下代码例子，我们有一组关于 animals 的属性：
 
+<!-- prettier-ignore -->
 ```ts
 enum AnimalFlags {
   None        = 0,
@@ -113,6 +116,7 @@ enum AnimalFlags {
 
 在这里，我们使用了左移的位运算符，将数字 `1` 的二进制向左移动位置得到数字 `0001`、`0010`、`0100` 和 `1000`（换成十进制结果是：1, 2, 4, 8）。当你在使用这边标记的时候，这些位运算符 `|` (或)、`&` （和）、`~` （非）将会是你最好的朋友：
 
+<!-- prettier-ignore -->
 ```ts
 enum AnimalFlags {
   None        = 0,
@@ -121,7 +125,7 @@ enum AnimalFlags {
 }
 
 interface Animal {
-  flags: number;
+  flags: AnimalFlags;
   [key: string]: any;
 }
 
@@ -158,6 +162,7 @@ printAnimalAbilities(animal); // animal has claws, animal can fly
 你可以组合标志，用来在枚举类型中定义方便快捷的方式，如下 `EndangeredFlyingClawedFishEating`：
 :::
 
+<!-- prettier-ignore -->
 ```ts
 enum AnimalFlags {
   None        = 0,
@@ -250,13 +255,13 @@ enum Weekday {
   Friday,
   Saturday,
   Sunday
-};
+}
 
 namespace Weekday {
-  export function isBusinessDay (day: Weekday) {
+  export function isBusinessDay(day: Weekday) {
     switch (day) {
       case Weekday.Saturday:
-      case Weekday.Sunday
+      case Weekday.Sunday:
         return false;
       default:
         return true;
@@ -264,11 +269,10 @@ namespace Weekday {
   }
 }
 
-
 const mon = Weekday.Monday;
 const sun = Weekday.Sunday;
 
-console.log(Weekday.isBusinessDay(mon));   // true
+console.log(Weekday.isBusinessDay(mon)); // true
 console.log(Weekday.isBusinessDay(sun));
 ```
 

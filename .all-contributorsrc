@@ -1,0 +1,175 @@
+{
+  "projectName": "typescript-book",
+  "projectOwner": "jkchao",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "jkchao",
+      "name": "三毛",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/22933931?v=4",
+      "profile": "https://jkchao.cn",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "KnorienChang",
+      "name": "KnorienChang",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/22536347?v=4",
+      "profile": "https://github.com/KnorienChang",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "magic-akari",
+      "name": "阿卡琳",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7829098?v=4",
+      "profile": "https://github.com/magic-akari",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "hopalay",
+      "name": "hopalay",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2362335?v=4",
+      "profile": "https://github.com/hopalay",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "S1ngS1ng",
+      "name": "Xing Liu",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13592559?v=4",
+      "profile": "http://singsing.io/blog",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "chenwangji",
+      "name": "chenwangji",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/23144765?v=4",
+      "profile": "https://github.com/chenwangji",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "helloforrestworld",
+      "name": "老农爱盐碱地",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/28107509?v=4",
+      "profile": "https://github.com/helloforrestworld",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "itxuye",
+      "name": "Necros",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9589686?v=4",
+      "profile": "http://www.itxuye.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "XuToTo",
+      "name": "Xu Jihan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8039013?v=4",
+      "profile": "https://xutoto.im",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Yiiu",
+      "name": "Yu",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7876498?v=4",
+      "profile": "https://wanan.me/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "YogaLin",
+      "name": "Yoga Lin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/11386122?v=4",
+      "profile": "https://github.com/YogaLin",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "galenjiang",
+      "name": "G",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12699258?v=4",
+      "profile": "http://galenjiang.github.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Undrum",
+      "name": "Undrum",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/37131109?v=4",
+      "profile": "https://github.com/Undrum",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "zongzi531",
+      "name": "Zong",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22429236?v=4",
+      "profile": "https://zongzi531.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "LXVC",
+      "name": "LXVC",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12185175?v=4",
+      "profile": "http://lxvc.github.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jinrichardJIN",
+      "name": "Whale",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20592013?v=4",
+      "profile": "https://github.com/jinrichardJIN",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "getdaydream",
+      "name": "getdaydream",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/23274794?v=4",
+      "profile": "https://github.com/getdaydream",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "onlyling",
+      "name": "Ling ZiQing",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9999765?v=4",
+      "profile": "https://www.onlyling.com",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
+}

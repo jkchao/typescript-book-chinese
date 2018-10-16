@@ -4,13 +4,13 @@
 
 > TypeScript 的设计目标之一是让你从现有的 JavaScript 库中安全、轻松的使用 TypeScript，你可以通过 TypeScript 声明文件来做到这一点。
 
-环境声明允许你安全的使用现有的 JavaScript 流行库，并且能让你的 JavaScript、CoffeeScript 或者其他需要编译成 JavaScript 的语言逐步迁移至 TypeScript。
+环境声明允许你安全的使用现有的 JavaScript 库，并且能让你的 JavaScript，CoffeeScript 或者其他需要编译成 JavaScript 的语言逐步迁移至 TypeScript。
 
-学习为第三方 JavaScript 代码编写环境声明，是一种为 TypeScript 写注解比较好的实践方式。
+学习为第三方 JavaScript 库编写环境声明，是一种为 TypeScript 写注解比较好的实践方式。
 
 ## 声明文件
 
-你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 的其他运行环境），如：
+你可以通过 `declare` 关键字，来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码（如：写在 JavaScript、CoffeeScript 或者是像浏览器和 Node.js 运行环境里的代码）：
 
 ```ts
 foo = 123; // Error: 'foo' is not defined

@@ -32,18 +32,18 @@ interface Complex {
 interface Overloaded {
   (foo: string): string;
   (foo: number): number;
-};
+}
 
 // 实现接口的一个例子：
-function stringOrNumber (foo: number): number;
-function stringOrNumber (foo: string): string;
-function stringOrNumber (foo: any): any {
+function stringOrNumber(foo: number): number;
+function stringOrNumber(foo: string): string;
+function stringOrNumber(foo: any): any {
   if (typeof foo === 'number') {
     return foo * foo;
   } else if (typeof foo === 'string') {
     return `hello ${foo}`;
-  };
-};
+  }
+}
 
 const overloaded: Overloaded = stringOrNumber;
 
@@ -63,14 +63,14 @@ let overloaded: {
 
 ## 箭头函数
 
-为了使指定可调用的类型签名更容易，TypeScript 也允许你使用简单的箭头函数类型注解。例如，一个以 number 类型做为参数，以 string 类型做为返回值的函数可以这么写：
+为了使指定可调用的类型签名更容易，TypeScript 也允许你使用简单的箭头函数类型注解。例如，在一个以 number 类型为参数，以 string 类型为返回值的函数中，你可以这么写：
 
 ```ts
 const simple: (foo: number) => string = foo => foo.toString();
 ```
 
 ::: tip
-它仅仅只能做为简单的箭头函数：你无法使用重载，如果你想用函数重载，你必须使用完整的 `{ (someArgs): someReturn }` 的语法
+它仅仅只能做为简单的箭头函数，你无法使用重载。如果想使用它，你必须使用完整的 `{ (someArgs): someReturn }` 的语法
 :::
 
 ## 可实例化
