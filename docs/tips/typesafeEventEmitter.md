@@ -1,6 +1,6 @@
 # 类型安全的 Event Emitter
 
-一般来说，在 Node.js 与传统的 JavaScript 里，你有一个单一的 Event Emitter，你可以用它来为不同的事件添加监听器。
+通常来说，在 Node.js 与传统的 JavaScript 里，你有一个单一的 Event Emitter，你可以用它来为不同的事件添加监听器。
 
 ```ts
 const emitter = new EventEmitter();
