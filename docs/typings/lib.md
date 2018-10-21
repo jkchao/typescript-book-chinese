@@ -1,11 +1,11 @@
 # `lib.d.ts`
 
-当你安装 `TypeScript` 时，会顺带安装 `lib.d.ts` 声明文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见的环境声明。
+当你安装 `TypeScript` 时，会顺带安装 `lib.d.ts` 等声明文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见的环境声明。
 
 - 此文件自动包含在 TypeScript 项目的编译上下文中；
-- 此文件的目的是让你快速开始书写经过类型检查的 JavaScript 代码。
+- 此文件能让你快速开始书写经过类型检查的 JavaScript 代码。
 
-你可以通过制定 `--noLib` 的编译器命令行标志（或者在 `tsconfig.json` 中指定选项 `noLib`: true）从上下文中排除此文件。
+你可以通过指定 `--noLib` 的编译器命令行标志（或者在 `tsconfig.json` 中指定选项 `noLib`: true）从上下文中排除此文件。
 
 ## 使用例子
 
@@ -25,13 +25,13 @@ const foo = 123;
 const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 ```
 
-因此，现在你已经理解了 `lib.d.ts` 的重要性，至于它的内容是怎么样的，我们接下来解释。
+现在你已经理解了 `lib.d.ts` 的重要性，至于它的内容是怎么样的，我们接下来解释。
 
 ## 观察 `lib.d.ts` 的内部
 
 `lib.d.ts` 的内容主要是一些变量声明（如：`window`、`document`、`math`）和一些类似的接口声明（如：`Window`、`Document`、`Math`）。
 
-最简单的方式寻找你所知道代码的类型（如：`Math.floor`）是使用使用你的 IDE 的`F12`（跳转到定义）。
+最简单的方式寻找你所知道代码的类型（如：`Math.floor`）是使用使用你的 IDE 的 `F12`（跳转到定义）。
 
 让我们来看一个示例变量的声明，如 `window` 被定义为：
 
@@ -66,7 +66,7 @@ interface Window {
 
 ## 修改原始类型
 
-在 TypeScript 中，接口是开放式的，这意味着你仅仅是需要添加成员至 `lib.d.ts` 中的接口声明，TypeScript 将会自动接收你添加的声明。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们甚至推荐你创建一个称为 `globals.d.ts` 的特殊文件。
+在 TypeScript 中，接口是开放式的，这意味着你仅仅是需要添加成员至 `lib.d.ts` 中的接口声明中，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们推荐你创建一个称为 `globals.d.ts` 的特殊文件。
 
 这里有我们需要添加至 `Window`，`Math`，`Date` 的一些例子：
 
@@ -116,7 +116,7 @@ interface Math {
 
 ```ts
 interface Math {
-  seedrandom(seed?: string);
+  seedrandom(seed?: string): void;
 }
 ```
 
@@ -217,10 +217,10 @@ console.log('foo bas'.endsWith('bas')); // true
 
 ## 使用你自己定义的 `lib.d.ts`
 
-正如我们之前提到的，使用 `--noLib` 编译选项会导致 TypeScript 排除自动包含的 `lib.d.ts` 文件。为什么这个功能是有效的，这存在很多原因，以下是一些常见原因：
+如上文说提及，使用 `--noLib` 编译选项会导致 TypeScript 排除自动包含的 `lib.d.ts` 文件。为什么这个功能是有效的，我例举了一些常见原因：
 
-- 你运行的 JavaScript 环境与基于标准浏览器运行时环境有很大不同；
-- 你希望在你的代码里严格的控制全局变量，例如：`lib.d.ts` 定义了 `item` 作为全局变量，你并不希望它泄漏到你的代码里。
+- 运行的 JavaScript 环境与基于标准浏览器运行时环境有很大不同；
+- 您希望在代码里严格的控制全局变量，例如：`lib.d.ts` 定义了 `item` 作为全局变量，你并不希望它泄漏到你的代码里。
 
 一旦你排除了默认的 `lib.d.ts` 文件，你可以在编译上下文中包含一个类似命名的文件，TypeScript 将选择它进行类型检查。
 
@@ -236,10 +236,10 @@ console.log('foo bas'.endsWith('bas')); // true
 
 ## `--lib` 选项
 
-一些时候（很多时候），你想要解耦编译目标（生成的 JavaScript 版本）和环境库支持之间的关系。一个常见的例子是 `Promise`。例如，今天（2016 年 6 月），你可能使用 `--target es5`，但你你仍然想使用最新的特性如 `Promise`，为了支持它，你可以使用 `lib` 编译选项进行显式控制：
+一些时候，你想要解耦编译目标（生成的 JavaScript 版本）和环境库支持之间的关系。例如对于 Promise，你的编译目标是 `--target es5`，当时你仍然想使用它，这个时候，你可以使用 `lib` 对它进行控制。
 
 ::: tip
-使用 `--lib` 可以将任何 `lib` 与 `--target` 解偶，这能让你更好的控制。
+使用 `--lib` 选项可以将任何 `lib` 与 `--target` 解偶。
 :::
 
 你可以通过命令行或者在 `tsconfig.json` 中提供此选项（推荐）：
@@ -325,7 +325,7 @@ tsc --target es5 --lib dom,es6
 npm install core-js --save-dev
 ```
 
-在你的项目里导入它：
+接着，在你的项目里导入它：
 
 ```ts
 import 'core-js';

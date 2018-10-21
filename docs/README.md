@@ -24,10 +24,20 @@
 
 此外，在不违背原作者本意前提下，为了更直观的表达，部分内容将采用意译，而非直译。
 
+## How to contribute
+
+你可以：
+
+- 通过 PR 修改错别字，或者错误的格式；
+- 发 issue 讨论文章中出现的一些不合理地方；
+- 翻译 TODO 文件夹下的文章，并顺手 Email 我。
+
+希望你在翻译或者 PR 之前，阅读[中文文章排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines)。
+
 ## 最后
 
-如果你和我一样对 TypeScript 充满兴趣，可以[订阅（star）](https://github.com/jkchao/typescript-book-chinese/stargazers)本项目，及时收到有关于此项目的更新 :tada: 。
+如果你和我一样对 TypeScript 充满兴趣，可以订阅（star）本项目，及时收到有关于此项目的更新。
 
-如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流 :tada: 。
+如果你对文章有任何疑问，欢迎提交 [issues](https://github.com/jkchao/typescript-book-chinese/issues) 和我交流。
 
-如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有意思的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls) :tada: 。
+如果你认为有些地方翻译不够准确，或者你想补充一些文中没提到但是非常有意思的知识点，欢迎 [PR](https://github.com/jkchao/typescript-book-chinese/pulls)。
