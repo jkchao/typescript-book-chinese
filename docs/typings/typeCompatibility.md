@@ -193,7 +193,7 @@ addEventListener(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => consol
 addEventListener(EventType.Mouse, (e: number) => console.log(e));
 ```
 
-同样的，你也可以把 `Array<Child>` 赋值给 `Array<Base>` （协变），因为函数是兼容的。数组的斜变需要所有的函数 `Array<Child>` 都能赋值给 `Array<Base>`，例如 `push(t: Child)` 能被赋值给 `push(t: Base)`，这能可以通过函数参数双向协变实现。
+同样的，你也可以把 `Array<Child>` 赋值给 `Array<Base>` （协变），因为函数是兼容的。数组的协变需要所有的函数 `Array<Child>` 都能赋值给 `Array<Base>`，例如 `push(t: Child)` 能被赋值给 `push(t: Base)`，这能可以通过函数参数双向协变实现。
 
 这对于来自其他语言的人来说，可能会感到很困惑，等他们希望以下错误不会出现在 TypeScript 中：
 
@@ -243,7 +243,7 @@ enum Color {
 let status = Status.Ready;
 let color = Color.Red;
 
-status = color;
+status = color; // Error
 ```
 
 ## 类
