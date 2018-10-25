@@ -28,7 +28,8 @@ function area(s: Shape) {
     // 所以你现在能安全使用它
     return s.size * s.size;
   } else {
-    // 没有 'square' 属性？因此 TypeScript 将会指出 s 是 Rectangle
+    // 不是一个 square ？因此 TypeScript 将会算出 s 一定是 Rectangle
+    // 所以你现在能安全使用它
     return s.width * s.height;
   }
 }
