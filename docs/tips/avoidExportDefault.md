@@ -1,6 +1,6 @@
 # `export default` 被认为是有害的
 
-假如你有一个包含一下内容的 `foo.ts` 文件：
+假如你有一个包含以下内容的 `foo.ts` 文件：
 
 ```ts
 class Foo {}
@@ -46,7 +46,7 @@ import /* here */ from 'something';
 没有默认导出，你可以用以下方式获取智能提示：
 
 ```ts
-import { /* here */ } from 'something';
+import /* here */ 'something';
 ```
 
 ## 自动完成
