@@ -88,10 +88,10 @@ iTakePoint2D({ x: 0 }); // Error: 没有 'y'
 - 协变（Covariant）：只在同一个方向；
 - 逆变（Contravariant）：只在相反的方向；
 - 双向协变（Bivariant）：包括同一个方向和不同方向；
-- 不变（Invariant）：如果类型不完全相同，则他们是不兼容的。
+- 不变（Invariant）：如果类型不完全相同，则它们是不兼容的。
 
 ::: tip
-对于存在完全可变数据的健全的类型系统（如 JavaScript），`Invariant` 是一个唯一的有效可选属性，但是正如我们提到的，*便利性*迫使我们作出一些不是很安全的选择。
+对于存在完全可变数据的健全的类型系统（如 JavaScript），`Invariant` 是一个唯一的有效可选属性，但是如我们说讨论的，*便利性*迫使我们作出一些不是很安全的选择。
 :::
 
 关于协变和逆变的更多内容，请参考：[What are covariance and contravariance?](https://www.stephanboyer.com/post/132/what-are-covariance-and-contravariance)。
