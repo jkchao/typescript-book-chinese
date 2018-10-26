@@ -22,7 +22,7 @@ class Singleton {
 
 let someThing = new Singleton(); // Error: constructor of 'singleton' is private
 
-let instacne = Singleton.getInstance(); // do some width the instance
+let instacne = Singleton.getInstance(); // do some thing with the instance
 ```
 
 然而，如果你不想延迟初始化，你可以使用 `namespace` 替代：
