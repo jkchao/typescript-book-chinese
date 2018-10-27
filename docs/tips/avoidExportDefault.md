@@ -1,6 +1,6 @@
 # `export default` 被认为是有害的
 
-假如你有一个包含一下内容的 `foo.ts` 文件：
+假如你有一个包含以下内容的 `foo.ts` 文件：
 
 ```ts
 class Foo {}
@@ -46,7 +46,7 @@ import /* here */ from 'something';
 没有默认导出，你可以用以下方式获取智能提示：
 
 ```ts
-import { /* here */ } from 'something';
+import /* here */ 'something';
 ```
 
 ## 自动完成
@@ -63,7 +63,7 @@ import { /* here */ } from 'something';
 
 ## 再次导出
 
-再次导出是没必要的，但是在 `npm` 包的跟文件 `index` 却是很常见。如：`import Foo from './foo'；export { Foo }`（默认导出）VS `export * from './foo'` （命名导出）。
+再次导出是没必要的，但是在 `npm` 包的根文件 `index` 却是很常见。如：`import Foo from './foo'；export { Foo }`（默认导出）VS `export * from './foo'` （命名导出）。
 
 ## 动态导入
 

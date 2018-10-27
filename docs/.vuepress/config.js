@@ -101,7 +101,8 @@ module.exports = {
           '/tips/functionParameters',
           '/tips/truthy',
           '/tips/buildToggles',
-          '/tips/typesafeEventEmitter'
+          '/tips/typesafeEventEmitter',
+          '/tips/thisType.md'
         ]
       },
       {

@@ -1,6 +1,8 @@
 # 类型兼容性
 
-类型兼容性（正如我们所要讨论到的）用于确定一个类型是否能赋值给其他类型，如 `string` 类型与 `number` 类型不兼容：
+类型兼容性用于确定一个类型是否能赋值给其他类型。
+
+如 `string` 类型与 `number` 类型不兼容：
 
 ```ts
 let str: string = 'Hello';
@@ -12,7 +14,7 @@ num = str; // Error: 'string' 不能赋值给 'number'
 
 ## 安全性
 
-TypeScript 类型系统设计比较方便，它允许你有一些不正确的行为。例如：任何类型都能被赋值给 `any`，这意味着告诉编辑器你可以做任何你想做的事情：
+TypeScript 类型系统设计比较方便，它允许你有一些不正确的行为。例如：任何类型都能被赋值给 `any`，这意味着告诉编译器你可以做任何你想做的事情：
 
 ```ts
 const foo: any = 123;
@@ -38,7 +40,7 @@ class Point2D {
 let p: Point;
 
 // ok, 因为是结构化的类型
-p = new Point(1, 2);
+p = new Point2D(1, 2);
 ```
 
 这允许你动态创建对象（就好像你在 `vanilla JS` 中使用一样），并且它如果能被推断，该对象仍然具有安全性。
@@ -86,10 +88,10 @@ iTakePoint2D({ x: 0 }); // Error: 没有 'y'
 - 协变（Covariant）：只在同一个方向；
 - 逆变（Contravariant）：只在相反的方向；
 - 双向协变（Bivariant）：包括同一个方向和不同方向；
-- 不变（Invariant）：如果类型不完全相同，则他们是不兼容的。
+- 不变（Invariant）：如果类型不完全相同，则它们是不兼容的。
 
 ::: tip
-对于存在完全可变数据的健全的类型系统（如 JavaScript），`Invariant` 是一个唯一的有效可选属性，但是正如我们提到的，*便利性*迫使我们作出一些不是很安全的选择。
+对于存在完全可变数据的健全的类型系统（如 JavaScript），`Invariant` 是一个唯一的有效可选属性，但是如我们说讨论的，*便利性*迫使我们作出一些不是很安全的选择。
 :::
 
 关于协变和逆变的更多内容，请参考：[What are covariance and contravariance?](https://www.stephanboyer.com/post/132/what-are-covariance-and-contravariance)。
@@ -191,7 +193,7 @@ addEventListener(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => consol
 addEventListener(EventType.Mouse, (e: number) => console.log(e));
 ```
 
-同样的，你也可以把 `Array<Child>` 赋值给 `Array<Base>` （协变），因为函数是兼容的。数组的斜变需要所有的函数 `Array<Child>` 都能赋值给 `Array<Base>`，例如 `push(t: Child)` 能被赋值给 `push(t: Base)`，这能可以通过函数参数双向协变实现。
+同样的，你也可以把 `Array<Child>` 赋值给 `Array<Base>` （协变），因为函数是兼容的。数组的协变需要所有的函数 `Array<Child>` 都能赋值给 `Array<Base>`，例如 `push(t: Child)` 能被赋值给 `push(t: Base)`，这能可以通过函数参数双向协变实现。
 
 这对于来自其他语言的人来说，可能会感到很困惑，等他们希望以下错误不会出现在 TypeScript 中：
 
@@ -241,7 +243,7 @@ enum Color {
 let status = Status.Ready;
 let color = Color.Red;
 
-status = color;
+status = color; // Error
 ```
 
 ## 类

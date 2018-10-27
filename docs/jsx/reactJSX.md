@@ -161,7 +161,7 @@ const foo = <T extneds {}>(x: T) => x
 
 ### 类型断言
 
-正如我们之前[提到](../typings/typeAssertion.md#as-foo-与-foo)的，使用 `as Foo` 语法来进行类型断言。
+如我们之前[提到](../typings/typeAssertion.md#as-foo-与-foo)的，可以使用 `as Foo` 语法进行类型断言。
 
 ## 默认 Props
 

@@ -39,9 +39,9 @@ type OneToFive = 1 | 2 | 3 | 4 | 5;
 type Bools = true | false;
 ```
 
-## 推理
+## 推断
 
-通常，你会得到一个类似于 `Type string is not assignable to type 'foo'` 的错误，就好像如下一样：
+通常，你会得到一个类似于 `Type string is not assignable to type 'foo'` 的错误，如下：
 
 ```ts
 function iTakeFoo(foo: 'foo') {}

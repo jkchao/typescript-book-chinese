@@ -4,7 +4,7 @@
 
 ## typeof
 
-TypeScript 了解到 JavaScript 中 `instanceof` 和 `typeof` 运算符的用法。如果你在一个条件块中使用这些，TypeScript 将会理解在条件块中的的变量类型。如下例所示，TypeScript 将会辨别 `string` 上是否存在特定的函数，以及是否发生了拼写错误：
+TypeScript 熟知 JavaScript 中 `instanceof` 和 `typeof` 运算符的用法。如果你在一个条件块中使用这些，TypeScript 将会推导出在条件块中的的变量类型。如下例所示，TypeScript 将会辨别 `string` 上是否存在特定的函数，以及是否发生了拼写错误：
 
 ```ts
 function doSome(x: number | string) {
@@ -48,7 +48,7 @@ doStuff(new Foo());
 doStuff(new Bar());
 ```
 
-TypeScript 甚至能够理解 `else`。当你使用 `if` 来缩小类型时，TypeScript 知道在其他块中并不是 `if` 中的类型：
+TypeScript 甚至能够理解 `else`。当你使用 `if` 来缩小类型时，TypeScript 知道在其他块中的类型并不是 `if` 中的类型：
 
 ```ts
 class Foo {
@@ -125,7 +125,7 @@ function doStuff(arg: Foo | Bar) {
 
 ## 使用定义的类型保护
 
-JavaScript 并没有内置非常丰富的、运行时的自我检查。当你在使用普通的 JavaScript 对象时（使用结构类型，更有意处），你甚至无法访问 `instacneof` 和 `typeof`。在这种情景下，你可以创建*用户自定义的类型保护函数*，这仅仅是一个返回值为类似于`someArgumentName is SomeType` 的函数，如下：
+JavaScript 并没有内置非常丰富的、运行时的自我检查机制。当你在使用普通的 JavaScript 对象时（使用结构类型，更有意处），你甚至无法访问 `instacneof` 和 `typeof`。在这种情景下，你可以创建*用户自定义的类型保护函数*，这仅仅是一个返回值为类似于`someArgumentName is SomeType` 的函数，如下：
 
 ```ts
 // 仅仅是一个 interface
