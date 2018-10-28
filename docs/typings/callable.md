@@ -3,7 +3,7 @@
 你可以使用类型别名或者接口来表示一个可被调用的类型注解：
 
 ```ts
-interface ReutrnString {
+interface ReturnString {
   (): string;
 }
 ```
@@ -11,7 +11,7 @@ interface ReutrnString {
 它可以表示一个返回值为 `string` 的函数：
 
 ```ts
-declare const foo: ReutrnString;
+declare const foo: ReturnString;
 
 const bar = foo(); // bar 被推断为一个字符串。
 ```
