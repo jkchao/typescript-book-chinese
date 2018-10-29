@@ -52,11 +52,11 @@ try {
 }
 ```
 
-## 接口 `ElementClass` 不能同时扩展 `Component` 和 `Component`
+## 接口 `ElementClass` 不能同时扩展类型别名 `Component` 和 `Component`
 
 当在编译上下文中同时含有两个 `react.d.ts`（`@types/react/index.d.ts`）会发生这种情况。
 
 修复：
 
-- 删除 `node_modules` 和任何 `package-lock`（或者 `yarn lock`），然后再一次 `npm insta`；
+- 删除 `node_modules` 和任何 `package-lock`（或者 `yarn lock`），然后再一次 `npm install`；
 - 如果这不能工作，查找无效的模块（你所使用的所用用到了 `react.d.ts` 模块应该做为 `peerDependency` 而不是做为 `dependency` 使用）并且把这个报告给相关模块。

@@ -60,7 +60,7 @@ fooId = barId; // error
 barId = fooId; // error
 
 // 创建一个新的
-fooId ＝ 'foo' as FooId;
+fooId = 'foo' as FooId;
 barId = 'bar' as BarId;
 
 // 两种类型都与基础兼容
