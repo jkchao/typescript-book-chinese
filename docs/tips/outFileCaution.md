@@ -38,7 +38,7 @@ class Bar extends Foo {}
 
 ```ts
 module App {
-  export cosnt foo = 123;
+  export const foo = 123;
 }
 ```
 
