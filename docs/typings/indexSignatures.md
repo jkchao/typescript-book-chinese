@@ -2,7 +2,7 @@
 
 可以用字符串访问 JavaScript 中的对象（TypeScript 中也一样），用来保存对其他对象的引用。
 
-这有一个快速开始的例子：
+例如：
 
 ```ts
 let foo: any = {};
@@ -10,7 +10,7 @@ foo['Hello'] = 'World';
 console.log(foo['Hello']); // World
 ```
 
-我们在键 `Hello` 下保存了一个字符串 `World`，记住我们提到过它可以保存任意的 JavaScript 对象，理所当然，它也能保存一个类的实例。
+我们在键 `Hello` 下保存了一个字符串 `World`，除字符串外，它也可以保存任意的 JavaScript 对象，例如一个类的实例。
 
 ```ts
 class Foo {
@@ -25,7 +25,7 @@ foo['Hello'] = new Foo('World');
 foo['Hello'].log(); // World
 ```
 
-同样的，我们说过它能被一个字符串访问。当你传进一个其他对象至索引签名时，JavaScript 会在得到结果之前会先调用 `.toString`：
+当你传入一个其他对象至索引签名时，JavaScript 会在得到结果之前会先调用 `.toString` 方法：
 
 ```ts
 let obj = {
@@ -56,7 +56,7 @@ console.log(foo[0]); // World
 
 ## TypeScript 索引签名
 
-首先，由于 JavaScript 在一个对象类型的索引签名上会隐式调用 `toString` 方法，在 TypeScript 中，为防止初学者砸伤自己的脚（我总是看到 `stackoverflow` 上有很多 JavaScript 使用者都会这样。），它将会抛出一个错误。
+JavaScript 在一个对象类型的索引签名上会隐式调用 `toString` 方法，而在 TypeScript 中，为防止初学者砸伤自己的脚（我总是看到 stackoverflow 上有很多 JavaScript 使用者都会这样。），它将会抛出一个错误。
 
 ```ts
 const obj = {
@@ -132,14 +132,14 @@ foo['a'].messages;
 ```
 
 ::: tip
-索引签名的名称（如：`{ [index: string]: { message: string } }` 里的 `index` ）除了可读性外，并没有任何意义。例如：如果有一个用户名，你可以使用 `{ username: string}: { message: string }` 来帮助下一位使用此代码的开发人员（这可能会是你）。
+索引签名的名称（如：`{ [index: string]: { message: string } }` 里的 `index` ）除了可读性外，并没有任何意义。例如：如果有一个用户名，你可以使用 `{ username: string}: { message: string }`，这有利于下一个开发者理解你的代码。
 :::
 
 `number` 类型的索引也支持：`{ [count: number]: 'SomeOtherTypeYouWantToStoreEgRebate' }`。
 
 ## 所有成员都必须符合字符串的索引签名
 
-一旦你拥有了一个索引签名，所有明确的成员都必须符合索引签名：
+当你声明一个索引签名时，所有明确的成员都必须符合索引签名：
 
 ```ts
 // ok
@@ -194,7 +194,7 @@ const good: FromIndex = { b: 1, c: 2 };
 const bad: FromIndex = { b: 1, c: 2, d: 3 };
 ```
 
-这通常与 `keyof/typeof` 一起使用，来获取变量的类型，如下一章节所示。
+这通常与 `keyof/typeof` 一起使用，来获取变量的类型，在下一章节中，我们将解释它。
 
 变量的规则一般可以延迟被推断：
 
@@ -206,7 +206,7 @@ type FromSomeIndex<K extends string> = { [key in K]: number };
 
 这并不是一个常见的用例，但是 TypeScript 支持它。
 
-然后，`string` 类型的索引签名比 `number` 类型的索引签名更严格。这是故意设计如此，它允许你有如下类型：
+`string` 类型的索引签名比 `number` 类型的索引签名更严格。这是故意设计，它允许你有如下类型：
 
 ```ts
 interface ArrStr {
@@ -274,9 +274,7 @@ const failsSliently: NestedCSS {
 
 ## 索引签名中排出某些属性
 
-有些时候，你需要把属性合并至索引签名里。我们并不建议这么做，你应该使用上文中提到的嵌套索引签名的形式。
-
-然而，如果你想在现有的 TypeScript 上使用索引签名，你可以使用交集类型来解决一些问题。在以下代码中，如果不使用交叉类型，你将会收到一个报错提示：
+有时，你需要把属性合并至索引签名（虽然我们并不建议这么做，你应该使用上文中提到的嵌套索引签名的形式），如下例子：
 
 ```ts
 type FieldState = {
@@ -289,7 +287,7 @@ type FromState = {
 };
 ```
 
-使用交叉类型可以解决上述问题：
+TypeScript 会报错，因为添加的索引签名，并不兼容它原有的类型，使用交叉类型可以解决上述问题：
 
 ```ts
 type FieldState = {
@@ -299,7 +297,7 @@ type FieldState = {
 type FormState = { isValid: boolean } & { [fieldName: string]: FieldState };
 ```
 
-请注意尽管你可以声明它至一个已存在的 TypeScript 模型上，你也不可以通过 TypeScript 创建如下的对象：
+请注意尽管你可以声明它至一个已存在的 TypeScript 类型上，但是你不能创建如下的对象：
 
 ```ts
 type FieldState = {
