@@ -248,7 +248,7 @@ const failsSilently: NestedCSS = {
 };
 ```
 
-取而代之，我们把索引签名分离到自己的属性里，如命名为 `next`（或者 `children`、`subnodes` 等）：
+取而代之，我们把索引签名分离到自己的属性里，如命名为 `nest`（或者 `children`、`subnodes` 等）：
 
 ```ts
 interface NestedCSS {
