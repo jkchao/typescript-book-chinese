@@ -26,7 +26,7 @@ function move(distance: number, direction: CardinalDirection) {
   // ...
 }
 
-move(1, 'Notrh'); // ok
+move(1, 'North'); // ok
 move(1, 'Nurth'); // Error
 ```
 
