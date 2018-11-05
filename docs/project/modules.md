@@ -2,7 +2,7 @@
 
 ## 全局模块
 
-默认情况下，当你开始在一个新的 TypeScript 写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
+默认情况下，当你开始在一个新的 TypeScript 文件中写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
 
 ```ts
 const foo = 123;
@@ -18,7 +18,7 @@ const bar = foo; // allowed
 
 ## 文件模块
 
-它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把以前写的 `foo.ts` 改成如下方式（注意 `export` 用法）：
+它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把上文 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```ts
 export const foo = 123;
@@ -37,13 +37,11 @@ import { foo } from './foo';
 const bar = foo; // allow
 ```
 
-在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入内容，而且它将此文件 `bar.ts` 标记为一个模块，因此 `bar.ts` 中的定义的声明也不会污染全局命名空间。
-
-从使用外部模块由编译器标志驱动的 TypeScript 文件，编译出 JavaScript 的文件，被称为模块。
+在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入的内容，而且它会将此文件 `bar.ts` 标记为一个模块，文件内定义的声明也不会污染全局命名空间。
 
 ## 文件模块详情
 
-文件模块拥有强大的能力和可用性。在这里，我们来讨论它的能力以及它的一些用法。
+文件模块拥有强大的能力和可用性。在这里，我们来讨论它的能力以及一些用法。
 
 ### 澄清：commonjs, amd, es modules, others
 
@@ -57,14 +55,14 @@ const bar = foo; // allow
 
 使用 `module: commonjs` 选项来替代这些模式，这会是一个好的注意。
 
-怎么书写 TypeScript 模块，这也是一件让人困惑的事。再一次，在今天我们应该这么做：
+怎么书写 TypeScript 模块，这也是一件让人困惑的事。在今天我们应该这么做：
 
 - `import foo = require('foo')` 例如： `import/require` 使用 ES 模块语法。
 
 这很酷，接下来，让我们看看 ES 模块语法。
 
 :::tip
-使用 `module: commonjs` 选项以及使用 ES 模块语法导入导出其他模块
+使用 `module: commonjs` 选项以及使用 ES 模块语法导入导出其他模块。
 :::
 
 ### ES 模块语法
@@ -147,7 +145,7 @@ export { someVar as aDifferentName } from './foo';
 
 #### 默认导入／导出
 
-正如你即将所要学到的，我并不喜欢用默认导出，虽然这里存在默认导出的语法：
+我并不喜欢用默认导出，虽然有默认导出的语法：
 
 - 使用 `export default`
   - 在一个变量之前（不需要使用 `let/const/var`）；
@@ -174,7 +172,7 @@ import someLocalNameForThisFile from './foo';
 ### 模块路径
 
 :::tip
-我将假定使用 `moduleResolution: node` 选项。这个选项应该在你 TypeScript 配置文件里。如果你使用了 `module: commonjs` 选项， `moduleResolution: node` 将会默认开启。
+假设你使用 `moduleResolution: node` 选项。这个选项应该在你 TypeScript 配置文件里。如果你使用了 `module: commonjs` 选项， `moduleResolution: node` 将会默认开启。
 :::
 
 这里存在两种不同截然不同的模块，它们是由导入语句中的不同的路径写法所引起的（例如：`import foo from 'THIS IS THE PATH SECTION'`）。
@@ -228,7 +226,7 @@ import someLocalNameForThisFile from './foo';
 
 ### 重写类型的动态查找
 
-在你的项目里，你可以通过 `declare module 'somePath'` 来声明一个全局模块，然后它可以解决模块路径的问题：
+在你的项目里，你可以通过 `declare module 'somePath'` 来声明一个全局模块的方式，用来解决查找模块路径的问题：
 
 ```ts
 // globals.d.ts
@@ -238,7 +236,7 @@ declare module 'foo' {
 }
 ```
 
-然后：
+接着：
 
 ```ts
 // anyOtherTsFileInYourProject.ts
@@ -262,7 +260,7 @@ import foo = require('foo');
 
 你可以选择仅加载类型信息，而没有运行时的依赖关系。在继续之前，你可能需要重新阅读本书的 [声明空间部分](./declarationspaces.md) 部分。
 
-如果你没有把导入的名称当做变量声明空间来用，在编译成 JavaScript 时，导入的模块将会被完全移除。这有一些最好的例子，当你了解了它们之后，我们将会给出一些使用例子。
+如果你没有把导入的名称当做变量声明空间来用，在编译成 JavaScript 时，导入的模块将会被完全移除。这有一些较好的例子，当你了解了它们之后，我们将会给出一些使用例子。
 
 #### 例子 1
 

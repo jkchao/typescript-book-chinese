@@ -23,8 +23,8 @@ let bas: Bas;
 注意，尽管你定义了 `interface Bar`，你并不能够将它做为一个变量使用，因为它没有定义在变量声明空间中：
 
 ```ts
-interface Bar {};
-const bar = Bar;  // Error: "cannot find name 'Bar'"
+interface Bar {}
+const bar = Bar; // Error: "cannot find name 'Bar'"
 ```
 
 提示 `cannot find name 'Bar'` 的原因是名称 `Bar` 并未定义在变量声明空间。这将带领我们进入下一个主题 "变量声明空间"。
@@ -49,7 +49,7 @@ const someOtherVar = 123;
 
 ```js
 const foo = 123;
-var bar: foo; // ERROR: "cannot find name 'foo'"
+let bar: foo; // ERROR: "cannot find name 'foo'"
 ```
 
 提示 `cannot find name` 的原因是，名称 `foo` 没有定义在类型声明空间里。
