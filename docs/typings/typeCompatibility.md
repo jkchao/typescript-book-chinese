@@ -332,7 +332,7 @@ let reverse = function<U>(y: U): U {
 identity = reverse; // ok, 因为 `(x: any) => any` 匹配 `(y: any) => any`
 ```
 
-类中的泛型兼容性与前文所提到的一致：
+类中的泛型兼容性与前文所提及一致：
 
 ```ts
 class List<T> {
