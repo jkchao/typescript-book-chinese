@@ -51,8 +51,8 @@ const bar = foo; // allow
 
 你可以根据不同的 `module` 选项来把 TypeScript 编译成不同的 JavaScript 模块类型，这有一些你可以忽略的：
 
-- AMD: 不要使用它，它仅能在浏览器工作；
-- SystemJS：这是一个好的实验，已经被 ES 模块替代。
+- AMD：不要使用它，它仅能在浏览器工作；
+- SystemJS：这是一个好的实验，已经被 ES 模块替代；
 - ES 模块：它并没有准备好。
 
 使用 `module: commonjs` 选项来替代这些模式，这会是一个好的注意。
@@ -369,7 +369,7 @@ const ensureImport: any = foo || bar || bas;
 
 在上文中，当我们讨论文件模块时，比较了全局变量与文件模块，并且我们推荐使用基于文件的模块，而不是选择污染全局命名空间。
 
-然而，如果你的团队里有 TypeScript 初学者，你可以提供它们一个 `globals.d.ts` 文件，用来将一些接口或者类型放入全局命名空间里，这些定义的接口和类型能在你的所有 TypeScript 代码里使用。
+然而，如果你的团队里有 TypeScript 初学者，你可以提供他们一个 `globals.d.ts` 文件，用来将一些接口或者类型放入全局命名空间里，这些定义的接口和类型能在你的所有 TypeScript 代码里使用。
 
 :::tip
 对于任何需要编译成 JavaScript 代码，我们强烈建议你放入文件模块里。
