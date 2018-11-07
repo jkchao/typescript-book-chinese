@@ -36,7 +36,7 @@ let bar: Bar; // ok
 你可以通过 `typeof` 操作符在类型注解中使用变量。这允许你告诉编译器，一个变量的类型与其他类型相同，如下所示：
 
 ```ts
-const foo = 123;
+let foo = 123;
 let bar: typeof foo; // 'bar' 类型与 'foo' 类型相同（在这里是： 'number'）
 
 bar = 456; // ok
