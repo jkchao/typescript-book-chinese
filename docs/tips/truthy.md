@@ -1,4 +1,4 @@
-# Thuthy
+# Truthy
 
 JavaScript 有一个 `truthy` 概念，即在某些场景下会被推断为 `true`，例如除 `0` 以外的任何数字：
 

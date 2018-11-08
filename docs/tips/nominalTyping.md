@@ -20,7 +20,7 @@ type FooId = Id<'foo'>;
 type BarId = Id<'bar'>;
 
 // 可选：构造函数
-const createFoo = (value: stirng): FooId => ({ type: 'foo', value });
+const createFoo = (value: string): FooId => ({ type: 'foo', value });
 const createBar = (value: string): BarId => ({ type: 'bar', value });
 
 let foo = createFoo('sample');
