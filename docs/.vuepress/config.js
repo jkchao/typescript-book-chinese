@@ -123,7 +123,7 @@ module.exports = {
       {
         title: 'TypeScript 更新',
         collapsable: false,
-        children: ['/release/TypeScript 3.1', '/release/TypeScript 3.0']
+        children: []
       }
     ]
   }
