@@ -1,6 +1,6 @@
 # 枚举
 
-枚举是组织收集有关联变量的一种方式，许多程序语言（如：c/c#/Java）都有枚举数据类型，但 JavaScript 却没有，TypeScript 有。下面是定义一个 TypeScript 枚举类型的方式：
+枚举是组织收集有关联变量的一种方式，许多程序语言（如：c/c#/Java）都有枚举数据类型。下面是定义一个 TypeScript 枚举类型的方式：
 
 ```ts
 enum CardSuit {
@@ -59,7 +59,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-先让我们聚焦于代码高亮的一行，其中 `Tristate["False"] = 0` 用于自我解释，例如将 `Tristate` 对象里的 `False` 成员值设置为 `0`。注意，JavaScript 赋值运算符返回的值是被赋予的值（在此例子中是 `0`），因此下一次 JavaScript 运行时执行的代码是 `Tristate[0] = "False"`。意味着你可以使用 `Tristate` 变量来把字符串枚举类型改造成一个数字或者是数字类型的枚举类型，如下所示：
+先让我们聚焦于代码高亮的一行，其中 `Tristate['False'] = 0` 用于自我解释，例如将 `Tristate` 对象里的 `False` 成员值设置为 `0`。注意，JavaScript 赋值运算符返回的值是被赋予的值（在此例子中是 `0`），因此下一次 JavaScript 运行时执行的代码是 `Tristate[0] = 'False'`。意味着你可以使用 `Tristate` 变量来把字符串枚举类型改造成一个数字或者是数字类型的枚举类型，如下所示：
 
 ```ts
 enum Tristate {
@@ -68,9 +68,9 @@ enum Tristate {
   Unkown
 }
 
-console.log(Tristate[0]); // "False"
+console.log(Tristate[0]); // 'False'
 console.log(Tristate['False']); // 0
-console.log(Tristate[Tristate.False]); // "False" because `Tristate.False == 0`
+console.log(Tristate[Tristate.False]); // 'False' because `Tristate.False == 0`
 ```
 
 ## 改变与数字枚举关联的数字
@@ -293,7 +293,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-我们已经解释了 `Tristate[Tristate["False"] = 0] = "False"` 部分，现在我们来看看包裹函数 `(function (Tristate) { /* code here */})(Tristate || (Tristate = {}))`，特别是 `(Tristate || (Tristate = {}))` 部分。这捕获了一个局部变量 `TriState`，它将指向已经定义的 `TriState` 或者是使用一个新的控对象初始化它。
+我们已经解释了 `Tristate[Tristate['False'] = 0] = 'False'` 部分，现在我们来看看包裹函数 `(function (Tristate) { /* code here */})(Tristate || (Tristate = {}))`，特别是 `(Tristate || (Tristate = {}))` 部分。这捕获了一个局部变量 `TriState`，它将指向已经定义的 `TriState` 或者是使用一个新的控对象初始化它。
 
 这意味着你可以跨多个文件拆分（和扩展）枚举定义，如下所示，你可以把 `Color` 的定义拆分至两个块中：
 
@@ -312,5 +312,5 @@ enum Color {
 ```
 
 ::: tip
-你应该在枚举的延续块中，初始化第一个成员，以便生成的代码不是先前定义的枚举类型值。TypeScript 将会发出警告，如果你定义初始值（错误信息是：`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`）。
+你应该在枚举的延续块中，初始化第一个成员，以便生成的代码不是先前定义的枚举类型值。TypeScript 将会发出警告，如果你定义初始值（错误信息：`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`）。
 :::

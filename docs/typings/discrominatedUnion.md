@@ -36,7 +36,7 @@ function area(s: Shape) {
 
 ## 详细的检查
 
-通常，你可能会想确认联合类型的成员会有一些针对它们自己的代码（行动）。
+通常，联合类型的成员有一些自己的行为（代码）：
 
 ```ts
 interface Square {
@@ -129,7 +129,7 @@ function area(s: Shape) {
 
 ## strictNullChecks
 
-如果你使用 `strictNullChecks`，并且用它来做详细的检查，你应该返回这个 `_exhaustiveCheck` 变量（类型是 `never`），否则 TypeScript 可能会推断返回值为 `undefined`：
+如果你使用 `strictNullChecks` 选项来做详细的检查，你应该返回 `_exhaustiveCheck` 变量（类型是 `never`），否则 TypeScript 可能会推断返回值为 `undefined`：
 
 ```ts
 function area(s: Shape) {
