@@ -119,7 +119,7 @@ try {
 }
 
 try {
-  const bar = run Task2();
+  const bar = runTask2();
 } catch (e) {
   console.log('Error:', e);
 }
@@ -137,7 +137,7 @@ try {
 }
 
 try {
-  const bar = run Task2();
+  const bar = runTask2();
 } catch (e) {
   console.log('Error:', e);
 }

@@ -179,6 +179,33 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "shenzekun",
+      "name": "Moorez",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/21151080?v=4",
+      "profile": "http://shenzekun.cn/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "yepbug",
+      "name": "萤火之未",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/26736658?v=4",
+      "profile": "https://github.com/yepbug",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "xfields",
+      "name": "xfields",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6301070?v=4",
+      "profile": "https://github.com/xfields",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }

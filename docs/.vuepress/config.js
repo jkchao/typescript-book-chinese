@@ -67,7 +67,8 @@ module.exports = {
           '/typings/indexSignatures',
           '/typings/movingTypes',
           '/typings/exceptionsHanding',
-          '/typings/mixins'
+          '/typings/mixins',
+          '/typings/thisType'
         ]
       },
       {
@@ -102,7 +103,7 @@ module.exports = {
           '/tips/truthy',
           '/tips/buildToggles',
           '/tips/typesafeEventEmitter',
-          '/tips/thisType.md'
+          '/tips/metadata'
         ]
       },
       {
