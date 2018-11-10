@@ -1,5 +1,7 @@
 # 协变与逆变
 
+> [原文链接: what are covariance and contravariance](https://www.stephanboyer.com/post/132/what-are-covariance-and-contravariance)
+
 [子类型](https://en.wikipedia.org/wiki/Subtyping) 在编程理论上是一个复杂的话题，而他的复杂之处来自于一对经常会被混淆的现象，我们称之为*协变*与*逆变*。这篇文章将会解释上述两个概念。
 
 开始文章之前我们先约定如下的标记：
