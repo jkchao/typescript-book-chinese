@@ -103,7 +103,8 @@ module.exports = {
           '/tips/truthy',
           '/tips/buildToggles',
           '/tips/typesafeEventEmitter',
-          '/tips/metadata'
+          '/tips/metadata',
+          '/tips/covarianceAndContravariance'
         ]
       },
       {
