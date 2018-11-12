@@ -1,8 +1,8 @@
 # 辨析联合类型
 
-如果你拥有一个[字面量成员](./literals.md)的类，那么你可以使用该类的属性来辨析联合类型。
+当类中含有[字面量成员](./literals.md)时，我们可以用该类的属性来辨析联合类型。
 
-做为一个例子，考虑 `Square` 和 `Rectangle` 的联合类型。在这里，我们有一个成员 `kind`，它存在于联合成员里，并且它是一个特殊的字面量类型。
+做为一个例子，考虑 `Square` 和 `Rectangle` 的联合类型 `Shape`。`Square` 和 `Rectangle`有共同成员 `kind`，因此 `kind` 存在于 `Shape` 中。
 
 ```ts
 interface Square {
