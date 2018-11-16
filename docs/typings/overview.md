@@ -266,7 +266,7 @@ const b = x.b;
 
 ## 元组类型
 
-JavaScript 并没有支持类似于元组的支持。开发者通常只能使用数组来表示元组，但是 TypeScript 类型系统支持它。使用 `:[typeofmember1, typeofmember2]` 能够为元祖添加类型注解，元祖可以包含任意数量的成员，以下例子演示了元组：
+JavaScript 并没有支持类似于元组的支持。开发者通常只能使用数组来表示元组，但是 TypeScript 类型系统支持它。使用 `:[typeofmember1, typeofmember2]` 能够为元组添加类型注解，元组可以包含任意数量的成员，以下例子演示了元组：
 
 ```ts
 let nameNumber: [string, number];
