@@ -1,6 +1,6 @@
 # Freshness
 
-为了能让检查对象字面量类型更容易，TypeScript 提供 Freshness 的概念（它也被称为更严格的对象字面量检查）用来确保对象字面量在结构上类型兼容。
+为了能让检查对象字面量类型更容易，TypeScript 提供 「[Freshness](https://github.com/Microsoft/TypeScript/pull/3823)」 的概念（它也被称为更严格的对象字面量检查）用来确保对象字面量在结构上类型兼容。
 
 结构类型非常方便。考虑如下例子代码，它可以让你非常便利的从 JavaScript 迁移至 TypeScript，并且会提供类型安全：
 
@@ -18,7 +18,7 @@ logName(animal); // ok
 logName(randow); // Error: 没有 `name` 属性
 ```
 
-然而，结构类型有一个缺点，它能误导你认为某些东西接收的数据比它实际的多。如下例，TypeScript 发出错误警告：
+但是，结构类型有一个缺点，它能误导你认为某些东西接收的数据比它实际的多。如下例，TypeScript 发出错误警告：
 
 ```ts
 function logName(something: { name: string }) {
@@ -53,7 +53,7 @@ logIfHasName(animal); // okay
 logIfHasName({ neme: 'I just misspelled name to neme' }); // Error: 对象字面量只能指定已知属性，`neme` 属性不存在。
 ```
 
-之所以只对对象字面量进行类型检查的原因是，在这种情况下，那些实际上并没有被使用到的属性有可能会拼写错误或者会被误用。[相关 PR](https://github.com/Microsoft/TypeScript/pull/3823)
+之所以只对对象字面量进行类型检查，因为在这种情况下，那些实际上并没有被使用到的属性有可能会拼写错误或者会被误用。
 
 ## 允许额外的属性
 
