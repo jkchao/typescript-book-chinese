@@ -79,12 +79,12 @@ name = {
 };
 
 name = {
-  // Errpr: 'Second is missing'
+  // Error: 'Second is missing'
   first: 'John'
 };
 
 name = {
-  // Errpr: 'Second is the wrong type'
+  // Error: 'Second is the wrong type'
   first: 'John',
   second: 1337
 };
@@ -108,12 +108,12 @@ name = {
 };
 
 name = {
-  // Errpr: 'Second is missing'
+  // Error: 'Second is missing'
   first: 'John'
 };
 
 name = {
-  // Errpr: 'Second is the wrong type'
+  // Error: 'Second is the wrong type'
   first: 'John',
   second: 1337
 };
