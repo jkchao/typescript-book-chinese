@@ -37,7 +37,7 @@ namespace Utility {
   }
 }
 
-// useage
+// usage
 Utility.log('Call me');
 Utility.error('maybe');
 ```
