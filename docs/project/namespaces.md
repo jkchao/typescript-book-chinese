@@ -8,7 +8,7 @@
 })(something || (something = {}));
 ```
 
-基础的 `something || (something = {})` 允许匿名函数 `function (something) {}` 添加属性到已经存在的对象上（`something` 部分），或者会创建一个新对象，然后添加属性至新对象上（`(something = {})` 部分），这意味着你可以拥有由某些边界拆成的不同的块：
+`something || (something = {})` 允许匿名函数 `function (something) {}` 添加属性至已经存在的对象上，或者会创建一个新对象，然后添加属性至新对象上，这意味着你可以拥有由某些边界拆成的不同的块：
 
 ```js
 (function(something) {
@@ -25,7 +25,7 @@ console.log(something);
 console.log(something); // { foo: 123, bar: 456 }
 ```
 
-在确保创建的变量不会泄漏至全局变量中时，这在 JavaScript 中很常见。当使用基于文件模块时，你无须担心这点，但是此种方式，仍然适用于合理的函数逻辑分组中。因此 TypeScript 提供了 `namespace` 关键字用来描述这种分组，如下所示：
+在确保创建的变量不会泄漏至全局变量中时，这种方式在 JavaScript 中很常见。当使用基于文件模块时，你无须担心这点，但是此种方式，仍然适用于合理的函数逻辑分组中。因此 TypeScript 提供了 `namespace` 关键字用来描述这种分组，如下所示：
 
 ```ts
 namespace Utility {
