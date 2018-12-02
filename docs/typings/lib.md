@@ -2,8 +2,8 @@
 
 当你安装 `TypeScript` 时，会顺带安装 `lib.d.ts` 等声明文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见的环境声明。
 
-- 此文件自动包含在 TypeScript 项目的编译上下文中；
-- 此文件能让你快速开始书写经过类型检查的 JavaScript 代码。
+- 它自动包含在 TypeScript 项目的编译上下文中；
+- 它能让你快速开始书写经过类型检查的 JavaScript 代码。
 
 你可以通过指定 `--noLib` 的编译器命令行标志（或者在 `tsconfig.json` 中指定选项 `noLib`: true）从上下文中排除此文件。
 
@@ -31,7 +31,7 @@ const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 
 `lib.d.ts` 的内容主要是一些变量声明（如：`window`、`document`、`math`）和一些类似的接口声明（如：`Window`、`Document`、`Math`）。
 
-最简单的方式寻找你所知道代码的类型（如：`Math.floor`）是使用使用你的 IDE 的 `F12`（跳转到定义）。
+最简单的方式寻找代码的类型（如：`Math.floor`）是使用 IDE 的 `F12`（跳转到定义）。
 
 让我们来看一个示例变量的声明，如 `window` 被定义为：
 
@@ -39,7 +39,7 @@ const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 declare var window: Window;
 ```
 
-这只是一个简单的 `declare var`，后面跟了一个变量名称（这里是 `window`）和一个用来类型注解的接口（这里是 `Window` 接口），这些变量通常指向一些全局的接口，例如，以下是 `Window` 接口的一小部分：
+这只是一个简单的 `declare var`，后面跟一个变量名称（`window`）和一个用来类型注解的接口（`Window` 接口），这些变量通常指向一些全局的接口，例如，以下是 `Window` 接口的一小部分：
 
 ```ts
 interface Window {
@@ -60,13 +60,13 @@ interface Window {
 }
 ```
 
-你可以在这些接口里看到大量的类型信息，当你不使用 TypeScript 时，你需要将它们保存在你的大脑里。现在你可以在编译器里使用 `intellisense` 之类东西，从而可以减少对知识的记忆。
+你可以在这些接口里看到大量的类型信息，当你不使用 TypeScript 时，你需要将它们保存在你的大脑里。现在你可以使用 `intellisense` 之类东西，从而可以减少对知识的记忆。
 
 使用这些全局变量是有利的。在不更改 `lib.d.ts` 的情景下，它可以让你添加额外的属性。接下来，我们将介绍这些概念。
 
 ## 修改原始类型
 
-在 TypeScript 中，接口是开放式的，这意味着你仅仅是需要添加成员至 `lib.d.ts` 中的接口声明中，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们推荐你创建一个称为 `globals.d.ts` 的特殊文件。
+在 TypeScript 中，接口是开放式的，这意味着当你想使用不存在的成员时，你仅仅是需要添加它们至 `lib.d.ts` 中的接口声明中，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们推荐你创建一个称为 `globals.d.ts` 的特殊文件。
 
 这里有我们需要添加至 `Window`，`Math`，`Date` 的一些例子：
 
