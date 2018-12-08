@@ -53,7 +53,7 @@ const bar = foo; // allow
 - SystemJS：这是一个好的实验，已经被 ES 模块替代；
 - ES 模块：它并没有准备好。
 
-使用 `module: commonjs` 选项来替代这些模式，这会是一个好的注意。
+使用 `module: commonjs` 选项来替代这些模式，这会是一个好的主意。
 
 怎么书写 TypeScript 模块，这也是一件让人困惑的事。在今天我们应该这么做：
 
