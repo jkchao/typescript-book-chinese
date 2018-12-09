@@ -50,7 +50,7 @@
     "noUnusedLocals": true,                // 有未使用的变量时，抛出错误
     "noUnusedParameters": true,            // 有未使用的参数时，抛出错误
     "noImplicitReturns": true,             // 并不是所有函数里的代码都有返回值时，抛出错误
-    "noFallthroughCasesInSwitch": true,    // 报告switch语句的fallthrough错误。（即，不允许switch的case语句贯穿）
+    "noFallthroughCasesInSwitch": true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
 
     /* 模块解析选项 */
     "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
