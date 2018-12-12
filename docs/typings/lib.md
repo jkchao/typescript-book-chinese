@@ -42,15 +42,7 @@ declare var window: Window;
 这只是一个简单的 `declare var`，后面跟一个变量名称（`window`）和一个用来类型注解的接口（`Window` 接口），这些变量通常指向一些全局的接口，例如，以下是 `Window` 接口的一小部分：
 
 ```ts
-interface Window {
-  extends EventTarget,
-    WindowTimers,
-    WindowSessionStorage,
-    WindowLocalStorage,
-    WindowConsole,
-    GlobalEventHandlers,
-    IDBEnvironment,
-    WindowBase64 {
+interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
   animationStartTime: number;
   applicationCache: ApplicationCache;
   clientInformation: Navigator;
@@ -176,7 +168,7 @@ const todayAfter1second = today.addMilliseconds(1000);
 
 ### string
 
-如果你在 `lib.d.ts` 里寻找 `string`，你将会找到与 `Date` 想类似的内容（全局变量 `String`，`StringConstructor` 接口，`String` 接口）。但是值得注意的是，`String` 接口也会影响字符串字面量，如下所示：
+如果你在 `lib.d.ts` 里寻找 `string`，你将会找到与 `Date` 相类似的内容（全局变量 `String`，`StringConstructor` 接口，`String` 接口）。但是值得注意的是，`String` 接口也会影响字符串字面量，如下所示：
 
 ```ts
 interface String {
@@ -236,7 +228,7 @@ console.log('foo bas'.endsWith('bas')); // true
 
 ## `--lib` 选项
 
-一些时候，你想要解耦编译目标（生成的 JavaScript 版本）和环境库支持之间的关系。例如对于 Promise，你的编译目标是 `--target es5`，当时你仍然想使用它，这个时候，你可以使用 `lib` 对它进行控制。
+一些时候，你想要解耦编译目标（生成的 JavaScript 版本）和环境库支持之间的关系。例如对于 Promise，你的编译目标是 `--target es5`，但是你仍然想使用它，这个时候，你可以使用 `lib` 对它进行控制。
 
 ::: tip
 使用 `--lib` 选项可以将任何 `lib` 与 `--target` 解偶。
