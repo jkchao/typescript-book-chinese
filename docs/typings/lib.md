@@ -228,7 +228,7 @@ console.log('foo bas'.endsWith('bas')); // true
 
 ## `--lib` 选项
 
-一些时候，你想要解耦编译目标（生成的 JavaScript 版本）和环境库支持之间的关系。例如对于 Promise，你的编译目标是 `--target es5`，当时你仍然想使用它，这个时候，你可以使用 `lib` 对它进行控制。
+一些时候，你想要解耦编译目标（生成的 JavaScript 版本）和环境库支持之间的关系。例如对于 Promise，你的编译目标是 `--target es5`，但是你仍然想使用它，这个时候，你可以使用 `lib` 对它进行控制。
 
 ::: tip
 使用 `--lib` 选项可以将任何 `lib` 与 `--target` 解偶。
