@@ -42,15 +42,7 @@ declare var window: Window;
 这只是一个简单的 `declare var`，后面跟一个变量名称（`window`）和一个用来类型注解的接口（`Window` 接口），这些变量通常指向一些全局的接口，例如，以下是 `Window` 接口的一小部分：
 
 ```ts
-interface Window {
-  extends EventTarget,
-    WindowTimers,
-    WindowSessionStorage,
-    WindowLocalStorage,
-    WindowConsole,
-    GlobalEventHandlers,
-    IDBEnvironment,
-    WindowBase64 {
+interface Window extends EventTarget, WindowTimers, WindowSessionStorage, WindowLocalStorage, WindowConsole, GlobalEventHandlers, IDBEnvironment, WindowBase64 {
   animationStartTime: number;
   applicationCache: ApplicationCache;
   clientInformation: Navigator;
