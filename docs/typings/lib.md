@@ -168,7 +168,7 @@ const todayAfter1second = today.addMilliseconds(1000);
 
 ### string
 
-如果你在 `lib.d.ts` 里寻找 `string`，你将会找到与 `Date` 想类似的内容（全局变量 `String`，`StringConstructor` 接口，`String` 接口）。但是值得注意的是，`String` 接口也会影响字符串字面量，如下所示：
+如果你在 `lib.d.ts` 里寻找 `string`，你将会找到与 `Date` 相类似的内容（全局变量 `String`，`StringConstructor` 接口，`String` 接口）。但是值得注意的是，`String` 接口也会影响字符串字面量，如下所示：
 
 ```ts
 interface String {
