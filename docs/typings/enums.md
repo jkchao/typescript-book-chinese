@@ -205,7 +205,7 @@ if (value === EvidenceTypeEnum.PASSPORT) {
 
 ## 常量枚举
 
-```ts{5}
+```ts
 enum Tristate {
   False,
   True,
