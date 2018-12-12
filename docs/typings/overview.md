@@ -24,7 +24,7 @@ function identity(num: number): number {
 
 ## 原始类型
 
-JavaScript 原始类型也同样适应于 TypeScript 的类型系统，因此 `string`、`number`、`boolean` 也可以被用作类型注解：
+JavaScript 原始类型也同样适应于 TypeScript 的类型系统，因此 `string`、`number`、`boolean` 也可以被用作类型注解：
 
 ```ts
 let num: number;
