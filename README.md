@@ -9,7 +9,7 @@
 
 ## Why
 
-![downloads](http://ovshyp9zv.bkt.clouddn.com/typescript-downloads.jpeg)
+![downloads](https://github.com/jkchao/typescript-book-chinese/raw/master/docs/.vuepress/public/typescript-downloads.jpg)
 
 > 数据来源：[npm 包下载量](https://npm-stat.com/charts.html?package=typescript&from=2016-01-01&to=2018-07-31)
 
