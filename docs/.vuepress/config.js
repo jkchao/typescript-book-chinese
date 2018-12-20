@@ -23,7 +23,10 @@ module.exports = {
       apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
       indexName: 'jkchao_typescript'
     },
-    nav: [{ text: 'Blog', link: 'https://jkchao.cn' }],
+    nav: [
+      { text: '原书链接', link: 'https://basarat.gitbooks.io/typescript/content/docs/getting-started.html' },
+      { text: 'Blog', link: 'https://jkchao.cn' }
+    ],
     sidebar: [
       {
         title: '写在前面',

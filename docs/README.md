@@ -4,7 +4,7 @@
 
 ## Why
 
-![downloads](http://ovshyp9zv.bkt.clouddn.com/typescript-downloads.jpeg)
+<img :src="$withBase('/typescript-downloads.jpg')" alt="ide"/>
 
 > 数据来源：[npm 包下载量](https://npm-stat.com/charts.html?package=typescript&from=2016-01-01&to=2018-07-31)
 
