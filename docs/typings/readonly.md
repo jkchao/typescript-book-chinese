@@ -3,7 +3,7 @@
 TypeScript 类型系统允许你在一个接口里使用 `readonly` 来标记属性。它能让你以一种更安全的方式工作（不可预期的改变是很糟糕的）：
 
 ```ts
-function foo(config: { readonly bar: number; readonly bas: number }) {
+function foo(config: { readonly bar: number, readonly bas: number }) {
   // ..
 }
 
@@ -113,11 +113,9 @@ foo[0] = 456; // Error: 属性只读
 如果你想以不变的方式使用原生 JavaScript 数组，可以使用 TypeScript 提供的 `ReadonlyArray<T>` 接口：
 
 ```ts
-const foo: ReadonlyArray<number> = [1, 2, 3];
+let foo: ReadonlyArray<number> = [1, 2, 3];
 console.log(foo[0]); // ok
-
 foo.push(4); // Error: ReadonlyArray 上不存在 `push`，因为他会改变数组
-
 foo = foo.concat(4); // ok, 创建了一个复制
 ```
 
