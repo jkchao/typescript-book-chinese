@@ -60,7 +60,7 @@ logIfHasName({ neme: 'I just misspelled name to neme' }); // Error: 对象字面
 一个类型能够包含索引签名，以明确表明可以使用额外的属性：
 
 ```ts
-let x: { foo: number; [x: string]: any };
+let x: { foo: number, [x: string]: any };
 
 x = { foo: 1, baz: 2 }; // ok, 'baz' 属性匹配于索引签名
 ```
