@@ -130,7 +130,7 @@ const X: React.Component<Props> = foo // 来自其他地方
 
 ```tsx
 // 一个泛型组件
-type SelectProps<T> = { item: T[] };
+type SelectProps<T> = { items: T[] };
 class Select<T> extends React.Component<SelectProps<T>, any> {}
 
 // 使用
