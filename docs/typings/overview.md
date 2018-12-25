@@ -320,4 +320,4 @@ type Callback = (data: string) => void;
 
 ## 最后
 
-现在你已经能够为你的大部分 JavaScript 代码添加类型注解，接着，让我们深入了解 TypeScript 的类型系统把。
+现在你已经能够为你的大部分 JavaScript 代码添加类型注解，接着，让我们深入了解 TypeScript 的类型系统吧。
