@@ -228,7 +228,7 @@ interface ArrStr {
 
 ```ts
 interface NestedCSS {
-  color?: string;
+  color?: string;// 原书此处不应有?，因为color可能为undefined类型时不符合索引签名
   [selector: string]: string | NestedCSS;
 }
 
