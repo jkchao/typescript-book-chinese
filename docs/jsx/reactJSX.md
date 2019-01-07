@@ -50,6 +50,10 @@ const myComponent: React.SFC<Props> = props => {
 <MyComponent foo="bar" />;
 ```
 
+::: warning
+`React.SFC` 类型已弃用，推荐使用 `React.FunctionComponent`
+:::
+
 ### 有状态组件
 
 根据组件的 `props` 属性对组件进行类型检查。这是以 JSX 如何转换为蓝本的，例如：属性成为 `props` 的组成部分。
