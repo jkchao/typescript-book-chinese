@@ -228,7 +228,7 @@ interface ArrStr {
 
 ```ts
 interface NestedCSS {
-  color?: string;
+  color?: string; // 'strictNullChecks=false' 时索引签名可为 'undefined'
   [selector: string]: string | NestedCSS;
 }
 
