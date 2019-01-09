@@ -215,7 +215,7 @@ enum Tristate {
 const lie = Tristate.False;
 ```
 
-`const lie = Tristate.False` 编译成 JavaScript `let lie = Tristate.False` (是的，编译后与编译前，几乎相同)。这意味着在运行执行时，它将会查找变量 `Tristate` 和 `Tristate.False`。在此处或得性能提升的一个小技巧是使用常量枚举：
+`const lie = Tristate.False` 编译成 JavaScript `let lie = Tristate.False` (是的，编译后与编译前，几乎相同)。这意味着在运行执行时，它将会查找变量 `Tristate` 和 `Tristate.False`。在此处获得性能提升的一个小技巧是使用常量枚举：
 
 ```ts
 const enum Tristate {
