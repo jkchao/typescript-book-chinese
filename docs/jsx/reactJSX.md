@@ -34,31 +34,27 @@ declare namespace JSX {
 }
 ```
 
-### 无状态的函数式组件
+### 函数式组件
 
-你可以使用 `React.SFC` 接口定义无状态：
+你可以使用 `React.FunctionComponent` 接口定义函数组件：
 
 ```tsx
 type Props = {
   foo: string;
 };
 
-const myComponent: React.SFC<Props> = props => {
+const myComponent: React.FunctionComponent<Props> = props => {
   return <span>{props.foo}</span>;
 };
 
 <MyComponent foo="bar" />;
 ```
 
-::: warning
-`React.SFC` 类型已弃用，推荐使用 `React.FunctionComponent`
-:::
+### 类组件
 
-### 有状态组件
+根据组件的 `props` 属性对组件进行类型检查。这是以 JSX 如何转换做为蓝本，例如：属性成为 `props` 的组成部分。
 
-根据组件的 `props` 属性对组件进行类型检查。这是以 JSX 如何转换为蓝本的，例如：属性成为 `props` 的组成部分。
-
-为了创建 React 有状态的组件，你需要使用 ES6 的类，`react.d.ts` 文件定义了 `React.Component<Props, State>` 类，你应该使用你自己的 `Props` 和 `State` 接口来扩展它，如下所示：
+`react.d.ts` 文件定义了 `React.Component<Props,State>`，你应该使用自己所需的 `Props` 和 `State` 声明扩展它：
 
 ```tsx
 type Props = {
@@ -72,6 +68,36 @@ class MyComponent extends React.Component<Props, {}> {
 }
 
 <MyComponent foo="bar" />;
+```
+
+### React JSX Tip: 接收组件的实例
+
+react 类型声明文件提供了 `React.ReactElement<T>`，它可以让你通过传入 `<T/>`，来注解类组件的实例化结果。
+
+```ts
+class MyAwesomeComponent extends React.Component {
+  render() {
+    return <div>Hello</div>;
+  }
+}
+
+const foo: React.ReactElement<MyAwesomeComponent> = <MyAwesomeComponent />; // Okay
+const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; // Error!
+```
+
+::: tip
+当然，你可以将它用作函数参数的注解，甚至可以是 React 组件的 prop 成员。
+:::
+
+### React JSX Tip: 接受一个可以在 Props 起作用，并使用 JSX 渲染的组件
+
+类型 `React.Component<Props>` 是 `React.ComponentClass<P>` 与 `React.StatelessComponent<P>` 的组合，所以你可以接受一些可以用作 Props 类型和使用 JSX 渲染的组件。
+
+```ts
+const X: React.Component<Props> = foo; // from somewhere
+
+// Render X with some props:
+<X {...props} />;
 ```
 
 ### React JSX Tip: 可渲染的接口
@@ -114,12 +140,12 @@ const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; /
 ```
 
 ::: tip
-你也可以将其用做函数参数注解，或者是 React 组件的 prop 成员。
+你也可以将其用做函数参数的注解，或者是 React 组件的 prop 注解。
 :::
 
 ### React JSX tip: 接收可以做为 props 的组件，并且使用 JSX 渲染它
 
-类型 `React.Component<Props>` 合并了 `React.ComponentClass<P>` 和 `React.StatelessComponent<P>`，因此，你可以接收一些使用 `Prop` 类型的内容，并使用 JSX 渲染它：
+类型 `React.Component<Props>` 合并了 `React.ComponentClass<P>` 和 `React.StatelessComponent<P>`，因此，你可以接收一些使用 `Prop` 类型的组件，并使用 JSX 渲染它：
 
 ```tsx
 const X: React.Component<Props> = foo // 来自其他地方
@@ -160,7 +186,56 @@ const foo = <T>(x: T) => T; // Error: T 标签没有关闭
 **解决办法**：在泛型参数里使用 `extends` 来提示编译器，这是个泛型：
 
 ```ts
-const foo = <T extends {}>(x: T) => x
+const foo = <T extends {}>(x: T) => x;
+```
+
+### React Tip: 强类型的 Refs
+
+基本上你在初始化一个变量时，使用 ref 和 null 的联合类型，并且在回调函数中初始化他：
+
+```ts
+class Example extends React.Component {
+  example() {
+    // ... something
+  }
+
+  render() {
+    return <div>Foo</div>;
+  }
+}
+
+class Use {
+  exampleRef: Example | null = null;
+
+  render() {
+    return <Example ref={exampleRef => (this.exampleRef = exampleRef)} />;
+  }
+}
+```
+
+使用原生元素时也一样：
+
+```ts
+class FocusingInput extends React.Component<{ value: string; onChange: (value: string) => any }, {}> {
+  input: HTMLInputElement | null = null;
+
+  render() {
+    return (
+      <input
+        ref={input => (this.input = input)}
+        value={this.props.value}
+        onChange={e => {
+          this.props.onChange(e.target.value);
+        }}
+      />
+    );
+  }
+  focus() {
+    if (this.input != null) {
+      this.input.focus();
+    }
+  }
+}
 ```
 
 ### 类型断言
