@@ -11,3 +11,5 @@ git add -A
 git commit -m 'deploy'
 
 git push -f git@github.com:jkchao/typescript-book-chinese.git master:gh-pages
+
+open https://jkchao.github.io/typescript-book-chinese/
