@@ -48,7 +48,7 @@ bool = 'false'; // Error
 TypeScript 为数组提供了专用的类型语法，因此你可以很轻易的注解数组。它使用后缀 `[]`， 接着你可以根据需要补充任何有效的类型注解（如：`:boolean[]`）。它能让你安全的使用任何有关数组的操作，而且它也能防止一些类似于赋值错误类型给成员的行为。如下所示：
 
 ```ts
-const boolArray: boolean[];
+let boolArray: boolean[];
 
 boolArray = [true, false];
 console.log(boolArray[0]); // true
