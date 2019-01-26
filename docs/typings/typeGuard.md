@@ -64,7 +64,7 @@ function doStuff(arg: Foo | Bar) {
     console.log(arg.foo); // ok
     console.log(arg.bar); // Error
   } else {
-    // 这个块中，一定是 'bar'
+    // 这个块中，一定是 'Bar'
     console.log(arg.foo); // Error
     console.log(arg.bar); // ok
   }

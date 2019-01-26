@@ -228,7 +228,7 @@ async function test() {
   // {
   //  code: number,
   //  result: { name: string, age: number },
-  //  message: number
+  //  message: string
   // }
   const user = await getUser<User>();
 }
