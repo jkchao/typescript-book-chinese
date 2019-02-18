@@ -15,7 +15,7 @@
 class Queue {
   private data = [];
   push = item => this.data.push(item);
-  pop = () => this.data.shift;
+  pop = () => this.data.shift();
 }
 ```
 
@@ -25,7 +25,7 @@ class Queue {
 class Queue {
   private data = [];
   push = item => this.data.push(item);
-  pop = () => this.data.shift;
+  pop = () => this.data.shift();
 }
 
 const queue = new Queue();
