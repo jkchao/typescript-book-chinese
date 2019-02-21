@@ -2,7 +2,6 @@ module.exports = {
   base: '/typescript-book-chinese/',
   title: '深入理解 TypeScript',
   description: 'TypeScript Deep Dive 中文版',
-  ga: 'UA-106861408-1',
   head: [
     ['link', { rel: 'icon', href: `/logo.png` }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
@@ -11,6 +10,14 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
     ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
   ],
+  plugins: [
+    '@vuepress/pwa',
+    '@vuepress/google-analytics',
+    {
+      ga: 'UA-106861408-1'
+    }
+  ],
+  // theme: [],
   themeConfig: {
     repo: 'jkchao/typescript-book-chinese',
     docsDir: 'docs',
@@ -23,6 +30,7 @@ module.exports = {
       apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
       indexName: 'jkchao_typescript'
     },
+    wxConfig: [{ title: '与我交流', src: '/contact.png' }],
     nav: [
       { text: '原书链接', link: 'https://basarat.gitbooks.io/typescript/content/docs/getting-started.html' },
       { text: 'Blog', link: 'https://jkchao.cn' }
