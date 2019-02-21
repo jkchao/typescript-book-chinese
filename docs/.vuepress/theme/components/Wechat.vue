@@ -2,11 +2,10 @@
   <div class="wechat">
     <div
       class="item"
-      v-for="wx in $themeConfig.wxConfig"
-      :index="wx.src">
+      v-for="wx in $themeConfig.wxConfig">
       <h6 class="title">{{wx.title}}</h6>
       <div class="thumb">
-        <img :src="wx.src" alt="">
+        <img :src="wx.src" :alt="wx.title">
       </div>
     </div>
   </div>

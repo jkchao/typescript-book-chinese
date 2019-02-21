@@ -30,7 +30,7 @@ module.exports = {
       apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
       indexName: 'jkchao_typescript'
     },
-    wxConfig: [{ title: '与我交流', src: '/contact.png' }],
+    wxConfig: [{ title: '与我交流', src: '/typescript-book-chinese/contact.png' }],
     nav: [
       { text: '原书链接', link: 'https://basarat.gitbooks.io/typescript/content/docs/getting-started.html' },
       { text: 'Blog', link: 'https://jkchao.cn' }
