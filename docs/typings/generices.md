@@ -60,9 +60,9 @@ queue.push('1'); // Error: 不能推入一个 `string` 类型，只能是 `numbe
 ```ts
 // 创建一个泛型类
 class Queue<T> {
-  private data = [];
+  private data :T[] = [];
   push = (item: T) => this.data.push(item);
-  pop = (): T => this.data.shift();
+  pop = (): T | undefined => this.data.shift();
 }
 
 // 简单的使用
