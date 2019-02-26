@@ -149,6 +149,8 @@ num = power;
 在类型系统中，JavaScript 中的 null 和 undefined 字面量和其他被标注了 `any` 类型的变量一样，都能被赋值给任意类型的变量，如下例子所示：
 
 ```ts
+// strictNullChecks: false
+
 let num: number;
 let str: string;
 
