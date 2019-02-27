@@ -33,6 +33,7 @@ var x;
 ### 为什么没有 setter 时的 getter，没有被认为是只读？
 
 > 我写下一段代码，并且期望它会抛出错误
+
 ```ts
 class Foo {
    get bar() {
