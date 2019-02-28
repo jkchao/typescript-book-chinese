@@ -61,7 +61,7 @@ let c = new Cat();
 cloneAnimal(c, trainDog);
 ```
 
-这是由于类型系统中缺乏显示协变/逆变注解而导致的不健全。由于协变/逆变的缺失，当被问及到 `(x: Dog) => void` 是否能够分配给 `(x: Animal) => void` 时，TypeScript 必须更加的宽容处理。
+这是由于类型系统中缺乏显示协变/逆变注解而导致的不健全。由于协变/逆变的缺失，当被问及到 `(x: Dog) => void` 是否能够赋值给 `(x: Animal) => void` 时，TypeScript 必须更加的宽容处理。
 
 为了理解为什么是这样，思考两个问题：`Dog[]` 是 `Animal[]` 的子类型吗？在 TypeScript 中 `Dog[]` 是否应该是 `Animal[]` 的子类型？
 
@@ -80,14 +80,161 @@ checkIfAnimalsAreAwake(myPets);
 
 回到第一个问题，类型系统什么时候会决定 `Dog[]` 是 `Animal[]` 的子类型。它将会进行以下计算（写到这里，编译器好像没有进行任何优化），以及其他一些：
 
-- `Dog[]` 可以被分配给 `Animal[]` 类型吗？
-- `Dog[]` 的每个成员都可以被分配给 `Animal[]` 吗？
-  - `Dog[].push` 可以分配给 `Animal[].push` 吗？
-    - 类型 `(x: Dog) => number` 可以分配给 `(x: Animal) => number` 吗？
-      - `(x: Dog) => number` 的第一个参数的类型，可以分配给 `(x: Animal) => numbder` 的第一个参数吗？
-        - `Dog` 可以分配给 `Animal` 吗？
+- `Dog[]` 可以被赋值给 `Animal[]` 类型吗？
+- `Dog[]` 的每个成员都可以被赋值给 `Animal[]` 吗？
+  - `Dog[].push` 可以赋值给 `Animal[].push` 吗？
+    - 类型 `(x: Dog) => number` 可以赋值给 `(x: Animal) => number` 吗？
+      - `(x: Dog) => number` 的第一个参数的类型，可以赋值给 `(x: Animal) => numbder` 的第一个参数吗？
+        - `Dog` 可以赋值给 `Animal` 吗？
           - 是的
 
-如你在这里所看到的一样，类型系统在检查类型是否可以分配时，它会提问「`(x: Dog) => number` 的类型能分配给 `(x: Animal) => number` 吗？」，这与类型系统要求原始类型所需的问题相同。如果 TypeScript 强制函数参数进行逆变（`Animal` 可以分配给 `Dog`），这可能会导致 `Dog[]` 并不能分配给 `Animal[]`。
+如你在这里所看到的一样，类型系统在检查类型是否可以赋值时，它会提问「`(x: Dog) => number` 的类型能赋值给 `(x: Animal) => number` 吗？」，这与类型系统要求原始类型所需的问题相同。如果 TypeScript 强制函数参数进行逆变（`Animal` 可以赋值给 `Dog`），这可能会导致 `Dog[]` 并不能赋值给 `Animal[]`。
 
-总的来说，在 TypeScript 的类型系统里，一个可以接受更多特定类型参数的函数是否能够分配给一个较少特定类型参数的函数的问题，它的答案有一个先决条件 - 是否有更多特定类型的数组能够分配到一个较少特定类型的数组。在大多数情况下，如果后者不是这情情况，则认为是不被允许的。所以我们必须对函数参数类型的特定情况进行正确的权衡。
+总的来说，在 TypeScript 的类型系统里，一个可以接受更多特定类型参数的函数是否能够赋值给一个较少特定类型参数的函数的问题，它的答案有一个先决条件 - 是否有更多特定类型的数组能够赋值到一个较少特定类型的数组。在大多数情况下，如果后者不是这情情况，则认为是不被允许的。所以我们必须对函数参数类型的特定情况进行正确的权衡。
+
+### 为什么有更少参数的函数能够赋值给更多参数的函数
+
+> 我写下这段代码，并期望它抛出错误
+
+```ts
+function handler(arg: string) {
+    // ....
+}
+
+function doSomething(callback: (arg1: string, arg2: number) => void) {
+    callback('hello', 42);
+}
+
+// Expected error because 'doSomething' wants a callback of
+// 2 parameters, but 'handler' only accepts 1
+doSomething(handler);
+```
+
+这是预期和期望的行为。首先，参考在顶部的 FAQ 中的 「substitutability」 - `handler` 是回调函数中的有效参数，因为它可以安全的忽略额外的参数。
+
+其次，让我们来探讨下另外一个用例：
+
+```ts
+let items = [1, 2, 3];
+items.forEach(arg => console.log(arg));
+```
+
+这也可以看成是一个「期望的错误」。在运行时，`forEach` 使用三个参数调用指定的回调函数，但是在大多数情况下，回调函数仅仅使用一个或者两个参数。这是一种非常常见的 JavaScript 模式，必须明确声明所有未使用的参数是很麻烦的。
+
+> 但是 `forEach` 仅仅是标记它的参数作为可选项，例如：`forEach(callback: (element?: T, index?: number, array?: T[]))`
+
+这并不是可选的回调函数的含义。始终从函数调用者的角度去读取函数签名。如果 `forEach` 声明回调函数是可选的，这意味着 `forEach` 可能会使用 0 参数来调用回调函数。
+
+一个可选的回调函数参数的含义是：
+
+```ts
+// Invoke the provided function with 0 or 1 argument
+function maybeCallWithArg(callback: (x?: number) => void) {
+    if (Math.random() > 0.5) {
+       callback();
+    } else {
+       callback(42);
+    }
+}
+```
+
+`forEach` 总是为其回调函数提供所有的三个参数。你不必检查 `index` 参数是否为 undefined - 它总是在这里，不是可选的。
+
+目前在 TypeScript 没有存在一种方法可以指示回调函数的参数必须存在。注意，这种强制址执行，并不会修复一个错误。换句话说，我们假设，每一个回调函数必须至少有一个参数，你可能会写下以下代码：
+
+```ts
+[1, 2, 3].forEach(() => console.log("just counting"));
+             //   ~~ Error, not enough arguments?
+```
+
+我们可以通过添加一个参数来修复它，但是它可能不是很正确
+
+```ts
+[1, 2, 3].forEach(x => console.log("just counting"));
+               // OK, but doesn't do anything different at all
+```
+
+### 为什么一个返回值不是 `void` 的类型，可以赋值给一个返回值为 `void` 的参数？
+
+> 我写下这段代码，并期望它抛出错误
+
+```ts
+function doSomething(): number {
+    return 42;
+}
+
+function callMeMaybe(callback: () => void) {
+    callback();
+}
+
+// Expected an error because 'doSomething' returns number, but 'callMeMaybe'
+// expects void-returning function
+callMeMaybe(doSomething);
+```
+
+这是预期和期望的行为。首先，参考在顶部的 FAQ 中的 「substitutability」- 事实上相比于 `callMeMaybe`, `doSomething` 返回「更多」的信息，`callMeMaybe` 是一个有效的替代品。
+
+其次，让我们来探讨下另外一个用例：
+
+```ts
+let items = [1, 2];
+callMeMaybe(() => items.push(3))
+```
+
+这也可以看成是一个「期望的错误」。 `Array#push` 会返回一个数字（数组的新长度），但是在用于一个返回值为 `void` 的函数上，它是一个安全的替代品。
+
+另外一种思考这个问题的方式是：一个返回值类型为 `void` 的函数，它会说：“如果你的返回值存在，我将不会检查它”。
+
+### 为什么所有新的类型，都能赋值给一个空的接口
+
+> 我写下这段代码，并期望它抛出错误
+
+```ts
+interface Thing { /* nothing here */ }
+function doSomething(a: Thing) {
+  // mysterious implementation here
+}
+// Expected some or all of these to be errors
+doSomething(window);
+doSomething(42);
+doSomething('huh?');
+
+```
+
+没有成员的类型，能够被任何类型替代。在这个例子中，`window`、`42`、`huh` 都是 `Thing` 的成员。
+
+通常来说，你永远不应该声明没有属性的 `interface`。
+
+### 我可以用名义上的类型别名吗
+
+> 我写下这段代码，并期望它抛出错误
+
+```ts
+type SomeUrl = string;
+type FirstName = string;
+let x: SomeUrl = "http://www.typescriptlang.org/";
+let y: FirstName = "Bob";
+x = y; // Expected error
+```
+
+类型别名只是一个简单的别名，它们无法区分自己所表示的类型。
+
+这有一个涉及到使用交叉类型的解决办法：
+
+```ts
+// Strings here are arbitrary, but must be distinct
+type SomeUrl = string & {'this is a url': {}};
+type FirstName = string & {'person name': {}};
+
+// Add type assertions
+let x = <SomeUrl>'';
+let y = <FirstName>'bob';
+x = y; // Error
+
+// OK
+let xs: string = x;
+let ys: string = y;
+xs = ys;
+```
+
+你需要在创建值的任何位置添加类型断言，它仍然可以使用 `string` 别名，并且会失去类型的安全性。
