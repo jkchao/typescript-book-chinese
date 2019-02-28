@@ -36,9 +36,9 @@ var x;
 
 ```ts
 class Foo {
-   get bar() {
-     return 42;
-   }
+  get bar() {
+    return 42;
+  }
 }
 let x = new Foo();
 // Expected error here
@@ -46,7 +46,6 @@ x.bar = 10;
 ```
 
 这在 TypeScript 2.0 + 中会抛出错误。具体请看 [#12](https://github.com/Microsoft/TypeScript/issues/12)
-
 
 ### 为什么函数参数是双向协变
 
@@ -98,11 +97,11 @@ checkIfAnimalsAreAwake(myPets);
 
 ```ts
 function handler(arg: string) {
-    // ....
+  // ....
 }
 
 function doSomething(callback: (arg1: string, arg2: number) => void) {
-    callback('hello', 42);
+  callback('hello', 42);
 }
 
 // Expected error because 'doSomething' wants a callback of
@@ -130,11 +129,11 @@ items.forEach(arg => console.log(arg));
 ```ts
 // Invoke the provided function with 0 or 1 argument
 function maybeCallWithArg(callback: (x?: number) => void) {
-    if (Math.random() > 0.5) {
-       callback();
-    } else {
-       callback(42);
-    }
+  if (Math.random() > 0.5) {
+    callback();
+  } else {
+    callback(42);
+  }
 }
 ```
 
@@ -143,15 +142,15 @@ function maybeCallWithArg(callback: (x?: number) => void) {
 目前在 TypeScript 没有存在一种方法可以指示回调函数的参数必须存在。注意，这种强制址执行，并不会修复一个错误。换句话说，我们假设，每一个回调函数必须至少有一个参数，你可能会写下以下代码：
 
 ```ts
-[1, 2, 3].forEach(() => console.log("just counting"));
-             //   ~~ Error, not enough arguments?
+[1, 2, 3].forEach(() => console.log('just counting'));
+//   ~~ Error, not enough arguments?
 ```
 
 我们可以通过添加一个参数来修复它，但是它可能不是很正确
 
 ```ts
-[1, 2, 3].forEach(x => console.log("just counting"));
-               // OK, but doesn't do anything different at all
+[1, 2, 3].forEach(x => console.log('just counting'));
+// OK, but doesn't do anything different at all
 ```
 
 ### 为什么一个返回值不是 `void` 的类型，可以赋值给一个返回值为 `void` 的参数？
@@ -160,11 +159,11 @@ function maybeCallWithArg(callback: (x?: number) => void) {
 
 ```ts
 function doSomething(): number {
-    return 42;
+  return 42;
 }
 
 function callMeMaybe(callback: () => void) {
-    callback();
+  callback();
 }
 
 // Expected an error because 'doSomething' returns number, but 'callMeMaybe'
@@ -178,7 +177,7 @@ callMeMaybe(doSomething);
 
 ```ts
 let items = [1, 2];
-callMeMaybe(() => items.push(3))
+callMeMaybe(() => items.push(3));
 ```
 
 这也可以看成是一个「期望的错误」。 `Array#push` 会返回一个数字（数组的新长度），但是在用于一个返回值为 `void` 的函数上，它是一个安全的替代品。
@@ -190,7 +189,9 @@ callMeMaybe(() => items.push(3))
 > 我写下这段代码，并期望它抛出错误
 
 ```ts
-interface Thing { /* nothing here */ }
+interface Thing {
+  /* nothing here */
+}
 function doSomething(a: Thing) {
   // mysterious implementation here
 }
@@ -198,7 +199,6 @@ function doSomething(a: Thing) {
 doSomething(window);
 doSomething(42);
 doSomething('huh?');
-
 ```
 
 没有成员的类型，能够被任何类型替代。在这个例子中，`window`、`42`、`huh` 都是 `Thing` 的成员。
@@ -212,8 +212,8 @@ doSomething('huh?');
 ```ts
 type SomeUrl = string;
 type FirstName = string;
-let x: SomeUrl = "http://www.typescriptlang.org/";
-let y: FirstName = "Bob";
+let x: SomeUrl = 'http://www.typescriptlang.org/';
+let y: FirstName = 'Bob';
 x = y; // Expected error
 ```
 
@@ -223,8 +223,8 @@ x = y; // Expected error
 
 ```ts
 // Strings here are arbitrary, but must be distinct
-type SomeUrl = string & {'this is a url': {}};
-type FirstName = string & {'person name': {}};
+type SomeUrl = string & { 'this is a url': {} };
+type FirstName = string & { 'person name': {} };
 
 // Add type assertions
 let x = <SomeUrl>'';
@@ -238,3 +238,108 @@ xs = ys;
 ```
 
 你需要在创建值的任何位置添加类型断言，它仍然可以使用 `string` 别名，并且会失去类型的安全性。
+
+### 如何防止两种类型在结构上兼容
+
+> 我写下这段代码，并期望它抛出错误
+
+```ts
+interface ScreenCoordinate {
+  x: number;
+  y: number;
+}
+interface PrintCoordinate {
+  x: number;
+  y: number;
+}
+function sendToPrinter(pt: PrintCoordinate) {
+  // ...
+}
+function getCursorPos(): ScreenCoordinate {
+  // Not a real implementation
+  return { x: 0, y: 0 };
+}
+// This should be an error
+sendToPrinter(getCursorPos());
+```
+
+如果你真的希望两种类型不兼容，有一种方式添加一个 「brand」 成员：
+
+```ts
+interface ScreenCoordinate {
+  _screenCoordBrand: any;
+  x: number;
+  y: number;
+}
+interface PrintCoordinate {
+  _printCoordBrand: any;
+  x: number;
+  y: number;
+}
+
+// Error
+sendToPrinter(getCursorPos());
+```
+
+ 请注意，这将需要在创建「brand」的地方使用类型断言：
+
+```ts
+function getCursorPos(): ScreenCoordinate {
+  // Not a real implementation
+  return <ScreenCoordinate>{ x: 0, y: 0 };
+}
+```
+
+另外你也可以查看此 [#202](https://github.com/Microsoft/TypeScript/issues/202) 来获取更多有关于解决此问题的办法；
+
+### 如果对象实现了某个接口，我怎么在运行时检查
+
+> 我写下了像下面的一段代码
+
+```ts
+interface SomeInterface {
+  name: string;
+  length: number;
+}
+interface SomeOtherInterface {
+  questions: string[];
+}
+
+function f(x: SomeInterface | SomeOtherInterface) {
+  // Can't use instanceof on interface, help?
+  if (x instanceof SomeInterface) {
+    // ...
+  }
+}
+```
+
+在编译时期， TypeScript 的类型被删除。这意味着没有用于执行运行时类型检查的内置机制。这完全取决与你想如何鉴别对象。一个比较广泛的用法是检查某个对象里的属性。你可以使用用户定义的类型保护来实现它：
+
+```ts
+function isSomeInterface(x: any): x is SomeInterface {
+  return typeof x.name === 'string' && typeof x.length === 'number';
+
+function f(x: SomeInterface|SomeOtherInterface) {
+  if (isSomeInterface(x)) {
+    console.log(x.name); // Cool!
+  }
+}
+```
+
+### 为什么错误的转化不会引起运行时的错误
+
+> 我写下一些代码：
+
+```ts
+let x: any = true;
+let y = <string>x; // Expected: runtime error (can't convert boolean to string)
+```
+
+或者是这样：
+
+```ts
+let a: any = 'hmm';
+let b = a as HTMLElement; // expected b === null
+```
+
+TypeScript 拥有类型断言，但这并不是一个「casts」 `<T> x` 的意思：“TypeScript，请将 `x` 的类型认为是 `T`，而不是执行类型安全的运行时转换。因为类型被删除，没有直接等价于 C# 的 `expr as` 或者是 `(type)expr` 的语法。
