@@ -1,6 +1,6 @@
-> 注：此章节的所有文章都来自 [TypeScript FAQs](https://github.com/Microsoft/TypeScript/wiki/FAQ)
+# 一些常见的「bug」并不是 bug
 
-# 一些常见的 “bug” 并不是 bug
+> 注：此章节的所有文章都来自 [TypeScript FAQs](https://github.com/Microsoft/TypeScript/wiki/FAQ)
 
 这有一些看起来像 Bug 的行为，但实际上，它们并不是。
 

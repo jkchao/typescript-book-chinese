@@ -12,10 +12,13 @@ module.exports = {
   ],
   plugins: [
     '@vuepress/pwa',
-    '@vuepress/google-analytics',
-    {
-      ga: 'UA-106861408-1'
-    }
+    '@vuepress/back-to-top',
+    [
+      '@vuepress/google-analytics',
+      {
+        ga: 'UA-106861408-1' // UA-00000000-0
+      }
+    ]
   ],
   // theme: [],
   themeConfig: {
@@ -133,9 +136,9 @@ module.exports = {
         ]
       },
       {
-        title: 'TypeScript 更新',
+        title: 'TypeScript FAQs',
         collapsable: false,
-        children: []
+        children: ['./faqs/common-bug-not-bugs', './faqs/common-feature-request', './faqs/type-system-behavior']
       }
     ]
   }
