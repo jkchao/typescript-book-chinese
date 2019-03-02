@@ -3,7 +3,7 @@
     <div
       class="item"
       v-for="wx in $themeConfig.wxConfig">
-      <h6 class="title">{{wx.title}}</h6>
+      <h6 class="title" v-show="!notName">{{wx.title}}</h6>
       <div class="thumb">
         <img :src="wx.src" :alt="wx.title">
       </div>
@@ -13,7 +13,8 @@
 
 <script>
 export default {
-  name: 'wechat'
+  name: 'wechat',
+  props: ['notName']
 }
 </script>
 

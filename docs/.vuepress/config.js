@@ -29,10 +29,10 @@ module.exports = {
     activeHeaderLinks: false,
     sidebarDepth: 3,
     lastUpdated: '上次更新',
-    algolia: {
-      apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
-      indexName: 'jkchao_typescript'
-    },
+    // algolia: {
+    //   apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
+    //   indexName: 'jkchao_typescript'
+    // },
     wxConfig: [{ title: '与我交流', src: '/typescript-book-chinese/contact.png' }],
     nav: [
       { text: '原书链接', link: 'https://basarat.gitbooks.io/typescript/content/docs/getting-started.html' },
