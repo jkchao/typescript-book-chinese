@@ -153,7 +153,7 @@ function maybeCallWithArg(callback: (x?: number) => void) {
 // OK, but doesn't do anything different at all
 ```
 
-### 为什么一个返回值不是 `void` 的类型，可以赋值给一个返回值为 `void` 的参数？
+### 为什么一个返回值不是 `void` 的函数，可以赋值给一个返回值为 `void` 的函数？
 
 > 我写下这段代码，并期望它抛出错误
 
@@ -171,7 +171,7 @@ function callMeMaybe(callback: () => void) {
 callMeMaybe(doSomething);
 ```
 
-这是预期和期望的行为。首先，参考在顶部的 FAQ 中的 「substitutability」- 事实上相比于 `callMeMaybe`, `doSomething` 返回「更多」的信息，`callMeMaybe` 是一个有效的替代品。
+这是预期和期望的行为。首先，参考在顶部的 FAQ 中的 「substitutability」- 相比于 `callMeMaybe`, `doSomething` 返回「更多」的信息，`callMeMaybe` 是一个有效的替代品。
 
 其次，让我们来探讨下另外一个用例：
 
@@ -180,11 +180,11 @@ let items = [1, 2];
 callMeMaybe(() => items.push(3));
 ```
 
-这也可以看成是一个「期望的错误」。 `Array#push` 会返回一个数字（数组的新长度），但是在用于一个返回值为 `void` 的函数上，它是一个安全的替代品。
+这也可以看成是一个「期望的错误」。 `Array#push` 会返回一个数字（数组的新长度），但是它使用在一个返回值为 `void` 的函数上，它是一个安全的替代品。
 
-另外一种思考这个问题的方式是：一个返回值类型为 `void` 的函数，它会说：“如果你的返回值存在，我将不会检查它”。
+另外一种思考这个问题的方式是：一个返回值类型为 `void` 的函数，它会说：“无论你的返回值是否存在，我都不会检查它”。
 
-### 为什么所有新的类型，都能赋值给一个空的接口？
+### 为什么所有的类型，都能赋值给一个空的接口？
 
 > 我写下这段代码，并期望它抛出错误
 
@@ -201,7 +201,7 @@ doSomething(42);
 doSomething('huh?');
 ```
 
-没有成员的类型，能够被任何类型替代。在这个例子中，`window`、`42`、`huh` 都是 `Thing` 的成员。
+没有成员的类型，能够被任何类型替代。在这个例子中，`window`、`42`、`huh` 都能取代 `Thing`。
 
 通常来说，你永远不应该声明没有属性的 `interface`。
 
@@ -237,7 +237,7 @@ let ys: string = y;
 xs = ys;
 ```
 
-你需要在创建值的任何位置添加类型断言，它仍然可以使用 `string` 别名，并且会失去类型的安全性。
+你需要在创建值的任何位置添加类型断言，但是它仍然可以使用 `string` 别名，并且会失去类型的安全性。
 
 ### 如何防止两种类型在结构上兼容？
 
@@ -290,7 +290,7 @@ function getCursorPos(): ScreenCoordinate {
 }
 ```
 
-另外你也可以查看此 [#202](https://github.com/Microsoft/TypeScript/issues/202) 来获取更多有关于解决此问题的办法；
+另外你也可以查看此 [#202](https://github.com/Microsoft/TypeScript/issues/202) 来获取更多有关于此问题的信息；
 
 ### 如果对象实现了某个接口，我怎么在运行时检查？
 
@@ -313,7 +313,7 @@ function f(x: SomeInterface | SomeOtherInterface) {
 }
 ```
 
-在编译时期， TypeScript 的类型被删除。这意味着没有用于执行运行时类型检查的内置机制。这完全取决与你想如何鉴别对象。一个比较广泛的用法是检查某个对象里的属性。你可以使用用户定义的类型保护来实现它：
+在编译时期， TypeScript 的类型被删除。这意味着没有用于执行运行时类型检查的内置机制。这完全取决与你如何鉴别对象。一个比较广泛的用法是检查某个对象里的属性。你可以使用用户定义的类型保护来实现它：
 
 ```ts
 function isSomeInterface(x: any): x is SomeInterface {
@@ -342,7 +342,7 @@ let a: any = 'hmm';
 let b = a as HTMLElement; // expected b === null
 ```
 
-TypeScript 拥有类型断言，但这并不是一个「casts」：`<T> x` 用来告诉 TypeScript：“TypeScript，请将 `x` 的类型认为是 `T`，而不是执行类型安全的运行时转换。因为类型被删除，没有直接等价于 C# 的 `expr as` 或者是 `(type)expr` 的语法。
+TypeScript 拥有类型断言，但这并不是一个「casts」：`<T> x` 仅仅是用来告诉 TypeScript：「TypeScript，请将 `x` 的类型认为是 `T`」，而不是执行类型安全的运行时转换。因为类型被删除，没有直接等价于 C# 的 `expr as` 或者是 `(type)expr` 的语法。
 
 ### 为什么我没有为 `(number) => string` 或者 `(T) => T` 进行类型检查？
 
@@ -376,7 +376,7 @@ let myFunc: (myArgName: number) => string;
 
 ### 为什么我会得到 `Supplied parameters do not match any signature` 的错误？
 
-函数或者方法实现签名并不是重载的一部分：
+函数实现签名，它并不是重载的一部分：
 
 ```ts
 function createLog(message: string): number;
@@ -398,7 +398,7 @@ function createLog(source: string, message?: string): number {
 }
 ```
 
-这种做法的合理之处在于 JavaScript 没有函数重载，因此你需要在你的函数中进行参数检查。
+由于 JavaScript 没有函数重载，我们不得不这么做，因此你需要在你的函数中进行参数检查。
 
 例如，你可以要求你的使用者使用匹配的参数对来调用，并正确实现它，而不允许混合参数类型。
 

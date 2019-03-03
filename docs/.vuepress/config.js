@@ -138,7 +138,12 @@ module.exports = {
       {
         title: 'TypeScript FAQs',
         collapsable: false,
-        children: ['./faqs/common-bug-not-bugs', './faqs/common-feature-request', './faqs/type-system-behavior']
+        children: [
+          './faqs/common-bug-not-bugs',
+          './faqs/common-feature-request',
+          './faqs/type-system-behavior',
+          './faqs/class'
+        ]
       }
     ]
   }
