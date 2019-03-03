@@ -142,6 +142,7 @@ module.exports = {
           './faqs/common-bug-not-bugs',
           './faqs/common-feature-request',
           './faqs/type-system-behavior',
+          './faqs/function',
           './faqs/class'
         ]
       }
