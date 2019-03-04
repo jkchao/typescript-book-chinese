@@ -25,7 +25,7 @@ class Bravo extends Base {}
 
 ## 什么是名义上的类
 
-是什么解释了这两行代码的区别
+这两段代码该如何解释：
 
 ```ts
 class Alpha {
@@ -95,3 +95,47 @@ window.setTimeout(obj.someCallback, 10);
 在这里，我们提供了 `obj.someCallback` 到 `setTimeout` 的函数引用，然后该函数并不是作为 `bind` 的结果调用，也不是直接作为一个方法调用。因此在 `someCallback` 里的 `this` 指向 `window`（或者在严格模式下的 `undefied`）。
 
 这里概述了一些解决办法：http://stackoverflow.com/a/20627988/1704166
+
+### 当 `Bar` 是一个 `class` 时，`Bar` 和 `typeof Bar` 有什么区别？
+
+> 我写下这段代码，但是我不理解我为什么会得到错误：
+
+```ts
+class MyClass {
+  someMethod() {}
+}
+var x: MyClass;
+// Cannot assign 'typeof MyClass' to MyClass? Huh?
+x = MyClass;
+```
+
+在 JavaScript 中，类仅仅是个函数，这点很重要。我们将类对象本身 -- `MyClass` 的值，作为是构造函数。当一个构造函数被 `new` 调用时，我们得到一个对象，它是该类的实例。
+
+因此，当我们定义一个类时，实际上，我们定义了两个不同的类型。
+
+第一个是由类的名字推导而来，在这个例子中是 `MyClass`。这个是类实例的类型，它定义了类的实例具有的属性和方法，它是一个通过调用类的构造函数来返回的类型。
+
+第二个类型是一个匿名的类型，它是构造函数具有的类型。它包含一个返回类实例的构造函数签名（可以使用 `new` 调用），同时，它也包含类中可能含有的 `static` 属性和方法。它也通常被称为「静态方面」，因为它包含那些静态成员（以及作为类的构造函数）。我们可以用 `typeof` 来引用此类型。
+
+当在类型位置使用 `typeof` 操作符时，描述了表达式的类型。因此 `typeof MyClass` 是指 `MyClass` 的类型。
+
+### 为什么我的子类属性初始值设定会覆盖基类构造函数中设置的值？
+
+有关此问题，和其他初始化顺序问题，请参阅 [#1617](https://github.com/Microsoft/TypeScript/issues/1617)。
+
+### 声明类和接口有什么区别？
+
+参阅: http://stackoverflow.com/a/14348084/1704166
+
+### 接口继承类，意味着什么？
+
+> 这段代码是什么意思？
+
+```ts
+class Foo {
+  /* ... */
+}
+interface Bar extends Foo {}
+```
+
+这创建了一个名叫 `Bar` 的类型，它与 `Foo` 的实例形状具有相同的成员。
