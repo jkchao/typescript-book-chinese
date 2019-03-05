@@ -5,7 +5,7 @@
 - 你知道 JavaScript；
 - 你知道在项目中使用常用的方式和构建工具（如：webpack）。
 
-有了以上假设，从 JavaScript 迁移，总的来说包括一下步骤：
+有了以上假设，从 JavaScript 迁移，总的来说包括以下步骤：
 
 - 添加一个 `tsconfig.json` 文件；
 - 把文件扩展名从 `.js` 改成 `.ts`，开始使用 `any` 来减少错误；
