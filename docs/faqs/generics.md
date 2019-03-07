@@ -62,7 +62,7 @@ var y = findByName(x); // got y: string;
 
 记住：你绝不应该有未使用类型的参数！请看前一个问题，了解为什么这样不好。
 
-## 为什么不要在泛型函数中写 `typeof T`, `new T`, 或者 `instanceof T`？
+## 为什么不要在泛型函数中写 `typeof T`、`new T`, 或者 `instanceof T`？
 
 > 我写了一些这样的代码
 
