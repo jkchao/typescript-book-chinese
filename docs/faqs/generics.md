@@ -24,7 +24,7 @@ x = y;
 
 ```typescript
 interface Named<T> {
-    name: string;
+  name: string;
 }
 class MyNamed<T> implements Named<T> {
   name: 'mine';
@@ -44,7 +44,7 @@ var y = findByName(x); // expected y: string, got y: {}
 
 ```typescript
 interface Named<T> {
-    name: string;
+  name: string;
   value: T; // <-- added
 }
 class MyNamed<T> implements Named<T> {
@@ -62,7 +62,7 @@ var y = findByName(x); // got y: string;
 
 记住：你绝不应该有未使用类型的参数！请看前一个问题，了解为什么这样不好。
 
-## 为什么不要在范型函数中写 `typeof T`, `new T`, 或者 `instanceof T`？
+## 为什么不要在泛型函数中写 `typeof T`, `new T`, 或者 `instanceof T`？
 
 > 我写了一些这样的代码
 
@@ -80,10 +80,10 @@ function doSomething<T>(x: T) {
 }
 ```
 
-范型在编译期间被删除，这意味着在 `doSomething` 运行时没有值为 `T` 的。这里人们试图表达的正常模式是用构造函数既当类的工厂，又当运行时的类型检查。在这两种情况下，使用构造签名并将其作为参数提供是正确的：
+泛型在编译期间被删除，这意味着在 `doSomething` 运行时没有值为 `T` 的。这里人们试图表达的正常模式是用构造函数既当类的工厂，又当运行时的类型检查。在这两种情况下，使用构造签名并将其作为参数提供是正确的：
 ```typescript
 function create<T>(ctor: { new(): T }) {
-    return new ctor();
+  return new ctor();
 }
 var c = create(MyClass); // c: MyClass
 
