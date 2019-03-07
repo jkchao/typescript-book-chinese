@@ -96,7 +96,7 @@ window.setTimeout(obj.someCallback, 10);
 
 这里概述了一些解决办法：http://stackoverflow.com/a/20627988/1704166
 
-### 当 `Bar` 是一个 `class` 时，`Bar` 和 `typeof Bar` 有什么区别？
+## 当 `Bar` 是一个 `class` 时，`Bar` 和 `typeof Bar` 有什么区别？
 
 > 我写下这段代码，但是我不理解我为什么会得到错误：
 
@@ -119,15 +119,15 @@ x = MyClass;
 
 当在类型位置使用 `typeof` 操作符时，描述了表达式的类型。因此 `typeof MyClass` 是指 `MyClass` 的类型。
 
-### 为什么我的子类属性初始值设定会覆盖基类构造函数中设置的值？
+## 为什么我的子类属性初始值设定会覆盖基类构造函数中设置的值？
 
 有关此问题，和其他初始化顺序问题，请参阅 [#1617](https://github.com/Microsoft/TypeScript/issues/1617)。
 
-### 声明类和接口有什么区别？
+## 声明类和接口有什么区别？
 
 参阅: http://stackoverflow.com/a/14348084/1704166
 
-### 接口继承类，意味着什么？
+## 接口继承类，意味着什么？
 
 > 这段代码是什么意思？
 
@@ -138,4 +138,62 @@ class Foo {
 interface Bar extends Foo {}
 ```
 
-这创建了一个名叫 `Bar` 的类型，它与 `Foo` 的实例形状具有相同的成员。
+这创建了一个名叫 `Bar` 的类型，它与 `Foo` 的实例具有相同的成员。当 `Foo` 具有私有成员时，`Bar` 内的相同属性，必须由一个继承自 `Foo` 的类实现。总的来说，这种模式是应当避免的，尤其是在 `Foo` 由私有成员时。
+
+## 为什么我会得到错误：`TypeError: [base class name] is not defined in __extends`？
+
+> 我写下一段代码，
+
+```ts
+/** file1.ts **/
+class Alpha {
+  /* ... */
+}
+
+/** file2.ts **/
+class Bravo extends Alpha {
+  /* ... */
+}
+```
+
+在运行时，有如下错误发生在 `_extends` 中：
+
+```ts
+Uncaught TypeError: Alpha is not defined
+```
+
+最常见的原因是在你的 HTML 中包含有 file2.ts 的 `script`，但是并没有包含 `file1.ts` 的 `script`。因此你需要在引用 `file2.ts` 之前引用 `file1.ts`。
+
+## 为什么我会得到 `TypeError: Cannot read property 'prototype' of undefined" in __extends` 的错误？
+
+> 我写下如下代码：
+
+```ts
+/** file1.ts **/
+class Alpha {
+  /* ... */
+}
+
+/** file2.ts **/
+class Bravo extends Alpha {
+  /* ... */
+}
+```
+
+在运行时，有如下错误发生在 `_extends` 中：
+
+```ts
+Uncaught TypeError: Cannot read property 'prototype' of undefined
+```
+
+出现这种情况，原因可能有一些。
+
+首先，在单个文件中，你在基类之前定义了派生类，那么你应该重新排序文件，以便在派生类之前声明基类。
+
+如果你使用了 `--out` 的编译选项，编译器可能会对你希望文件的顺序感到困惑。请参阅常见问题简答中「如果控制文件排序」部分
+
+如果您没有使用 `--out`，HTML 文件中的 `script` 引用文件的顺序可能出现错误。重新排序 `script` 对文件的引用，以便在定义派生类的文件之前包含定义基类的文件。
+
+最后，如果你使用某种类型的第三方包，该包可能会错误地排序了文件。请参阅该工具的文档以了解如何在结果输出中正确排序输入文件。
+
+## 为什么不扩展 `Error`、`Array`、`Map` 内置函数？
