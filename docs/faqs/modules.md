@@ -18,7 +18,7 @@ let x: someModule.SomeType = /* something */;
 var x = /* something */;
 ```
 
-`TypeScript` 假定导入的模块没有副作用，所以它移除了没有在任何地方使用的导入的模块。
+`TypeScript` 假定导入的模块没有副作用，所以它移除了不用于任何表达式的模块导入。
 
 使用 `import "mod"` 语法来强制加载模块
 
