@@ -1,6 +1,6 @@
 # 模块
 
-## 为什么我导入的在我的输出中被删除了？
+## 为什么我导入的模块在编译后被删除了？
 
 > 我写了一些这样的代码
 
@@ -23,10 +23,10 @@ var x = /* something */;
 使用 `import "mod"` 语法来强制加载模块
 
 ```typescript
-import "./myMod"; // For side effects
+import './myMod'; // For side effects
 ```
 
-你也可以简单调用模块，调用一次就可以了，这是最常见的解决办法。
+你也可以简单调用模块，这是最常见的解决办法。
 
 ```typescript
 import someModule = require('./myMod');

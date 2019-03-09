@@ -1,5 +1,7 @@
 # 类
 
+## 为什么这些空类的行为很奇怪？
+
 > 我写下这段代码，并期望它抛出错误
 
 ```ts
@@ -197,3 +199,50 @@ Uncaught TypeError: Cannot read property 'prototype' of undefined
 最后，如果你使用某种类型的第三方包，该包可能会错误地排序了文件。请参阅该工具的文档以了解如何在结果输出中正确排序输入文件。
 
 ## 为什么不扩展 `Error`、`Array`、`Map` 内置函数？
+
+在 ES2015 中，返回一个对象的构造函数将 `this` 的值隐式替换为 `super(...)` 的任何调用者。这对于构造函数代码捕获 `super(...)` 的任何潜在返回值并将其替换为 `this` 是必要的。
+
+这样导致的结果是：`Error`、`Array` 等子类将不再按预期工作。这是由于 `Error`、`Array` 等的构造函数使用 ECMAScript6 中的 `new.target` 来调整原型链。但是，在 ECMAScript 5 中调用构造函数时，无法确保 `new.target` 的值。在其他一些低水平的编译器通常都有相同的限制。
+
+### 例如：
+
+如下做为一个子类：
+
+```ts
+class FooError extends Error {
+  constructor(m: string) {
+    super(m);
+  }
+  sayHello() {
+    return 'hello ' + this.message;
+  }
+}
+```
+
+你可能会发现：
+
+- 通过这些子类的构造函数返回的对象中，方法可能是 `undefined`。因此，当调用 `sayHello` 时，会抛出一个错误。
+- `instanceof` 将会在子类的实例和自身实例中被中断。因此 `new FooError() instanceof FooError` 将返回 `false`。
+
+### 推荐
+
+做为一个推荐方式，你可以在 `super(...)` 被调用之后手动调整原型。
+
+```ts
+class FooError extends Error {
+  constructor(m: string) {
+    super(m);
+
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, FooError.prototype);
+  }
+
+  sayHello() {
+    return 'hello ' + this.message;
+  }
+}
+```
+
+然而，任何 `FooError` 的子类将不得不手动设置原型。在运行时，对于那些不支持 `Object.setPrototypeOf` 属性的，你可能用要 `__proto__` 来替代他。
+
+不幸的是，[IE 10 及其一下不兼容这些方法](https://docs.microsoft.com/zh-cn/microsoft-edge/dev-guide/whats-new/javascript-version-information)。你可以手动将原型中的方法复制到实例本身，(例如：`FooError.prototype` 复制到 `this` 上)，但是对于原型链本身是无法修复的。

@@ -143,7 +143,9 @@ module.exports = {
           './faqs/common-feature-request',
           './faqs/type-system-behavior',
           './faqs/function',
-          './faqs/class'
+          './faqs/class',
+          './faqs/generics',
+          './faqs/modules'
         ]
       }
     ]
