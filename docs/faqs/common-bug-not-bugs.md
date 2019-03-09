@@ -6,16 +6,16 @@
 
 - 两个空的类，可以彼此代替
 
-  - 查看相关的 FAQ
+  - 查看相关的 [FAQ](./class.html#为什么这些空类的行为很奇怪？)
 
 - 我可以在一个返回值为 void 的函数中使用一个返回值不为 `void` 的函数
 
-  - 查看相关的 FAQ
+  - 查看相关的 [FAQ](./type-system-behavior.html#为什么一个返回值不是-void-的函数，可以赋值给一个返回值为-void-的函数？)
   - 查看此 [ISSUES](https://github.com/Microsoft/TypeScript/issues/4544)
 
 - 我可以使用一个更短的参数列表，而不是一个期望的长参数列表
 
-  - 查看相关 FAQ
+  - 查看相关 [FAQ](./type-system-behavior.html#为什么有更少参数的函数能够赋值给更多参数的函数？)
   - 相关 ISSUES：[#370](https://github.com/Microsoft/TypeScript/issues/370)、[#9300](https://github.com/Microsoft/TypeScript/issues/9300)、[#9765](https://github.com/Microsoft/TypeScript/issues/9765)、[#9825](https://github.com/Microsoft/TypeScript/issues/9825)、[#13043](https://github.com/Microsoft/TypeScript/issues/13043)、[#16871](https://github.com/Microsoft/TypeScript/issues/16871)、[#13529](https://github.com/Microsoft/TypeScript/issues/13529)、[#13977](https://github.com/Microsoft/TypeScript/issues/13977)、[#17868](https://github.com/Microsoft/TypeScript/issues/17868)、[#20274](https://github.com/Microsoft/TypeScript/issues/20274)、[#20541](https://github.com/Microsoft/TypeScript/issues/20541)、[#21868](https://github.com/Microsoft/TypeScript/issues/21868)。
 
 - 类的 `private` 成员，在运行时实际上是可见的
