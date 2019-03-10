@@ -145,7 +145,11 @@ module.exports = {
           './faqs/function',
           './faqs/class',
           './faqs/generics',
-          './faqs/modules'
+          './faqs/modules',
+          './faqs/enums',
+          './faqs/type-guards',
+          './faqs/jsx-and-react',
+          './faqs/thing-that-dont-work'
         ]
       }
     ]
