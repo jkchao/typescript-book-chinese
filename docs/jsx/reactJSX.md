@@ -143,7 +143,7 @@ const bar: React.ReactElement<MyAwesomeComponent> = <NotMyAwesomeComponent />; /
 你也可以将其用做函数参数的注解，或者是 React 组件的 prop 注解。
 :::
 
-### React JSX tip: 接收可以做为 props 的组件，并且使用 JSX 渲染它
+### React JSX tip: 接收可以作为 props 的组件，并且使用 JSX 渲染它
 
 类型 `React.Component<Props>` 合并了 `React.ComponentClass<P>` 和 `React.StatelessComponent<P>`，因此，你可以接收一些使用 `Prop` 类型的组件，并使用 JSX 渲染它：
 
