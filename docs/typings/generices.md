@@ -209,7 +209,7 @@ import Ax from './axios';
 import { ResponseData } from './interface.ts';
 
 export function getUser<T>() {
-  return Ax.get<ResponseData<T>>('/somepath')
+  return Ax.get<ResponseData<T>('/somepath')
     .then(res => res.data)
     .catch(err => console.error(err));
 }
