@@ -15,5 +15,12 @@ module.exports = (options, ctx) => ({
     };
   },
 
-  plugins: ['@vuepress/active-header-links', '@vuepress/search', '@vuepress/plugin-nprogress']
+  plugins: [
+    '@vuepress/active-header-links',
+    '@vuepress/search',
+    '@vuepress/plugin-nprogress',
+    ['@vuepress/container', { type: 'tip' }],
+    ['@vuepress/container', { type: 'warning' }],
+    ['@vuepress/container', { type: 'danger' }]
+  ]
 });
