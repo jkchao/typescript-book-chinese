@@ -56,6 +56,12 @@ Thanks goes to these wonderful people
 
 希望你在翻译或者 PR 之前，阅读[中文文章排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines)。
 
+## 赞赏支持
+
+| <img src="./docs/.vuepress/public/wechat.jpg" width="200px" /> | <img src="./docs/.vuepress/public/zhifubao.jpg" width="200px"> |
+| :------------------------------------------------------------: | :------------------------------------------------------------: |
+|                              微信                              |                             支付宝                             |
+
 ## 最后
 
 如果你和我一样对 TypeScript 充满兴趣，可以订阅（star）本项目，及时收到有关于此项目的更新。
