@@ -118,7 +118,8 @@ module.exports = {
           '/tips/buildToggles',
           '/tips/typesafeEventEmitter',
           '/tips/metadata',
-          '/tips/covarianceAndContravariance'
+          '/tips/covarianceAndContravariance',
+          '/tips/infer'
         ]
       },
       {
