@@ -65,3 +65,35 @@ var MyClass = (function() {
 首先，建议改变的行为与 ECMAScript 规范不一致。在这方面没有任何异议 -- TypeScript 必须与 JavaScript 具有相同的运行时行为。
 
 其次，这个运行时类的特点非常令人惊讶。它为每个实例的每个方法创建一个闭包，而不是为每个方法创建一个闭包，这在初始化时，内存、以及垃圾回收上的性能都非常糟糕。
+
+## 为什么我不能使用字符串索引来访问类型上的属性
+
+> 当我使用字符串索引声明一个接口时，我希望能访问它的属性：
+
+```ts
+interface StringMap {
+  [index: string]: string;
+}
+function f(obj: StringMap) {
+  obj.foo; // error!
+  obj['foo']; // I have to write it this way
+}
+```
+
+相反，我只能使用索引语法：`obj['foo']`
+
+TypeScript 的重点是要指出运行时的错误，「属性不存在」是最其中重要的一点，如果字符串索引允许你访问类型的属性，那么这些类型将永远不会抛出错误。尤其是当你在索引类型上有其他属性时：
+
+```ts
+interface StringMap {
+  property1: string;
+  [index: string]: string;
+}
+function f(obj: StringMap) {
+  obj.property1; // ok
+  obj.propertyl; // error!
+  obj['foo']; // ok
+}
+```
+
+因此，TypeScript 始终检查属性的访问，并且保留对索引语法的任意访问。
