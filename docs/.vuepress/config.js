@@ -150,7 +150,8 @@ module.exports = {
           './faqs/enums',
           './faqs/type-guards',
           './faqs/jsx-and-react',
-          './faqs/thing-that-dont-work'
+          './faqs/thing-that-dont-work',
+          './faqs/commandline-behavior'
         ]
       }
     ]
