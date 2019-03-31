@@ -151,7 +151,8 @@ module.exports = {
           './faqs/type-guards',
           './faqs/jsx-and-react',
           './faqs/thing-that-dont-work',
-          './faqs/commandline-behavior'
+          './faqs/commandline-behavior',
+          './faqs/tsconfig-behavior'
         ]
       }
     ]
