@@ -1,4 +1,4 @@
-const types = ['build', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test', 'chore'];
+const types = ['build', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test', 'chore', 'update'];
 
 module.exports = {
   // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-angular/README.md
