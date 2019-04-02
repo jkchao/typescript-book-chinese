@@ -44,7 +44,7 @@ console.log(queue.pop().toPrecision(1)); // RUNTIME ERROR
 class QueueNumber {
   private data = [];
   push = (item: number) => this.data.push(item);
-  pop = (): number => this.data.shift;
+  pop = (): number => this.data.shift();
 }
 
 const queue = new QueueNumber();
