@@ -11,7 +11,7 @@ emitter.emit('bar', bar);
 
 // Listen
 emitter.on('foo', foo => console.log(foo));
-emitter.on('bar', foo => console.log(bar));
+emitter.on('bar', bar => console.log(bar));
 ```
 
 实际上，在 `EventEmitter` 内部以映射数组的形式存储数据：
