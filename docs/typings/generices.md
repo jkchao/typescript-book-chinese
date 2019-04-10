@@ -83,7 +83,7 @@ function reverse<T>(items: T[]): T[] {
 }
 
 const sample = [1, 2, 3];
-const reversed = reverse(sample);
+let reversed = reverse(sample);
 
 reversed[0] = '1'; // Error
 reversed = ['1', '2']; // Error
