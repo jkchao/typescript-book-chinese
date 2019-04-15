@@ -57,11 +57,6 @@ interface Point3D {
   z: number;
 }
 
-const point2D: Point2D = {
-  x: 0,
-  y: 0
-};
-
 const point2D: Point2D = { x: 0, y: 10 };
 const point3D: Point3D = { x: 0, y: 10, z: 20 };
 function iTakePoint2D(point: Point2D) {
