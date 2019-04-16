@@ -97,3 +97,4 @@ function f(obj: StringMap) {
 ```
 
 因此，TypeScript 始终检查属性的访问，并且保留对索引语法的任意访问。
+> Edit: 3.4.3版本已经支持这样的访问了，参考这个[pull request](https://github.com/Microsoft/TypeScript/pull/12671)
