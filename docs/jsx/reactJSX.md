@@ -121,7 +121,7 @@ class MyComonent extends React.Component<Props, {}> {
   }
 }
 
-<MyComponent foo="bar" />;
+<MyComponent header={<h1>Header</h1>} body={<i>body</i>} />
 ```
 
 ### React JSX tip: 接收组件的接口
