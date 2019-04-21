@@ -431,6 +431,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "sea-ice",
+      "name": "Jack",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/25540882?v=4",
+      "profile": "http://www.seaiceblog.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }
