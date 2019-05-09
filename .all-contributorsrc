@@ -449,6 +449,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Eve-1995",
+      "name": "Eve",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/30228406?v=4",
+      "profile": "http://angular.ink",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }
