@@ -141,7 +141,7 @@ interface DateConstructor {
 }
 ```
 
-在 [dayjs](https://github.com/abritinthebay/datejs) 里，它在 `Date` 的全局变量以及 `Date` 实例上同时添加了成员，因此这个库的 TypeScript 定义看起来像如下所示（社区已经[定义](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d.ts)好了）：
+在 [datejs](https://github.com/abritinthebay/datejs) 里，它在 `Date` 的全局变量以及 `Date` 实例上同时添加了成员，因此这个库的 TypeScript 定义看起来像如下所示（社区已经[定义](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d.ts)好了）：
 
 ```ts
 // DateJS 公开的静态方法
