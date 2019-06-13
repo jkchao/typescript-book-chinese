@@ -225,7 +225,7 @@ reversedNums = ['1', '2']; // Error
 
 ## 联合类型
 
-在 JavaScript 中，你希望属性为多种类型之一，如字符串或者数组。这就是联合类型所能派上用场的地方（它使用 `|` 作为标记，如 `string | number`）。在函数参数里。一个常见的用例是一个可以接受单个对象或对象数组的函数：
+在 JavaScript 中，你希望属性为多种类型之一，如字符串或者数组。这就是联合类型所能派上用场的地方（它使用 `|` 作为标记，如 `string | number`）。在函数参数里。一个常见的用例是一个可以接受字符串数组或单个字符串的函数：
 
 ```ts
 function formatCommandline(command: string[] | string) {
