@@ -132,7 +132,7 @@ type AA = ParamType<string>; // string
 
   - 第一步：`(U extends any ? (k: U) => void : never)` 会把 union 拆分成 `(string extends any ? (k: string) => void : never) | (number extends any ? (k: number)=> void : never)`，即是得到 `(k: string) => void | (k: number) => void`；
 
-  - 第二步：`(k: string) => void | (k: number) => void extends ((k: infer I)) => void ? I : never`，根据上文，可以推断出 `I` 为 `string & number`。
+  - 第二步：`(k: string) => void | (k: number) => void extends ((k: infer I) => void) ? I : never`，根据上文，可以推断出 `I` 为 `string & number`。
 
 当然，你可以玩出更多花样，比如 [**union** 转 **tuple**](https://zhuanlan.zhihu.com/p/58704376)。
 
