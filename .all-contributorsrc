@@ -6,7 +6,7 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "imageSize": 64,
   "commit": false,
   "contributors": [
     {
@@ -505,10 +505,10 @@
       ]
     },
     {
-      "login": "lmislm",
-      "name": "Baskerville*",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/21683339?v=4",
-      "profile": "https://lmislm.com",
+      "login": "evinma",
+      "name": "evinma",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16096567?v=4",
+      "profile": "https://github.com/evinma",
       "contributions": [
         "doc"
       ]
