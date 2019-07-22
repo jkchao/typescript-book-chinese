@@ -68,7 +68,7 @@ type AA = ParamType<string>; // string
     constructor(public name: string, public age: number) {}
   }
 
-  type Params = ConstructorParameters<typeof TestClass>; // [string, numbder]
+  type Params = ConstructorParameters<typeof TestClass>; // [string, number]
 
   type Instance = InstanceType<typeof TestClass>; // TestClass
   ```
