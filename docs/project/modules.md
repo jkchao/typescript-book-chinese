@@ -374,4 +374,4 @@ const ensureImport: any = foo || bar || bas;
 :::
 
 - `globals.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要。
-- 当你从 `TS` 迁移到 `JS` 时，定义 `declare module "some-library-you-dont-care-to-get-defs-for"` 能让你快速开始。
+- 当你从 `JS` 迁移到 `TS` 时，定义 `declare module "some-library-you-dont-care-to-get-defs-for"` 能让你快速开始。
