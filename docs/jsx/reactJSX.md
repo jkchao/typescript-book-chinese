@@ -43,7 +43,7 @@ type Props = {
   foo: string;
 };
 
-const myComponent: React.FunctionComponent<Props> = props => {
+const MyComponent: React.FunctionComponent<Props> = props => {
   return <span>{props.foo}</span>;
 };
 
