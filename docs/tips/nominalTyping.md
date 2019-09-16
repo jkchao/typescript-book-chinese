@@ -1,8 +1,8 @@
 # 名义化类型
 
-TypeScript 的类型系统是结构化的，[这里](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html)有个主要的原因。然而，在实际项目中可能是你想区分两个类型不同的变量，尽管它们具有相同的结构。一个非常常见的实际用例是身份的验证（它们可能只是在 C# 或者 Java 中表示一个它们语义化名字的字符串）。
+TypeScript 的类型系统是结构化的，[这里](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html)有个主要的原因。然而，在实际项目中你可能想区分两个类型不同的变量，尽管它们具有相同的结构。一个非常常见的用例是身份的验证（它们可能只是在 C# 或者 Java 中表示一个它们语义化名字的字符串）。
 
-这有一些社区推荐的方式，我按照个人爱好降序排列：
+这有一些社区使用的方式，我按照个人喜好降序排列：
 
 ## 使用字面量类型
 
@@ -35,7 +35,6 @@ foo = foo; // Okey
 - 缺点
   - 如上结构 `{type,value}` 可能不那么尽如人意，而且需要服务器序列化支持。
 
-
 ## 使用枚举
 
 TypeScript 中[枚举](../typings/enums.md) 提供一定程度的名义化类型。如果两个枚举的命名不相同，则它们类型不相等。我们可以利用这个事实来为结构上兼容的类型，提供名义化类型。
@@ -49,11 +48,15 @@ TypeScript 中[枚举](../typings/enums.md) 提供一定程度的名义化类型
 
 ```ts
 // FOO
-enum FooIdBrand {};
+enum FooIdBrand {
+  _ = ''
+}
 type FooId = FooIdBrand & string;
 
 // BAR
-enum BarIdBrand {};
+enum BarIdBrand {
+  _ = ''
+}
 type BarId = BarIdBrand & string;
 
 // user
@@ -74,6 +77,8 @@ let str: string;
 str = fooId;
 str = barId;
 ```
+
+请注意上文中的 `FooIdBrand` 与 `BarIdBrand`，它们都有一个 `_` 映射出字符串的成员，即 `{ _ = '' }`。这可以强制 TypeScript 推断出这是一个基于字符串的枚举，而不是一个数字类型的枚举。这是很重要的，因为 TypeScript 会把一个空的枚举类型（`{}`）推断为一个数字类型的枚举，在 TypeScript 3.6.2 版本及其以上时，数字类型的枚举与 `string` 的交叉类型是 `never`。
 
 ## 使用接口
 
