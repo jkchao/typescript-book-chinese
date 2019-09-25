@@ -143,3 +143,26 @@ padding(1, 1, 1); // Error: Not a part of the available overloads
 ::: tip
 TypeScript 中的函数重载没有任何运行时开销。它只允许你记录希望调用函数的方式，并且编译器会检查其余代码。
 :::
+
+### 函数声明
+
+> 快速开始：类型注解是你描述现有实现类型的一种方式
+
+在没有提供函数实现的情况下，有两种声明函数类型的方式:
+
+```ts
+type LongHand = {
+  (a: number): number;
+};
+
+type ShortHand = (a: number) => number;
+```
+
+上面代码中的两个例子完全相同。但是，当你想使用函数重载时，只能用第一种方式:
+
+```ts
+type LongHandAllowsOverloadDeclarations = {
+  (a: number): number;
+  (a: string): string;
+};
+```
