@@ -102,7 +102,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
    */
   let emitToken = emitTokenText;
 
-  /** 该函数因为节点，会在发射的代码中于函数或类中启用词法作用域前调用
+  /** 该函数由于节点的缘故，在被发射的代码中的函数或类中，会在启用词法作用域前被调用
    * @param scopeDeclaration 启动词法作用域的节点
    * @param scopeName 可选的作用域的名称，默认从节点声明中推导
    */
@@ -377,7 +377,7 @@ function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
 
 ## 发射器源映射（SourceMaps）
 
-如前所述 `emitter.ts` 的大部分是本地函数 `emitJavaScript`（我们之前展示过该函数的初始化例程）。
+如前所述 `emitter.ts` 中的大部分代码是函数 `emitJavaScript`（我们之前展示过该函数的初始化例程）。
 它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面我们再看一遍这个函数，这次我们重点关注 `SourceMap` 的部分：
 
 ```ts
@@ -407,7 +407,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
 
     /** 该函数因为节点，会在发射的代码中于函数或类中启用词法作用域前调用
       * @param scopeDeclaration 启动词法作用域的节点
-      * @param scopeName 可选的作用域的名称，默认从节点声明中推导
+      * @param scopeName 可选的作用域的名称，而不是从节点声明中推导
       */
     let scopeEmitStart = function(scopeDeclaration: Node, scopeName?: string) { };
 
@@ -438,7 +438,7 @@ function emitJavaScript(jsFilePath: string, root?: SourceFile) {
     return;
 ```
 
-重要的函数调用是 `initializeEmitterWithSourceMaps`，该函数是 `emitJavaScript` 的本地函数，它覆盖了部分已定义的本地函数。
+重要的函数调用： `initializeEmitterWithSourceMaps`，该函数是 `emitJavaScript` 的本地函数，它覆盖了部分已定义的本地函数。
 覆盖的函数可以在 `initalizeEmitterWithSourceMap` 的底部找到：
 
 ```ts

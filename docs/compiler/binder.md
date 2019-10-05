@@ -123,7 +123,7 @@ interface Declaration extends Node {
 
 ## 绑定器容器
 
-AST 的节点可以作容器。这决定了的节点及相关符号的 `SymbolTables` 的类别。容器是个抽象概念（没有相关的数据结构）。该概念由一些东西决定，`ContainerFlags` 枚举是其中之一。函数 `getContainerFlags`（位于 `binder.ts`） 驱动此标志，如下所示：
+AST 的节点可以被当作容器。这决定了节点及相关符号的 `SymbolTables` 的类别。容器是个抽象概念（没有相关的数据结构）。该概念由一些东西决定，`ContainerFlags` 枚举是其中之一。函数 `getContainerFlags`（位于 `binder.ts`） 驱动此标志，如下所示：
 
 ```ts
 function getContainerFlags(node: Node): ContainerFlags {
@@ -230,7 +230,7 @@ function bindChildren(node: Node) {
 
 ## 绑定器符号表
 
-符号表（SymbolTable）实现为一个简单的 HashMap，下面是其接口（`types.ts`）：
+符号表（SymbolTable）是以一个简单的 HashMap 实现的，下面是其接口（`types.ts`）：
 
 ```ts
 interface SymbolTable {
