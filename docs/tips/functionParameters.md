@@ -1,6 +1,6 @@
 # 函数参数
 
-如果你有一个含有很多参数或者相同类型参数的函数，那么你可能需要考虑使用对象的形式来替代这些函数参数：
+如果你有一个含有很多参数或者相同类型参数的函数，那么你可能需要考虑将函数改为接收对象的形式：
 
 如下一个函数：
 
@@ -12,15 +12,10 @@ function foo(flagA: boolean, flagB: boolean) {
 
 像这样的函数，你可能会很容易错误的调用它，如 `foo(flagB, flagA)`，并且你并不会从编译器得到想要的帮助。
 
-你可以使用接收一个对象参数的形式：
+你可以将函数变为接收对象的形式：
 
 ```ts
-function foo(
-  config: {
-    flagA: boolean;
-    flagB: boolean;
-  }
-) {
+function foo(config: { flagA: boolean; flagB: boolean }) {
   const { flagA, flagB } = config;
 }
 ```

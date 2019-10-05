@@ -76,7 +76,7 @@ function createSymbol(flags: SymbolFlags, name: string): Symbol {
 
 节点和符号间的链接由几个函数执行。其中一个用于绑定 `SourceFile` 节点到源文件符号（外部模块的情况下）的函数是 `addDeclarationToSymbol`
 
-注意：外部模块源文件的符号设置为 `flags : SymbolFlags.ValueModule` 和 `name: '"' + removeFileExtension(file.fileName) + '"'`.
+注意：外部模块源文件的符号设置方式是 `flags : SymbolFlags.ValueModule` 和 `name: '"' + removeFileExtension(file.fileName) + '"'`.
 
 ```ts
 function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: SymbolFlags) {
@@ -105,7 +105,7 @@ function addDeclarationToSymbol(symbol: Symbol, node: Declaration, symbolFlags: 
 }
 ```
 
-重要的部分（译注：相关注释已添加到上面的代码中）：
+上述代码主要执行的操作如下：
 
 - 创建一个从 AST 节点到符号的链接（`node.symbol`）
 - 将节点添加为该符号的*一个*声明

@@ -1,6 +1,6 @@
 # 解析器
 
-TypeScript 解析器代码均位于 `praser.ts` 中。在内部，由解析器控制扫描器将源码转化为 AST。下面是期望结果的回顾：
+TypeScript 解析器代码均位于 `praser.ts` 中。在内部，由解析器控制扫描器将源码转化为 AST。其期望结果如下：
 
 ```
 源码 ~~ 扫描器 ~~> Token 流 ~~ 解析器 ~~> AST
@@ -77,7 +77,7 @@ SourceFile 0 14
 
 ### 节点创建
 
-解析器有一系列 `parseXXX` 函数用来创建相应类型为`XXX`的节点，通常在相应类型的节点出现时被（其他解析器函数）调用。该过程的典型示例是解析空语句（例如 `;;;;;`）时要用的 `parseEmptyStatement()` 函数。下面是其全部代码：
+解析器有一系列 `parseXXX` 函数用来创建相应类型为`XXX`的节点，通常在相应类型的节点出现时被（其他解析器函数）调用。该过程的典型示例是解析空语句（例如 `;;;;;;`）时要用的 `parseEmptyStatement()` 函数。下面是其全部代码：
 
 ```ts
 function parseEmptyStatement(): Statement {
@@ -91,12 +91,12 @@ function parseEmptyStatement(): Statement {
 
 #### `createNode`
 
-解析器函数 `function createNode(kind: SyntaxKind, pos?: number): Node` 负责创建节点，设置节点的 `SyntaxKind`（语法类别），和初始位置（默认使用当前扫描器状态提供的位置信息）。
+解析器函数 `function createNode(kind: SyntaxKind, pos?: number): Node` 负责创建节点，设置传入的 `SyntaxKind`（语法类别），和初始位置（默认使用当前扫描器状态提供的位置信息）。
 
 #### `parseExpected`
 
-解析器的 `parseExpected` 函数 `function parseExpected(kind: SyntaxKind, diagnosticMessage?: DiagnosticMessage): boolean` 会检查解析器状态中的当前 token 是否与指定的 `SyntaxKind` 匹配。如果不匹配，会报告传入的 `diagnosticMessage`（诊断消息），未传入则使用某种通用形式 `xxx expected` 进行报告。该函数内部用 `parseErrorAtPosition` 函数（使用扫描位置）提供良好的错误报告。
+解析器的 `parseExpected` 函数 `function parseExpected(kind: SyntaxKind, diagnosticMessage?: DiagnosticMessage): boolean` 会检查解析器状态中的当前 token 是否与指定的 `SyntaxKind` 匹配。如果不匹配，则会向传入的 `diagnosticMessage`（诊断消息）报告，未传入则创建某种通用形式 `xxx expected`。该函数内部用 `parseErrorAtPosition` 函数（使用扫描位置）提供良好的错误报告。
 
 #### `finishNode`
 
-解析器的 `finishNode` 函数 `function finishNode<T extends Node>(node: T, end?: number): T` 设置节点的 `end` 位置，并添加一些有用的信息，例如上下文标志（`parserContextFlags`）以及解析该节点前出现的错误（有错的话，就不能在增量解析中重用此 AST 节点）。
+解析器的 `finishNode` 函数 `function finishNode<T extends Node>(node: T, end?: number): T` 设置节点的 `end` 位置，并添加一些有用的信息，例如上下文标志（`parserContextFlags`）以及解析该节点前出现的错误（如果有错的话，就不能在增量解析中重用此 AST 节点）。
