@@ -4,8 +4,8 @@ TypeScript 让你能够以类型安全的方式，在 React 中使用 JSX 之外
 
 - 你可以使用 `"jsx":"preserve"` 选项来禁用 React 的样式触发。这意味着，JSX 将按原样被触发，然后你可以使用自定义转化器来转化 JSX 部分。
 - 使用 `JSX` 全局模块：
-  - 你可以通过定制 `JSX.IntrinsicElements` 的接口成员来控制哪些 HTML 标签是可取的，以及如何对其进行类型检查；
-  - 当你在组件中使用：
+  - 你可以通过定制 `JSX.IntrinsicElements` 的接口成员来控制哪些 HTML 标签是可用的，以及如何对其进行类型检查；
+  - 当你在组件中使用时：
     - 你可以通过自定义默认的 `interface ElementClass extends React.Component<any, any> { }` 声明文件来控制哪个 `class` 必须由组件继承；
     - 你可以通过自定义 `declare module JSX { interface ElementAttributesProperty { props: {} } }` 声明文件来控制使用的哪个属性（property）来检查特性（attribute）（默认是 `props`）。
 
