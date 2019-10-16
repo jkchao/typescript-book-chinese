@@ -96,7 +96,7 @@ type AA = ParamType<string>; // string
 
   type TTuple = [string, number];
 
-  type ToUnion = ElementOf<ATuple>; // string | number
+  type ToUnion = ElementOf<TTuple>; // string | number
   ```
 
   在 [stackoverflow](https://stackoverflow.com/questions/44480644/typescript-string-union-to-string-array/45486495#45486495) 上看到另一种解法，比较简（牛）单（逼）：
