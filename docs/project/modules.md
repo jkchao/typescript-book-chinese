@@ -57,7 +57,8 @@ const bar = foo; // allow
 
 怎么书写 TypeScript 模块，这也是一件让人困惑的事。在今天我们应该这么做：
 
-- 使用 ES 模块语法代替 `import foo = require('foo')` 即 `import/require` 语法，
+- 放弃使用`import/require`语法即`import foo = require('foo')`写法
+- 推荐使用 ES 模块语法
 
 这很酷，接下来，让我们看看 ES 模块语法。
 
