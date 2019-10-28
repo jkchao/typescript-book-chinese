@@ -115,9 +115,12 @@ type AA = ParamType<string>; // string
   有了这个前提，再利用在逆变位置上，[同一类型变量的多个候选类型将会被推断为交叉类型](https://github.com/Microsoft/TypeScript/pull/21496)的特性，即
 
   ```ts
+  type T1 = { name: string };
+  type T2 = { age: number };
+
   type Bar<T> = T extends { a: (x: infer U) => void; b: (x: infer U) => void } ? U : never;
   type T20 = Bar<{ a: (x: string) => void; b: (x: string) => void }>; // string
-  type T21 = Bar<{ a: (x: string) => void; b: (x: number) => void }>; // string & number
+  type T21 = Bar<{ a: (x: T1) => void; b: (x: T2) => void }>; // T1 & T2
   ```
 
   因此，综合以上几点，我们可以得到在 [stackoverflow](https://stackoverflow.com/questions/50374908/transform-union-type-to-intersection-type) 上的一个答案：
@@ -125,14 +128,14 @@ type AA = ParamType<string>; // string
   ```ts
   type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
 
-  type Result = UnionToIntersection<string | number>; // string & number
+  type Result = UnionToIntersection<T1 | T2>; // T1 & T2
   ```
 
-  当传入 `string | number` 时：
+  当传入 `T1 | T2` 时：
 
-  - 第一步：`(U extends any ? (k: U) => void : never)` 会把 union 拆分成 `(string extends any ? (k: string) => void : never) | (number extends any ? (k: number)=> void : never)`，即是得到 `(k: string) => void | (k: number) => void`；
+  - 第一步：`(U extends any ? (k: U) => void : never)` 会把 union 拆分成 `(T1 extends any ? (k: T1) => void : never) | (T2 extends any ? (k: T2)=> void : never)`，即是得到 `(k: T1) => void | (k: T2) => void`；
 
-  - 第二步：`(k: string) => void | (k: number) => void extends ((k: infer I) => void) ? I : never`，根据上文，可以推断出 `I` 为 `string & number`。
+  - 第二步：`(k: T1) => void | (k: T2) => void extends ((k: infer I) => void) ? I : never`，根据上文，可以推断出 `I` 为 `T1 & T2`。
 
 当然，你可以玩出更多花样，比如 [**union** 转 **tuple**](https://zhuanlan.zhihu.com/p/58704376)。
 
