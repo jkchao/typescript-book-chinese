@@ -83,7 +83,7 @@ checkIfAnimalsAreAwake(myPets);
 - `Dog[]` 的每个成员都可以被赋值给 `Animal[]` 吗？
   - `Dog[].push` 可以赋值给 `Animal[].push` 吗？
     - 类型 `(x: Dog) => number` 可以赋值给 `(x: Animal) => number` 吗？
-      - `(x: Dog) => number` 的第一个参数的类型，可以赋值给 `(x: Animal) => numbder` 的第一个参数吗？
+      - `(x: Dog) => number` 的第一个参数的类型，可以赋值给 `(x: Animal) => number` 的第一个参数吗？
         - `Dog` 可以赋值给 `Animal` 吗？
           - 是的
 
