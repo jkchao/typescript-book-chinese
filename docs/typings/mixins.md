@@ -57,7 +57,7 @@ function Activatable<TBase extends Constructor>(Base: TBase) {
 // 组合类
 ///////////
 
-// 简答的类
+// 简单的类
 class User {
   name = '';
 }
