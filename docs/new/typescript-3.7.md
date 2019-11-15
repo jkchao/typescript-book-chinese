@@ -462,23 +462,37 @@ For more information, you can [read up on the original pull request](https://git
 
 ## `--declaration` 选项和 `--allowJs` 选项
 
-The `--declaration` flag in TypeScript allows us to generate `.d.ts` files (declaration files) from TypeScript source files (i.e. `.ts` and `.tsx` files).
-These `.d.ts` files are important for a couple of reasons.
+<!-- The `--declaration` flag in TypeScript allows us to generate `.d.ts` files (declaration files) from TypeScript source files (i.e. `.ts` and `.tsx` files). -->
+<!-- These `.d.ts` files are important for a couple of reasons. -->
 
-First of all, they're important because they allow TypeScript to type-check against other projects without re-checking the original source code.
-They're also important because they allow TypeScript to interoperate with existing JavaScript libraries that weren't built with TypeScript in mind.
-Finally, a benefit that is often underappreciated: both TypeScript _and_ JavaScript users can benefit from these files when using editors powered by TypeScript to get things like better auto-completion.
+TypeScript 中 `--declaration` 选项标记可以用来从 TypeScript 源文件 ( 例如 `.ts` 文件和 `.tsx` 文件 ) 中生成 `.d.ts` 文件 ( 声明文件 ).
+`.d.ts` 文件的重要性体现在.
 
-Unfortunately, `--declaration` didn't work with the `--allowJs` flag which allows mixing TypeScript and JavaScript input files.
-This was a frustrating limitation because it meant users couldn't use the `--declaration` flag when migrating codebases, even if they were JSDoc-annotated.
-TypeScript 3.7 changes that, and allows the two options to be used together!
+<!-- First of all, they're important because they allow TypeScript to type-check against other projects without re-checking the original source code. -->
+首先, 它支撑了 TypeScript 的类型检查, 而不需要利用原始代码来进行重复检查.
+<!-- They're also important because they allow TypeScript to interoperate with existing JavaScript libraries that weren't built with TypeScript in mind. -->
+另外, 它支撑了 TypeScript 与现有的未被 TypeScript 编译的 JavaScript 库进行互操作.
+<!-- Finally, a benefit that is often underappreciated: both TypeScript _and_ JavaScript users can benefit from these files when using editors powered by TypeScript to get things like better auto-completion. -->
+最后, 是一个常常被忽略的好处. 那便是 TypeScript _与_ JavaScript 开发者可以在强大的编辑器中获得好处, 即可以使用 TypeScript 来获得更多好处, 例如代码的自动补全.
 
-The most impactful outcome of this feature might a bit subtle: with TypeScript 3.7, users can write libraries in JSDoc annotated JavaScript and support TypeScript users.
+<!-- Unfortunately, `--declaration` didn't work with the `--allowJs` flag which allows mixing TypeScript and JavaScript input files. -->
+不幸的是, `--declaration` 不能和 `--allowJs` 选项一起使用, `--allJs` 选项允许混入导入的 TypeScript 和 JavaScript.
+<!-- This was a frustrating limitation because it meant users couldn't use the `--declaration` flag when migrating codebases, even if they were JSDoc-annotated. -->
+这是一个令人沮丧的限制. 这就表示, 即使代码中含有 JSDoc 注释, 开发者在移植代码的时后依旧不能使用 `--declaration` 标记来生成类型声明.
+<!-- TypeScript 3.7 changes that, and allows the two options to be used together! -->
+TypeScript 3.7 修改了这一限制, 允许两个选项同时使用.
 
-The way that this works is that when using `allowJs`, TypeScript has some best-effort analyses to understand common JavaScript patterns; however, the way that some patterns are expressed in JavaScript don't necessarily look like their equivalents in TypeScript.
-When `declaration` emit is turned on, TypeScript figures out the best way to transform JSDoc comments and CommonJS exports into valid type declarations and the like in the output `.d.ts` files.
+<!-- The most impactful outcome of this feature might a bit subtle: with TypeScript 3.7, users can write libraries in JSDoc annotated JavaScript and support TypeScript users. -->
+这一特征最明显的改变可能有点微妙: 在 TypeScript 3.7 中, 开发者能使用 JSDoc 注释来编写 JavaScript 代码, 也能直接编写直接带有类型描述的 TypeScript 代码.
 
-As an example, the following code snippet
+<!-- The way that this works is that when using `allowJs`, TypeScript has some best-effort analyses to understand common JavaScript patterns; however, the way that some patterns are expressed in JavaScript don't necessarily look like their equivalents in TypeScript. -->
+在使用 `allowJs` 的时候, TypeScript 含有一些有效的分析方法, 会尽可能地理解 JavaScript 中的类型描述; 然而, 即使 JavaScript 中使用了类型描述, 但是在同等逻辑下的 TypeScript 中, 这些描述就显得不那么必要了.
+
+<!-- When `declaration` emit is turned on, TypeScript figures out the best way to transform JSDoc comments and CommonJS exports into valid type declarations and the like in the output `.d.ts` files. -->
+在开始处理 `declaration` 时, TypeScript 会使用最优的方式 去转换 JSDoc 注释和 CommonJS, 并导出有效的类型声明 , 生成相同功能的 `.d.ts` 文件.
+
+<!-- As an example, the following code snippet -->
+下面是一个代码片段的案例
 
 ```js
 const assert = require('assert');
@@ -486,7 +500,7 @@ const assert = require('assert');
 module.exports.blurImage = blurImage;
 
 /**
- * Produces a blurred image from an input buffer.
+ * 利用传入的数据流生成模糊后的图片
  *
  * @param input {Uint8Array}
  * @param width {number}
@@ -503,11 +517,13 @@ function blurImage(input, width, height) {
 }
 ```
 
-Will produce a `.d.ts` file like
+<!-- Will produce a `.d.ts` file like -->
+
+上述代码会生成如下 `.d.ts` 文件
 
 ```ts
 /**
- * Produces a blurred image from an input buffer.
+ * 利用传入的数据流生成模糊后的图片
  *
  * @param input {Uint8Array}
  * @param width {number}
@@ -516,7 +532,8 @@ Will produce a `.d.ts` file like
 export function blurImage(input: Uint8Array, width: number, height: number): Uint8Array;
 ```
 
-This can go beyond basic functions with `@param` tags too, where the following example:
+<!-- This can go beyond basic functions with `@param` tags too, where the following example: -->
+下面的案例, 使用 `@param` 标记增强了基本函数:
 
 ```js
 /**
@@ -524,19 +541,21 @@ This can go beyond basic functions with `@param` tags too, where the following e
  * @returns {void}
  */
 
-/** Queues work */
+/** Queues work wark 队列 */
 export class Worker {
   constructor(maxDepth = 10) {
     this.started = false;
     this.depthLimit = maxDepth;
     /**
      * NOTE: queued jobs may add more items to queue
+     * 注释: 任务队列, 可以添加更多任务到队列中
      * @type {Job[]}
      */
     this.queue = [];
   }
   /**
    * Adds a work item to the queue
+   * 添加一个任务到队列中
    * @param {Job} work
    */
   push(work) {
@@ -545,6 +564,7 @@ export class Worker {
   }
   /**
    * Starts the queue if it has not yet started
+   * 如果任务队列没有运行, 则触发任务队列.
    */
   start() {
     if (this.started) return false;
@@ -557,7 +577,8 @@ export class Worker {
 }
 ```
 
-will be transformed into the following `.d.ts` file:
+<!-- will be transformed into the following `.d.ts` file: -->
+上面的代码会生成下面的 `.d.ts` 文件:
 
 ```ts
 /**
@@ -570,27 +591,32 @@ export class Worker {
   started: boolean;
   depthLimit: number;
   /**
-   * NOTE: queued jobs may add more items to queue
+   * 注释: 任务队列, 可以添加更多任务到队列中
    * @type {Job[]}
    */
   queue: Job[];
   /**
-   * Adds a work item to the queue
+   * 添加一个任务到队列中
    * @param {Job} work
    */
   push(work: Job): void;
   /**
-   * Starts the queue if it has not yet started
+   * 如果任务队列没有运行, 则触发任务队列.
    */
   start(): boolean;
 }
 export type Job = () => void;
 ```
 
-Note that when using these flags together, TypeScript doesn't necessarily have to downlevel `.js` files.
-If you simply want TypeScript to create `.d.ts` files, you can use the `--emitDeclarationOnly` compiler option.
+<!-- Note that when using these flags together, TypeScript doesn't necessarily have to downlevel `.js` files. -->
+<!-- If you simply want TypeScript to create `.d.ts` files, you can use the `--emitDeclarationOnly` compiler option. -->
 
-For more details, you can [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32372).
+注意: 使用这两个标记时, TypeScript 不需要含有对应的 `.js` 文件.
+如果只是需要 TypeScript 生成简单的 `.d.ts` 文件, 使用 `--emitDeclarationOnly` 编译选项即可.
+
+<!-- For more details, you can [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32372). -->
+更多详情, 请移步 [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32372).
+
 
 ## The `useDefineForClassFields` Flag and The `declare` Property Modifier
 
