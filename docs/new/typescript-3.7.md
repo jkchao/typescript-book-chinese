@@ -1,9 +1,9 @@
-- [Optional Chaining](#optional-chaining)
+- [可选链](#%e5%8f%af%e9%80%89%e9%93%be)
 - [Nullish Coalescing](#nullish-coalescing)
 - [Assertion Functions](#assertion-functions)
 - [Better Support for `never`-Returning Functions](#better-support-for-never-returning-functions)
 - [(More) Recursive Type Aliases](#more-recursive-type-aliases)
-- [`--declaration` and `--allowJs`](#declaration-and---allowjs)
+- [`--declaration` 选项和 `--allowJs` 选项](#declaration-%e9%80%89%e9%a1%b9%e5%92%8c---allowjs-%e9%80%89%e9%a1%b9)
 - [The `useDefineForClassFields` Flag and The `declare` Property Modifier](#the-usedefineforclassfields-flag-and-the-declare-property-modifier)
 - [Build-Free Editing with Project References](#build-free-editing-with-project-references)
 - [Uncalled Function Checks](#uncalled-function-checks)
@@ -16,72 +16,103 @@
   - [Local and Imported Type Declarations Now Conflict](#local-and-imported-type-declarations-now-conflict)
   - [3.7 API Changes](#37-api-changes)
 
-## Optional Chaining
+<!-- ## Optional Chaining -->
+
+## 可选链
 
 [Playground](/play/#example/optional-chaining)
 
-Optional chaining is [issue #16](https://github.com/microsoft/TypeScript/issues/16) on our issue tracker. For context, there have been over 23,000 issues on the TypeScript issue tracker since then.
+<!-- Optional chaining is [issue #16](https://github.com/microsoft/TypeScript/issues/16) on our issue tracker. For context, there have been over 23,000 issues on the TypeScript issue tracker since then. -->
 
-At its core, optional chaining lets us write code where TypeScript can immediately stop running some expressions if we run into a `null` or `undefined`.
+可选链是 issue 列表中[第 16 个 issue](https://github.com/microsoft/TypeScript/issues/16)。当时，TypeScript 的 issue 列表中已有超过 23,000 个的 issue。
+
+<!-- At its core, optional chaining lets us write code where TypeScript can immediately stop running some expressions if we run into a `null` or `undefined`.
 The star of the show in optional chaining is the new `?.` operator for _optional property accesses_.
-When we write code like
+When we write code like  -->
+
+在这个专题中, 可选链使得我们编写的 TypeScript 代码更加智能. 我们在访问到中间含有 `null` 或 `undefined` 的表达式的时候, TypeScript 能立即停止运行.
+可选链中备受关注的主题是用于 _可选访问_ 的新运算符 `?.`.
+
+如果我们编写下面的代码:
 
 ```ts
 let x = foo?.bar.baz();
 ```
 
-this is a way of saying that when `foo` is defined, `foo.bar.baz()` will be computed; but when `foo` is `null` or `undefined`, stop what we're doing and just return `undefined`."
+<!-- this is a way of saying that when `foo` is defined, `foo.bar.baz()` will be computed; but when `foo` is `null` or `undefined`, stop what we're doing and just return `undefined`." -->
 
-More plainly, that code snippet is the same as writing the following.
+就是表示, 如果 `foo` 有定义, `foo.bar.baz()` 将会被调用; 但是, 如果 `foo` 是 `null` 或 `undefined`, 则会立即停止即将执行的代码, 并且只会返回 `undefined`.
+
+
+<!-- More plainly, that code snippet is the same as writing the following. -->
+
+简单的说, 上面的代码等价于下面的代码.
 
 ```ts
 let x = foo === null || foo === undefined ? undefined : foo.bar.baz();
 ```
 
-Note that if `bar` is `null` or `undefined`, our code will still hit an error accessing `baz`.
+<!-- Note that if `bar` is `null` or `undefined`, our code will still hit an error accessing `baz`.
 Likewise, if `baz` is `null` or `undefined`, we'll hit an error at the call site.
-`?.` only checks for whether the value on the _left_ of it is `null` or `undefined` - not any of the subsequent properties.
+`?.` only checks for whether the value on the _left_ of it is `null` or `undefined` - not any of the subsequent properties. -->
 
-You might find yourself using `?.` to replace a lot of code that performs repetitive nullish checks using the `&&` operator.
+需要注意的是, 如果 `bar` 是 `null` 或 `undefined`, 我们的代码依旧会抛出访问 `baz` 的错误.
+相同的, 如果 `baz` 是 `null` 或 `undefined`, 我们也会同样的获得一个函数调用的错误.
+运算符 `?.` 仅仅是检查该运算符 _左边_ 的值是否为 `null` 或 `undefined`. 并不会对表达式后面的其他部分进行处理.
+
+<!-- You might find yourself using `?.` to replace a lot of code that performs repetitive nullish checks using the `&&` operator. -->
+
+或许你会发现自己的代码中有很多地方使用 `&&` 运算符在进行重复的空值校验. 这时就可以使用 `?.` 运算符来进行优化.
+
 
 ```ts
-// Before
+// 以前的代码
 if (foo && foo.bar && foo.bar.baz) {
     // ...
 }
 
-// After-ish
+// 优化后的代码
 if (foo?.bar?.baz) {
     // ...
 }
 ```
 
-Keep in mind that `?.` acts differently than those `&&` operations since `&&` will act specially on "falsy" values (e.g. the empty string, `0`, `NaN`, and, well, `false`), but this is an intentional feature of the construct.
-It doesn't short-circuit on valid data like `0` or empty strings.
+<!-- Keep in mind that `?.` acts differently than those `&&` operations since `&&` will act specially on "falsy" values (e.g. the empty string, `0`, `NaN`, and, well, `false`), but this is an intentional feature of the construct. -->
+<!-- It doesn't short-circuit on valid data like `0` or empty strings. -->
 
-Optional chaining also includes two other operations.
-First there's the _optional element access_ which acts similarly to optional property accesses, but allows us to access non-identifier properties (e.g. arbitrary strings, numbers, and symbols):
+请记住, `?.` 运算符和 `&&` 运算符在处理逻辑上是不同的. 使用 `&&` 运算符会对所有值为 "假" 的数据特殊处理 ( 例如, 空字符串, `0`, `Nan`, 以及 `false` ),
+但是这只是语法解构上的特征. 
+该特征不会在校验特定数据时进行短路处理, 例如 `0` 或空字符串.
+
+
+<!-- Optional chaining also includes two other operations. -->
+<!-- First there's the _optional element access_ which acts similarly to optional property accesses, but allows us to access non-identifier properties (e.g. arbitrary strings, numbers, and symbols): -->
+
+可选链还有两种用法.
+第一个是 _可选元素访问_, 该用法类似于可选属性的访问, 不同的是允许访问非标识符属性 ( 例如, 任意的字符串 ( `string` ), 数字 ( `number` ), 以及符号 ( `symbol` ) ):
 
 ```ts
 /**
- * Get the first element of the array if we have an array.
- * Otherwise return undefined.
+ * 如果是数组, 则获得数组的第一个元素. 
+ * 否则返回 undefined
  */
 function tryGetFirstElement<T>(arr?: T[]) {
     return arr?.[0];
-    // equivalent to
+    // 等价于
     //   return (arr === null || arr === undefined) ?
     //       undefined :
     //       arr[0];
 }
 ```
 
-There's also _optional call_, which allows us to conditionally call expressions if they're not `null` or `undefined`.
+<!-- There's also _optional call_, which allows us to conditionally call expressions if they're not `null` or `undefined`. -->
+
+第二个用法是 _可选调用_, 它可以根据访问的成员是否为 `null` 或 `undefined` 来判断是否进行函数调用.
 
 ```ts
 async function makeRequest(url: string, log?: (msg: string) => void) {
     log?.(`Request started at ${new Date().toISOString()}`);
-    // roughly equivalent to
+    // 基本逻辑等价于
     //   if (log != null) {
     //       log(`Request started at ${new Date().toISOString()}`);
     //   }
@@ -94,15 +125,22 @@ async function makeRequest(url: string, log?: (msg: string) => void) {
 }
 ```
 
-The "short-circuiting" behavior that optional chains have is limited property accesses, calls, element accesses - it doesn't expand any further out from these expressions.
-In other words,
+<!-- The "short-circuiting" behavior that optional chains have is limited property accesses, calls, element accesses - it doesn't expand any further out from these expressions. -->
+<!-- In other words, -->
+
+在可选链中, "短路" 行为仅限于属性访问, 调用, 以及元素访问. 它不会从该表达式中延伸到外部.
+换句话说:
 
 ```ts
 let result = foo?.bar / someComputation()
 ```
 
-doesn't stop the division or `someComputation()` call from occurring.
-It's equivalent to
+<!-- doesn't stop the division or `someComputation()` call from occurring. -->
+<!-- It's equivalent to -->
+
+运行过程中, 除法运算不会停止, `someComputation()` 函数调用也不会停下.
+它等价于:
+
 
 ```ts
 let temp = foo === null || foo === undefined ? undefined : foo.bar;
@@ -110,7 +148,9 @@ let temp = foo === null || foo === undefined ? undefined : foo.bar;
 let result = temp / someComputation();
 ```
 
-That might result in dividing `undefined`, which is why in `strictNullChecks`, the following is an error.
+<!-- That might result in dividing `undefined`, which is why in `strictNullChecks`, the following is an error. -->
+
+他可能导致除数为 `undefined`, 这也是为何在 `strictNullChecks` 中会出现下面错误的原因.
 
 ```ts
 function barPercentage(foo?: { bar: number }) {
@@ -120,7 +160,9 @@ function barPercentage(foo?: { bar: number }) {
 }
 ```
 
-More more details, you can [read up on the proposal](https://github.com/tc39/proposal-optional-chaining/) and [view the original pull request](https://github.com/microsoft/TypeScript/pull/33294).
+<!-- More more details, you can [read up on the proposal](https://github.com/tc39/proposal-optional-chaining/) and [view the original pull request](https://github.com/microsoft/TypeScript/pull/33294). -->
+
+更多细节, 可以参考 [提案研究](https://github.com/tc39/proposal-optional-chaining/) 和 [原始 pull request](https://github.com/microsoft/TypeScript/pull/33294)
 
 ## Nullish Coalescing
 
@@ -416,7 +458,9 @@ const myNode: VirtualNode = [
 
 For more information, you can [read up on the original pull request](https://github.com/microsoft/TypeScript/pull/33050).
 
-## `--declaration` and `--allowJs`
+<!-- ## `--declaration` and `--allowJs` -->
+
+## `--declaration` 选项和 `--allowJs` 选项
 
 The `--declaration` flag in TypeScript allows us to generate `.d.ts` files (declaration files) from TypeScript source files (i.e. `.ts` and `.tsx` files).
 These `.d.ts` files are important for a couple of reasons.
