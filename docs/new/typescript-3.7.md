@@ -16,54 +16,34 @@
   - [Local and Imported Type Declarations Now Conflict](#local-and-imported-type-declarations-now-conflict)
   - [3.7 API Changes](#37-api-changes)
 
-<!-- ## Optional Chaining -->
-
 ## 可选链
 
 [Playground](/play/#example/optional-chaining)
 
-<!-- Optional chaining is [issue #16](https://github.com/microsoft/TypeScript/issues/16) on our issue tracker. For context, there have been over 23,000 issues on the TypeScript issue tracker since then. -->
-
 可选链是 issue 列表中[第 16 个 issue](https://github.com/microsoft/TypeScript/issues/16)。当时，TypeScript 的 issue 列表中已有超过 23,000 个的 issue。
 
-<!-- At its core, optional chaining lets us write code where TypeScript can immediately stop running some expressions if we run into a `null` or `undefined`.
-The star of the show in optional chaining is the new `?.` operator for _optional property accesses_.
-When we write code like  -->
+在这个专题中，可选链使得我们编写的 TypeScript 代码更加智能。我们在访问到中间含有 `null` 或 `undefined` 的表达式时，TypeScript 能立即停止运行。
+可选链中备受关注的主题是用于 _可选访问_ 的新运算符 `?.`。
 
-在这个专题中, 可选链使得我们编写的 TypeScript 代码更加智能. 我们在访问到中间含有 `null` 或 `undefined` 的表达式的时候, TypeScript 能立即停止运行.
-可选链中备受关注的主题是用于 _可选访问_ 的新运算符 `?.`.
-
-如果我们编写下面的代码:
+如果我们编写下面的代码：
 
 ```ts
 let x = foo?.bar.baz();
 ```
 
-<!-- this is a way of saying that when `foo` is defined, `foo.bar.baz()` will be computed; but when `foo` is `null` or `undefined`, stop what we're doing and just return `undefined`." -->
+就是表示，如果 `foo` 有定义，`foo.bar.baz()` 将会被调用；但是，如果 `foo` 是 `null` 或 `undefined`，则会立即停止将要执行的代码，并且只会返回 `undefined`。
 
-就是表示, 如果 `foo` 有定义, `foo.bar.baz()` 将会被调用; 但是, 如果 `foo` 是 `null` 或 `undefined`, 则会立即停止即将执行的代码, 并且只会返回 `undefined`.
-
-
-<!-- More plainly, that code snippet is the same as writing the following. -->
-
-简单的说, 上面的代码等价于下面的代码.
+简单的说，上面的代码等价于下面的代码。
 
 ```ts
 let x = foo === null || foo === undefined ? undefined : foo.bar.baz();
 ```
 
-<!-- Note that if `bar` is `null` or `undefined`, our code will still hit an error accessing `baz`.
-Likewise, if `baz` is `null` or `undefined`, we'll hit an error at the call site.
-`?.` only checks for whether the value on the _left_ of it is `null` or `undefined` - not any of the subsequent properties. -->
+需要注意的是，如果 `bar` 是 `null` 或 `undefined`，我们的代码依旧会抛出访问 `baz` 的错误。
+相同的，如果 `baz` 是 `null` 或 `undefined`，我们也会同样的获得一个函数调用的错误。
+运算符 `?.` 仅仅是检查该运算符 _左边_ 的值是否为 `null` 或 `undefined`。并不会对表达式后面的其他部分进行处理。
 
-需要注意的是, 如果 `bar` 是 `null` 或 `undefined`, 我们的代码依旧会抛出访问 `baz` 的错误.
-相同的, 如果 `baz` 是 `null` 或 `undefined`, 我们也会同样的获得一个函数调用的错误.
-运算符 `?.` 仅仅是检查该运算符 _左边_ 的值是否为 `null` 或 `undefined`. 并不会对表达式后面的其他部分进行处理.
-
-<!-- You might find yourself using `?.` to replace a lot of code that performs repetitive nullish checks using the `&&` operator. -->
-
-或许你会发现自己的代码中有很多地方使用 `&&` 运算符在进行重复的空值校验. 这时就可以使用 `?.` 运算符来进行优化.
-
+或许你会发现自己的代码中有很多地方使用 `&&` 运算符在进行重复的空值校验。这时就可以使用 `?.` 运算符来进行优化。
 
 ```ts
 // 以前的代码
@@ -77,19 +57,13 @@ if (foo?.bar?.baz) {
 }
 ```
 
-<!-- Keep in mind that `?.` acts differently than those `&&` operations since `&&` will act specially on "falsy" values (e.g. the empty string, `0`, `NaN`, and, well, `false`), but this is an intentional feature of the construct. -->
-<!-- It doesn't short-circuit on valid data like `0` or empty strings. -->
-
-请记住, `?.` 运算符和 `&&` 运算符在处理逻辑上是不同的. 使用 `&&` 运算符会对所有值为 "假" 的数据特殊处理 ( 例如, 空字符串, `0`, `Nan`, 以及 `false` ),
-但是这只是语法解构上的特征. 
-该特征不会在校验特定数据时进行短路处理, 例如 `0` 或空字符串.
+请记住，`?.` 运算符和 `&&` 运算符在处理逻辑上是不同的。使用 `&&` 运算符会对所有值为 “假” 的数据特殊处理（例如，空字符串、`0`、`Nan`、以及 `false`），
+但是这只是语法解构上的特征。
+该特征不会在校验特定数据时进行短路处理，例如 `0` 或空字符串。
 
 
-<!-- Optional chaining also includes two other operations. -->
-<!-- First there's the _optional element access_ which acts similarly to optional property accesses, but allows us to access non-identifier properties (e.g. arbitrary strings, numbers, and symbols): -->
-
-可选链还有两种用法.
-第一个是 _可选元素访问_, 该用法类似于可选属性的访问, 不同的是允许访问非标识符属性 ( 例如, 任意的字符串 ( `string` ), 数字 ( `number` ), 以及符号 ( `symbol` ) ):
+可选链还有两种用法。
+第一个是 _可选元素访问_，该用法类似于可选属性的访问，不同的是允许访问非标识符属性（例如，任意的 string、number，以及 symbol）：
 
 ```ts
 /**
@@ -105,9 +79,7 @@ function tryGetFirstElement<T>(arr?: T[]) {
 }
 ```
 
-<!-- There's also _optional call_, which allows us to conditionally call expressions if they're not `null` or `undefined`. -->
-
-第二个用法是 _可选调用_, 它可以根据访问的成员是否为 `null` 或 `undefined` 来判断是否进行函数调用.
+第二个用法是 _可选调用_，它可以根据访问的成员是否为 `null` 或 `undefined` 来判断是否进行函数调用。
 
 ```ts
 async function makeRequest(url: string, log?: (msg: string) => void) {
@@ -125,21 +97,15 @@ async function makeRequest(url: string, log?: (msg: string) => void) {
 }
 ```
 
-<!-- The "short-circuiting" behavior that optional chains have is limited property accesses, calls, element accesses - it doesn't expand any further out from these expressions. -->
-<!-- In other words, -->
-
-在可选链中, "短路" 行为仅限于属性访问, 调用, 以及元素访问. 它不会从该表达式中延伸到外部.
-换句话说:
+在可选链中，“短路” 行为仅限于属性访问，调用，以及元素访问。它不会从该表达式中延伸到外部。
+换句话说：
 
 ```ts
 let result = foo?.bar / someComputation()
 ```
 
-<!-- doesn't stop the division or `someComputation()` call from occurring. -->
-<!-- It's equivalent to -->
-
-运行过程中, 除法运算不会停止, `someComputation()` 函数调用也不会停下.
-它等价于:
+运行过程中，除法运算不会停止，`someComputation()` 函数调用也不会停下。
+它等价于：
 
 
 ```ts
@@ -148,9 +114,7 @@ let temp = foo === null || foo === undefined ? undefined : foo.bar;
 let result = temp / someComputation();
 ```
 
-<!-- That might result in dividing `undefined`, which is why in `strictNullChecks`, the following is an error. -->
-
-他可能导致除数为 `undefined`, 这也是为何在 `strictNullChecks` 中会出现下面错误的原因.
+他可能导致除数为 `undefined`，这也是为何在 `strictNullChecks` 中会出现下面错误的原因。
 
 ```ts
 function barPercentage(foo?: { bar: number }) {
@@ -160,9 +124,7 @@ function barPercentage(foo?: { bar: number }) {
 }
 ```
 
-<!-- More more details, you can [read up on the proposal](https://github.com/tc39/proposal-optional-chaining/) and [view the original pull request](https://github.com/microsoft/TypeScript/pull/33294). -->
-
-更多细节, 可以参考 [提案研究](https://github.com/tc39/proposal-optional-chaining/) 和 [原始 pull request](https://github.com/microsoft/TypeScript/pull/33294)
+更多细节，可以参考 [提案研究](https://github.com/tc39/proposal-optional-chaining/) 和 [原始 pull request](https://github.com/microsoft/TypeScript/pull/33294)。
 
 ## Nullish Coalescing
 
@@ -458,41 +420,26 @@ const myNode: VirtualNode = [
 
 For more information, you can [read up on the original pull request](https://github.com/microsoft/TypeScript/pull/33050).
 
-<!-- ## `--declaration` and `--allowJs` -->
-
 ## `--declaration` 选项和 `--allowJs` 选项
 
-<!-- The `--declaration` flag in TypeScript allows us to generate `.d.ts` files (declaration files) from TypeScript source files (i.e. `.ts` and `.tsx` files). -->
-<!-- These `.d.ts` files are important for a couple of reasons. -->
+TypeScript 中 `--declaration` 选项标记可以用来从 TypeScript 源文件（例如 `.ts` 文件和 `.tsx` 文件）中生成 `.d.ts` 文件（声明文件）。
+`.d.ts` 文件的重要性体现在。
 
-TypeScript 中 `--declaration` 选项标记可以用来从 TypeScript 源文件 ( 例如 `.ts` 文件和 `.tsx` 文件 ) 中生成 `.d.ts` 文件 ( 声明文件 ).
-`.d.ts` 文件的重要性体现在.
+首先，它支撑了 TypeScript 的类型检查，而不需要利用原始代码来进行重复检查。
+另外，它支撑了 TypeScript 与现有的未被 TypeScript 编译的 JavaScript 代码进行互操作。
+最后，是一个常常被忽略的好处。那便是 TypeScript _与_ JavaScript 开发者可以在强大的编辑器中获得好处，即可以使用 TypeScript 来获得更多好处，例如代码的自动补全。
 
-<!-- First of all, they're important because they allow TypeScript to type-check against other projects without re-checking the original source code. -->
-首先, 它支撑了 TypeScript 的类型检查, 而不需要利用原始代码来进行重复检查.
-<!-- They're also important because they allow TypeScript to interoperate with existing JavaScript libraries that weren't built with TypeScript in mind. -->
-另外, 它支撑了 TypeScript 与现有的未被 TypeScript 编译的 JavaScript 库进行互操作.
-<!-- Finally, a benefit that is often underappreciated: both TypeScript _and_ JavaScript users can benefit from these files when using editors powered by TypeScript to get things like better auto-completion. -->
-最后, 是一个常常被忽略的好处. 那便是 TypeScript _与_ JavaScript 开发者可以在强大的编辑器中获得好处, 即可以使用 TypeScript 来获得更多好处, 例如代码的自动补全.
+不幸的是，`--declaration` 不能和 `--allowJs` 选项一起使用，`--allJs` 选项允许混入导入的 TypeScript 和 JavaScript。
+这是一个令人沮丧的限制。这就表示，即使代码中含有 JSDoc 注释，开发者在移植代码的时后依旧不能使用 `--declaration` 标记来生成类型声明。
+TypeScript 3.7 修改了这一限制，允许两个选项同时使用。
 
-<!-- Unfortunately, `--declaration` didn't work with the `--allowJs` flag which allows mixing TypeScript and JavaScript input files. -->
-不幸的是, `--declaration` 不能和 `--allowJs` 选项一起使用, `--allJs` 选项允许混入导入的 TypeScript 和 JavaScript.
-<!-- This was a frustrating limitation because it meant users couldn't use the `--declaration` flag when migrating codebases, even if they were JSDoc-annotated. -->
-这是一个令人沮丧的限制. 这就表示, 即使代码中含有 JSDoc 注释, 开发者在移植代码的时后依旧不能使用 `--declaration` 标记来生成类型声明.
-<!-- TypeScript 3.7 changes that, and allows the two options to be used together! -->
-TypeScript 3.7 修改了这一限制, 允许两个选项同时使用.
+这一特征最明显的改变可能有点微妙：在 TypeScript 3.7 中，开发者能使用 JSDoc 注释来编写 JavaScript 代码，也能直接编写直接带有类型描述的 TypeScript 代码。
 
-<!-- The most impactful outcome of this feature might a bit subtle: with TypeScript 3.7, users can write libraries in JSDoc annotated JavaScript and support TypeScript users. -->
-这一特征最明显的改变可能有点微妙: 在 TypeScript 3.7 中, 开发者能使用 JSDoc 注释来编写 JavaScript 代码, 也能直接编写直接带有类型描述的 TypeScript 代码.
+在使用 `allowJs` 的时候，TypeScript 含有一些有效的分析方法，会尽可能地理解 JavaScript 中的类型描述；然而, 即使 JavaScript 中使用了类型描述，但是在同等逻辑下的 TypeScript 中，这些描述就显得不那么必要了。
 
-<!-- The way that this works is that when using `allowJs`, TypeScript has some best-effort analyses to understand common JavaScript patterns; however, the way that some patterns are expressed in JavaScript don't necessarily look like their equivalents in TypeScript. -->
-在使用 `allowJs` 的时候, TypeScript 含有一些有效的分析方法, 会尽可能地理解 JavaScript 中的类型描述; 然而, 即使 JavaScript 中使用了类型描述, 但是在同等逻辑下的 TypeScript 中, 这些描述就显得不那么必要了.
+在开始处理 `declaration` 时，TypeScript 会使用最优的方式去转换 JSDoc 注释和 CommonJS，并导出有效的类型声明，生成相同功能的 `.d.ts` 文件。
 
-<!-- When `declaration` emit is turned on, TypeScript figures out the best way to transform JSDoc comments and CommonJS exports into valid type declarations and the like in the output `.d.ts` files. -->
-在开始处理 `declaration` 时, TypeScript 会使用最优的方式 去转换 JSDoc 注释和 CommonJS, 并导出有效的类型声明 , 生成相同功能的 `.d.ts` 文件.
-
-<!-- As an example, the following code snippet -->
-下面是一个代码片段的案例
+下面是一个代码片段的案例：
 
 ```js
 const assert = require('assert');
@@ -517,9 +464,7 @@ function blurImage(input, width, height) {
 }
 ```
 
-<!-- Will produce a `.d.ts` file like -->
-
-上述代码会生成如下 `.d.ts` 文件
+上述代码会生成如下 `.d.ts` 文件：
 
 ```ts
 /**
@@ -532,8 +477,7 @@ function blurImage(input, width, height) {
 export function blurImage(input: Uint8Array, width: number, height: number): Uint8Array;
 ```
 
-<!-- This can go beyond basic functions with `@param` tags too, where the following example: -->
-下面的案例, 使用 `@param` 标记增强了基本函数:
+下面的案例, 使用 `@param` 标记约束了函数参数：
 
 ```js
 /**
@@ -541,20 +485,18 @@ export function blurImage(input: Uint8Array, width: number, height: number): Uin
  * @returns {void}
  */
 
-/** Queues work wark 队列 */
+/** 任务队列 */
 export class Worker {
   constructor(maxDepth = 10) {
     this.started = false;
     this.depthLimit = maxDepth;
     /**
-     * NOTE: queued jobs may add more items to queue
-     * 注释: 任务队列, 可以添加更多任务到队列中
+     * 注释: 任务队列，可以添加更多任务到队列中
      * @type {Job[]}
      */
     this.queue = [];
   }
   /**
-   * Adds a work item to the queue
    * 添加一个任务到队列中
    * @param {Job} work
    */
@@ -563,8 +505,7 @@ export class Worker {
     this.queue.push(work);
   }
   /**
-   * Starts the queue if it has not yet started
-   * 如果任务队列没有运行, 则触发任务队列.
+   * 如果任务队列没有运行，则触发任务队列。
    */
   start() {
     if (this.started) return false;
@@ -577,21 +518,20 @@ export class Worker {
 }
 ```
 
-<!-- will be transformed into the following `.d.ts` file: -->
-上面的代码会生成下面的 `.d.ts` 文件:
+上面的代码会生成下面的 `.d.ts` 文件：
 
 ```ts
 /**
  * @callback Job
  * @returns {void}
  */
-/** Queues work */
+/** 任务队列 */
 export class Worker {
   constructor(maxDepth?: number);
   started: boolean;
   depthLimit: number;
   /**
-   * 注释: 任务队列, 可以添加更多任务到队列中
+   * 注释: 任务队列，可以添加更多任务到队列中
    * @type {Job[]}
    */
   queue: Job[];
@@ -601,21 +541,17 @@ export class Worker {
    */
   push(work: Job): void;
   /**
-   * 如果任务队列没有运行, 则触发任务队列.
+   * 如果任务队列没有运行，则触发任务队列。
    */
   start(): boolean;
 }
 export type Job = () => void;
 ```
 
-<!-- Note that when using these flags together, TypeScript doesn't necessarily have to downlevel `.js` files. -->
-<!-- If you simply want TypeScript to create `.d.ts` files, you can use the `--emitDeclarationOnly` compiler option. -->
+注意：使用这两个标记时，TypeScript 不需要含有对应的 `.js` 文件。
+如果只是需要 TypeScript 生成简单的 `.d.ts` 文件，使用 `--emitDeclarationOnly` 编译选项即可。
 
-注意: 使用这两个标记时, TypeScript 不需要含有对应的 `.js` 文件.
-如果只是需要 TypeScript 生成简单的 `.d.ts` 文件, 使用 `--emitDeclarationOnly` 编译选项即可.
-
-<!-- For more details, you can [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32372). -->
-更多详情, 请移步 [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32372).
+更多详情，请移步 [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32372)。
 
 
 ## The `useDefineForClassFields` Flag and The `declare` Property Modifier
