@@ -1,6 +1,6 @@
 - [Optional Chaining](#optional-chaining)
 - [Nullish Coalescing](#nullish-coalescing)
-- [Assertion Functions](#assertion-functions)
+- [断言函数](#%e6%96%ad%e8%a8%80%e5%87%bd%e6%95%b0)
 - [Better Support for `never`-Returning Functions](#better-support-for-never-returning-functions)
 - [(More) Recursive Type Aliases](#more-recursive-type-aliases)
 - [`--declaration` and `--allowJs`](#declaration-and---allowjs)
@@ -162,22 +162,22 @@ When `localStorage.volume` is set to `0`, the page will set the volume to `0.5` 
 We owe a large thanks to community members [Wenlu Wang](https://github.com/Kingwl) and [Titian Cernicova Dragomir](https://github.com/dragomirtitian) for implementing this feature!
 For more details, [check out their pull request](https://github.com/microsoft/TypeScript/pull/32883) and [the nullish coalescing proposal repository](https://github.com/tc39/proposal-nullish-coalescing/).
 
-## Assertion Functions
+## 断言函数
 
-[Playground](/play/#example/assertion-functions)
+[试试看](https://www.typescriptlang.org/play/#example/assertion-functions)
 
-There's a specific set of functions that `throw` an error if something unexpected happened.
-They're called "assertion" functions.
-As an example, Node.js has a dedicated function for this called `assert`.
+有一类特定的函数，在非预期结果出现时会抛出一个错误。
+这类函数就叫做断言函数。
+例如，Node.js 有一个专用的断言函数叫 `assert`。
 
 ```js
 assert(someValue === 42);
 ```
 
-In this example if `someValue` isn't equal to `42`, then `assert` will throw an `AssertionError`.
+在这个示例中，如果 `someValue` 不等于 `42`，那么 `assert` 就会抛出一个 `AssertionError`。
 
-Assertions in JavaScript are often used to guard against improper types being passed in.
-For example,
+JavaScript 中的断言经常用于确保传入的是正确的类型。
+比如，
 
 ```js
 function multiply(x, y) {
@@ -188,36 +188,36 @@ function multiply(x, y) {
 }
 ```
 
-Unfortunately in TypeScript these checks could never be properly encoded.
-For loosely-typed code this meant TypeScript was checking less, and for slightly conservative code it often forced users to use type assertions.
+不幸的是，TypeScript 中的这些检查从来不会被正确的编写。
+对于弱类型的写法，意味着 TypeScript 不会严格检查，而对于稍微规范一些的写法，一般要求使用者添加类型断言。
 
 ```ts
 function yell(str) {
   assert(typeof str === 'string');
 
   return str.toUppercase();
-  // Oops! We misspelled 'toUpperCase'.
-  // Would be great if TypeScript still caught this!
+  // 哎呀！我们错误地拼写了 'toUpperCase'
+  // 如果 TypeScript 依然能捕获问题，那就太棒了！
 }
 ```
 
-The alternative was to instead rewrite the code so that the language could analyze it, but this isn't convenient.
+这里有可供选择的替代写法，可以让编程语言分析出问题，不过并不方便。
 
 ```ts
 function yell(str) {
   if (typeof str !== 'string') {
     throw new TypeError('str should have been a string.');
   }
-  // Error caught!
+  // 错误被捕获！
   return str.toUppercase();
 }
 ```
 
-Ultimately the goal of TypeScript is to type existing JavaScript constructs in the least disruptive way.
-For that reason, TypeScript 3.7 introduces a new concept called "assertion signatures" which model these assertion functions.
+TypeScript 最基本的目标就是用最友好的方式去对现有的 JavaScript 结构做类型分析。
+基于这个原因，TypeScript 3.7 引入了一个新的概念叫“断言签名(assertion signatures)”，用来模拟这些断言函数。
 
-The first type of assertion signature models the way that Node's `assert` function works.
-It ensures that whatever condition is being checked must be true for the remainder of the containing scope.
+第一种断言签名，模拟 Node 中的 `assert` 函数的功能。
+它确保在断言的范围内，断言条件必须为 `true`。
 
 ```ts
 function assert(condition: any, msg?: string): asserts condition {
@@ -227,9 +227,9 @@ function assert(condition: any, msg?: string): asserts condition {
 }
 ```
 
-`asserts condition` says that whatever gets passed into the `condition` parameter must be true if the `assert` returns (because otherwise it would throw an error).
-That means that for the rest of the scope, that condition must be truthy.
-As an example, using this assertion function means we _do_ catch our original `yell` example.
+`断言条件` 说的是，如果 `assert` 返回了，`condition` 参数得到的传入值必须为 `true`，因为如果不是这样，它肯定会抛出一个错误。 
+这意味着，在断言的范围内，这个条件一定是正确的。
+举一个例子，用这个断言函数意味着我们可以实现捕获我们之前的 `yell` 示例的错误。
 
 ```ts
 function yell(str) {
@@ -248,7 +248,7 @@ function assert(condition: any, msg?: string): asserts condition {
 }
 ```
 
-The other type of assertion signature doesn't check for a condition, but instead tells TypeScript that a specific variable or property has a different type.
+另外一种断言签名不是用来校验一个条件，而是告诉 TypeScript 某个变量或属性有不同的类型。
 
 ```ts
 function assertIsString(val: any): asserts val is string {
@@ -258,13 +258,13 @@ function assertIsString(val: any): asserts val is string {
 }
 ```
 
-Here `asserts val is string` ensures that after any call to `assertIsString`, any variable passed in will be known to be a `string`.
+这里 `asserts val is string` 保证在 `assertIsString` 调用之后, 任何传入的变量将被认为是一个 `string`.
 
 ```ts
 function yell(str: any) {
   assertIsString(str);
 
-  // Now TypeScript knows that 'str' is a 'string'.
+  // 现在 TypeScript 知道了，'str' 是一个 'string'。
 
   return str.toUppercase();
   //         ~~~~~~~~~~~
@@ -273,7 +273,7 @@ function yell(str: any) {
 }
 ```
 
-These assertion signatures are very similar to writing type predicate signatures:
+这里的断言签名非常类似于类型断言签名：
 
 ```ts
 function isString(val: any): val is string {
@@ -288,8 +288,8 @@ function yell(str: any) {
 }
 ```
 
-And just like type predicate signatures, these assertion signatures are incredibly expressive.
-We can express some fairly sophisticated ideas with these.
+就像类型断言签名一样，这些断言签名是非常神奇的。
+我们可以用它们实现一些非常复杂的想法和设计。
 
 ```ts
 function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
@@ -301,7 +301,7 @@ function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
 }
 ```
 
-To read up more about assertion signatures, [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32695).
+想阅读更多断言签名相关内容， [签出原始的 pull request](https://github.com/microsoft/TypeScript/pull/32695).
 
 ## Better Support for `never`-Returning Functions
 
