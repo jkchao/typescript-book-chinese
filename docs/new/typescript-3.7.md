@@ -5,7 +5,7 @@
 - [(More) Recursive Type Aliases](#more-recursive-type-aliases)
 - [`--declaration` and `--allowJs`](#declaration-and---allowjs)
 - [The `useDefineForClassFields` Flag and The `declare` Property Modifier](#the-usedefineforclassfields-flag-and-the-declare-property-modifier)
-- [Build-Free Editing with Project References](#build-free-editing-with-project-references)
+- [编辑有项目引用的项目，无需构建](#%e7%bc%96%e8%be%91%e6%9c%89%e9%a1%b9%e7%9b%ae%e5%bc%95%e7%94%a8%e7%9a%84%e9%a1%b9%e7%9b%ae%e6%97%a0%e9%9c%80%e6%9e%84%e5%bb%ba)
 - [Uncalled Function Checks](#uncalled-function-checks)
 - [`// @ts-nocheck` in TypeScript Files](#ts-nocheck-in-typescript-files)
 - [Semicolon Formatter Option](#semicolon-formatter-option)
@@ -701,16 +701,17 @@ For more information, you can [take a look at the original pull request for thes
 We strongly encourage users to try the `useDefineForClassFields` flag and report back on our issue tracker or in the comments below.
 This includes feedback on difficulty of adopting the flag so we can understand how we can make migration easier.
 
-## Build-Free Editing with Project References
+## 编辑有项目引用的项目，无需构建
 
-TypeScript's project references provide us with an easy way to break codebases up to give us faster compiles.
-Unfortunately, editing a project whose dependencies hadn't been built (or whose output was out of date) meant that the editing experience wouldn't work well.
+TypeScript 中的项目引用给我们提供了一个方便的方式去拆分代码库，从而让我们更快地编译。
+不幸的是，当我们编辑一个依赖项目还没有构建（或者它的构建结果已经过期）的项目，会得到不好的编辑体验。
 
-In TypeScript 3.7, when opening a project with dependencies, TypeScript will automatically use the source `.ts`/`.tsx` files instead.
-This means projects using project references will now see an improved editing experience where semantic operations are up-to-date and "just work".
-You can disable this behavior with the compiler option `disableSourceOfProjectReferenceRedirect` which may be appropriate when working in very large projects where this change may impact editing performance.
+在 TypeScript 3.7 中，当打开一个有依赖的项目时，TypeScript 将会自动地使用原始 `.ts`/`.tsx` 文件来代替。
+这意味着有项目引用的项目，现在会得到编辑体验的提升，代码的修改会马上同步和生效。
 
-You can [read up more about this change by reading up on its pull request](https://github.com/microsoft/TypeScript/pull/32028).
+你可以通过编译器配置项 `disableSourceOfProjectReferenceRedirect` 来禁用这个特性，适用于非常大的项目，因为非常大的项目中，这个特性坑内会影响编辑体验。
+
+你可以 [阅读它的 pull request，获取更多相关信息](https://github.com/microsoft/TypeScript/pull/32028).
 
 ## Uncalled Function Checks
 
