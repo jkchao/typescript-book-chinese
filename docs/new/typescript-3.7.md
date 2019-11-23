@@ -1,11 +1,11 @@
 - [Optional Chaining](#optional-chaining)
 - [Nullish Coalescing](#nullish-coalescing)
-- [Assertion Functions](#assertion-functions)
+- [断言函数](#%e6%96%ad%e8%a8%80%e5%87%bd%e6%95%b0)
 - [Better Support for `never`-Returning Functions](#better-support-for-never-returning-functions)
 - [(More) Recursive Type Aliases](#more-recursive-type-aliases)
 - [`--declaration` and `--allowJs`](#declaration-and---allowjs)
 - [The `useDefineForClassFields` Flag and The `declare` Property Modifier](#the-usedefineforclassfields-flag-and-the-declare-property-modifier)
-- [Build-Free Editing with Project References](#build-free-editing-with-project-references)
+- [编辑有项目引用的项目，无需构建](#%e7%bc%96%e8%be%91%e6%9c%89%e9%a1%b9%e7%9b%ae%e5%bc%95%e7%94%a8%e7%9a%84%e9%a1%b9%e7%9b%ae%e6%97%a0%e9%9c%80%e6%9e%84%e5%bb%ba)
 - [Uncalled Function Checks](#uncalled-function-checks)
 - [`// @ts-nocheck` in TypeScript Files](#ts-nocheck-in-typescript-files)
 - [Semicolon Formatter Option](#semicolon-formatter-option)
@@ -162,22 +162,22 @@ When `localStorage.volume` is set to `0`, the page will set the volume to `0.5` 
 We owe a large thanks to community members [Wenlu Wang](https://github.com/Kingwl) and [Titian Cernicova Dragomir](https://github.com/dragomirtitian) for implementing this feature!
 For more details, [check out their pull request](https://github.com/microsoft/TypeScript/pull/32883) and [the nullish coalescing proposal repository](https://github.com/tc39/proposal-nullish-coalescing/).
 
-## Assertion Functions
+## 断言函数
 
-[Playground](/play/#example/assertion-functions)
+[试试看](https://www.typescriptlang.org/play/#example/assertion-functions)
 
-There's a specific set of functions that `throw` an error if something unexpected happened.
-They're called "assertion" functions.
-As an example, Node.js has a dedicated function for this called `assert`.
+有一类特定的函数，在非预期结果出现时会抛出一个错误。
+这类函数就叫做断言函数。
+例如，Node.js 有一个专用的断言函数叫 `assert`。
 
 ```js
 assert(someValue === 42);
 ```
 
-In this example if `someValue` isn't equal to `42`, then `assert` will throw an `AssertionError`.
+在这个示例中，如果 `someValue` 不等于 `42`，那么 `assert` 就会抛出一个 `AssertionError`。
 
-Assertions in JavaScript are often used to guard against improper types being passed in.
-For example,
+JavaScript 中的断言经常用于确保传入的是正确的类型。
+比如，
 
 ```js
 function multiply(x, y) {
@@ -188,36 +188,36 @@ function multiply(x, y) {
 }
 ```
 
-Unfortunately in TypeScript these checks could never be properly encoded.
-For loosely-typed code this meant TypeScript was checking less, and for slightly conservative code it often forced users to use type assertions.
+不幸的是，TypeScript 中的这些检查从来不会被正确的编写。
+对于弱类型的写法，意味着 TypeScript 不会严格检查，而对于稍微规范一些的写法，一般要求使用者添加类型断言。
 
 ```ts
 function yell(str) {
   assert(typeof str === 'string');
 
   return str.toUppercase();
-  // Oops! We misspelled 'toUpperCase'.
-  // Would be great if TypeScript still caught this!
+  // 哎呀！我们错误地拼写了 'toUpperCase'
+  // 如果 TypeScript 依然能捕获问题，那就太棒了！
 }
 ```
 
-The alternative was to instead rewrite the code so that the language could analyze it, but this isn't convenient.
+这里有可供选择的替代写法，可以让编程语言分析出问题，不过并不方便。
 
 ```ts
 function yell(str) {
   if (typeof str !== 'string') {
     throw new TypeError('str should have been a string.');
   }
-  // Error caught!
+  // 错误被捕获！
   return str.toUppercase();
 }
 ```
 
-Ultimately the goal of TypeScript is to type existing JavaScript constructs in the least disruptive way.
-For that reason, TypeScript 3.7 introduces a new concept called "assertion signatures" which model these assertion functions.
+TypeScript 最基本的目标就是用最友好的方式去对现有的 JavaScript 结构做类型分析。
+基于这个原因，TypeScript 3.7 引入了一个新的概念叫“断言签名(assertion signatures)”，用来模拟这些断言函数。
 
-The first type of assertion signature models the way that Node's `assert` function works.
-It ensures that whatever condition is being checked must be true for the remainder of the containing scope.
+第一种断言签名，模拟 Node 中的 `assert` 函数的功能。
+它确保在断言的范围内，断言条件必须为 `true`。
 
 ```ts
 function assert(condition: any, msg?: string): asserts condition {
@@ -227,9 +227,9 @@ function assert(condition: any, msg?: string): asserts condition {
 }
 ```
 
-`asserts condition` says that whatever gets passed into the `condition` parameter must be true if the `assert` returns (because otherwise it would throw an error).
-That means that for the rest of the scope, that condition must be truthy.
-As an example, using this assertion function means we _do_ catch our original `yell` example.
+`断言条件` 说的是，如果 `assert` 返回了，`condition` 参数得到的传入值必须为 `true`，因为如果不是这样，它肯定会抛出一个错误。 
+这意味着，在断言的范围内，这个条件一定是正确的。
+举一个例子，用这个断言函数意味着我们可以实现捕获我们之前的 `yell` 示例的错误。
 
 ```ts
 function yell(str) {
@@ -248,7 +248,7 @@ function assert(condition: any, msg?: string): asserts condition {
 }
 ```
 
-The other type of assertion signature doesn't check for a condition, but instead tells TypeScript that a specific variable or property has a different type.
+另外一种断言签名不是用来校验一个条件，而是告诉 TypeScript 某个变量或属性有不同的类型。
 
 ```ts
 function assertIsString(val: any): asserts val is string {
@@ -258,13 +258,13 @@ function assertIsString(val: any): asserts val is string {
 }
 ```
 
-Here `asserts val is string` ensures that after any call to `assertIsString`, any variable passed in will be known to be a `string`.
+这里 `asserts val is string` 保证在 `assertIsString` 调用之后, 任何传入的变量将被认为是一个 `string`.
 
 ```ts
 function yell(str: any) {
   assertIsString(str);
 
-  // Now TypeScript knows that 'str' is a 'string'.
+  // 现在 TypeScript 知道了，'str' 是一个 'string'。
 
   return str.toUppercase();
   //         ~~~~~~~~~~~
@@ -273,7 +273,7 @@ function yell(str: any) {
 }
 ```
 
-These assertion signatures are very similar to writing type predicate signatures:
+这里的断言签名非常类似于类型断言签名：
 
 ```ts
 function isString(val: any): val is string {
@@ -288,8 +288,8 @@ function yell(str: any) {
 }
 ```
 
-And just like type predicate signatures, these assertion signatures are incredibly expressive.
-We can express some fairly sophisticated ideas with these.
+就像类型断言签名一样，这些断言签名是非常强大的。
+我们可以用它们实现一些非常复杂的想法和设计。
 
 ```ts
 function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
@@ -301,7 +301,7 @@ function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
 }
 ```
 
-To read up more about assertion signatures, [check out the original pull request](https://github.com/microsoft/TypeScript/pull/32695).
+想阅读更多断言签名相关内容， [签出原始的 pull request](https://github.com/microsoft/TypeScript/pull/32695).
 
 ## Better Support for `never`-Returning Functions
 
@@ -701,16 +701,17 @@ For more information, you can [take a look at the original pull request for thes
 We strongly encourage users to try the `useDefineForClassFields` flag and report back on our issue tracker or in the comments below.
 This includes feedback on difficulty of adopting the flag so we can understand how we can make migration easier.
 
-## Build-Free Editing with Project References
+## 编辑有项目引用的项目，无需构建
 
-TypeScript's project references provide us with an easy way to break codebases up to give us faster compiles.
-Unfortunately, editing a project whose dependencies hadn't been built (or whose output was out of date) meant that the editing experience wouldn't work well.
+TypeScript 中的项目引用给我们提供了一个方便的方式去拆分代码库，从而让我们更快地编译。
+不幸的是，当我们编辑一个依赖项目还没有构建（或者它的构建结果已经过期）的项目，会得到不好的编辑体验。
 
-In TypeScript 3.7, when opening a project with dependencies, TypeScript will automatically use the source `.ts`/`.tsx` files instead.
-This means projects using project references will now see an improved editing experience where semantic operations are up-to-date and "just work".
-You can disable this behavior with the compiler option `disableSourceOfProjectReferenceRedirect` which may be appropriate when working in very large projects where this change may impact editing performance.
+在 TypeScript 3.7 中，当打开一个有依赖的项目时，TypeScript 将会自动地使用原始 `.ts`/`.tsx` 文件来代替。
+这意味着有项目引用的项目，现在会得到编辑体验的提升，代码的修改会马上同步和生效。
 
-You can [read up more about this change by reading up on its pull request](https://github.com/microsoft/TypeScript/pull/32028).
+你可以通过编译器配置项 `disableSourceOfProjectReferenceRedirect` 来禁用这个特性，适用于非常大的项目，因为非常大的项目中，这个特性坑内会影响编辑体验。
+
+你可以 [阅读它的 pull request，获取更多相关信息](https://github.com/microsoft/TypeScript/pull/32028).
 
 ## Uncalled Function Checks
 
