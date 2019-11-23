@@ -9,7 +9,10 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@add-github-actions
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        ref: add-github-actions
 
     - name: Setup Node
       uses: actions/setup-node@v1
