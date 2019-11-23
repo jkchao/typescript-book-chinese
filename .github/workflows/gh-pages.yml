@@ -19,20 +19,11 @@ jobs:
       with:
         node-version: '10.x'
 
-    - name: Cache dependencies
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
     - name: Install yarn
       run: npm install yarn -g
 
     - name: Install Dependencies
       run: yarn
-
 
     - name: Build
       run: npm run build
