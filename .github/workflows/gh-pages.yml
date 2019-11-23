@@ -1,9 +1,9 @@
 name: github pages
 
 on:
-  push:
+  pull_request:
     branches:
-    - add-github-actions
+    - master
 
 jobs:
   build-deploy:
@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
-        ref: add-github-actions
+        ref: master
 
     - name: Setup Node
       uses: actions/setup-node@v1

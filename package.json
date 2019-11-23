@@ -9,7 +9,6 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "deploy": "sh build/deploy.sh",
     "precommit": "lint-staged",
     "contributor:add": "all-contributors add",
     "contributor:generate": "all-contributors generate"
