@@ -33,7 +33,15 @@ module.exports = {
     //   apiKey: 'fd0efd57c48824ceb1bcfa9690dba5b0',
     //   indexName: 'jkchao_typescript'
     // },
-    wxConfig: [{ title: '与我交流', src: '/typescript-book-chinese/contact.png' }],
+    adsConfig: [
+      { title: '与我交流', src: '/typescript-book-chinese/contact.png' },
+      {
+        title: '购买此书',
+        src:
+          'https://static.jkchao.cn/2019-11-22/WechatIMG719.png?imageMogr2/auto-orient/thumbnail/80x/blur/1x0/quality/75|imageslim',
+        url: 'https://item.jd.com/12755624.html'
+      }
+    ],
     nav: [
       { text: '原书链接', link: 'https://basarat.gitbooks.io/typescript/content/docs/getting-started.html' },
       { text: 'Blog', link: 'https://jkchao.cn' }
@@ -154,12 +162,12 @@ module.exports = {
           './faqs/commandline-behavior',
           './faqs/tsconfig-behavior'
         ]
-      },
-      {
-        title: 'TypeScript 更新',
-        collapsable: false,
-        children: ['/new/typescript-3.7']
       }
+      // {
+      //   title: 'TypeScript 更新',
+      //   collapsable: false,
+      //   children: ['/new/typescript-3.7']
+      // }
     ]
   }
 };
