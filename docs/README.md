@@ -81,4 +81,4 @@
 
 如果你喜欢纸质书籍，可以通过[京东](https://item.jd.com/12755624.html)或者[当当](http://product.m.dangdang.com/28487648.html?t=1574581821)，来购买此书。
 
-![图书封面](https://static.jkchao.cn/2019-11-22/WechatIMG719.png)
+![图书封面](https://static.jkchao.cn/2019-11-22/WechatIMG719.png?imageMogr2/auto-orient/thumbnail/360x/blur/1x0/quality/75|imageslim))
