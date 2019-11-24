@@ -1,11 +1,14 @@
 <template>
-  <div class="wechat">
+  <div class="ads">
     <div
       class="item"
-      v-for="wx in $themeConfig.wxConfig">
-      <h6 class="title" v-show="!notName">{{wx.title}}</h6>
+      v-for="ads in $themeConfig.adsConfig">
+      <h6 class="title" v-show="!notName">{{ads.title}}</h6>
       <div class="thumb">
-        <img :src="wx.src" :alt="wx.title">
+        <a  :href="ads.url || ads.src" target="_blank">
+          <img :src="ads.src" :alt="ads.title">
+        </a>
+
       </div>
     </div>
   </div>
@@ -13,13 +16,13 @@
 
 <script>
 export default {
-  name: 'wechat',
+  name: 'ads',
   props: ['notName']
 }
 </script>
 
 <style scoped lang="stylus">
-.wechat 
+.ads 
   position fixed;
   z-index 99;
   top 90px;
@@ -28,7 +31,7 @@ export default {
 
 
 @media (max-width: 1270px)
-  .wechat 
+  .ads 
     display none;
 
 .item 
