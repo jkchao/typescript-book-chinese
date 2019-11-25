@@ -12,15 +12,17 @@ let x = foo?.bar.baz();
 
 这种方式告诉我们，当 `foo` 被定义了，`foo.bar.baz()` 将会完成；但是当 `foo` 是 `null` 或者 `undefined` 时，TypeScript 会停止我们正在做的事，并且仅仅是返回 `undefined`。
 
-更简单一点的说，上文的代码片段与如下代码是一样的 L
+更简单一点的说，上文的代码片段与如下代码是一样的：
 
 ```ts
 let x = foo === null || foo === undefined ? undefined : foo.bar.baz();
 ```
 
-注意，如果 `bar` 是 `null` 或者 `undefined`，在访问 `bar` 时，我们的代码仍然会抛出一个错误。与此相似，如果 `baz` 是 `null` 或者 `undefined`，在调用时，它会抛出一个错误。`?.` 只会检查它左边的值是 `undefined` 还是 `null` - 并不是检查任何后面的属性。
+注意，如果 `bar` 是 `null` 或者 `undefined`，在访问 `bar` 时，我们的代码仍然会抛出一个错误。
 
-你可能已经发现你可以使用 `?.` 来替代很多使用 `&&` 运算符执行重复空检查的代码：
+与此相似，如果 `baz` 是 `null` 或者 `undefined`，在调用时，它也会抛出一个错误。`?.` 只会检查它左边的值是 `undefined` 还是 `null` - 并不会检查后面的任何属性。
+
+你可能已经发现你可以使用 `?.` 来替代很多使用 `&&` 执行空检查的代码：
 
 ```ts
 // Before
