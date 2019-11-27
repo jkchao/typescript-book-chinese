@@ -12,7 +12,7 @@ let x = foo?.bar.baz();
 
 这种方式告诉我们，当 `foo` 被定义了，`foo.bar.baz()` 将会完成；但是当 `foo` 是 `null` 或者 `undefined` 时，TypeScript 会停止我们正在做的事，并且仅仅是返回 `undefined`。
 
-更简单一点的说，上文的代码片段与如下代码是一样的：
+也就是说，上文的代码等效于如下代码：
 
 ```ts
 let x = foo === null || foo === undefined ? undefined : foo.bar.baz();
@@ -36,9 +36,9 @@ if (foo?.bar?.baz) {
 }
 ```
 
-记住：`?.` 运算符的行为与 `&&` 运算符并不相同，因为 `&&` 运算符的行为是专门用于 "falsy" 的值（如：空字符串、`0`、`NaN`、和 `false`），但在此种结构中，这是被故意设计成这样的。在验证数据如 `0` 或者空字符串时，它并没有使用短路验证的方式。
+注意：`?.` 运算符的行为与 `&&` 运算符并不相同，因为 `&&` 运算符的行为是专门用于 "falsy" 的值（如：空字符串、`0`、`NaN`、和 `false`），但在此种结构中，这是被故意设计成这样的。在验证数据如 `0` 或者空字符串时，它并没有使用短路验证的方式。
 
-Optional Chining 还包含另外两个运算符，首先是可选元素的访问，它的行为类似与可选属性的访问，但是它允许我们访问非标志符属性（例如：任意的字符串、数字和 symbols）：
+Optional Chining 还包含另外两个运算符，首先是可选元素的访问，它的行为类似于可选属性的访问，但是它允许我们访问非标志符属性（例如：任意的字符串、数字和 symbols）：
 
 ```ts
 /**
@@ -54,7 +54,7 @@ function tryGetFirstElement<T>(arr?: T[]) {
 }
 ```
 
-另外一个是可选的调用，它能让我们有条件性的调用表达式，如果该表达式不是 `null` 或 `undefined`。
+另外一个是可选调用，它能让我们有条件的调用表达式：
 
 ```ts
 async function makeRequest(url: string, log?: (msg: string) => void) {
@@ -72,23 +72,21 @@ async function makeRequest(url: string, log?: (msg: string) => void) {
 }
 ```
 
-Optional Chining 的「短路运算」行为被局限在属性的访问、调用以及元素的访问 --- 它不会从这些表达式中，也就是说：
+Optional Chining 的「短路运算」行为被局限在属性的访问、调用以及元素的访问 --- 它不会从这些表达式中进一步扩展，也就是说：
 
 ```ts
 let result = foo?.bar / someComputation()
 ```
 
-不会阻止除法或者 `someComputation()` 调用，它等价于：
+不会阻止除法运算或者 `someComputation()` 调用，它等价于：
 
 ```ts
-let temp = (foo === null || foo === undefined) ?】
-    undefined :
-    foo.bar;
+let temp = foo === null || foo === undefined ? undefined : foo.bar;
 
 let result = temp / someComputation();
 ```
 
-它可能会导致除法结果是 `undefined`，这就是为什么在 `strictNullChecks` 选项下，会抛出一个错误：
+它可能会导致除法运算的结果是 `undefined`，这就是为什么在 `strictNullChecks` 选项下，会抛出一个错误：
 
 ```ts
 function barPercentage(foo?: { bar: number }) {
@@ -102,15 +100,15 @@ function barPercentage(foo?: { bar: number }) {
 
 ## Nullish Coalescing
 
-nullish coalescing 运算符是另一个即将推出的 ECMAScript 功能，它与 Optional chaining 并驾齐驱，并且我们团队一直参与 TC39 的有关讨论。
+nullish coalescing 运算符是另一个即将推出的 ECMAScript 功能，它与 Optional chaining 一同被推出，并且我们团队一直参与 TC39 的有关讨论。
 
-你可以这么想它的功能 - `??` 操作符 - 当处理 `null` 或者 `undefined` 时，它可以作为一种「倒退」到默认值的方式，当我们写下如下代码：
+你可以这么想它的功能 - `??` 运算符 - 当处理 `null` 或者 `undefined` 时，它可以作为一种「倒退」到默认值的方式，当我们写下如下代码：
 
 ```ts
 let x = foo ?? bar();
 ```
 
-这种方式来表示当 `foo` 值存在时，它会被使用，但是当它是 `null` 或 `undefined`，它会计算 `bar()`。
+这种方式来表示当 `foo` 值存在时，`foo` 会被使用，但是当它是 `null` 或 `undefined`，它会计算 `bar()`。
 
 它等价于如下代码：
 
@@ -118,7 +116,7 @@ let x = foo ?? bar();
 let x = foo !== null && foo !== undefined ? foo : bar();
 ```
 
-当尝试使用一个默认值时，`??` 运算符可以被 `||` 替代。例如，在下面的代码片段中，当尝试获取最后一次储存在 localStorage 中的 `volume` 时（如果它存在）；但是由于使用 `||`，这会有个 bug：
+当尝试使用一个默认值时，`??` 运算符可以被 `||` 替代。例如，在下面的代码片段中，当尝试获取最后一次储存在 localStorage 中的 `volume` 时（如果它存在）；但是当使用 `||`，这会有个 bug：
 
 ```ts
 function initializeAudio() {
@@ -132,9 +130,7 @@ function initializeAudio() {
 
 ## 断言函数
 
-有一类特定的函数，在非预期结果出现时会抛出一个错误。
-这类函数就叫做断言函数。
-例如，Node.js 有一个专用的断言函数叫 `assert`。
+有一类特定的函数，在非预期结果出现时会抛出一个错误。这类函数就叫做断言函数。例如，Node.js 有一个专用的断言函数叫 `assert`。
 
 ```js
 assert(someValue === 42);
@@ -154,8 +150,7 @@ function multiply(x, y) {
 }
 ```
 
-不幸的是，TypeScript 中的这些检查从来不会被正确的编写。
-对于弱类型的写法，意味着 TypeScript 不会严格检查，而对于稍微规范一些的写法，一般要求使用者添加类型断言。
+不幸的是，在 TypeScript 中的这些检查从来不会被正确的编写。对于弱类型的写法，意味着 TypeScript 不会严格检查，而对于稍微规范一些的写法，一般要求使用者添加类型断言。
 
 ```ts
 function yell(str) {
@@ -195,6 +190,7 @@ function assert(condition: any, msg?: string): asserts condition {
 
 `断言条件` 说的是，如果 `assert` 返回了，`condition` 参数得到的传入值必须为 `true`，因为如果不是这样，它肯定会抛出一个错误。
 这意味着，在断言的范围内，这个条件一定是正确的。
+
 举一个例子，用这个断言函数意味着我们可以实现捕获我们之前的 `yell` 示例的错误。
 
 ```ts
@@ -254,8 +250,7 @@ function yell(str: any) {
 }
 ```
 
-就像类型断言签名一样，这些断言签名是非常强大的。
-我们可以用它们实现一些非常复杂的想法和设计。
+就像类型断言签名一样，这些断言签名是非常强大的。我们可以用它们实现一些非常复杂的想法和设计。
 
 ```ts
 function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
@@ -271,11 +266,11 @@ function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
 
 ## 更好的支持返回函数的 `never`
 
-作为断言签名工作的一部分，TypeScript 需要对调用时的函数，以及位置信息编码更多的信息。这给了我们扩展另一类函数的机会：返回 `never` 的函数。
+为了能使断言签名工作，其中的一个工作是，TypeScript 需要对调用时的函数，以及位置信息编码更多的信息。这给了我们扩展另一类函数的机会：返回 `never` 的函数。
 
-返回为 `never` 的函数，即是永远没有分案会的函数。它表明抛出了异常、由于错误发生暂停、或者程序退出的情况。例如：[`process.exit(...)` 中的 `@types/node`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/5299d372a220584e75a031c13b3d555607af13f8/types/node/globals.d.ts#l874) 指定返回为 `never`。
+返回为 `never` 的函数，即是永远没有返回的函数。它表明抛出了异常、由于错误发生暂停、或者程序退出的情况。例如：[`process.exit(...)` 中的 `@types/node`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/5299d372a220584e75a031c13b3d555607af13f8/types/node/globals.d.ts#l874) 指定返回为 `never`。
 
-为了确保函数永远不会返回潜在的 `undefined`，或者，TypeScript 需要一些句法（syntactic）信号 - 可以是函数末尾的 `return` 或者 `thorw`。因此使用者
+为了确保函数永远不会返回潜在的 `undefined`，或者从所有的代码路径中有效返回，TypeScript 需要一些句法（syntactic）信号 - 可以是函数末尾的 `return` 或者 `thorw`。因此使用者就会发现自己正在返回它们的故障函数：
 
 ```ts
 function dispatch(x: string | number): SomeType {
