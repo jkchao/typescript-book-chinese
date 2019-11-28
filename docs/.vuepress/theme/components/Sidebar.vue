@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <NavLinks/>
     <slot name="top"/>
-    <Wechat></Wechat>
+    <Ads></Ads>
     <SidebarLinks :depth="0" :items="items"/>
     <slot name="bottom"/>
   </aside>
@@ -11,12 +11,12 @@
 <script>
 import SidebarLinks from './SidebarLinks.vue'
 import NavLinks from './NavLinks.vue'
-import Wechat from './Wechat.vue';
+import Ads from './Ads.vue';
 
 export default {
   name: 'Sidebar',
 
-  components: { SidebarLinks, NavLinks, Wechat },
+  components: { SidebarLinks, NavLinks, Ads },
 
   props: ['items']
 }
@@ -24,7 +24,7 @@ export default {
 
 <style lang="stylus">
 .sidebar
-  .wechat
+  .ads
     display none
     position: initial
   ul
@@ -55,7 +55,7 @@ export default {
 
 @media (max-width: $MQMobile)
   .sidebar
-    .wechat
+    .ads
       display block
       width 100%
       margin-top  1rem

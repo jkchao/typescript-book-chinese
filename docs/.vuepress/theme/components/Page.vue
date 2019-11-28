@@ -2,7 +2,7 @@
   <main class="page">
     <slot name="top"/>
 
-    <Wechat></Wechat>
+    <Ads></Ads>
 
     <Content/>
 
@@ -65,13 +65,13 @@
 
 <script>
 import { resolvePage, normalize, outboundRE, endingSlashRE } from '../util'
-import Wechat from './Wechat.vue'
+import Ads from './Ads.vue'
 
 export default {
   props: ['sidebarItems'],
 
   components: {
-    Wechat
+    Ads
   },
 
   computed: {
