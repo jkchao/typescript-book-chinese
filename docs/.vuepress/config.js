@@ -162,6 +162,11 @@ module.exports = {
           './faqs/commandline-behavior',
           './faqs/tsconfig-behavior'
         ]
+      },
+      {
+        title: 'TypeScript 更新',
+        collapsable: false,
+        children: ['/new/typescript-3.7']
       }
       // {
       //   title: 'TypeScript 更新',
