@@ -300,15 +300,15 @@ function dispatch(x: string | number): SomeType {
 
 ## 递归的类型别名
 
-类型别名在如何“递归”引用方面一直存在局限性，原因在于，对类型别名的任何使用都必须能够用这个来代替自己，在某些情况下，这是不可能的，因此编译器，会拒绝某些别名的递归：
+类型别名在如何“递归”引用方面一直存在局限性，原因在于对类型别名的任何使用都必须能够用这个来代替自己。在某些情况下，这是不可能的，因此编译器，会拒绝某些别名的递归：
 
 ```ts
 type Foo = Foo;
 ```
 
-这是一个合理的限制，因为 `Foo` 的任何使用都可以被 `Foo` 替代，`Foo` 的任何使用都可以被 `Foo` 替代（无限循环），到最后，没有什么类型可以替代 `Foo`
+这是一个合理的限制，因为 `Foo` 的任何使用都可以被 `Foo` 替代，`Foo` 的任何使用都可以被 `Foo` 替代（无限循环），到最后，没有类型可以替代 `Foo`
 
-这与其他语言处理类型别名时是一致的，但是在用户如何利用该功能时，它确实引起了一些令人惊讶的情况，例如，在 TypeScript 3.6 及其以下版本时，下面的代码会抛出错误：
+这与其他语言处理类型别名时是一致的。但是在用户如何利用该功能方面，它确实造成了一些令人疑惑的情景，例如，在 TypeScript 3.6 及其以下版本时，下面的代码会抛出错误：
 
 ```ts
 type ValueOrArray<T> = T | Array<ValueOrArray<T>>;
@@ -316,7 +316,7 @@ type ValueOrArray<T> = T | Array<ValueOrArray<T>>;
 // error: Type alias 'ValueOrArray' circularly references itself.
 ```
 
-这很奇怪，因为从技术上讲，这没有错误。使用者总是可以通过引入接口来编写实际上是相同代码的代码。
+这很令人疑惑，因为从技术上讲，这没有错误。使用者也可以通过引入接口的方式来实现上述中相同作用的代码：
 
 ```ts
 type ValueOrArray<T> = T | ArrayOfValueOrArray<T>;
@@ -326,9 +326,9 @@ interface ArrayOfValueOrArray<T> extends Array<ValueOrArray<T>> {}
 
 因为接口（和其他对象类型）引入了一个中间类型，并且不需要立马构建它们的完整结构，因此 TypeScript 在使用这种结构时没有问题。但是对于使用者来说，引入一个中间类型来说，并不是很直观。原则上，直接使用 `Array` 的 `ValueOrArray` 的原始版本确实没有任何问题。假如编译器有一点“偷懒”，并且只在必要时才计算 `Array` 的类型参数，则 TypeScript 可以正确表示出这些。
 
-这正式 TypeScript 3.7 所引入的内容，在最顶级的类型病名中，TypeScript 将会推迟解析类型参数，以允许这种情况。
+这正式 TypeScript 3.7 所引入的内容，在最顶级的类型别名中，TypeScript 将会推迟解析类型参数，已允许这种情况的发生。
 
-这意味着，以下代码能表示 JSON
+这意味着，以下代码能成立：
 
 ```ts
 type Json = string | number | boolean | null | JsonObject | JsonArray;
@@ -346,7 +346,7 @@ interface JsonArray extends Array<Json> {}
 type Json = string | number | boolean | null | { [property: string]: Json } | Json[];
 ```
 
-这种新的行为，可以让我们在元组中递归使用类型别名，下面的代码，在以前是会抛出错误，但是现在确实有效的：
+这种新的行为，可以让我们在元组中递归使用类型别名，下面的代码，在以前会抛出错误，但是现在是有效的：
 
 ```ts
 type VirtualNode = string | [string, { [key: string]: any }, ...VirtualNode[]];
@@ -363,15 +363,15 @@ const myNode: VirtualNode = [
 
 ## `--declaration` and `--allowJs`
 
-`--declaration` 选项可以让我们从 TypeScript 源文件（如 `.ts`、`.tsx` 文件）中生成 `.d.ts`（声明文件），这些 `.d.ts` 文件很重要，有以下原因：
+`--declaration` 选项可以让我们从 TypeScript 源文件（如 `.ts`、`.tsx` 文件）中生成 `.d.ts`（声明文件）。这些 `.d.ts` 文件为什么很重要，有以下原因：
 
-首先，它们允许 TypeScript 对其他项目进行类型检查，而不需要重新检查源代码。其次，它们允许 TypeScript 与没有使用 TypeScript 构建的 JavaScript 库之间更好的操作。最后，一个被经常忽略小细节：当使用由 TypeScript 驱动的编辑器来获得一些更好功能（比如自动完成）时，TypeScript 和 JavaScript 用户都可以从这些文件中受益。
+首先，它们允许 TypeScript 在不需要重新检查源代码的情况下，能对其他项目进行类型检查。其次，它们允许 TypeScript 与没有使用 TypeScript 构建的 JavaScript 库之间更好的协作。最后，一个被经常忽略小细节：当使用由 TypeScript 驱动的编辑器来获得一些更好功能（比如自动完成）时，TypeScript 和 JavaScript 用户都可以从这些文件中受益。
 
-不幸的是，`--declaration` 与 `--allowJs` 并不能一起使用，`--declaration` 选项会混合 TypeScript 和 JavaScript 输入文件。这是一个令人沮丧的限制，因为它意味着用户在迁移代码库时，不能使用 `--declaration`选项，即使使用了 JSDoc 形势的注释。TypeScript 3.7 改变了此行为，它能让两个选项同时使用了。
+不幸的是，`--declaration` 与 `--allowJs` 并不能一起使用，`--declaration` 选项会混合 TypeScript 和 JavaScript 输入文件。这是一个令人沮丧的限制，因为它意味着用户在迁移代码库时，不能使用 `--declaration` 选项，即使是使用了 JSDoc 形式的注释。TypeScript 3.7 改变了此行为，它能让两个选项同时使用。
 
-此功能最有影响力的结果，可能并不容易被发现：在 TypeScript 3.7 中，用户在 JavaScript 库中写的 JSDoc 注释，能帮助 TypeScript 用户。
+此功能带来最有影响力的结果，可能并不容易被发现：在 TypeScript 3.7 中，用户在 JavaScript 库中写的 JSDoc 注释，能帮助 TypeScript 用户。
 
-它能实现的原因是：当使用 `allowJs` 时，TypeScript 会尽可能的分析来了解常见的 JavaScript 模式。然而，一些在 JavaScript 能表现出的模式，并不一定能在 TypeScript 等效表示出来。当 `declaration` 选项打开时，TypeScript 会找出将 JSDoc 注释和 CommonJS 输出到 `.d.ts` 文件中的类型声明的最佳方式。
+它之所以能实现，是因为：当使用 `allowJs` 时，TypeScript 会尽可能的分析代码来了解常见的 JavaScript 模式。然而，一些在 JavaScript 能表示的模式，并不一定能在 TypeScript 等效表示出来。当 `declaration` 选项打开时，TypeScript 会找出将 JSDoc 注释和 CommonJS 输出到 `.d.ts` 文件中的类型声明的最佳方式。
 
 请看如下例子：
 
@@ -509,7 +509,7 @@ class C {
 }
 ```
 
-不幸的是，虽然这是 TC39 早期提案的发展方向，但是极有可能对于公共 class 字段有不同的标准化方向。取而代之，原始的代码可能会被编译成如下代码：
+不幸的是，虽然这是 TC39 早期提案的发展方向，但是极有可能对于公共 class 字段有不同的标准化方向。因此，原始的代码可能会被编译成如下代码：
 
 ```ts
 class C {
@@ -571,7 +571,6 @@ class AnimalHouse {
 }
 
 class DogHouse extends AnimalHouse {
-  sss;
   // Initializes 'resident' to 'undefined'
   // after the call to 'super()' when
   // using 'useDefineForClassFields'!
@@ -583,7 +582,7 @@ class DogHouse extends AnimalHouse {
 }
 ```
 
-这两个问题，可以归结为混合属性与访问器时，在没有初始化的情况下，将会有重复声明。
+这两个问题，可以归结为在没有初始化的情况下，混合属性与访问器时，将会有重复声明出现。
 
 为了检查访问器是否有上述问题，TypeScript 3.7 将会在 .d.ts 中编译出 `get`/`set`，于是 TypeScript 能够检查出是否有重写访问器的问题。
 
@@ -601,7 +600,7 @@ class Derived extends Base {
 }
 ```
 
-为了缓解第二个问题，你可以添加一个显示的初始化值，或者添加一个 `declare` 修饰符来表明该属性不会被编译出任何值。
+为了解决第二个问题，你可以添加一个显示的初始化值，或者添加一个 `declare` 修饰符来表明该属性不会被编译出任何值。
 
 ```ts
 interface Animal {
@@ -620,7 +619,7 @@ class AnimalHouse {
 
 class DogHouse extends AnimalHouse {
   resident: Dog;
-  //  ^^^^^^^
+  // ^^^^^^^
   // 'resident' now has a 'declare' modifier,
   // and won't produce any output code.
 
@@ -630,25 +629,25 @@ class DogHouse extends AnimalHouse {
 }
 ```
 
-现在，只有当编译目标是 ES5 及其以上时，`useDefineForClassFields` 编译选项才可用，因为 ES3 并没有 `Object.defineProperty`。为了实现对此问题类似的检查，你可以创建一个编译目标为 ES5 并且使用 `--noEmit` 来避免完全构建的单独项目。
+现在，只有当编译目标是 ES5 及其以上时，`useDefineForClassFields` 编译选项才可用，因为 ES3 并没有 `Object.defineProperty`。要实现类似的问题检查，你可以创建一个编译目标为 ES5 并且使用 `--noEmit` 来避免完全构建的单独项目。
 
 更多的信息，你可以查看此 [PR](https://github.com/microsoft/TypeScript/pull/33509)。
 
 ## 编辑有项目引用的项目，无需构建
 
-TypeScript 中的项目引用给我们提供了一个方便的方式去拆分代码库，从而让我们更快地编译。
-不幸的是，当我们编辑一个依赖项目还没有构建（或者它的构建结果已经过期）的项目，会得到不好的编辑体验。
+TypeScript 中的项目引用给我们提供了一个方便的方式去拆分代码库，从而让我们能实现更快地编译。
+不幸的是，当我们编辑一个依赖还没有被构建（或者它的构建结果已经过期）的项目时，会得到不好的编辑体验。
 
 在 TypeScript 3.7 中，当打开一个有依赖的项目时，TypeScript 将会自动地使用原始 `.ts`/`.tsx` 文件来代替。
 这意味着有项目引用的项目，现在会得到编辑体验的提升，代码的修改会马上同步和生效。
 
-你可以通过编译器配置项 `disableSourceOfProjectReferenceRedirect` 来禁用这个特性，适用于非常大的项目，因为非常大的项目中，这个特性坑内会影响编辑体验。
+你可以通过编译器配置项 `disableSourceOfProjectReferenceRedirect` 来禁用这个特性，但在非常大的项目中时，此选项是推荐开启的（能提升编辑器的性能）。
 
 你可以 [阅读它的 pull request，获取更多相关信息](https://github.com/microsoft/TypeScript/pull/32028).
 
 ## 没有调用的函数检查
 
-一个常见并且是危险的错误是忘记调用一个函数，特别是当函数具有零参数或以暗示它可能是属性而不是函数的方式命名时。
+一个常见并且是危险的错误是忘记调用一个函数，特别是当函数具有零参数或用暗示它可能是属性而不是函数的方式名称时。
 
 ```ts
 interface User {
@@ -683,7 +682,7 @@ function doAdminThing(user: User) {
     //        Did you mean to call it instead?
 ```
 
-这个检查是一个破坏性的更改，因此这个错误仅仅是发生在 `if` 条件语句中，并且如果 `strictNullChecks` 关闭或者在 if 块中，函数有被调用，都不会发出此错误。
+这个检查是一个破坏性的更改，因此这个错误仅仅是发生在 `if` 条件语句中，并且如果 `strictNullChecks` 关闭或者在 if 块中，函数有被调用，不会发出此错误。
 
 ```ts
 interface User {
