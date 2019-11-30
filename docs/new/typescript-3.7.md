@@ -4,7 +4,7 @@
 
 在我们的 issue 追踪器中，Optional Chining 在 [issue #16](https://github.com/microsoft/TypeScript/issues/16) 中，自那以后，有超过 23000 条 issues 被记录在 issue 中。
 
-Optional Chining 的核心是允许我们写下如果碰到 `null` 或者 `undefined`，TypeScript 能立即停止运行的代码。Optional chaning 耀眼的部分是使用一个新的 `?.` 来访问一个可选属性的运算符。当我们写下如下所示代码：
+Optional Chining 的核心是允许我们写下如果碰到 `null` 或者 `undefined`，TypeScript 能立即停止运行的代码。Optional chaning 耀眼的部分是使用 `?.` 运算符来访问一个可选属性的运算符。当我们写下如下所示代码：
 
 ```ts
 let x = foo?.bar.baz();
@@ -36,7 +36,7 @@ if (foo?.bar?.baz) {
 }
 ```
 
-注意：`?.` 运算符的行为与 `&&` 运算符并不相同，因为 `&&` 运算符的行为是专门用于 "falsy" 的值（如：空字符串、`0`、`NaN`、和 `false`），但在此种结构中，这是被故意设计成这样的。在验证数据如 `0` 或者空字符串时，它并没有使用短路验证的方式。
+注意：`?.` 运算符的行为与 `&&` 运算符并不相同，因为 `&&` 运算符的行为是专门用于 "falsy" 的值（如：空字符串、`0`、`NaN`、和 `false`），但在此种结构中，这是被故意设计成这样的。`?.` 在验证数据如 `0` 或者空字符串时，它并没有使用短路验证的方式。
 
 Optional Chining 还包含另外两个运算符，首先是可选元素的访问，它的行为类似于可选属性的访问，但是它允许我们访问非标志符属性（例如：任意的字符串、数字和 symbols）：
 
@@ -78,7 +78,7 @@ Optional Chining 的「短路运算」行为被局限在属性的访问、调用
 let result = foo?.bar / someComputation()
 ```
 
-不会阻止除法运算或者 `someComputation()` 调用，它等价于：
+Optional Chining 不会阻止除法运算或者 `someComputation()` 调用，它等价于：
 
 ```ts
 let temp = foo === null || foo === undefined ? undefined : foo.bar;
@@ -150,35 +150,33 @@ function multiply(x, y) {
 }
 ```
 
-不幸的是，在 TypeScript 中的这些检查从来不会被正确的编写。对于弱类型的写法，意味着 TypeScript 不会严格检查，而对于稍微规范一些的写法，一般要求使用者添加类型断言。
+不幸的是，在 TypeScript 中,这些检查可能从来不会被正确的编写。对于松散类型代码，意味着 TypeScript 检查较少，而对于稍微规范一些的写法，一般要求使用者添加类型断言。
 
 ```ts
 function yell(str) {
   assert(typeof str === 'string');
 
   return str.toUppercase();
-  // 哎呀！我们错误地拼写了 'toUpperCase'
-  // 如果 TypeScript 依然能捕获问题，那就太棒了！
+  // Oops! We misspelled 'toUpperCase'.
+  // Would be great if TypeScript still caught this!
 }
 ```
 
-这里有可供选择的替代写法，可以让编程语言分析出问题，不过并不方便。
+这里有可供选择的替代写法，可以让 TypeScript 分析出问题，不过并不方便。
 
 ```ts
 function yell(str) {
   if (typeof str !== 'string') {
     throw new TypeError('str should have been a string.');
   }
-  // 错误被捕获！
+  // Error caught!
   return str.toUppercase();
 }
 ```
 
-TypeScript 最基本的目标就是用最友好的方式去对现有的 JavaScript 结构做类型分析。
-基于这个原因，TypeScript 3.7 引入了一个新的概念叫“断言签名(assertion signatures)”，用来模拟这些断言函数。
+TypeScript 最基本的目标就是用最友好的方式键入现有的 JavaScript 结构。基于这个原因，TypeScript 3.7 引入了一个新的概念叫「断言签名（assertion signatures）」，用来模拟这些断言函数。
 
-第一种断言签名，模拟 Node 中的 `assert` 函数的功能。
-它确保在断言的范围内，断言条件必须为 `true`。
+第一种断言签名，模拟 Node 中的 `assert` 函数的功能。它确保在断言的范围内，断言条件必须为这个真。
 
 ```ts
 function assert(condition: any, msg?: string): asserts condition {
@@ -188,10 +186,9 @@ function assert(condition: any, msg?: string): asserts condition {
 }
 ```
 
-`断言条件` 说的是，如果 `assert` 返回了，`condition` 参数得到的传入值必须为 `true`，因为如果不是这样，它肯定会抛出一个错误。
-这意味着，在断言的范围内，这个条件一定是正确的。
+`asserts condition` 的意思是，如果 `assert` 函数有返回，传入 `condition` 的参数必须为真，因为如果不是这样，它肯定会抛出一个错误。这意味着，在剩下的作用域中（if 条件后）`condition` 必须为 `truthy`。
 
-举一个例子，用这个断言函数意味着我们可以实现捕获我们之前的 `yell` 示例的错误。
+举一个例子，用这个断言函数意味着我们可以实现捕获之前的 `yell` 示例的错误。
 
 ```ts
 function yell(str) {
@@ -220,13 +217,13 @@ function assertIsString(val: any): asserts val is string {
 }
 ```
 
-这里 `asserts val is string` 保证在 `assertIsString` 调用之后, 任何传入的变量将被认为是一个 `string`.
+这里 `asserts val is string` 确保在 `assertIsString` 在被调用之后, 任何传入的变量将被认为是一个 `string`.
 
 ```ts
 function yell(str: any) {
   assertIsString(str);
 
-  // 现在 TypeScript 知道了，'str' 是一个 'string'。
+  // Now TypeScript knows that 'str' is a 'string'.
 
   return str.toUppercase();
   //         ~~~~~~~~~~~
@@ -235,7 +232,7 @@ function yell(str: any) {
 }
 ```
 
-这里的断言签名非常类似于类型断言签名：
+这里的断言签名非常类似于类型谓词（predicate）签名：
 
 ```ts
 function isString(val: any): val is string {
@@ -250,7 +247,7 @@ function yell(str: any) {
 }
 ```
 
-就像类型断言签名一样，这些断言签名是非常强大的。我们可以用它们实现一些非常复杂的想法和设计。
+就像类型谓词签名一样，这些断言签名非常强大的。我们可以用它们实现一些非常复杂的想法和设计。
 
 ```ts
 function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
