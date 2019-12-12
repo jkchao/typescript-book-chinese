@@ -69,7 +69,7 @@ bar = foo();
 你可以将你的 JavaScript 的代码改成 TypeScript 代码，但是你不能让这个世界都使用 TypeScript。这正是 TypeScript 环境声明支持的地方。我们建议你创建一个 `vendor.d.ts` 文件作为开始（`.d.ts` 文件扩展名指定这个文件是一个声明文件），然后我们可以向文件里添加东西。或者，你也可以创建一个针对于特定库的声明文件，如为 jquery 创建 `jquery.d.ts` 文件。
 
 ::: tip NOTICE
-几乎排名前 90% 的 JavaScript 库的声明文件存在于 [DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 这样一个仓库里，在创建自己定义的声明文件之前，我们建议你先去仓库中寻找。虽然创建一个声明文件这种快速但是不好的方式是减小使用 TypeScript 初始阻力的重要步骤。
+几乎排名前 90% 的 JavaScript 库的声明文件存在于 [DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 这样一个仓库里，在创建自己定义的声明文件之前，我们建议你先去仓库中寻找。虽然上述创建声明文件的方式很快、会产生脏代码，不过这种方式会有助于您与 Typescript 初期的磨合。
 :::
 
 考虑使用 `jquery` 的用例，你可以非常简单快速的为它创建一个定义：
