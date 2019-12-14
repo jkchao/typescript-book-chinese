@@ -158,7 +158,7 @@ type LongHand = {
 type ShortHand = (a: number) => number;
 ```
 
-上面代码中的两个例子完全相同。但是，当你想使用函数重载时，只能用第一种方式:
+上面代码中的两个例子完全相同。但是，当你想使用函数重载时，只能用下边这种方式:
 
 ```ts
 type LongHandAllowsOverloadDeclarations = {
