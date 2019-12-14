@@ -63,7 +63,7 @@ const bar = foo; // allow
 这很酷，接下来，让我们看看 ES 模块语法。
 
 :::tip
-使用 `module: commonjs` 选项以及使用 ES 模块语法导入导出其他模块。
+使用 `module: commonjs` 选项以及使用 ES 模块语法导入、导出、书写模块。
 :::
 
 ### ES 模块语法
