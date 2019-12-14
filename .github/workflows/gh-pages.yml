@@ -6,9 +6,12 @@ on:
     branches:
       - master
 
+  push:
+    branches:
+      - master
+
 jobs:
   build-deploy:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
