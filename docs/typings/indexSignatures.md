@@ -90,7 +90,7 @@ console.log(foo['[object Object]']); // World
 当然，数字类型是被允许的，这是因为：
 
 - 需要数组／元组的支持；
-- 即使你在数组里使用一个 `obj`，这个默认被调用的 `toString` 方法，被实现的很好（不是 `[object Object]`）。
+- 即使你在上例中使用 `number` 类型的值来替代 `obj`，`number` 类型默认的 `toString` 方法实现的很友好（不是 `[object Object]`）。
 
 如下所示：
 
