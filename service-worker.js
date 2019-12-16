@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "5770e66e510444e2413a0a85aee15d64"
+    "revision": "5bf7960e59d04673672bd77782d79189"
   },
   {
     "url": "assets/css/0.styles.890f74af.css",
@@ -380,40 +380,40 @@ self.__precacheManifest = [
     "revision": "df353b22506e9426450286a79ae2c2da"
   },
   {
-    "url": "assets/js/app.04865eb5.js",
-    "revision": "a32ae25f5fdf282c8f5d3649d71c887a"
+    "url": "assets/js/app.7c66c50b.js",
+    "revision": "1f75adcef114ecdad5a7e3d87857d1bd"
   },
   {
     "url": "compiler/ast.html",
-    "revision": "39f2176182242e03c52415c5906d1a83"
+    "revision": "70557fd368f71bb6d768d8ebbe22a008"
   },
   {
     "url": "compiler/binder.html",
-    "revision": "7144b8dd5297cf201435ae766c3e537f"
+    "revision": "fda56f6ccff9c27566ed76201c344934"
   },
   {
     "url": "compiler/checker.html",
-    "revision": "41225cf5ae3c680554c089938d250756"
+    "revision": "18e2dab11649791c8d613d18050ef998"
   },
   {
     "url": "compiler/emitter.html",
-    "revision": "47307645ba7dcb9bae0d6a53085a73ba"
+    "revision": "c29d0a1a1001f989dd76ca3ef06e43f7"
   },
   {
     "url": "compiler/overview.html",
-    "revision": "c4e32a4792c7dda69984bfab1c650709"
+    "revision": "7d2d53e5a87f14da766a6d52751bb90a"
   },
   {
     "url": "compiler/parser.html",
-    "revision": "43c6f639320445b430b2099aa18d1267"
+    "revision": "5427b9cb94087f1f84a8e809b06cd35e"
   },
   {
     "url": "compiler/program.html",
-    "revision": "38869e9a175bcfde6d89dfc5169d6130"
+    "revision": "da7c3e338d9439c7561c9196175c0424"
   },
   {
     "url": "compiler/scanner.html",
-    "revision": "1fc57f6daa10b8d0a3086f51a7fdf6f1"
+    "revision": "19af8463c68d065d063a5ca3b19bf827"
   },
   {
     "url": "contact.png",
@@ -421,75 +421,75 @@ self.__precacheManifest = [
   },
   {
     "url": "error/common.html",
-    "revision": "7cf4bb1cc847cc92265eb19609bedac4"
+    "revision": "576f25d54acf4e465aeb34c4c8f56845"
   },
   {
     "url": "error/interpreting.html",
-    "revision": "befadde0e1ea2b88ee053fa5671cb4e5"
+    "revision": "10aafca121f9bac7455ac3aea188e9ae"
   },
   {
     "url": "faqs/class.html",
-    "revision": "d0d376fb8470ad8159bbb8b953786173"
+    "revision": "117422c5667b30500df161a48ccc5474"
   },
   {
     "url": "faqs/commandline-behavior.html",
-    "revision": "1ffe03208489fdfe0381440a3d3117ba"
+    "revision": "99319c506c5eaa0806dbd70661e79408"
   },
   {
     "url": "faqs/comments.html",
-    "revision": "9a024bdd1e956445aaadb2279ebf2748"
+    "revision": "079835b6dbf01de03df19f3649baab0a"
   },
   {
     "url": "faqs/common-bug-not-bugs.html",
-    "revision": "43892496ca185db309cee88259bb377b"
+    "revision": "923297210427bc04b231689a8e898a1d"
   },
   {
     "url": "faqs/common-feature-request.html",
-    "revision": "d83f13fd1a65a13d76c34c0074b43bff"
+    "revision": "be2bc819b4fdd8cae61f9b95cb145876"
   },
   {
     "url": "faqs/decorators.html",
-    "revision": "c8454b85d1b4fcf53ad1f4128211ff14"
+    "revision": "0e0d01bdf3c311edf848bc6d66c9b42c"
   },
   {
     "url": "faqs/enums.html",
-    "revision": "957cbfbfdc5334ca94e2d46ed21b54a9"
+    "revision": "6aa1a30708e05a42540cce48ce670105"
   },
   {
     "url": "faqs/function.html",
-    "revision": "7a61075103bdb421a6058aa2c37bbe25"
+    "revision": "51e7c94d40561ed4ce79a876ed2858b1"
   },
   {
     "url": "faqs/generics.html",
-    "revision": "780d3ff4a6441514b595720dc7c7cb7f"
+    "revision": "7d4cbf32a2586d9d338d76977b06ad60"
   },
   {
     "url": "faqs/glossary-and-terms.html",
-    "revision": "990dd49d6388aa1ac72de1d8ef713f08"
+    "revision": "dd7a674cf01649f3991a26e3e7c896f5"
   },
   {
     "url": "faqs/jsx-and-react.html",
-    "revision": "d4d24aacee8819b419a5ba68ad580ba9"
+    "revision": "a73064df17306416e8e9881d51c9329f"
   },
   {
     "url": "faqs/modules.html",
-    "revision": "7c05d2c1eb2f0718f940c5313544a686"
+    "revision": "ab4b3b6a3c5eaaf9d7542e8f6569c1c0"
   },
   {
     "url": "faqs/thing-that-dont-work.html",
-    "revision": "8a6097a4bfc7f3ba076fcadde1e3593b"
+    "revision": "08f3bf655fc908113692b4a1fc59b946"
   },
   {
     "url": "faqs/tsconfig-behavior.html",
-    "revision": "52f4f7c90d8ff666c7f1602df1aa0cfc"
+    "revision": "3cfd5c8fd438a927a4be89b5c44d9b18"
   },
   {
     "url": "faqs/type-guards.html",
-    "revision": "4147bdca1e264e7b9254aafc61671b0d"
+    "revision": "5bc0523b0213b0b5b3d8df6d843c9374"
   },
   {
     "url": "faqs/type-system-behavior.html",
-    "revision": "6e08e2999a5d488a2abcbc2ba0728d50"
+    "revision": "24b2fb42bec6e3466771f419ad57d8e0"
   },
   {
     "url": "icons/android-chrome-144x144.png",
@@ -521,19 +521,19 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "349dc43130de28ddb3a47071a3730017"
+    "revision": "3dba8d903ab85e6b034bb3b6b43e1492"
   },
   {
     "url": "jsx/nonReactJSX.html",
-    "revision": "1382bc0ece43e8a343597668e1805a4a"
+    "revision": "912532b7a07078f2a8b856eb739619b4"
   },
   {
     "url": "jsx/reactJSX.html",
-    "revision": "9457b65c3457e883ae682f5ee3d1a19d"
+    "revision": "ff9af4ff1e2f53cad5e3d6fadb0b9a2a"
   },
   {
     "url": "jsx/support.html",
-    "revision": "86d9340851aedda147844237d49deeec"
+    "revision": "184144671778a26f0b07ed3948389058"
   },
   {
     "url": "logo.png",
@@ -541,115 +541,115 @@ self.__precacheManifest = [
   },
   {
     "url": "new/typescript-3.7.html",
-    "revision": "029aec9c291914b82eb668cde7c2f2e5"
+    "revision": "c8b7d6f7ffca281c5d7c9d71e1fa08dc"
   },
   {
     "url": "project/compilationContext.html",
-    "revision": "53cbe0c8c318e9080aac0966c515e3b6"
+    "revision": "eca1456cf1a93d5315c5485fe1b194e8"
   },
   {
     "url": "project/declarationspaces.html",
-    "revision": "7cd123de20bb3461a1bc55e05d285fd9"
+    "revision": "ab22f59c507e679bbbb73d6825d0e081"
   },
   {
     "url": "project/dynamicImportExpressions.html",
-    "revision": "d80d571090dccf83c691600190f871a3"
+    "revision": "59e03734749d2b64f6556669b4404c78"
   },
   {
     "url": "project/modules.html",
-    "revision": "e6befb5f3944d996f3e90ff47fe26196"
+    "revision": "5dd5214680ebec5f67ea8eb87b080505"
   },
   {
     "url": "project/namespaces.html",
-    "revision": "3a6f4f133981fd02d1e62ad8c8c7c8ce"
+    "revision": "30e735cd5cfaa65205ba8fa655176e82"
   },
   {
     "url": "tips/avoidExportDefault.html",
-    "revision": "aa66c18ca927a8dba9e4c1961414b4d1"
+    "revision": "10394d00c5709e8e9a46f25f9a344e4c"
   },
   {
     "url": "tips/barrel.html",
-    "revision": "f29d6858cb33dbf1b930be783d7877f0"
+    "revision": "03cb84f163889352b9b4c0c14310f375"
   },
   {
     "url": "tips/bind.html",
-    "revision": "662b74fd5062fd684cf0730acf88fa48"
+    "revision": "68d16a284344b9dca18e5b64136187c3"
   },
   {
     "url": "tips/buildToggles.html",
-    "revision": "c3c97fdd7205d0358f09ca574124cea8"
+    "revision": "c75a7d2bf98e87c8c4ebd2d84ff2eb83"
   },
   {
     "url": "tips/classAreUseful.html",
-    "revision": "e39201157a593f70ff039c19746fabf4"
+    "revision": "a4d4835a4d7eb23847f57844dc985a88"
   },
   {
     "url": "tips/covarianceAndContravariance.html",
-    "revision": "cceacdb2d56107694a1b2c2dc1725a8f"
+    "revision": "81a3f43dc1904383bf0bde72bd5e949b"
   },
   {
     "url": "tips/createArrays.html",
-    "revision": "6bb398c69175c5b8c4fe63050e606057"
+    "revision": "a96cf645fe5acefdaf391e9400bc18c8"
   },
   {
     "url": "tips/curry.html",
-    "revision": "847f9f9e7baf7513416c4e9d3852321a"
+    "revision": "e86f7f3ae7afbe8d95aba6e00c3f5d3e"
   },
   {
     "url": "tips/functionParameters.html",
-    "revision": "f8e125ba35628ad6f0541d09324f8569"
+    "revision": "fd9d7d8beb945202457959fad5032c16"
   },
   {
     "url": "tips/infer.html",
-    "revision": "579b32203a3a59436e9de33114b97a48"
+    "revision": "63b4d67504632afea965010ea144a42f"
   },
   {
     "url": "tips/lazyObjectLiteralInitialization.html",
-    "revision": "cf94fb63f4b2625f602d06636c401848"
+    "revision": "916dabbe7bf2b3e44c470f1c2d17c8d3"
   },
   {
     "url": "tips/limitPropertySetters.html",
-    "revision": "78afd3f722a2c2aca8242315a17a120d"
+    "revision": "e81f77cab20c65180b9ac365c7511756"
   },
   {
     "url": "tips/metadata.html",
-    "revision": "0dd0b55e078e811170624bc6acfd5d04"
+    "revision": "0fe5a90959858b5cb549ad8e9b36c5c1"
   },
   {
     "url": "tips/nominalTyping.html",
-    "revision": "3b836b0dcfa3c4f374ac8063cad1c0ab"
+    "revision": "9f29578311b76894ed157d56d6f9115c"
   },
   {
     "url": "tips/outFileCaution.html",
-    "revision": "24025d61ee626dde35d9d6c510393dc1"
+    "revision": "0294dc700a93bf921c1b351bd3b087f9"
   },
   {
     "url": "tips/singletonPatern.html",
-    "revision": "3146c1258c4fba8938c3a123d2227442"
+    "revision": "687969c468a7e4a1f0d3c261f408623d"
   },
   {
     "url": "tips/statefulFunctions.html",
-    "revision": "b8a7dc509a488af5fd35e9358c50c027"
+    "revision": "164b982044fc071a72640cbec15ddfc1"
   },
   {
     "url": "tips/staticConstructors.html",
-    "revision": "d9bd4587ae0599499b30651cd3b95c0e"
+    "revision": "5ef3d8e3ad3aeac185b2d92462f5442f"
   },
   {
     "url": "tips/stringBasedEmuns.html",
-    "revision": "7f27205cc081290f9e7732cc9dbb6d79"
+    "revision": "3f00ce3d10b82d3f8d15f1587a974d8b"
   },
   {
     "url": "tips/truthy.html",
-    "revision": "0a40c811d9bbe7c32a181aec3c161ecf"
+    "revision": "60c277505295c34d77b55485f6a4d264"
   },
   {
     "url": "tips/typeInstantiation.html",
-    "revision": "1d1e126b23498afdb1cc8b54d4546880"
+    "revision": "98804f3924edb93dabf4a65d412573cc"
   },
   {
     "url": "tips/typesafeEventEmitter.html",
-    "revision": "c63bde8e23b0317b08ec46161881113c"
+    "revision": "d32cbd56b4b42e7d387983610534c967"
   },
   {
     "url": "typescript-downloads.jpg",
@@ -657,99 +657,99 @@ self.__precacheManifest = [
   },
   {
     "url": "typings/ambient.html",
-    "revision": "cfe805fdf7ee3b618c74c1f062f83c37"
+    "revision": "bd6eb573c1fdacd04d61e70f7cee9660"
   },
   {
     "url": "typings/callable.html",
-    "revision": "8c5ba6386e7b278fb382eccb7b06759e"
+    "revision": "4f23927b0ea7e2f8f186d9d744d5ea37"
   },
   {
     "url": "typings/discrominatedUnion.html",
-    "revision": "b8035b2e7c5d5569f1f9ddb5e685b663"
+    "revision": "79a932927324289261259209b80b300f"
   },
   {
     "url": "typings/enums.html",
-    "revision": "f0790f24e1fb4189ad292a06b9e01bc9"
+    "revision": "7b8acc8eee0740f25e55e15f675cb237"
   },
   {
     "url": "typings/exceptionsHanding.html",
-    "revision": "69eb7badca55c5749fa0bab301744df2"
+    "revision": "17adfa6b573000f0228654878dcb2c3e"
   },
   {
     "url": "typings/freshness.html",
-    "revision": "36a63f8119e3f09d5f6f4fb5d7ee9f58"
+    "revision": "cb3340a12a40fd09bc37b184ea8ee307"
   },
   {
     "url": "typings/functions.html",
-    "revision": "fbe413a4341d4cbaa6e9ab27c3268027"
+    "revision": "c96c32a78c92b15c8ba12265f348c236"
   },
   {
     "url": "typings/generices.html",
-    "revision": "d021a488c46de246ed1474949cf7e8b0"
+    "revision": "b250d93cca7c554f16c10cd993e3f966"
   },
   {
     "url": "typings/indexSignatures.html",
-    "revision": "fc29f2ebe20f5bffc4af95e97fe2b159"
+    "revision": "60a7aabb3f01f11fb9daffb8d3919d90"
   },
   {
     "url": "typings/interfaces.html",
-    "revision": "338a641e8c495295949a4773dcd0b826"
+    "revision": "c84e5af80e52faf7ad6496deeddc132f"
   },
   {
     "url": "typings/lib.html",
-    "revision": "13d1feae0e1a2c55099dd158f5870951"
+    "revision": "54a0d3dc2ea7f3ebef43a0207fbeb9d5"
   },
   {
     "url": "typings/literals.html",
-    "revision": "e74cf753ff6529c82c7f05fee235c7c5"
+    "revision": "e92c11874f6bffc16d7c6be8cda2be7b"
   },
   {
     "url": "typings/migrating.html",
-    "revision": "fc13c356a15552a0a65d65bea7d33cb1"
+    "revision": "93b2552f227314a01dea6c4e17094175"
   },
   {
     "url": "typings/mixins.html",
-    "revision": "8c7de30e93e201e11ace26152d9f2027"
+    "revision": "91b2b8592fdc30579c4795583993895a"
   },
   {
     "url": "typings/movingTypes.html",
-    "revision": "d771412ad6cd01ed1057aba7fdc4a5e0"
+    "revision": "60416718c81bca06d4ec9b7a0f2240e1"
   },
   {
     "url": "typings/neverType.html",
-    "revision": "25c37771998e605ae69b948db2052abc"
+    "revision": "3bf462917d46e9b266745e110cafbfb1"
   },
   {
     "url": "typings/overview.html",
-    "revision": "4d38b93b74bc218afda296d32c16360d"
+    "revision": "bb681208c58df18cac973b44fd154d6e"
   },
   {
     "url": "typings/readonly.html",
-    "revision": "b9392b5fec8eb8018a647cd046c966dc"
+    "revision": "542c8549422f2955568128f557a0b206"
   },
   {
     "url": "typings/thisType.html",
-    "revision": "f04b6f5b2c1163fff5f829e897fc8f34"
+    "revision": "5a7f97364ddc809a837819d0ac0b6d3e"
   },
   {
     "url": "typings/typeAssertion.html",
-    "revision": "16be66edfa72ed6ffb94c4aec4b58315"
+    "revision": "217b96b13a0bee6d334f893f8a6511fa"
   },
   {
     "url": "typings/typeCompatibility.html",
-    "revision": "90d9e6aedacb9c28e2d0963669794f47"
+    "revision": "358c5b8fe604b678812b48839b138720"
   },
   {
     "url": "typings/typeGuard.html",
-    "revision": "5c0e1ed4dfa7bffe818042af0903feee"
+    "revision": "aad1caa02d8a62c38a36d81c7effe06d"
   },
   {
     "url": "typings/typeInference.html",
-    "revision": "62be3bf9ab9493aff02d7a1e23b7bedf"
+    "revision": "3c5e4a78b6149dbf9edecca1de05a0d5"
   },
   {
     "url": "typings/types.html",
-    "revision": "0d3abc954c1836fc466e3f5e09007a94"
+    "revision": "c93e1046356b95f7a65dd25cb371bf6e"
   },
   {
     "url": "wechat.jpg",
