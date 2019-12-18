@@ -109,7 +109,7 @@ import * as $ from 'jquery';
 
 ## 额外的非 JavaScript 资源
 
-在 TypeScript 中，甚至可以允许你导入任何文件，例如 `.css` 文件（如果你使用的是 webpack 样式加载器或 css 模块），你只要添加如下代码（放在 `globals.d.ts`）：
+在 TypeScript 中，甚至可以允许你导入任何文件，例如 `.css` 文件（如果你使用的是 webpack 样式加载器或 css 模块），你只要添加如下代码（放在 `global.d.ts`）：
 
 ```typescript
 declare module '*.css';

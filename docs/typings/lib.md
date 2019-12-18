@@ -66,7 +66,7 @@ interface Window
 
 ## 修改原始类型
 
-在 TypeScript 中，接口是开放式的，这意味着当你想使用不存在的成员时，你仅仅是需要添加它们至 `lib.d.ts` 中的接口声明中，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们推荐你创建一个称为 `globals.d.ts` 的特殊文件。
+在 TypeScript 中，接口是开放式的，这意味着当你想使用不存在的成员时，你仅仅是需要添加它们至 `lib.d.ts` 中的接口声明中，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们推荐你创建一个称为 `global.d.ts` 的特殊文件。
 
 这里有我们需要添加至 `Window`，`Math`，`Date` 的一些例子：
 
