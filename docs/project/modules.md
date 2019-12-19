@@ -230,7 +230,7 @@ import someLocalNameForThisFile from './foo';
 在你的项目里，你可以通过 `declare module 'somePath'` 来声明一个全局模块的方式，用来解决查找模块路径的问题：
 
 ```ts
-// globals.d.ts
+// global.d.ts
 declare module 'foo' {
   // some variable declarations
   export var bar: number;
@@ -364,15 +364,15 @@ import bas = require('./bas');
 const ensureImport: any = foo || bar || bas;
 ```
 
-## globals.d.ts
+## global.d.ts
 
 在上文中，当我们讨论文件模块时，比较了全局变量与文件模块，并且我们推荐使用基于文件的模块，而不是选择污染全局命名空间。
 
-然而，如果你的团队里有 TypeScript 初学者，你可以提供他们一个 `globals.d.ts` 文件，用来将一些接口或者类型放入全局命名空间里，这些定义的接口和类型能在你的所有 TypeScript 代码里使用。
+然而，如果你的团队里有 TypeScript 初学者，你可以提供他们一个 `global.d.ts` 文件，用来将一些接口或者类型放入全局命名空间里，这些定义的接口和类型能在你的所有 TypeScript 代码里使用。
 
 :::tip
 对于任何需要编译成 JavaScript 代码，我们强烈建议你放入文件模块里。
 :::
 
-- `globals.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要。
+- `global.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要。
 - 当你从 `JS` 迁移到 `TS` 时，定义 `declare module "some-library-you-dont-care-to-get-defs-for"` 能让你快速开始。
