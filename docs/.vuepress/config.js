@@ -49,12 +49,10 @@ module.exports = {
     sidebar: [
       {
         title: '写在前面',
-        collapsable: false,
         children: ['/']
       },
       {
-        title: 'TypeScript 项目',
-        collapsable: false,
+        title: '项目',
         children: [
           '/project/compilationContext',
           '/project/declarationspaces',
@@ -64,8 +62,7 @@ module.exports = {
         ]
       },
       {
-        title: 'TypeScript 类型系统',
-        collapsable: false,
+        title: '类型系统',
         children: [
           '/typings/overview',
           '/typings/migrating',
@@ -95,17 +92,14 @@ module.exports = {
       },
       {
         title: 'JSX',
-        collapsable: false,
         children: ['/jsx/support', '/jsx/reactJSX', '/jsx/nonReactJSX']
       },
       {
-        title: 'TypeScript 错误提示',
-        collapsable: false,
+        title: '错误提示',
         children: ['/error/interpreting', '/error/common']
       },
       {
         title: 'TIPs',
-        collapsable: false,
         children: [
           '/tips/stringBasedEmuns',
           '/tips/nominalTyping',
@@ -131,8 +125,7 @@ module.exports = {
         ]
       },
       {
-        title: 'TypeScript 编译原理',
-        collapsable: false,
+        title: '编译原理',
         children: [
           '/compiler/overview',
           '/compiler/program',
@@ -145,8 +138,7 @@ module.exports = {
         ]
       },
       {
-        title: 'TypeScript FAQs',
-        collapsable: false,
+        title: 'FAQs',
         children: [
           './faqs/common-bug-not-bugs',
           './faqs/common-feature-request',
@@ -164,13 +156,11 @@ module.exports = {
         ]
       },
       {
-        title: 'TypeScript 更新',
-        collapsable: false,
+        title: '更新',
         children: ['/new/typescript-3.7']
       }
       // {
       //   title: 'TypeScript 更新',
-      //   collapsable: false,
       //   children: ['/new/typescript-3.7']
       // }
     ]
