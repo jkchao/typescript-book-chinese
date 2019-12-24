@@ -35,6 +35,7 @@ module.exports = {
     // },
     adsConfig: [
       { title: '与我交流', src: '/typescript-book-chinese/contact.png' },
+      { title: '关注公众号', src: '/typescript-book-chinese/qrcode.jpg' },
       {
         title: '购买此书',
         src:
