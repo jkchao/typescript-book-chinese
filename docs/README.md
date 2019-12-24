@@ -2,6 +2,10 @@
 
 此书是 [《TypeScript Deep Dive》](https://github.com/basarat/typescript-book/) 的中文翻译版，感谢作者 [Basarat](https://github.com/basarat) 的付出。
 
+如果你喜欢纸质书籍，可以通过[京东](https://item.jd.com/12755624.html)或者[当当](http://product.m.dangdang.com/28487648.html?t=1574581821)，来购买此书。
+
+你可以通过订阅该[公众号](https://cdn.jkchao.cn/nuxt/img/14958af.jpg)，来获取更多有趣的内容。
+
 ## Why
 
 <img :src="$withBase('/typescript-downloads.jpg')" alt="ide"/>
@@ -78,7 +82,3 @@
     <p>支付宝</p>
   </div>
 </div>
-
-如果你喜欢纸质书籍，可以通过[京东](https://item.jd.com/12755624.html)或者[当当](http://product.m.dangdang.com/28487648.html?t=1574581821)，来购买此书。
-
-![图书封面](https://static.jkchao.cn/2019-11-22/WechatIMG719.png?imageMogr2/auto-orient/thumbnail/360x/blur/1x0/quality/75|imageslim)

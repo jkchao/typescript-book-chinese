@@ -11,7 +11,7 @@ module.exports = {
     ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
   ],
   plugins: [
-    '@vuepress/pwa',
+    // '@vuepress/pwa',
     '@vuepress/back-to-top',
     [
       '@vuepress/google-analytics',
@@ -34,8 +34,8 @@ module.exports = {
     //   indexName: 'jkchao_typescript'
     // },
     adsConfig: [
-      { title: '与我交流', src: '/typescript-book-chinese/contact.png' },
       { title: '关注公众号', src: '/typescript-book-chinese/qrcode.jpg' },
+      { title: '与我交流', src: '/typescript-book-chinese/contact.png' },
       {
         title: '购买此书',
         src:
