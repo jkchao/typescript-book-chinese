@@ -65,7 +65,7 @@ var Tristate;
 enum Tristate {
   False,
   True,
-  Unkown
+  Unknown
 }
 
 console.log(Tristate[0]); // 'False'
