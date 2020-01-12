@@ -167,7 +167,7 @@ jeremy.#name
 - 在 TypeScript 中，像 `public` 和 `private` 修饰符不能用于私有字段
 - 私有字段不能在所包含的类之外访问 —— 即使是对于 JavaScript 使用者来说也是如此。通常，我们把这种称为「hard privacy」。
 
-除了「hard privacy」，私有字段另外一个优点是我们先前提到的唯一性。
+除了「hard privacy」，私有字段的另外一个优点是我们先前提到的唯一性。
 
 正常的属性容易被子类所改写
 
