@@ -1,6 +1,6 @@
 # TypeScript 3.8 Beta
 
-TypeScript 3.8 将会带来了许多特性，其中包含一些即将到来的 ECMAScript 特性，如仅仅导入/导出声明语法，私有字段等。
+[TypeScript 3.8](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/) 将会带来了许多特性，其中包含一些新的或即将到来的 ECMAScript 特性、仅仅导入/导出声明语法等。
 
 ## 仅仅导入/导出声明
 
@@ -26,7 +26,7 @@ function doThingBetter(options: Options) {
 }
 ```
 
-这是很方便的，因为在大多数的情况下，我们不必担心导入了什么 —— 仅仅是我们想导入的内容。
+这很方便的，因为在大多数的情况下，我们不必担心导入了什么 —— 仅仅是我们想导入的内容。
 
 不幸的是，这仅是因为一个被称之为「导入省略」的功能而起作用。当 TypeScript 输出一个 JavaScript 文件时，TypeScript 会识别出 `Options` 仅仅是当作了一个类型来使用，它将会删除 `Options`
 
@@ -133,7 +133,7 @@ import type Foo, { Bar, Baz } from "some-module";
 - `preserve`，它将会保留所有的语句，即使是从来没有被使用。它可以保留副作用
 - `error`，它将会保留所有的导入（与 `preserve` 选项相同）语句，但是当一个值的导入仅仅用于类型时将会抛出错误。如果你想确保没有意外导入任何值，这会是有用的，但是对于副作用，你仍然需要添加额外的导入语法。
 
-对于该特性的更多信息，参考该 [PR](https://github.com/microsoft/TypeScript/pull/35200)
+对于该特性的更多信息，参考该 [PR](https://github.com/microsoft/TypeScript/pull/35200)。
 
 ## ECMAScript 私有字段
 
@@ -257,7 +257,7 @@ class C {
 }
 ```
 
-更多信息，请查看此 [PR](https://github.com/Microsoft/TypeScript/pull/30829)
+更多信息，请查看此 [PR](https://github.com/Microsoft/TypeScript/pull/30829)。
 
 ### 该使用哪个？
 
@@ -368,7 +368,7 @@ export {};
 
 顶层 `await` 并不会在你可能期望的所有环境下工作。现在，只有在编译目标选项是 `es2017` 及其以上，顶层 `await` 才能被使用，并且 `module` 选项必须为 `esnext` 或者 `system`。
 
-更多相关信息，请查看该 [PR](https://github.com/microsoft/TypeScript/pull/35813)
+更多相关信息，请查看该 [PR](https://github.com/microsoft/TypeScript/pull/35813)。
 
 ## JSDoc 属性修饰符
 
