@@ -339,7 +339,7 @@ fetch('...')
   });
 ```
 
-为了避免 `Promise` 中 `.then` 的链式操作符，JavaScript 使用者通常会引入 `async` 函数以使用 `await`，然后在定义该函数之后，立即调用该函数。
+为了避免使用 `Promise` 中 `.then` 的链式操作符，JavaScript 使用者通常会引入 `async` 函数以使用 `await`，在定义该函数之后，立即调用该函数。
 
 ```ts
 async function main() {
