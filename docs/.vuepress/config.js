@@ -167,7 +167,7 @@ module.exports = {
       {
         title: 'TypeScript 更新',
         collapsable: false,
-        children: ['/new/typescript-3.7']
+        children: ['/new/typescript-3.8-beta', '/new/typescript-3.7']
       }
       // {
       //   title: 'TypeScript 更新',
