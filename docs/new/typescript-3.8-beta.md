@@ -327,7 +327,7 @@ export * as utilities from "./utilities.js";
 
 当你的编译目标早于 `es2020` 时，TypeScript 将会按照第一个代码片段输出内容。
 
-## 顶层 `await`
+## `Top-Level await`
 
 大多数使用 JavaScript 提供 I/O（如 http 请求）的现代环境都是异步的，并且很多现代 API 都返回 `Promise`。尽管它在使操作无阻塞方面有诸多优点，但是它确实在一些如读取文件或外部内容时，会让人厌烦。
 
@@ -353,7 +353,7 @@ main().catch(e => console.error(e));
 
 为了避免引入 `async` 函数，我们可以使用一个简便的语法，它在即将到来的 ECMAScript feature 中被称为 `top-level await`。
 
-在当前的 JavaScript 中（以及其他具有相似功能的大多数其他语言），`await` 仅仅只能用于 `async` 函数内部。然而，使用顶层 `await` 时，我们可以在一个模块的顶层使用 `await`。
+在当前的 JavaScript 中（以及其他具有相似功能的大多数其他语言），`await` 仅仅只能用于 `async` 函数内部。然而，使用 `top-level await` 时，我们可以在一个模块的顶层使用 `await`。
 
 ```ts
 const response = await fetch('...');
@@ -364,9 +364,9 @@ console.log(greeting);
 export {};
 ```
 
-这里有一个细节：顶层 `await` 仅仅只能在一个模块的顶层工作 —— 仅当 TypeScript 发现文件代码中含有 `export` 或者 `import` 时，才会认为该文件是一个模块。在一些基础的实践中，你可能需要写下 `export {}` 做为样板，来确保这种行为。
+这里有一个细节：`top-level await` 仅仅只能在一个模块的顶层工作 —— 仅当 TypeScript 发现文件代码中含有 `export` 或者 `import` 时，才会认为该文件是一个模块。在一些基础的实践中，你可能需要写下 `export {}` 做为样板，来确保这种行为。
 
-顶层 `await` 并不会在你可能期望的所有环境下工作。现在，只有在编译目标选项是 `es2017` 及其以上，顶层 `await` 才能被使用，并且 `module` 选项必须为 `esnext` 或者 `system`。
+`top-level await` 并不会在你可能期望的所有环境下工作。现在，只有在编译目标选项是 `es2017` 及其以上，`top-level await` 才能被使用，并且 `module` 选项必须为 `esnext` 或者 `system`。
 
 更多相关信息，请查看该 [PR](https://github.com/microsoft/TypeScript/pull/35813)。
 
