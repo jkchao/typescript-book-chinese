@@ -372,7 +372,7 @@ export {};
 
 ## JSDoc 属性修饰符
 
-TypeScript 3.8 通过打开 `allJs` 选项，能支持 JavaScript 文件，并且当使用 `checkJs` 选项或者在你的 `.js` 文件顶部中添加 `// @ts-check` 注释时，TypeScript 能对这些 `.js` 文件进行类型检查。
+TypeScript 3.8 通过打开 `allowJs` 选项，能支持 JavaScript 文件，并且当使用 `checkJs` 选项或者在你的 `.js` 文件顶部中添加 `// @ts-check` 注释时，TypeScript 能对这些 `.js` 文件进行类型检查。
 
 由于 JavaScript 文件没有专用的语法来进行类型检查，因此 TypeScript 选择利用 JSDoc。TypeScript 3.8 能理解一些新的 JSDoc 属性标签。
 
