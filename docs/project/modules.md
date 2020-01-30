@@ -173,15 +173,15 @@ import someLocalNameForThisFile from './foo';
 ### 模块路径
 
 :::tip
-假设你使用 `moduleResolution: node` 选项。这个选项应该在你 TypeScript 配置文件里。如果你使用了 `module: commonjs` 选项， `moduleResolution: node` 将会默认开启。
+如果你需要使用 `moduleResolution: node` 选项，你应该将此选项放入你的配置文件中。如果你使用了 `module: commonjs` 选项， `moduleResolution: node` 将会默认开启。
 :::
 
-这里存在两种截然不同的模块，它们是由导入语句中的不同的路径写法所引起的（例如：`import foo from 'THIS IS THE PATH SECTION'`）。
+这里存在两种截然不同的模块：
 
 - 相对模块路径（路径以 `.` 开头，例如：`./someFile` 或者 `../../someFolder/someFile` 等）；
 - 其他动态查找模块（如：`core-js`，`typestyle`，`react` 或者甚至是 `react/core` 等）。
 
-它们的主要区别来自于系统如何解析模块。
+它们的主要区别在于系统如何解析模块。
 
 :::tip
 我将会使用一个概念性术语，`place` -- 将在提及查找模式后解释它。
