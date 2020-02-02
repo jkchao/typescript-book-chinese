@@ -106,7 +106,7 @@ type AA = ParamType<string>; // string
   type Res = TTuple[number]; // string | number
   ```
 
-- **union** 转 **intersection**，如：`string | number` -> `string & number`
+- **union** 转 **intersection**，如：`T1 | T2` -> `T1 & T2`
 
   这个可能要稍微麻烦一点，需要 `infer` 配合「 [Distributive conditional types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#distributive-conditional-types) 」使用。
 
