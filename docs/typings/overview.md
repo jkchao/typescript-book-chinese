@@ -2,7 +2,7 @@
 
 ## TypeScript 类型系统
 
-在讨论[为什么使用 TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 时，我们涵盖了 TypeScript 类型系统的主要功能。以下是讨论的一些关键点：
+在讨论[为什么使用 TypeScript](https://jkchao.github.io/typescript-book-chinese/#whys) 时，我们涵盖了 TypeScript 类型系统的主要功能。以下是讨论的一些关键点：
 
 - TypeScript 类型系统设计是可选的，因此，你的 JavaScript 即是 TypeScript;
 - TypeScript 不会阻止 JavaScript 的运行，即使存在类型错误也不例外，这能让你的 JavaScript 逐步迁移至 TypeScript。
