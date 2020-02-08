@@ -2,7 +2,7 @@
 
 ## 全局模块
 
-默认情况下，当你开始在一个新的 TypeScript 文件中写下代码时，它处于全局命名空间中。如在 `foo.ts` 里的以下代码：
+在默认情况下，当你开始在一个新的 TypeScript 文件中写下代码时，它处于全局命名空间中。如在 foo.ts 里的以下代码。
 
 ```ts
 const foo = 123;
@@ -18,7 +18,7 @@ const bar = foo; // allowed
 
 ## 文件模块
 
-它也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，它会在这个文件中创建一个本地的作用域。因此，我们需要把上文 `foo.ts` 改成如下方式（注意 `export` 用法）：
+文件模块也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，那么它会在这个文件中创建一个本地的作用域。因此，我们需要把上文 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```ts
 export const foo = 123;
@@ -30,45 +30,45 @@ export const foo = 123;
 const bar = foo; // ERROR: "cannot find name 'foo'"
 ```
 
-如果你想在 `bar.ts` 里使用来自 `foo.ts` 的内容，你必须显式导入它，更新 `bar.ts` 如下所示：
+如果你想在 `bar.ts` 里使用来自 `foo.ts` 的内容，你必须显式地导入它，更新后的 `bar.ts` 如下所示。
 
 ```ts
 import { foo } from './foo';
 const bar = foo; // allow
 ```
 
-在 `bar.ts` 文件里使用 `import`，不但允许你使用从其他文件导入的内容，而且它会将此文件 `bar.ts` 标记为一个模块，文件内定义的声明也不会污染全局命名空间。
+在 `bar.ts` 文件里使用 `import` 时，它不仅允许你使用从其他文件导入的内容，还会将此文件 `bar.ts` 标记为一个模块，文件内定义的声明也不会“污染”全局命名空间
 
 ## 文件模块详情
 
-文件模块拥有强大的能力和可用性。在这里，我们来讨论它的能力以及一些用法。
+文件模块拥有强大的功能和较强的可用性。下面我们来讨论它的功能及一些用法。
 
 ### 澄清：commonjs, amd, es modules, others
 
-首先，我们需要澄清这些模块系统的不一致性。我将会提供给你我当前的建议，以及消除一些顾虑。
+首先，我们需要澄清这些模块系统的不一致性。我将会提供给你我当前的建议，以及消除一些你的顾虑。
 
-你可以根据不同的 `module` 选项来把 TypeScript 编译成不同的 JavaScript 模块类型，这有一些你可以忽略的：
+你可以根据不同的 `module` 选项来把 TypeScript 编译成不同的 JavaScript 模块类型，这有一些你可以忽略的东西：
 
 - AMD：不要使用它，它仅能在浏览器工作；
 - SystemJS：这是一个好的实验，已经被 ES 模块替代；
 - ES 模块：它并没有准备好。
 
-使用 `module: commonjs` 选项来替代这些模式，这会是一个好的主意。
+使用 `module: commonjs` 选项来替代这些模式，将会是一个好的主意。
 
-怎么书写 TypeScript 模块，这也是一件让人困惑的事。在今天我们应该这么做：
+怎么书写 TypeScript 模块呢？，这也是一件让人困惑的事。在今天我们应该这么做：
 
-- 放弃使用`import/require`语法即`import foo = require('foo')`写法
+- 放弃使用 `import/require` 语法即 `import foo = require('foo')` 写法
 - 推荐使用 ES 模块语法
 
 这很酷，接下来，让我们看看 ES 模块语法。
 
 :::tip
-使用 `module: commonjs` 选项以及使用 ES 模块语法导入、导出、书写模块。
+使用 `module: commonjs` 选项以及使用 ES 模块语法导入、导出、编写模块。
 :::
 
 ### ES 模块语法
 
-- 使用 `export` 关键字导出一个变量（或者类型）：
+- 使用 `export` 关键字导出一个变量或类型
 
 ```ts
 // foo.ts
@@ -78,7 +78,7 @@ export type someType = {
 };
 ```
 
-- `export` 的写法除了上面这样，还有另外一种：
+- `export` 的写法除了上面这种，还有另外一种：
 
 ```ts
 // foo.ts
@@ -90,7 +90,7 @@ type someType = {
 export { someVar, someType };
 ```
 
-- 你也可以重命名变量导出：
+- 你也可以用重命名变量的方式导出：
 
 ```ts
 // foo.ts
@@ -105,7 +105,7 @@ export { someVar as aDifferentName };
 import { someVar, someType } from './foo';
 ```
 
-- 重命名导入变量或者类型：
+- 通过重命名的方式导入变量或者类型：
 
 ```ts
 // bar.ts
@@ -120,7 +120,7 @@ import * as foo from './foo';
 // 你可以使用 `foo.someVar` 和 `foo.someType` 以及其他任何从 `foo` 导出的变量或者类型
 ```
 
-- 仅导入模块：
+- 只导入模块：
 
 ```ts
 import 'core-js'; // 一个普通的 polyfill 库
@@ -189,17 +189,17 @@ import someLocalNameForThisFile from './foo';
 
 #### 相对模块路径
 
-这很简单，仅仅是按照相对路径：
+这很简单，仅仅是按照相对路径来就可以了：
 
-- 如果文件 `bar.ts` 中含有 `import * as foo from './foo'`，`foo` 文件所存在的地方必须是相同文件夹下；
-- 如果文件 `bar.ts` 中含有 `import * as foo from '../foo'`，`foo` 文件所存在的地方必须是上一级目录；
-- 如果文件 `bar.ts` 中含有 `import * as foo from '../someFolder/foo'`，`foo` 文件所在的文件夹 `someFolder` 必须与 `bar.ts` 所在文件夹在相同的目录下。
+- 如果文件 `bar.ts` 中含有 `import * as foo from './foo'`，那么 `foo` 文件必须与 `bar.ts` 文件存在于相同的文件夹下
+- 如果文件 `bar.ts` 中含有 `import * as foo from '../foo'`，那么 `foo` 文件所存在的地方必须是 `bar.ts` 的上一级目录；
+- 如果文件 `bar.ts` 中含有 `import * as foo from '../someFolder/foo'`，那么 `foo` 文件所在的文件夹 `someFolder` 必须与 `bar.ts` 文件所在文件夹在相同的目录下。
 
-或者，你还可以想想其他相对路径导入的情景。:smiley:
+你还可以思考一下其他相对路径导入的场景。:smiley:
 
 #### 动态查找
 
-当导入路径不是相对路径时，模块解析将会模仿 [Node 模块解析策略](https://nodejs.org/api/modules.html#modules_all_together)，以下我将给出一个简单例子：
+当导入路径不是相对路径时，模块解析将会模仿 [Node 模块解析策略](https://nodejs.org/api/modules.html#modules_all_together)，下面我将给出一个简单例子：
 
 - 当你使用 `import * as foo from 'foo'`，将会按如下顺序查找模块：
   - `./node_modules/foo`
@@ -214,7 +214,7 @@ import someLocalNameForThisFile from './foo';
 
 ### 什么是 `place`
 
-当我提及被检查的 `place` 时，我想表达的是在这个 `place`，TypeScript 将会检查以下内容（例如一个 `foo` 的位置）：
+当我提及被检查的 `place` 时，我想表达的是在这个 `place` 上，TypeScript 将会检查以下内容（例如一个 `foo` 的 `place`）：
 
 - 如果这个 `place` 表示一个文件，如：`foo.ts`，欢呼！
 - 否则，如果这个 `place` 是一个文件夹，并且存在一个文件 `foo/index.ts`，欢呼！
@@ -227,7 +227,7 @@ import someLocalNameForThisFile from './foo';
 
 ### 重写类型的动态查找
 
-在你的项目里，你可以通过 `declare module 'somePath'` 来声明一个全局模块的方式，用来解决查找模块路径的问题：
+在你的项目里，你可以通过 `declare module 'somePath'` 声明一个全局模块的方式，来解决查找模块路径的问题。
 
 ```ts
 // global.d.ts
@@ -237,7 +237,7 @@ declare module 'foo' {
 }
 ```
 
-接着：
+接着 ：
 
 ```ts
 // anyOtherTsFileInYourProject.ts
@@ -259,9 +259,9 @@ import foo = require('foo');
 - 导入 foo 模块的所有类型信息；
 - 确定 foo 模块运行时的依赖关系。
 
-你可以选择仅加载类型信息，而没有运行时的依赖关系。在继续之前，你可能需要重新阅读本书的 [声明空间部分](./declarationspaces.md) 部分。
+你可以选择仅加载类型信息，而没有运行时的依赖关系。在继续之前，你可能需要重新阅读本书 [声明空间部分](./declarationspaces.md) 部分。
 
-如果你没有把导入的名称当做变量声明空间来用，在编译成 JavaScript 时，导入的模块将会被完全移除。这有一些较好的例子，当你了解了它们之后，我们将会给出一些使用例子。
+如果你没有把导入的名称当做变量声明空间来用，在编译成 JavaScript 时，导入的模块将会被完全移除。这最好用例子来解释，下面我们将会给出一些示例。
 
 #### 例子 1
 

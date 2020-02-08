@@ -1,4 +1,4 @@
-# TypeScript 3.8 Beta
+# TypeScript 3.8 RC
 
 [TypeScript 3.8](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/) 将会带来了许多特性，其中包含一些新的或即将到来的 ECMAScript 特性、仅仅导入/导出声明语法等。
 
