@@ -193,9 +193,14 @@ addEventListener(EventType.Mouse, (e: number) => console.log(e));
 下面的代码对于其他语言的开发者来说，可能会感到很困惑，因为他们认为是有错误的，可是 Typescript 并不会报错：
 
 ```ts
-interface Poin2D {
+interface Point2D {
   x: number;
   y: number;
+}
+interface Point3D {
+  x: number;
+  y: number;
+  z: number;
 }
 
 let iTakePoint2D = (point: Point2D) => {};
