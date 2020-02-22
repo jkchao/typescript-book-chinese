@@ -2,16 +2,16 @@
 
 ## TypeScript 类型系统
 
-在讨论[为什么使用 TypeScript](https://jkchao.github.io/typescript-book-chinese/#whys) 时，我们涵盖了 TypeScript 类型系统的主要功能。以下是讨论的一些关键点：
+在讨论[为什么使用 TypeScript](https://jkchao.github.io/typescript-book-chinese/#whys) 时，我们表述了 TypeScript 类型系统的主要功能。以下是一些关键点：
 
-- TypeScript 类型系统设计是可选的，因此，你的 JavaScript 即是 TypeScript;
+- TypeScript 的类型系统被设计为可选的，因此，你的 JavaScript 就是 TypeScript;
 - TypeScript 不会阻止 JavaScript 的运行，即使存在类型错误也不例外，这能让你的 JavaScript 逐步迁移至 TypeScript。
 
-现在让我们开始学习 TypeScript 类型系统的语法，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
+现在让我们开始学习 TypeScript 类型系统的语法吧，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
 
 ## 基本注解
 
-如前文所提及，类型注解使用 `:TypeAnnotation` 语法。类型声明空间中可用的任何内容都可以用作类型注解。
+如前文所提及，类型注解使用 `:TypeAnnotation` 语法。在类型声明空间中可用的任何内容都可以用作类型注解。
 
 在下面这个例子中，使用了变量、函数参数以及函数返回值的类型注解：
 
@@ -90,7 +90,7 @@ name = {
 };
 ```
 
-在这里，我们把类型注解：`first: string` + `second: string` 合并到了一个新的类型注解里 `Name`，这样能强制对每个成员进行类型检查。接口在 TypeScript 拥有强大的力量，在稍后，我们将会用整个章节来阐述如何更好的使用它。
+在这里，我们把类型注解：`first: string` + `second: string` 合并到了一个新的类型注解里 `Name`，这样能强制对每个成员进行类型检查。接口在 TypeScript 拥有强大的力量，稍后，我们将会用一个内容专门阐述如何更好的使用它。
 
 ## 内联类型注解
 
@@ -119,7 +119,7 @@ name = {
 };
 ```
 
-内联类型能为你快速的提供一个类型注解。它可以帮助你省去为类型起名的麻烦（你可能会使用一个很糟糕的名称）。然而，如果你发现需要多次使用相同的内联注解时，考虑把它重构为一个接口（或者是 `type alias`，它会在接下来的部分提到）是一个不错的主意。
+内联类型能为你快速的提供一个类型注解。它可以帮助你省去为类型起名的麻烦（你可能会使用一个很糟糕的名称）。然而，如果你发现需要多次使用相同的内联注解时，那么考虑把它重构为一个接口（或者是 `type alias`，它会在接下来的部分提到）是一个不错的主意。
 
 ## 特殊类型
 
@@ -142,7 +142,7 @@ power = num;
 num = power;
 ```
 
-当你从 JavaScript 迁移至 TypeScript 时，你将会经常性使用 `any`。但你必须减少对它的依赖，因为你需要确保类型安全。当使用 `any` 时，你基本上是在告诉 TypeScript 编辑器不要进行任何的类型检查。
+当你把 JavaScript 迁移至 TypeScript 时，你将会经常性使用 `any`。但你必须减少对它的依赖，因为你需要确保类型安全。当使用 `any` 时，你基本上是在告诉 TypeScript 编译器不要进行任何的类型检查。
 
 ### null 和 undefined
 
@@ -171,7 +171,7 @@ function log(message: string): void {
 
 ## 泛型
 
-在计算机科学中，许多算法和数据结构并不会依赖于对象的实际类型。然而，你仍然会想在每个变量里强制提供约束。例如：在一个函数中，它接受一个列表，并且返回这个列表的反向排序，这里的约束是指传入至函数的参数与函数的返回值：
+在计算机科学中，许多算法和数据结构并不会依赖于对象的实际类型。但是，你仍然会想在每个变量里强制提供约束。例如：在一个函数中，它接受一个列表，并且返回这个列表的反向排序，这里的约束是指传入至函数的参数与函数的返回值：
 
 ```ts
 function reverse<T>(items: T[]): T[] {
@@ -221,11 +221,11 @@ let reversedNums = numArr.reverse();
 reversedNums = ['1', '2']; // Error
 ```
 
-当在章节 [环境声明](./ambient.md) 中提及了 `lib.d.ts` 时，我们会讨论更多关于 `Array<T>` 的信息。
+当稍后在 [环境声明](./ambient.md) 章节中提及 `lib.d.ts` 时，我们会讨论更多关于 `Array<T>` 的信息。
 
 ## 联合类型
 
-在 JavaScript 中，你希望属性为多种类型之一，如字符串或者数组。这就是联合类型所能派上用场的地方（它使用 `|` 作为标记，如 `string | number`）。在函数参数里。一个常见的用例是一个可以接受字符串数组或单个字符串的函数：
+在 JavaScript 中，你可能希望属性为多种类型之一，如字符串或者数组。这正是 TypeScript 中联合类型能派上用场的地方（它使用 `|` 作为标记，如 `string | number`）。关于联合类型，一个常见的用例是一个可以接受字符串数组或单个字符串的函数：
 
 ```ts
 function formatCommandline(command: string[] | string) {
@@ -268,7 +268,7 @@ const b = x.b;
 
 ## 元组类型
 
-JavaScript 并没有支持类似于元组的支持。开发者通常只能使用数组来表示元组，但是 TypeScript 类型系统支持它。使用 `:[typeofmember1, typeofmember2]` 能够为元组添加类型注解，元组可以包含任意数量的成员，以下例子演示了元组：
+JavaScript 并不支持元组，开发者们通常只能使用数组来表示元组。而 TypeScript 支持它，开发者可以使用 `:[typeofmember1, typeofmember2]` 的形式，为元组添加类型注解，元组可以包含任意数量的成员，示例：
 
 ```ts
 let nameNumber: [string, number];
@@ -291,7 +291,7 @@ const [name, num] = nameNumber;
 
 ## 类型别名
 
-TypeScript 提供使用类型注解的便捷语法，你可以使用 `type SomeName = someValidTypeAnnotation` 的语法来创建别名：
+TypeScript 提供了为类型注解设置别名的便捷语法，你可以使用 `type SomeName = someValidTypeAnnotation` 来创建别名：
 
 ```ts
 type StrOrNum = string | number;
@@ -305,7 +305,7 @@ sample = '123';
 sample = true; // Error
 ```
 
-与接口不同，你可以为任意的类型注解提供类型别名（在联合类型和交叉类型中比较实用），下面是一些能让你熟悉语法的示例。
+与接口不同，你可以为任意的类型注解提供类型别名（在联合类型和交叉类型中比较实用），下面是一些能让你熟悉类型别名语法的示例。
 
 ```ts
 type Text = string | { text: string };
