@@ -2,11 +2,11 @@
 
 毫无疑问，[DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped) 是 TypeScript 最大的优势之一，社区已经记录了 90% 的顶级 JavaScript 库。
 
-这意味着，你可以非常高效地使用这些库，而无需在单独的窗口打开相应文档（以确保输入的正确性）。
+这意味着，你可以非常高效地使用这些库，而无须在单独的窗口打开相应文档以确保输入的正确性。
 
 ## 使用 `@types`
 
-你可以通过 `npm` 来安装使用 `@types`，如下例所示，你可以为 `jquery` 添加声明文件：
+你可以通过 `npm` 来安装使用 `@types`，例如为 `jquery` 添加声明文件：
 
 ```shell
 npm install @types/jquery --save-dev
@@ -16,7 +16,7 @@ npm install @types/jquery --save-dev
 
 ### 全局 `@types`
 
-默认情况下，TypeScript 会自动包含支持全局使用的任何定义。例如，对于 jquery，你应该能够在项目中开始全局使用 `$`。
+默认情况下，TypeScript 会自动包含支持全局使用的任何声明定义。例如，对于 jquery，你应该能够在项目中开始全局使用 `$`。
 
 ### 模块 `@types`
 
@@ -30,7 +30,7 @@ import * as $ from 'jquery';
 
 ## 控制全局
 
-可以看出，对于某些团队而言，拥有允许全局泄漏的定义可能是一个问题。因此，你可以通过配置 `tsconfig.json` 的 `compilerOptions.types` 选项，引入有意义的类型：
+可以看出，对于某些团队而言，拥有允许全局使用的定义是一个问题。因此，你可以通过配置 `tsconfig.json` 的 `compilerOptions.types` 选项，引入有意义的类型：
 
 ```ts
 {
