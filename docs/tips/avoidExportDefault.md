@@ -71,5 +71,5 @@ import /* here */ 'something';
 
 ```ts
 const HighChart = await import('https://code.highcharts.com/js/es-modules/masters/highcharts.src.js');
-Highcharts.default.chart('container', { ... }); // Notice `.default`
+HighChart.default.chart('container', { ... }); // Notice `.default`
 ```
