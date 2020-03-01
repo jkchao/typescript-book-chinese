@@ -1,6 +1,6 @@
-# TypeScript 3.8 RC
+# TypeScript 3.8
 
-[TypeScript 3.8](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/) 将会带来了许多特性，其中包含一些新的或即将到来的 ECMAScript 特性、仅仅导入/导出声明语法等。
+[TypeScript 3.8](http://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html) 将会带来了许多特性，其中包含一些新的或即将到来的 ECMAScript 特性、仅仅导入/导出声明语法等。
 
 ## 仅仅导入/导出声明
 
@@ -471,3 +471,17 @@ new Foo().stuff++;
   - `priorityPollingInterval`，同上
   - `dynamicPriorityPolling`，同上
 - `synchronousWatchDirectory`，在目录上禁用延迟监听功能。在可能一次发生大量文件（如 node_modules）更改时，它非常有用，但是你可能需要一些不太常见的设置时，禁用它。
+
+## “快速和宽松”的增量检查
+
+TypeScript 3.8 带来了一种新的变异选项 —— `assumeChangesOnlyAffectDirectDependencies`。当该选项开启时，TypeScript 将不会重新检查/构建可能受影响的文件，仅仅重新检查/构建已更改的文件和直接导入它们的文件。
+
+例如：`fileD.ts` 导入 `fileC.ts`，`fileC.ts` 导入 `fileB.ts`，`fileB.ts` 导入 `fileA.ts` 文件。
+
+```ts
+fileA.ts < -fileB.ts < -fileC.ts < -fileD.ts;
+```
+
+在 `--watch` 模式下，改变 `fileA.ts` 文件通常意味着 TypeScript 需要至少重新检查 `fileB.ts`、`fileC.ts` 和 `fileD.ts`，当使用 `assumeChangesOnlyAffectDirectDependencies` 时，`fileA.ts` 改变，意味着只需要检查 `fileA.ts` 和 `fileA.ts` 即可。
+
+在类似与 VSCode 的代码库中，使用该编译选项时，某些文件的构建时间从大约 14s 减小到 1s。然而我们并不推荐所有的代码库中都使用该编译选项，你可能对拥有庞大代码库时，延迟提示所有错误更感兴趣（例如一个专用的配置文件 `tsconfig.fullbuild.json` 或者是 CI 中）。
