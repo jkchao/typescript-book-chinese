@@ -38,7 +38,7 @@ col = 0; // 有效的，这也是 Color.Red
 
 ## 数字类型枚举与字符串类型
 
-在我们继续深入枚举类型之前，先让我们看看它编译的 JavaScript，以下是一个简单的 TypeScript 枚举类型：
+在我们继续深入学习枚举类型之前，先来看看它编译的 JavaScript 吧，以下是一个简单的 TypeScript 枚举类型：
 
 ```ts
 enum Tristate {
@@ -48,7 +48,7 @@ enum Tristate {
 }
 ```
 
-编译成 JavaScript：
+其被编译成 JavaScript 后如下所示：
 
 ```ts{3}
 var Tristate;
@@ -59,7 +59,7 @@ var Tristate;
 })(Tristate || (Tristate = {}));
 ```
 
-先让我们聚焦于代码高亮的一行，其中 `Tristate['False'] = 0` 用于自我解释，例如将 `Tristate` 对象里的 `False` 成员值设置为 `0`。注意，JavaScript 赋值运算符返回的值是被赋予的值（在此例子中是 `0`），因此下一次 JavaScript 运行时执行的代码是 `Tristate[0] = 'False'`。意味着你可以使用 `Tristate` 变量来把字符串枚举类型改造成一个数字或者是数字类型的枚举类型，如下所示：
+先让我们聚焦 `Tristate[Tristate['False'] = 0] = 'False'` 这行代码，其中 `Tristate['False'] = 0` 的意思是将 `Tristate` 对象里的 `False` 成员值设置为 `0`。注意，JavaScript 赋值运算符返回的值是被赋予的值（在此例子中是 `0`），因此下一次 JavaScript 运行时执行的代码是 `Tristate[0] = 'False'`。意味着你可以使用 `Tristate` 变量来把字符串枚举类型改造成一个数字或者是数字类型的枚举类型，如下所示：
 
 ```ts
 enum Tristate {
@@ -215,7 +215,7 @@ enum Tristate {
 const lie = Tristate.False;
 ```
 
-`const lie = Tristate.False` 编译成 JavaScript `let lie = Tristate.False` (是的，编译后与编译前，几乎相同)。这意味着在运行执行时，它将会查找变量 `Tristate` 和 `Tristate.False`。在此处获得性能提升的一个小技巧是使用常量枚举：
+`const lie = Tristate.False` 会被编译成 JavaScript `let lie = Tristate.False` (是的，编译后与编译前，几乎相同)。这意味着在运行执行时，它将会查找变量 `Tristate` 和 `Tristate.False`。在此处获得性能提升的一个小技巧是使用常量枚举：
 
 ```ts
 const enum Tristate {
