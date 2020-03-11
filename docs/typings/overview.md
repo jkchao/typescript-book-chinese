@@ -245,7 +245,7 @@ function formatCommandline(command: string[] | string) {
 在 JavaScript 中， `extend` 是一种非常常见的模式，在这种模式中，你可以从两个对象中创建一个新对象，新对象会拥有着两个对象所有的功能。交叉类型可以让你安全的使用此种模式：
 
 ```ts
-function extend<T, U>(first: T, second: U): T & U {
+function extend<T extends object, U extends object>(first: T, second: U): T & U {
   const result = <T & U>{};
   for (let id in first) {
     (<T>result)[id] = first[id];
