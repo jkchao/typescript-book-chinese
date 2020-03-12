@@ -378,7 +378,7 @@ TypeScript 3.8 通过打开 `allowJs` 选项，能支持 JavaScript 文件，并
 
 首先是所有的访问修饰符：`@public`、`@private`、`@protected`。这些标签的工作方式与 TypeScript 中 `public`、`private`、`protected` 相同。
 
-```ts
+```js
 // @ts-check
 
 class Foo {
