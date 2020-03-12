@@ -1,10 +1,10 @@
 # TypeScript 3.7
 
-## Optional Chining
+## 可选链（Optional Chaining）
 
-在我们的 issue 追踪器中，Optional Chining 在 [issue #16](https://github.com/microsoft/TypeScript/issues/16) 中，自那以后，有超过 23000 条 issues 被记录在 issue 中。
+在我们的 issue 追踪器中，可选链在 [issue #16](https://github.com/microsoft/TypeScript/issues/16) 中，自那以后，有超过 23000 条 issues 被记录在 issue 中。
 
-Optional Chining 的核心是允许我们写下如果碰到 `null` 或者 `undefined`，TypeScript 能立即停止运行的代码。Optional chaning 耀眼的部分是使用 `?.` 运算符来访问一个可选属性的运算符。
+可选链的核心是允许我们写下如果碰到 `null` 或者 `undefined`，TypeScript 能立即停止运行的代码。可选链耀眼的部分是使用 `?.` 运算符来访问一个可选属性的运算符。
 
 下面代码：
 
@@ -40,7 +40,7 @@ if (foo?.bar?.baz) {
 
 注意：`?.` 与 `&&` 运算符行为略有不同，因为 `&&` 专用于 "falsy" 的值（如：空字符串、`0`、`NaN`、和 `false`），但是 `?.` 是一个仅作用于结构上的操作符，`?.` 在验证有效数据如 `0` 或者空字符串时，它并没有使用短路验证的方式。
 
-Optional Chining 还包含另外两个运算符，首先是可选元素的访问，它的行为类似于可选属性的访问，但是它允许我们访问非标志符属性（例如：任意的字符串、数字和 symbols）：
+可选链还包含另外两个运算符，首先是可选元素的访问，它的行为类似于可选属性的访问，但是它允许我们访问非标志符属性（例如：任意的字符串、数字和 symbols）：
 
 ```ts
 /**
@@ -74,13 +74,13 @@ async function makeRequest(url: string, log?: (msg: string) => void) {
 }
 ```
 
-Optional Chining 的「短路运算」行为被局限在属性的访问、调用以及元素的访问 --- 它不会沿伸到后续的表达式中，也就是说：
+可选链的「短路运算」行为被局限在属性的访问、调用以及元素的访问 --- 它不会沿伸到后续的表达式中，也就是说：
 
 ```ts
 let result = foo?.bar / someComputation()
 ```
 
-Optional Chining 不会阻止除法运算或者 `someComputation()` 调用，它等价于：
+可选链不会阻止除法运算或者 `someComputation()` 调用，它等价于：
 
 ```ts
 let temp = foo === null || foo === undefined ? undefined : foo.bar;
