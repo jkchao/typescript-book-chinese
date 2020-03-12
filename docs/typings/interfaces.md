@@ -32,7 +32,7 @@ interface Point {
 }
 
 // Your code
-let myPoint.z // Allowed!
+myPoint.z // Allowed!
 ```
 
 TypeScript 接口是开放式的，这是 TypeScript 的一个重要原则，它允许你使用接口来模仿 JavaScript 的可扩展性。
