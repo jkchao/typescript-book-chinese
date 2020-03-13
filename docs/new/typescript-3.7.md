@@ -573,7 +573,7 @@ class DogHouse extends AnimalHouse {
   // Initializes 'resident' to 'undefined'
   // after the call to 'super()' when
   // using 'useDefineForClassFields'!
-  resident: Dog;
+  declare resident: Dog;
 
   constructor(dog: Dog) {
     super(dog);
