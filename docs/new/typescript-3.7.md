@@ -573,7 +573,7 @@ class DogHouse extends AnimalHouse {
   // Initializes 'resident' to 'undefined'
   // after the call to 'super()' when
   // using 'useDefineForClassFields'!
-  declare resident: Dog;
+  resident: Dog;
 
   constructor(dog: Dog) {
     super(dog);
@@ -617,8 +617,8 @@ class AnimalHouse {
 }
 
 class DogHouse extends AnimalHouse {
-  resident: Dog;
-  // ^^^^^^^
+  declare resident: Dog;
+  //      ^^^^^^^^
   // 'resident' now has a 'declare' modifier,
   // and won't produce any output code.
 
