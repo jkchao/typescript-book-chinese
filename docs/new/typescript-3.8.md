@@ -458,7 +458,7 @@ new Foo().stuff++;
 
 - `watchFile`：监听单个文件的策略，它可以有以下值
   - `fixedPollingInterval`，以固定的时间间隔，检查文件的更改
-  - `priorityPollingInterval`，以固定的时间间隔，检查文件的更改，但是使用「heuristics」检查某些类型的文件的频率比其他文件低（heuristics 怎么翻？）
+  - `priorityPollingInterval`，以固定的时间间隔，检查文件的更改，但是使用「启发法」（heuristics）检查某些类型的文件的频率比其他文件低。（heuristics 概念可参考 [wiki](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E6%B3%95)）
   - `dynamicPriorityPolling`，使用动态队列，在该队列中，较少检查不经常修改的文件
   - `useFsEvents`（默认），尝试使用操作系统/文件系统原生事件来监听文件更改
   - `useFsEventsOnParentDirectory`，尝试使用操作系统/文件系统原生事件来监听文件、目录的更改，这样可以使用较小的文件监听程序，但是准确性可能较低
