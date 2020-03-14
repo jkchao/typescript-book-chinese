@@ -325,7 +325,7 @@ interface ArrayOfValueOrArray<T> extends Array<ValueOrArray<T>> {}
 
 因为接口（和其他对象类型）引入了一个中间类型，并且不需要立马构建它们的完整结构，因此 TypeScript 在使用这种结构时没有问题。但是对于使用者来说，引入一个中间类型来说，并不是很直观。原则上，直接使用 `Array` 的 `ValueOrArray` 的原始版本确实没有任何问题。假如编译器有一点“偷懒”，并且只在必要时才计算 `Array` 的类型参数，则 TypeScript 可以正确表示出这些。
 
-这正式 TypeScript 3.7 所引入的内容，在最顶级的类型别名中，TypeScript 将会推迟解析类型参数，已允许这种情况的发生。
+这正是 TypeScript 3.7 所引入的内容，在最顶级的类型别名中，TypeScript 将会推迟解析类型参数，已允许这种情况的发生。
 
 这意味着，以下代码能成立：
 
