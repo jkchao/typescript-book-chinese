@@ -617,8 +617,8 @@ class AnimalHouse {
 }
 
 class DogHouse extends AnimalHouse {
-  resident: Dog;
-  // ^^^^^^^
+  declare resident: Dog;
+  //      ^^^^^^^^
   // 'resident' now has a 'declare' modifier,
   // and won't produce any output code.
 
