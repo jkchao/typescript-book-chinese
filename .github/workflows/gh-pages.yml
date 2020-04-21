@@ -19,19 +19,11 @@ jobs:
       with:
         ref: master
 
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-
-    - name: Install yarn
-      run: npm install yarn -g
-
     - name: Install Dependencies
       run: yarn
 
     - name: Build
-      run: npm run build
+      run: yarn build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
