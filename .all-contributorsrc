@@ -683,6 +683,24 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "frontdog",
+      "name": "康东扬",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13433074?v=4",
+      "profile": "https://github.com/frontdog",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Kennytian",
+      "name": "Kenny",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2621619?v=4",
+      "profile": "https://www.jianshu.com/u/f4907e8670cb",
+      "contributions": [
+        "infra"
+      ]
     }
   ]
 }
