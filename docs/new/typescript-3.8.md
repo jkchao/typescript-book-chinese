@@ -482,6 +482,6 @@ TypeScript 3.8 带来了一种新的变异选项 —— `assumeChangesOnlyAffect
 fileA.ts < -fileB.ts < -fileC.ts < -fileD.ts;
 ```
 
-在 `--watch` 模式下，改变 `fileA.ts` 文件通常意味着 TypeScript 需要至少重新检查 `fileB.ts`、`fileC.ts` 和 `fileD.ts`，当使用 `assumeChangesOnlyAffectDirectDependencies` 时，`fileA.ts` 改变，意味着只需要检查 `fileA.ts` 和 `fileA.ts` 即可。
+在 `--watch` 模式下，改变 `fileA.ts` 文件通常意味着 TypeScript 需要至少重新检查 `fileB.ts`、`fileC.ts` 和 `fileD.ts`，当使用 `assumeChangesOnlyAffectDirectDependencies` 时，`fileA.ts` 改变，意味着只需要检查 `fileA.ts` 和 `fileB.ts` 即可。
 
 在类似与 VSCode 的代码库中，使用该编译选项时，某些文件的构建时间从大约 14s 减小到 1s。然而我们并不推荐所有的代码库中都使用该编译选项，你可能对拥有庞大代码库时，延迟提示所有错误更感兴趣（例如一个专用的配置文件 `tsconfig.fullbuild.json` 或者是 CI 中）。
