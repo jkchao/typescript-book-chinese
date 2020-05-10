@@ -1,6 +1,6 @@
 # 环境声明
 
-正如我们在为什么使用 [TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 所说：
+正如我们在为什么使用 [TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 中所说：
 
 > TypeScript 的设计目标之一是让你在 TypeScript 中安全、轻松地使用现有的 JavaScript 库，TypeScript 通过声明文件来做到这一点
 
