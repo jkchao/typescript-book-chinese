@@ -2,7 +2,7 @@
 
 TypeScript 编译器源文件位于 [`src/compiler`](https://github.com/Microsoft/TypeScript/tree/master/src/compiler) 目录下
 
-> 译注：Typescript Deep Dive 使用的源码应为 2018 年以前的源码。学习时请对照现有的源码
+> 译注：Typescript Deep Dive 使用的源码应为 2016 年以前的源码。学习时请对照现有的源码
 
 它分为以下几个关键部分：
 
