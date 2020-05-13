@@ -140,7 +140,7 @@ class Foo {
 interface Bar extends Foo {}
 ```
 
-这创建了一个名叫 `Bar` 的类型，它与 `Foo` 的实例具有相同的成员。当 `Foo` 具有私有成员时，`Bar` 内的相同属性，必须由一个继承自 `Foo` 的类实现。总的来说，这种模式是应当避免的，尤其是在 `Foo` 由私有成员时。
+这创建了一个名叫 `Bar` 的类型，它与 `Foo` 的实例具有相同的成员。当 `Foo` 具有私有成员时，`Bar` 内的相同属性，必须由一个继承自 `Foo` 的类实现。总的来说，这种模式是应当避免的，尤其是在 `Foo` 有私有成员时。
 
 ## 为什么我会得到错误：`TypeError: [base class name] is not defined in __extends`？
 
