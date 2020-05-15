@@ -62,7 +62,7 @@ interface Process {
 declare let process: Process;
 ```
 
-因为这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些声的明修改。例如：考虑到以下情况，我们添加一个 `exitWithLogging` 函数至 `process`：
+因为这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些声明的修改。例如：考虑到以下情况，我们添加一个 `exitWithLogging` 函数至 `process`：
 
 ```ts
 interface Process {
