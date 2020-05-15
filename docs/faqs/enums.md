@@ -2,4 +2,4 @@
 
 ## `enum` 和 `const enum` 之间的区别是什么？
 
-TODO：`enum` / `const enum` 有如下区别，请看：[http://stackoverflow.com/questions/28818849/how-do-the-different-enum-variants-work-in-typescript](http://stackoverflow.com/questions/28818849/how-do-the-different-enum-variants-work-in-typescript)
+TODO：`enum` / `const enum` 有如下区别，请看：[https://www.typescriptlang.org/docs/handbook/enums.html#enums](https://www.typescriptlang.org/docs/handbook/enums.html#enums)

@@ -35,4 +35,4 @@ someModule; // Used for side effects
 
 ## 为什么不跨模块文件合并命名空间？
 
-TODO：本小节内容请查看：[https://stackoverflow.com/questions/30357634/how-do-i-use-namespaces-with-typescript-external-modules](https://stackoverflow.com/questions/30357634/how-do-i-use-namespaces-with-typescript-external-modules)
+TODO：本小节内容请查看：[https://stackoverflow.com/questions/30357634/how-do-i-use-namespaces-with-typescript-external-modules](https://stackoverflow.com/questions/30357634/how-do-i-use-namespaces-with-typescript-external-modules) 或者 [https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-5.html#namespace-keyword](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-5.html#namespace-keyword)
