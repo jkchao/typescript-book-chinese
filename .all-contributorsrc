@@ -701,6 +701,24 @@
       "contributions": [
         "infra"
       ]
+    },
+    {
+      "login": "cangSDARM",
+      "name": "AllenLee",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20441896?v=4",
+      "profile": "https://www.douban.com/people/driving555/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "xiangming25",
+      "name": "xiangming25",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7913751?v=4",
+      "profile": "https://github.com/xiangming25",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }
