@@ -251,7 +251,7 @@ let lie = 0;
 ```ts
 enum Weekday {
   Monday,
-  Tuseday,
+  Tuesday,
   Wednesday,
   Thursday,
   Friday,
