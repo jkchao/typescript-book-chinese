@@ -168,6 +168,8 @@ enum AnimalFlags {
   None        = 0,
   HasClaws    = 1 << 0,
   CanFly      = 1 << 1,
+  EatsFish    = 1 << 2,
+  Endangered  = 1 << 3,
 
   EndangeredFlyingClawedFishEating = HasClaws | CanFly | EatsFish | Endangered
 }
@@ -249,7 +251,7 @@ let lie = 0;
 ```ts
 enum Weekday {
   Monday,
-  Tuseday,
+  Tuesday,
   Wednesday,
   Thursday,
   Friday,
