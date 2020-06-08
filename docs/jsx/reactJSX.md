@@ -110,7 +110,7 @@ type Props = {
   body: React.ReactNode;
 };
 
-class MyComonent extends React.Component<Props, {}> {
+class MyComponent extends React.Component<Props, {}> {
   render() {
     return (
       <div>
