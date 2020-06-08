@@ -39,7 +39,7 @@ var b = new Foo(); // Should not affect a
 a.increment(); // Prints 1
 ```
 
-## 你应该发出这样的类，这样它们就不会在回掉函数中丢失 `this`
+## 你应该发出这样的类，这样它们就不会在回调函数中丢失 `this`
 
 > 如果我写下这样的代码
 
