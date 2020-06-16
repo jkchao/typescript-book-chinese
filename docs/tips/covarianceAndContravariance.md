@@ -31,8 +31,8 @@
 
 **1. 我们假设 `g : Greyhound → Greyhound`， `f(g)` 的类型是否安全？**
 
-No, because f might try to call its argument (g) with a different subtype of Dog, like a GermanShepherd.
 不安全，因为在f内调用它的参数`(g)`函数时，使用的参数可能是一个不同于灰狗但又是狗的子类，例如 `GermanShepherd` （牧羊犬）。
+
 **2. 我们假设 `g : Greyhound → Animal`， `f(g)` 的类型是否安全？**
 
 不安全。理由同(1)。
