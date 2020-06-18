@@ -137,7 +137,7 @@ try {
 }
 
 try {
-  const bar = runTask2();
+  const bar = runTask2(foo);
 } catch (e) {
   console.log('Error:', e);
 }
@@ -159,7 +159,7 @@ function validate(value: number) {
 
 ```ts
 function validate(
-  value: number;
+  value: number
 ): {
   error?: string;
 } {
