@@ -66,11 +66,9 @@ Thanks goes to these wonderful people
 
 希望你在翻译或者 PR 之前，阅读[中文文章排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines)。
 
-## 赞赏支持
+### 公众号
 
-| <img src="./docs/.vuepress/public/wechat.jpg" width="200px" /> | <img src="./docs/.vuepress/public/zhifubao.jpg" width="200px"> |
-| :------------------------------------------------------------: | :------------------------------------------------------------: |
-|                              微信                              |                             支付宝                             |
+<img src="./docs/.vuepress/public/qrcode.jpg" width="200" />
 
 ## 最后
 
