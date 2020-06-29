@@ -75,7 +75,7 @@ const simple: (foo: number) => string = foo => foo.toString();
 
 ## 可实例化
 
-可实例化仅仅是可调用的一种特殊情况，它使用 `new` 做为前缀。它意味着你需要使用 `new` 关键字去调用它：
+可实例化仅仅是可调用的一种特殊情况，它使用 `new` 作为前缀。它意味着你需要使用 `new` 关键字去调用它：
 
 ```ts
 interface CallMeWithNewToGetString {
