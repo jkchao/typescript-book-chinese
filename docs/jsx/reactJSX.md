@@ -52,7 +52,7 @@ const MyComponent: React.FunctionComponent<Props> = props => {
 
 ### 类组件
 
-根据组件的 `props` 属性对组件进行类型检查。这是以 JSX 如何转换做为蓝本，例如：属性成为 `props` 的组成部分。
+根据组件的 `props` 属性对组件进行类型检查。这是以 JSX 如何转换作为蓝本，例如：属性成为 `props` 的组成部分。
 
 `react.d.ts` 文件定义了 `React.Component<Props,State>`，你应该使用自己所需的 `Props` 和 `State` 声明扩展它：
 

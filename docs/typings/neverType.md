@@ -22,7 +22,7 @@ let foo: never; // ok
 ```ts
 let foo: never = 123; // Error: number 类型不能赋值给 never 类型
 
-// ok, 做为函数返回类型的 never
+// ok, 作为函数返回类型的 never
 let bar: never = (() => {
   throw new Error('Throw my hands in the air like I just dont care');
 })();

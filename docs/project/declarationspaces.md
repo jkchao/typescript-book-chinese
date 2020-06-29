@@ -12,7 +12,7 @@ interface Bar {}
 type Bas = {};
 ```
 
-你可以将 `Foo`, `Bar`, `Bas` 做为类型注解使用，示例如下：
+你可以将 `Foo`, `Bar`, `Bas` 作为类型注解使用，示例如下：
 
 ```ts
 let foo: Foo;
