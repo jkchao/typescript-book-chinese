@@ -206,7 +206,7 @@ Uncaught TypeError: Cannot read property 'prototype' of undefined
 
 ### 例如：
 
-如下做为一个子类：
+如下作为一个子类：
 
 ```ts
 class FooError extends Error {
@@ -226,7 +226,7 @@ class FooError extends Error {
 
 ### 推荐
 
-做为一个推荐方式，你可以在 `super(...)` 被调用之后手动调整原型。
+作为一个推荐方式，你可以在 `super(...)` 被调用之后手动调整原型。
 
 ```ts
 class FooError extends Error {

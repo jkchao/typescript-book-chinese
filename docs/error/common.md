@@ -16,7 +16,7 @@
 
 > `Cannot find module 'underscore'`
 
-你可能把第三方的库做为模块（[移步模块](../project/modules.md)）来使用，并且没有一个与之对应的环境声明文件（[更多声明文件信息](../typings/ambient.md)）。
+你可能把第三方的库作为模块（[移步模块](../project/modules.md)）来使用，并且没有一个与之对应的环境声明文件（[更多声明文件信息](../typings/ambient.md)）。
 
 ## TS1148
 
@@ -59,4 +59,4 @@ try {
 修复：
 
 - 删除 `node_modules` 和任何 `package-lock`（或者 `yarn lock`），然后再一次 `npm install`；
-- 如果这不能工作，查找无效的模块（你所使用的所用用到了 `react.d.ts` 模块应该做为 `peerDependency` 而不是做为 `dependency` 使用）并且把这个报告给相关模块。
+- 如果这不能工作，查找无效的模块（你所使用的所用用到了 `react.d.ts` 模块应该作为 `peerDependency` 而不是作为 `dependency` 使用）并且把这个报告给相关模块。

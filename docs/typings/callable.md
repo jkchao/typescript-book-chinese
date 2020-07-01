@@ -70,12 +70,12 @@ const simple: (foo: number) => string = foo => foo.toString();
 ```
 
 ::: tip
-它仅仅只能做为简单的箭头函数，你无法使用重载。如果想使用它，你必须使用完整的 `{ (someArgs): someReturn }` 的语法
+它仅仅只能作为简单的箭头函数，你无法使用重载。如果想使用重载，你必须使用完整的 `{ (someArgs): someReturn }` 的语法
 :::
 
 ## 可实例化
 
-可实例化仅仅是可调用的一种特殊情况，它使用 `new` 做为前缀。它意味着你需用使用 `new` 关键字去调用它：
+可实例化仅仅是可调用的一种特殊情况，它使用 `new` 作为前缀。它意味着你需要使用 `new` 关键字去调用它：
 
 ```ts
 interface CallMeWithNewToGetString {

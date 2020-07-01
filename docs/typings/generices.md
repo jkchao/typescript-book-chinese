@@ -171,7 +171,7 @@ function loaderUser() {
 }
 ```
 
-与此类似：使用 `Promise<T>` 做为一个函数的返回值比一些如：`Promise<any>` 的备选方案要好很多。
+与此类似：使用 `Promise<T>` 作为一个函数的返回值比一些如：`Promise<any>` 的备选方案要好很多。
 
 ### 配合 axios 使用
 

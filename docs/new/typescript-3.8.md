@@ -89,7 +89,7 @@ inject('globalServiceId', function(service: Service) {
 
 为了避免这类行为，我们意识到在什么该被导入/删除方面，需要给使用者提供更细粒度的控制。
 
-在 TypeScript 3.8 版本中，我们添加了一个仅仅导入/导出声明语法来做为解决方式。
+在 TypeScript 3.8 版本中，我们添加了一个仅仅导入/导出声明语法来作为解决方式。
 
 ```ts
 import type { SomeThing } from "./some-module.js";
@@ -162,7 +162,7 @@ jeremy.#name
 
 不同于正常属性（甚至是使用 `private` 修饰符声明的属性），私有字段有一些需要记住的规则：
 
-- 私有字段使用 `#` 字符做为开始，通常，我们也把这些称为私有名称。
+- 私有字段使用 `#` 字符作为开始，通常，我们也把这些称为私有名称。
 - 每个私有字段的名字，在被包含的类中，都是唯一的
 - 在 TypeScript 中，像 `public` 和 `private` 修饰符不能用于私有字段
 - 私有字段不能在所包含的类之外访问 —— 即使是对于 JavaScript 使用者来说也是如此。通常，我们把这种称为「hard privacy」。
@@ -364,7 +364,7 @@ console.log(greeting);
 export {};
 ```
 
-这里有一个细节：`top-level await` 仅仅只能在一个模块的顶层工作 —— 仅当 TypeScript 发现文件代码中含有 `export` 或者 `import` 时，才会认为该文件是一个模块。在一些基础的实践中，你可能需要写下 `export {}` 做为样板，来确保这种行为。
+这里有一个细节：`top-level await` 仅仅只能在一个模块的顶层工作 —— 仅当 TypeScript 发现文件代码中含有 `export` 或者 `import` 时，才会认为该文件是一个模块。在一些基础的实践中，你可能需要写下 `export {}` 作为样板，来确保这种行为。
 
 `top-level await` 并不会在你可能期望的所有环境下工作。现在，只有在编译目标选项是 `es2017` 及其以上，`top-level await` 才能被使用，并且 `module` 选项必须为 `esnext` 或者 `system`。
 

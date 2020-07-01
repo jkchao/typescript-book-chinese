@@ -318,7 +318,7 @@ let bar: foo.SomeType;
 
 然而，在某些情景下，你只想在需要时加载模块 `foo`，此时你需要仅在类型注解中使用导入的模块名称，而**不**是在变量中使用。在编译成 JavaScript 时，这些将会被移除。接着，你可以手动导入你需要的模块。
 
-做为一个例子，考虑以下基于 `commonjs` 的代码，我们仅在一个函数内导入 `foo` 模块：
+作为一个例子，考虑以下基于 `commonjs` 的代码，我们仅在一个函数内导入 `foo` 模块：
 
 ```ts
 import foo = require('foo');
@@ -326,7 +326,7 @@ import foo = require('foo');
 export function loadFoo() {
   // 这是懒加载 foo，原始的加载仅仅用来做类型注解
   const _foo: typeof foo = require('foo');
-  // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
+  // 现在，你可以使用 `_foo` 替代 `foo` 来作为一个变量使用
 }
 ```
 
@@ -338,7 +338,7 @@ import foo = require('foo');
 export function loadFoo() {
   // 这是懒加载 foo，原始的加载仅仅用来做类型注解
   require(['foo'], (_foo: typeof foo) => {
-    // 现在，你可以使用 `_foo` 替代 `foo` 来做为一个变量使用
+    // 现在，你可以使用 `_foo` 替代 `foo` 来作为一个变量使用
   });
 }
 ```
