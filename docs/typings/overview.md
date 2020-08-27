@@ -138,8 +138,8 @@ power = 123;
 
 // 它也兼容任何类型
 let num: number;
-power = num;
 num = power;
+power = num;
 ```
 
 当你把 JavaScript 迁移至 TypeScript 时，你将会经常性使用 `any`。但你必须减少对它的依赖，因为你需要确保类型安全。当使用 `any` 时，你基本上是在告诉 TypeScript 编译器不要进行任何的类型检查。
