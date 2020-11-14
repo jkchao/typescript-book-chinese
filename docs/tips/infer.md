@@ -157,7 +157,7 @@ interface Module {
 在经过 `Connect` 函数之后，返回值类型为
 
 ```ts
-type Result {
+type Result = {
   asyncMethod<T, U>(input: T): Action<U>;
   syncMethod<T, U>(action: T): Action<U>;
 }
