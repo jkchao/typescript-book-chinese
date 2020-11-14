@@ -371,8 +371,8 @@ const ensureImport: any = foo || bar || bas;
 然而，如果你的团队里有 TypeScript 初学者，你可以提供他们一个 `global.d.ts` 文件，用来将一些接口或者类型放入全局命名空间里，这些定义的接口和类型能在你的所有 TypeScript 代码里使用。
 
 :::tip
-对于任何需要编译成 JavaScript 代码，我们强烈建议你放入文件模块里。
+对于任何需要编译成 `JavaScript` 的代码，我们强烈建议你放入文件模块里。
 :::
 
-- `global.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要。
+- `global.d.ts` 是一种扩充 `lib.d.ts` 很好的方式，如果你需要的话。
 - 当你从 `JS` 迁移到 `TS` 时，定义 `declare module "some-library-you-dont-care-to-get-defs-for"` 能让你快速开始。
