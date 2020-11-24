@@ -17,7 +17,7 @@ num = str; // Error: 'string' 不能赋值给 'number'
 TypeScript 类型系统设计比较方便，它允许你有一些不正确的行为。例如：任何类型都能被赋值给 `any`，这意味着告诉编译器你可以做任何你想做的事情：
 
 ```ts
-const foo: any = 123;
+let foo: any = 123;
 foo = 'hello';
 
 foo.toPrecision(3);
