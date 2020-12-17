@@ -86,7 +86,7 @@ iTakePoint2D({ x: 0 }); // Error: 没有 'y'
 - 不变（Invariant）：如果类型不完全相同，则它们是不兼容的。
 
 ::: tip
-对于存在完全可变数据的健全的类型系统（如 JavaScript），`Invariant` 是一个唯一的有效可选属性，但是如我们说讨论的，*便利性*迫使我们作出一些不是很安全的选择。
+对于存在完全可变数据的健全的类型系统（如 JavaScript），`Invariant` 是一个唯一的有效可选属性，但是如我们所讨论的，*便利性*迫使我们作出一些不是很安全的选择。
 :::
 
 关于协变和逆变的更多内容，请参考：[协变与逆变](/tips/covarianceAndContravariance.html)。
