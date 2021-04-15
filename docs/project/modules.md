@@ -5,13 +5,13 @@
 在默认情况下，当你开始在一个新的 TypeScript 文件中写下代码时，它处于全局命名空间中。如在 foo.ts 里的以下代码。
 
 ```ts
-const foo = 123;
+var foo = 123;
 ```
 
 如果你在相同的项目里创建了一个新的文件 `bar.ts`，TypeScript 类型系统将会允许你使用变量 `foo`，就好像它在全局可用一样：
 
 ```ts
-const bar = foo; // allowed
+var bar = foo; // allowed
 ```
 
 毋庸置疑，使用全局变量空间是危险的，因为它会与文件内的代码命名冲突。我们推荐使用下文中将要提到的文件模块。
@@ -21,20 +21,20 @@ const bar = foo; // allowed
 文件模块也被称为外部模块。如果在你的 TypeScript 文件的根级别位置含有 `import` 或者 `export`，那么它会在这个文件中创建一个本地的作用域。因此，我们需要把上文 `foo.ts` 改成如下方式（注意 `export` 用法）：
 
 ```ts
-export const foo = 123;
+export var foo = 123;
 ```
 
 在全局命名空间里，我们不再有 `foo`，这可以通过创建一个新文件 `bar.ts` 来证明：
 
 ```ts
-const bar = foo; // ERROR: "cannot find name 'foo'"
+var bar = foo; // ERROR: "cannot find name 'foo'"
 ```
 
 如果你想在 `bar.ts` 里使用来自 `foo.ts` 的内容，你必须显式地导入它，更新后的 `bar.ts` 如下所示。
 
 ```ts
 import { foo } from './foo';
-const bar = foo; // allow
+var bar = foo; // allow
 ```
 
 在 `bar.ts` 文件里使用 `import` 时，它不仅允许你使用从其他文件导入的内容，还会将此文件 `bar.ts` 标记为一个模块，文件内定义的声明也不会“污染”全局命名空间
