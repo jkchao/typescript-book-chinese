@@ -102,7 +102,7 @@ window.helloWorld('gracius'); // Error: 提供的参数与目标不匹配
 declare var Math: Math;
 ```
 
-即变量 `Math` 是 `Math` 的一个实例，`Math` 接口被定义为
+即变量 `Math` 是 `Math` 的一个实例，`Math` 接口被定义为：
 
 ```ts
 interface Math {

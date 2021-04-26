@@ -314,5 +314,5 @@ enum Color {
 ```
 
 ::: tip
-你应该在枚举的延续块中，初始化第一个成员，以便生成的代码不是先前定义的枚举类型值。TypeScript 将会发出警告，如果你定义初始值（错误信息：`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`）。
+你应该在枚举的延续块中，重新初始化第一个成员（此处为 `DarkRed = 3`），使生成的代码不破坏先前定义的值（即0、1...等值）。如果您仍然不这样做，TypeScript 将会发出警告（错误信息：`In an enum with multiple declarations, only one declaration can omit an initializer for its first enum element.`）。
 :::
