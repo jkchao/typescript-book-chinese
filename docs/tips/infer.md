@@ -89,7 +89,7 @@ type AA = ParamType<string>; // string
   type ResO = TArray extends TTuple ? true : false; // false
   ```
 
-  因此，在配合 `infer` 时，这很容做到：
+  因此，在配合 `infer` 时，这很容易做到：
 
   ```ts
   type ElementOf<T> = T extends Array<infer E> ? E : never;
