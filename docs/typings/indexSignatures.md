@@ -267,7 +267,7 @@ const example: NestedCSS = {
   }
 }
 
-const failsSliently: NestedCSS {
+const failsSliently: NestedCSS = {
   colour: 'red'  // TS Error: 未知属性 'colour'
 }
 ```
