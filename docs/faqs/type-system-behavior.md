@@ -75,7 +75,7 @@ let myPets: Dog[] = [spot, fido];
 checkIfAnimalsAreAwake(myPets);
 ```
 
-这将是非常烦人。在 `checkIfAnimalsAreAwake` 没有修改 arr 的情况下，这段代码 100% 是正确的。没有充足的理由来认为 `Dog[]` 不能被赋值给 `Animal[]` - 在这里很明显，一组 `Dog` 是一组 `Anumal`。
+这将是非常烦人。在 `checkIfAnimalsAreAwake` 没有修改 arr 的情况下，这段代码 100% 是正确的。没有充足的理由来认为 `Dog[]` 不能被赋值给 `Animal[]` - 在这里很明显，一组 `Dog` 是一组 `Animal`。
 
 回到第一个问题，类型系统什么时候会决定 `Dog[]` 是 `Animal[]` 的子类型。它将会进行以下计算（写到这里，编译器好像没有进行任何优化）：
 
