@@ -126,7 +126,7 @@ import * as foo from './foo';
 import 'core-js'; // 一个普通的 polyfill 库
 ```
 
-- 从其他模块导入后整体导出：
+- 从其他模块重新导出所有项目：
 
 ```ts
 export * from './foo';
@@ -316,7 +316,7 @@ import foo = require('foo');
 let bar: foo.SomeType;
 ```
 
-然而，在某些情景下，你只想在需要时加载模块 `foo`，此时你需要仅在类型注解中使用导入的模块名称，而**不**是在变量中使用。在编译成 JavaScript 时，这些将会被移除。接着，你可以手动导入你需要的模块。
+然而，在某些情景下，你只想在运行时加载文件 `foo`，此时你需要仅在类型注解中使用导入的模块名称，而**不**是在变量中使用。在编译成 JavaScript 时，这些将会被移除。接着，你可以手动导入你需要的模块。
 
 作为一个例子，考虑以下基于 `commonjs` 的代码，我们仅在一个函数内导入 `foo` 模块：
 
@@ -354,7 +354,7 @@ export function loadFoo() {
 
 #### 使用例子：确保导入
 
-当你加载一个模块，只是想引入其附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)）时，然而，如果你仅仅是 `import/require` （导入）一些并没有与你的模块或者模块加载器有任何依赖的 JavaScript 代码，（如：webpack），经过 TypeScript 编译后，这些将会被完全忽视。在这种情况下，你可以使用一个 `ensureImport` 变量，来确保编译的 JavaScript 依赖与模块。如：
+当你加载一个模块，只是想引入其附加的作用（如：模块可能会注册一些像 [CodeMirror addons](https://codemirror.net/doc/manual.html#addons)）时，然而，如果你仅仅是使用 `import/require` 编译出来的 JavaScript 不会包括这个模块的依赖，你的模块加载器如 webpack 可能会完全忽视这个导入。在这种情况下，你可以使用一个 `ensureImport` 变量，来确保编译的 JavaScript 依赖与模块。如：
 
 ```ts
 import foo = require('./foo');
