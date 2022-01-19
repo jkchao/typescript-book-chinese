@@ -48,7 +48,7 @@ const someOtherVar = 123;
 与此相似，一些用 `var` 声明的变量，也只能在变量声明空间使用，不能用作类型注解。
 
 ```js
-const foo = 123;
+var foo = 123;
 let bar: foo; // ERROR: "cannot find name 'foo'"
 ```
 
