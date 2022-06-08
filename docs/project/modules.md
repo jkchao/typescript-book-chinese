@@ -184,16 +184,16 @@ import someLocalNameForThisFile from './foo';
 它们的主要区别在于系统如何解析模块。
 
 :::tip
-我将会使用一个概念性术语，`place` -- 将在提及查找模式后解释它。
+我将会使用一个概念性术语，引用路径`place` -- 将在提及查找模式后解释它。
 :::
 
 #### 相对模块路径
 
 这很简单，仅仅是按照相对路径来就可以了：
 
-- 如果文件 `bar.ts` 中含有 `import * as foo from './foo'`，那么 `foo` 文件必须与 `bar.ts` 文件存在于相同的文件夹下
-- 如果文件 `bar.ts` 中含有 `import * as foo from '../foo'`，那么 `foo` 文件所存在的地方必须是 `bar.ts` 的上一级目录；
-- 如果文件 `bar.ts` 中含有 `import * as foo from '../someFolder/foo'`，那么 `foo` 文件所在的文件夹 `someFolder` 必须与 `bar.ts` 文件所在文件夹在相同的目录下。
+- 如果文件 `bar.ts` 中含有 `import * as foo from './foo'`，那么 `foo` 的引用路径必须与 `bar.ts` 文件存在于相同的文件夹下
+- 如果文件 `bar.ts` 中含有 `import * as foo from '../foo'`，那么 `foo` 的引用路径必须存在于 `bar.ts` 的上一级目录；
+- 如果文件 `bar.ts` 中含有 `import * as foo from '../someFolder/foo'`，那么 `foo` 的引用路径所在的文件夹 `someFolder` 必须与 `bar.ts` 文件所在文件夹在相同的目录下。
 
 你还可以思考一下其他相对路径导入的场景。:smiley:
 
@@ -201,25 +201,25 @@ import someLocalNameForThisFile from './foo';
 
 当导入路径不是相对路径时，模块解析将会模仿 [Node 模块解析策略](https://nodejs.org/api/modules.html#modules_all_together)，下面我将给出一个简单例子：
 
-- 当你使用 `import * as foo from 'foo'`，将会按如下顺序查找模块：
+- 当你使用 `import * as foo from 'foo'`，将会按如下顺序查找模块的引用路径：
   - `./node_modules/foo`
   - `../node_modules/foo`
   - `../../node_modules/foo`
   - 直到系统的根目录
-- 当你使用 `import * as foo from 'something/foo'`，将会按照如下顺序查找内容
+- 当你使用 `import * as foo from 'something/foo'`，将会按照如下顺序查找模块的引用路径
   - `./node_modules/something/foo`
   - `../node_modules/something/foo`
   - `../../node_modules/something/foo`
   - 直到系统的根目录
 
-### 什么是 `place`
+### 什么是引用路径 `place`
 
-当我提及被检查的 `place` 时，我想表达的是在这个 `place` 上，TypeScript 将会检查以下内容（例如一个 `foo` 的 `place`）：
+当我提及 “查找模块的引用路径” 时，我想表达的是对于这个引用路径，TypeScript 将会检查以下内容（例如一个 `foo` 的引用路径）：
 
-- 如果这个 `place` 表示一个文件，如：`foo.ts`，欢呼！
-- 否则，如果这个 `place` 是一个文件夹，并且存在一个文件 `foo/index.ts`，欢呼！
-- 否则，如果这个 `place` 是一个文件夹，并且存在一个 `foo/package.json` 文件，在该文件中指定 `types` 的文件存在，那么就欢呼！
-- 否则，如果这个 `place` 是一个文件夹，并且存在一个 `package.json` 文件，在该文件中指定 `main` 的文件存在，那么就欢呼！
+- 如果这个引用路径是一个文件，如：`foo.ts`，就它了！
+- 否则，如果这个引用路径是一个文件夹，并且存在一个文件 `foo/index.ts`，就它了！
+- 否则，如果这个引用路径是一个文件夹，并且存在一个 `foo/package.json` 文件，在该文件中指定 `types` 的文件存在，那就它了！
+- 否则，如果这个引用路径是一个文件夹，并且存在一个 `package.json` 文件，在该文件中指定 `main` 的文件存在，那就它了！
 
 从文件类型上来说，我实际上是指 `.ts`， `.d.ts` 或者 `.js`
 
