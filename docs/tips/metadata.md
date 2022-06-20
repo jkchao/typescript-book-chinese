@@ -140,8 +140,8 @@ class SomeClass {
 这些 Decorator 也是基于 `Reflect Metadata` 实现，这次，我们将 `metadataKey` 定义在 `descriptor` 的 `value` 上：
 
 ```ts
-const METHOD_METADATA = 'method'；
-const PATH_METADATA = 'path'；
+const METHOD_METADATA = 'method';
+const PATH_METADATA = 'path';
 
 const Controller = (path: string): ClassDecorator => {
   return target => {
@@ -168,13 +168,13 @@ function mapRoute(instance: Object) {
 
   // 筛选出类的 methodName
   const methodsNames = Object.getOwnPropertyNames(prototype)
-                              .filter(item => !isConstructor(item) && isFunction(prototype[item]))；
+                              .filter(item => !isConstructor(prototype[item]) && isFunction(prototype[item]));
   return methodsNames.map(methodName => {
     const fn = prototype[methodName];
 
     // 取出定义的 metadata
     const route = Reflect.getMetadata(PATH_METADATA, fn);
-    const method = Reflect.getMetadata(METHOD_METADATA, fn)；
+    const method = Reflect.getMetadata(METHOD_METADATA, fn);
     return {
       route,
       method,
