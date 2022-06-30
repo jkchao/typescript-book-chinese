@@ -32,7 +32,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 ////////////
 
 // 添加属性的混合例子
-function TimesTamped<TBase extends Constructor>(Base: TBase) {
+function Timestamped<TBase extends Constructor>(Base: TBase) {
   return class extends Base {
     timestamp = Date.now();
   };
@@ -62,11 +62,11 @@ class User {
   name = '';
 }
 
-// 添加 TimesTamped 的 User
-const TimestampedUser = TimesTamped(User);
+// 添加 Timestamped 的 User
+const TimestampedUser = Timestamped(User);
 
-// Tina TimesTamped 和 Activatable 的类
-const TimestampedActivatableUser = TimesTamped(Activatable(User));
+// Tina Timestamped 和 Activatable 的类
+const TimestampedActivatableUser = Timestamped(Activatable(User));
 
 //////////
 // 使用组合类
@@ -94,7 +94,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 
 ```ts
 // 添加属性的混合例子
-function TimesTamped<TBase extends Constructor>(Base: TBase) {
+function Timestamped<TBase extends Constructor>(Base: TBase) {
   return class extends Base {
     timestamp = Date.now();
   };
