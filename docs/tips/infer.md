@@ -7,12 +7,12 @@
 简单示例如下：
 
 ```ts
-type ParamType<T> = T extends (...args: infer P) => any ? P : T;
+type ParamType<T> = T extends (arg: infer P) => any ? P : T;
 ```
 
-在这个条件语句 `T extends (...args: infer P) => any ? P : T` 中，`infer P` 表示待推断的函数参数。
+在这个条件语句 `T extends (arg: infer P) => any ? P : T` 中，`infer P` 表示待推断的函数参数。
 
-整句表示为：如果 `T` 能赋值给 `(...args: infer P) => any`，则结果是 `(...args: infer P) => any` 类型中的参数 `P`，否则返回为 `T`。
+整句表示为：如果 `T` 能赋值给 `(arg: infer P) => any`，则结果是 `(arg: infer P) => any` 类型中的参数 `P`，否则返回为 `T`。
 
 ```ts
 interface User {
