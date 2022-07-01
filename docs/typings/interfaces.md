@@ -96,7 +96,13 @@ interface Crazy {
 你可能会有下面这样的代码：
 
 ```ts
-class CrazyClass implements Crazy {
+interface CrazyInstance { }
+
+interface CrazyStatic {
+  new (): CrazyInstance;
+}
+
+let CrazyClass: CrazyStatic = class CrazyClass implements CrazyInstance {
   constructor() {
     return { hello: 123 };
   }
