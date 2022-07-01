@@ -329,6 +329,7 @@ export function loadFoo() {
   // 现在，你可以使用 `_foo` 替代 `foo` 来作为一个变量使用
 }
 ```
+上面例子中的typeof的使用可以参考typescript中的[类型保护](https://jkchao.github.io/typescript-book-chinese/typings/typeGuard.html#typeof)一节
 
 一个同样简单的 `amd` 模块（使用 requirejs）：
 
