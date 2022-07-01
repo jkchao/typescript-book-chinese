@@ -22,7 +22,7 @@ interface User {
 
 type Func = (user: User) => void;
 
-type Param = ParamType<Func>; // Param = User
+type Param = ParamType<Func>; // Param = User[]
 type AA = ParamType<string>; // string
 ```
 
