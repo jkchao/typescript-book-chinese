@@ -66,7 +66,8 @@ let overloaded: {
 为了使指定可调用的类型签名更容易，TypeScript 也允许你使用简单的箭头函数类型注解。例如，在一个以 number 类型为参数，以 string 类型为返回值的函数中，你可以这么写：
 
 ```ts
-const simple: (foo: number) => string = foo => foo.toString();
+const simple: (foo: number) => string 
+  = foo => foo.toString();
 ```
 
 ::: tip
