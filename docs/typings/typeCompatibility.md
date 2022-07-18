@@ -173,7 +173,8 @@ enum EventType {
   Mouse,
   Keyboard
 }
-function addEventListener(eventType: EventType, handler: (n: Event) => void) {
+function addEventListener(eventType: EventType, handler: (e: Event) => void) {
+Copy and SaveGet Link
   // ...
 }
 
