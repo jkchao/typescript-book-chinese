@@ -51,7 +51,7 @@ function doThingBetter(options) {
 首先，在一些场景下，TypeScript 会混淆导出的究竟是一个类型还是一个值。比如在下面的例子中， `MyThing` 究竟是一个值还是一个类型？
 
 ```ts
-import { MyThing } from './some-module.js';
+import { MyThing } from './some-module';
 
 export { MyThing };
 ```
