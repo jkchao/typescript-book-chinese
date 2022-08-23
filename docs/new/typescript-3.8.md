@@ -30,16 +30,16 @@ function doThingBetter(options: Options) {
 
 遗憾的是，这仅是因为一个被称之为「导入省略」的功能而起作用。当 TypeScript 输出一个 JavaScript 文件时，TypeScript 会识别出 `Options` 仅仅是当作了一个类型来使用，它将会删除 `Options`
 
-```ts
+```JavaScript
 // ./foo.js
-export function doThing(options: Options) {
+export function doThing(options) {
   // ...
 }
 
 // ./bar.js
 import { doThing } from './foo.js';
 
-function doThingBetter(options: Options) {
+function doThingBetter(options) {
   // do something twice as good
   doThing(options);
   doThing(options);
