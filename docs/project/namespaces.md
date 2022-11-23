@@ -2,7 +2,9 @@
 
 在 JavaScript 使用命名空间时， 这有一个常用的、方便的语法：
 
+
 ```js
+let something;
 (function(something) {
   something.foo = 123;
 })(something || (something = {}));
@@ -11,6 +13,7 @@
 `something || (something = {})` 允许匿名函数 `function (something) {}` 向现有对象添加内容，或者创建一个新对象，然后向该对象添加内容。这意味着你可以拥有两个由某些边界拆成的块。
 
 ```js
+let something;
 (function(something) {
   something.foo = 123;
 })(something || (something = {}));
@@ -45,6 +48,7 @@ Utility.error('maybe');
 `namespace` 关键字编译后的 JavaScript 代码，与我们早些时候看到的 JavaScript 代码一样。
 
 ```js
+let Utility;
 (function (Utility) {
   // 添加属性至 Utility
 })(Utility || Utility = {});
