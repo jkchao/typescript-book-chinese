@@ -80,7 +80,7 @@ interface State {
 this.setState({ foo: 'Hello' }); // Error: 没有属性 'bar'
 
 // 因为 state 包含 'foo' 与 'bar'，TypeScript 会强制你这么做：
-this.setState({ foo: 'Hello', bar: this.state.bar });
+this.setState((draft) => ({ foo: 'Hello', bar: draft.bar }));
 ```
 
 如果你想使用 Freshness，你可能需要将所有成员标记为可选，这仍然会捕捉到拼写错误：
